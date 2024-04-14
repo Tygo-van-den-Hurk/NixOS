@@ -3,7 +3,7 @@
 { config, pkgs, lib, ... } : {
 
     imports = [ 
-        ./../common-modules/all.nix 
+        ./../modules/common/all.nix 
         # ./hardware-configurations.nix #? I don't know how this works for WSL.
     ];
 

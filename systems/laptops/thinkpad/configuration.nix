@@ -3,9 +3,9 @@
 { config, pkgs, lib, ... } : {
 
     imports = [ 
-        ./../../common-modules/all.nix 
-        ./hardware-configurations.nix 
+        ./../../modules/common/all.nix 
+        ./hardware-configuration.nix 
     ];
 
-    networking.hostName = "tygos-desktop";
+    networking.hostName = "tygos-thinkpad";
 }

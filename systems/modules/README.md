@@ -1,0 +1,2 @@
+# Modules
+In this directory I'll store all the configuration files that can be used to add or remove from a system. The most important subdirectory is the [common/](./common/README.md) directory, as the [common/all.nix](./common/all.nix) is in there. This module has all the settings that each of the systems is going to use.

@@ -9,10 +9,10 @@
         kate vim nano vscode
         
         #` Web browsers
-        firefox
+        firefox brave
 
         #` Communication
-        telegram-desktop thunderbird
+        telegram-desktop thunderbird discord
 
         #` others
         localsend gimp

@@ -1,0 +1,2 @@
+# Dot Files for programs
+This part of the repository contains all the configuration files for the programs that I use. Such as shells, window managers, browsers and much more. It is all run by home manager.

@@ -1,54 +1,18 @@
-# {
-#     description = "The flake the controle what machines configurations to use.";
-# 
-#     inputs = {
-#         nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-#     };
-# 
-#     outputs = { self, nixpkgs } : {
-#         default = "default";
-#         laptop = "laptop";
-#         desktop = "desktop";
-#     };
-# }
-# 
-
 {
-    description = "The flake that controls which machine configuration to use.";
+    description = "The flake that is used to configure all my machines.";
   
-    inputs = {
-      nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    };
-  
-    outputs = { self, nixpkgs, ... }: {
-        # Import laptop and desktop configurations
-        laptopConfig = import ./system/laptops/thinkpad/configuration.nix { inherit nixpkgs; };
-        desktopConfig = import ./system/desktops/home/configuration.nix { inherit nixpkgs; };
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ INPUTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-        # Define outputs to switch between configurations
-        defaultPackage = {
-        inherit (nixpkgs) pkgs;
-            package = pkgs.lib.mkMerge [ 
-                laptopConfig.config 
-                desktopConfig.config 
-            ];
-        };
+    inputs.nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
-        # Output for laptop configuration
-        laptop = {
-            system = "x86_64-linux";
-            config = {
-                ...defaultPackage.config // laptopConfig.overrides;
-            };
-        };
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OUTPUTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-        # Output for desktop configuration
-        desktop = {
-            system = "x86_64-linux";
-            config = {
-                ...defaultPackage.config // desktopConfig.overrides;
-            };
-        };
+    outputs = { self, nixpkgs, ... } : let
+        lib = nixpkgs.lib;
+       pkgs = import nixpkgs;
+    in { nixosConfigurations = {
+           tygos-thinkpad = lib.nixosSystem { modules = [ ./systems/laptops/thinkpad/configuration.nix ]; };
+            tygos-desktop = lib.nixosSystem { modules = [ ./systems/desktops/home/configuration.nix ]; };
+        };        
     };
 }
-
