@@ -4,6 +4,7 @@ This repository contains the the configuration files for the NixOS. NixOS is a l
 | Name | link|
 |---|---|
 | How to Start Adding Modularity to Your NixOS Config | https://www.youtube.com/watch?v=bV3hfalcSKs |
+| NixOS Setup Guide - Configuration / Home-Manager / Flakes | https://www.youtube.com/watch?v=AGVXJ-TIv3Y |
 
 ## Todo List
 this is a todo-list of things we still need to do to get this system as I'd like:
