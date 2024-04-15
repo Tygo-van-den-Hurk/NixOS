@@ -1,6 +1,8 @@
 ## Defines display manager / window manager settings.
 
-{ config, pkgs, lib, ... } : { display = {
+{ config, pkgs, lib, ... } : { 
     
-    };
+    # display = {
+    # 
+    # };
 }

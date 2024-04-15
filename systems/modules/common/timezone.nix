@@ -2,5 +2,5 @@
 
 { config, pkgs, lib, ... } : {
 
-    time.timeZone = "Europe/Amsterdam";
+    time.timeZone = lib.mkDefault "Europe/Amsterdam";
 }
