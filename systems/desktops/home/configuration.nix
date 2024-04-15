@@ -3,7 +3,7 @@
 { config, pkgs, lib, ... } : {
 
     imports = [ 
-        ./../../modules/common/all.nix 
+        ./../../../modules/common 
         ./hardware-configurations.nix 
     ];
 

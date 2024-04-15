@@ -3,9 +3,9 @@
 { config, pkgs, lib, ... } : {
 
     imports = [ 
-        ./../modules/common/all.nix 
+        ./../../modules/common 
         # ./hardware-configurations.nix #? I don't know how this works for WSL.
     ];
 
-    networking.hostName = "tygos-wsl";
+    networking.hostName = "tygos-nixos-wsl";
 }
