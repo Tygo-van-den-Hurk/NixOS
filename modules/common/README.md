@@ -23,21 +23,24 @@ By importing the module like this, you know for sure that all of the settings th
 This module is structured in such a way that it follows the NixOS attribute flow. That means that if a setting is called: `some.setting.option` you can find it under: `./some/setting/default.nix` starting from this directory. So for example: `boot.loader.grub.enable` can be found in: `./boot/loader/grub/default.nix`. As can any other `boot.loader.grub` setting.
 
 ## How it works
-if you import this directory, nix will look for a `default.nix` and that file will recursively import all the folders that are present so this is how to import spreads:
+if you import this directory, nix will look for a `default.nix` and that file will recursively import all the folders that are present so this is how to import spreads. So as a demonstration some configuration imports common, and common imports:
 ```TXT
- -- common/  <-- some module imports this module (common)
+ -- common/
     |                   
-    |-- boot/           <-- common imports boot settings
-    |   |-- loader/             <-- boot imports loader settings 
-    |       |-- efi/                    <-- loader imports efi settings
-    |       |-- grub/                   <-- loader imports grub settings
-    |       |-- systemd-boot/           <-- loader imports systemd-boot settings
-    |
-    |-- environment/    <-- common imports environment settings
-    |   |-- systemPackages/     <-- environment imports systemPackages settings
-    |   |-- variables/          <-- environment imports variables settings
-    |
-    | and so on for all the subdirectories in this directory...
+    |-- boot/           
+    |-- environment/   
+    | ...
+    
+```
+And all the subdirectories in this directory. However boot imports loader, which in turn imports efi, grub, and systemd-boot... etc. etc. 
+```TXT
+ -- boot/
+    |-- loader/     
+    |       |-- efi/    
+    |       |-- grub/   
+    |       |-- systemd-boot/ 
+    |       |...
+    |...
 ```
 
 ## Updating this module
@@ -75,7 +78,32 @@ All settings should be written as if they are ment for this module:
 }
 ```
 
-That is because then this way, any other module can override this setting as is needed. 
+That is because then this way, any other module can override this setting as is needed. This is how lib.mkDefault works:
+```NIX
+mkOverride = priority: content:
+{ _type = "override";
+    inherit priority content;
+};
+
+## Where this is the values that they have:
+
+# used in config sections of non-user 
+mkOptionDefault = mkOverride 1500;
+
+# modules to set a default
+mkDefault = mkOverride 1000;  
+
+# image media profiles can be derived by inclusion into host config, hence needing to override host config, but do allow user to mkForce
+mkImageMediaOverride = mkOverride 60;
+
+# if you want to a setting to get through
+mkForce = mkOverride 50;
+
+# if a setting must (almost) not be able to be overwritten
+mkVMOverride = mkOverride 10; # used by ‘nixos-rebuild build-vm’
+```
+
+More information can be found [here](https://nixos-and-flakes.thiscute.world/nixos-with-flakes/modularize-the-configuration).
 
 ### Adding a setting
 if you want to add some setting, for example `foo.bar.option` with value `"some value"`. The you must first navigate to `./foo/bar/default.nix` if this file does not exist in this path, you must created it. You can past this template in 
