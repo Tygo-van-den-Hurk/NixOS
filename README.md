@@ -2,6 +2,9 @@
 
 # NixOS
 
+<div style="background-color: white; padding: 1em; border-radius: 1em;">
+        <img alt="The NixOS logo" src="https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nixos.svg" style="margin-left: auto; margin-right: auto; max-width: 300px; width: 100%">
+</div>
 
 ## What is NixOS?
 NixOS is a Declarative linux distribution that allows reproducibility, and focuses of reliability.
@@ -23,6 +26,52 @@ This repository has 3 main directories:
 - **Modules**: *is used to store a set of modules a `system` can load.*
 - **Systems**: *the systems that I've configured. Load modules from* `modules/` *.*
 - **Users**: *this is were the home-manager data will be stored*
+```
+NixOS/
+├── systems/
+│   │
+│   ├── laptop/
+│   │   └── laptop1/
+│   │       ├── configuration.nix
+│   │       └── settings.nix
+│   │
+│   ├── desktop/
+│   │   └── desktop1/
+│   │       ├── configuration.nix
+│   │       └── settings.nix
+│   │
+│   ├── wsl/
+│   │   ├── configuration.nix
+│   │   └── settings.nix
+│   │
+│   └── vm/
+│       ├── configuration.nix
+│       └── settings.nix
+│  
+│   
+├── modules/
+│   │
+│   ├── common/
+│   │   ├── boot/
+│   │   ├── environment/
+│   │   ├── ... 
+│   │   ├── users/
+│   │   ├── settings.nix 
+│   │   └── default.nix
+│   │
+│   ├── ... 
+│   │
+│   └── gaming/
+│       └── default.nix
+│
+│   
+├── user/
+│   ├── tygo/
+│       └── ...
+│
+├── flake.nix
+└── flake.lock
+```
 
 There is also the `flake.nix`, and `flake.lock` of course here at the root. The flow is as follows: 
 - the flake takes the argument from the CLI and loads the *system* from `./systems/`
@@ -31,11 +80,11 @@ There is also the `flake.nix`, and `flake.lock` of course here at the root. The 
 
 ## Learn NixOS
 These video's helped me with building my own configuration file. 
-| Name | link|
-|---|---|
-| NixOS Setup Guide - Configuration / Home-Manager / Flakes | https://www.youtube.com/watch?v=AGVXJ-TIv3Y |
-| How to Start Adding Modularity to Your NixOS Config | https://www.youtube.com/watch?v=bV3hfalcSKs |
 
+│ Name                                                      │ link                                        │
+│-----------------------------------------------------------│---------------------------------------------│
+│ NixOS Setup Guide - Configuration / Home-Manager / Flakes │ https://www.youtube.com/watch?v=AGVXJ-TIv3Y │
+│ How to Start Adding Modularity to Your NixOS Config       │ https://www.youtube.com/watch?v=bV3hfalcSKs │
 
 ## Todo List
 this is a todo-list of things we still need to do to get this system as I'd like:
