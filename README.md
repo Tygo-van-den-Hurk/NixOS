@@ -69,12 +69,13 @@ These video's helped me with building my own configuration file.
 │ How to Start Adding Modularity to Your NixOS Config       │ https://www.youtube.com/watch?v=bV3hfalcSKs │
 
 ## Todo List
-this is a todo-list of things we still need to do to get this system as I'd like:
-- [ ] modularity of the configurations:  
-  - [x] create a structure in such a way that different machines can load different modules  
-  - [ ] make it possible to load the config of a certain machine using the flake
-- [ ] usability
-  - [x] Add "boot to windows" option when booting up  
+this is a todo-list of things we still need to do to get this system as I'd like. After all these are done, it will become a feature list!
+
+- [x] modularity of the configurations:  
+  - [x] create the 'module loader' that loads modules based on settings.  
+  - [x] make it possible to load the config of a certain machine using the flake.  
+- [ ] usability:
+  - [x] Add "boot to windows" option when booting up.  
   - [ ] Fix keybindings using the config files so that every machine is immediately fixed.  
-  - [ ] configure the a window manager  
-  - [ ] install all apps  
+  - [ ] configure the a window manager.  
+  - [ ] install all apps that you want.  
