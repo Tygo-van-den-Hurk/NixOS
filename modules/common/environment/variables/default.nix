@@ -1,8 +1,8 @@
 ## Defines environment settings.
 
 arguments @ { config, pkgs, lib, machine-settings, ... } : { environment.variables = {
-        # TERMINAL = "";
-        EDITOR = "code";
-        VISUAL = "code";
+        EDITOR   = machine-settings.user.defaultApps.editor;
+        VISUAL   = machine-settings.user.defaultApps.editor;
+        TERMINAL = machine-settings.user.defaultApps.terminal;
     }; 
 }
