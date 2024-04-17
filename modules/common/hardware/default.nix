@@ -1,6 +1,6 @@
 ## Defines miscellaneous settings.
 
-{ config, pkgs, lib, ... } : { hardware = {
+{ config, pkgs, lib, machine-settings, ... } : { hardware = {
     };
 
     imports = [

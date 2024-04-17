@@ -29,41 +29,23 @@ This repository has 3 main directories:
 ```
 NixOS/
 ├── systems/
-│   │
-│   ├── laptop/
-│   │   └── laptop1/
-│   │       ├── configuration.nix
-│   │       └── settings.nix
-│   │
-│   ├── desktop/
-│   │   └── desktop1/
-│   │       ├── configuration.nix
-│   │       └── settings.nix
-│   │
-│   ├── wsl/
-│   │   ├── configuration.nix
-│   │   └── settings.nix
-│   │
-│   └── vm/
-│       ├── configuration.nix
-│       └── settings.nix
-│  
+│   ├── category/
+│   │   ├── specific-machine/
+│   │   │   ├── configuration.nix
+│   │   │   ├── hardware-configuration.nix
+│   │   │   └── settings.nix
+│   │   ├── ... 
+│   │   └── common-settings.nix
+│   ├── ... 
+│   └── common-settings.nix
 │   
 ├── modules/
 │   │
-│   ├── common/
-│   │   ├── boot/
-│   │   ├── environment/
-│   │   ├── ... 
-│   │   ├── users/
-│   │   ├── settings.nix 
+│   ├── module/
+│   │   ├── ...
 │   │   └── default.nix
 │   │
-│   ├── ... 
-│   │
-│   └── gaming/
-│       └── default.nix
-│
+│   │ ...
 │   
 ├── user/
 │   ├── tygo/

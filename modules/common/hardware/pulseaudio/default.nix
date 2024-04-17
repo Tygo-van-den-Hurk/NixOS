@@ -1,6 +1,6 @@
 ## Defines miscellaneous settings.
 
-{ config, pkgs, lib, ... } : { hardware.pulseaudio = {
+{ config, pkgs, lib, machine-settings, ... } : { hardware.pulseaudio = {
         enable = lib.mkDefault false;
     };
 }

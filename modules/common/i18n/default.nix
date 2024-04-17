@@ -1,6 +1,6 @@
 ## Defines internationalisation settings.
 
-{ config, pkgs, lib, ... } : { i18n = {
+{ config, pkgs, lib, machine-settings, ... } : { i18n = {
         defaultLocale = lib.mkDefault "en_US.UTF-8";
     };
 

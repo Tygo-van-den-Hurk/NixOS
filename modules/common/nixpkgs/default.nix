@@ -1,6 +1,6 @@
 ## Defines Nix packages configuration settings.
 
-{ config, pkgs, lib, ... } : { nixpkgs = {
+{ config, pkgs, lib, machine-settings, ... } : { nixpkgs = {
     };
 
     imports = [

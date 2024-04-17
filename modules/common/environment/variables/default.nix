@@ -1,6 +1,6 @@
 ## Defines environment settings.
 
-{ config, pkgs, lib, ... } : { environment.variables = {
+{ config, pkgs, lib, machine-settings, ... } : { environment.variables = {
         # TERMINAL = "";
         EDITOR = "code";
         VISUAL = "code";

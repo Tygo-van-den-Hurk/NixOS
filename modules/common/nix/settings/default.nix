@@ -1,6 +1,6 @@
 ## Defines nix settings.
 
-{ config, pkgs, lib, ... } : { nix.settings = {
+{ config, pkgs, lib, machine-settings, ... } : { nix.settings = {
     };
 
     imports = [

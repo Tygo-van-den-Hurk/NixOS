@@ -1,10 +1,6 @@
 ## Defines the services that run on the system.
 
-{ config, pkgs, lib, ... } : { services = {
-
-        #` Printing
-        # Enable CUPS to print documents.
-        printing.enable = true;
+{ config, pkgs, lib, machine-settings, ... } : { services = {
     };
 
     imports = [ 
@@ -13,5 +9,4 @@
         ./printing
         ./xserver
     ]; 
-
 }

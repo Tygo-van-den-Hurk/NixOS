@@ -1,6 +1,6 @@
 ## Defines the settings for the timezone.
 
-{ config, pkgs, lib, ... } : { time = {
+{ config, pkgs, lib, machine-settings, ... } : { time = {
         timeZone = lib.mkDefault "Europe/Amsterdam";
     };
 }

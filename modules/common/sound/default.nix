@@ -1,6 +1,6 @@
 ## Defines miscellaneous settings.
 
-{ config, pkgs, lib, ... } : { sound = {
+{ config, pkgs, lib, machine-settings, ... } : { sound = {
         enable = lib.mkDefault true;
     };
 }

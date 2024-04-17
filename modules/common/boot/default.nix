@@ -1,9 +1,9 @@
 ## Defines all the settings for boot.
 
-{ config, pkgs, lib, ... } : { boot = {
+arguments @ { config, pkgs, lib, machine-settings, ... } : { boot = {
     };
     
     imports = [ 
-        ./loader 
+        ( import  ./loader  arguments )
     ];
 }

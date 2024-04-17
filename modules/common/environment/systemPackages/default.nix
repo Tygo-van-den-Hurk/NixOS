@@ -15,6 +15,6 @@
         telegram-desktop thunderbird discord
 
         #` others
-        localsend gimp
+        localsend gimp stow
     ];
 }

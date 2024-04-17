@@ -1,6 +1,6 @@
 ## Defines the pipewire service.
 
-{ config, pkgs, lib, ... } : { services.pipewire = {
+{ config, pkgs, lib, machine-settings, ... } : { services.pipewire = {
         enable = true;
         alsa.enable = true;
         alsa.support32Bit = true;

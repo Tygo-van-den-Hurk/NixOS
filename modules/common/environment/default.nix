@@ -1,6 +1,6 @@
 ## Defines environment settings.
 
-{ config, pkgs, lib, ... } : { environment = {
+{ config, pkgs, lib, machine-settings, ... } : { environment = {
     }; 
 
     imports = [

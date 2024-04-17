@@ -1,6 +1,6 @@
 ## Defines the networking options.
 
-{ config, pkgs, lib, ... } : { networking.wireless = {
+{ config, pkgs, lib, machine-settings, ... } : { networking.wireless = {
         #// enable = true;
     };
 }
