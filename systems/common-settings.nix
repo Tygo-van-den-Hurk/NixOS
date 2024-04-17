@@ -7,9 +7,9 @@
     };
 
     modules = {
-        kmonad              = null; # Wether or not to remap the keys to MacOS behavior
-        nvidia              = null; # Wether or not to load the NVIDIA drivers
-        gaming              = null; # Wether or not the system should load the gaming module
+        kmonad              = false; # Wether or not to remap the keys to MacOS behavior
+        nvidia              = false; # Wether or not to load the NVIDIA drivers
+        gaming              = false; # Wether or not the system should load the gaming module
     };
 
     system = {
