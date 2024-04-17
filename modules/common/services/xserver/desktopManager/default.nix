@@ -1,10 +1,10 @@
 ## Defines the services that run on the system.
 
-{ config, pkgs, lib, machine-settings, ... } : { services.xserver.desktopManager = {
+arguments @ { config, pkgs, lib, machine-settings, ... } : { services.xserver.desktopManager = {
     };
 
     imports = [
-        ./plasma5
-        ./xterm
+        ( import ./plasma5 arguments )
+        ( import ./xterm   arguments )
     ];
 }

@@ -1,10 +1,10 @@
 ## Defines environment settings.
 
-{ config, pkgs, lib, machine-settings, ... } : { environment = {
+arguments @ { config, pkgs, lib, machine-settings, ... } : { environment = {
     }; 
 
     imports = [
-        ./systemPackages
-        ./variables
+        ( import ./systemPackages arguments )
+        ( import ./variables      arguments )
     ];
 }

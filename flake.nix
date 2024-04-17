@@ -65,18 +65,10 @@
             # This is where the flake decided which system to load.
             #
             #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~| MACHINES |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-            
-            tygos-desktop  = lib.nixosSystem { modules = [ ./systems/desktops/home/configuration.nix    ]; };
-            tygos-thinkpad = lib.nixosSystem { modules = [ ./systems/laptops/thinkpad/configuration.nix ]; };
+
+            tygos-thinkpad = lib.nixosSystem { modules = [ ./systems/laptops/thinkpad ]; };
             
             #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~| |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-            #
-            default = { # TODO : make this throw an error when loaded as this is not a system
-                # assert false || throw "Did not specify hostname. 
-                #     Please run the command ending in `.#hostname` 
-                #     where hostname is the hostname of the system 
-                #     you would like to load.";
-            };
         };
         #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~` END OF MACHINES `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
     });

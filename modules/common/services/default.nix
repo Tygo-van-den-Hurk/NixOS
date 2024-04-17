@@ -1,12 +1,12 @@
 ## Defines the services that run on the system.
 
-{ config, pkgs, lib, machine-settings, ... } : { services = {
+arguments @ { config, pkgs, lib, machine-settings, ... } : {services = {
     };
 
     imports = [ 
-        ./openssh
-        ./pipewire
-        ./printing
-        ./xserver
+        ( import ./openssh  arguments )
+        ( import ./pipewire arguments )
+        ( import ./printing arguments )
+        ( import ./xserver  arguments )
     ]; 
 }

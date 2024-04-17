@@ -1,4 +1,5 @@
+## This is the specific Setting file for this machine
+#! Any setting you write here will overwrite whatever anyone has tried to set before.
 {
-    username = "tygo";
-    hostname = "tygos-thinkpad";
+    system.hostname = "tygos-thinkpad";
 }

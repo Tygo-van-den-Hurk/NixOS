@@ -1,9 +1,9 @@
 ## Defines Nix packages configuration settings.
 
-{ config, pkgs, lib, machine-settings, ... } : { nixpkgs = {
+arguments @ { config, pkgs, lib, machine-settings, ... } : { nixpkgs = {
     };
 
     imports = [
-        ./config
+        ( import ./config arguments )
     ];
 }

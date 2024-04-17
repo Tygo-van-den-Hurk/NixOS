@@ -1,11 +1,11 @@
 ## Defines display manager / window manager settings.
 
-{ config, pkgs, lib, machine-settings, ... } : { security = {
+arguments @ { config, pkgs, lib, machine-settings, ... } : {security = {
     };
 
     imports = [
-        ./rtkit
-        ./sudo
+        ( import ./rtkit arguments )
+        ( import ./sudo  arguments )
     ];
 }
 

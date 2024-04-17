@@ -1,6 +1,5 @@
 ## Defines the user options.
-
-{ config, pkgs, lib, machine-settings, ... } : { users.users = {
+arguments @ { config, pkgs, lib, machine-settings, ... } : { users.extraUsers = {
 
         tygo = {
             #! Defines user accounts with a weak password. 

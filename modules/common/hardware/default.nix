@@ -1,9 +1,9 @@
 ## Defines miscellaneous settings.
 
-{ config, pkgs, lib, machine-settings, ... } : { hardware = {
+arguments @ { config, pkgs, lib, machine-settings, ... } : { hardware = {
     };
 
     imports = [
-        ./pulseaudio
+        ( import ./pulseaudio arguments )
     ];
 }

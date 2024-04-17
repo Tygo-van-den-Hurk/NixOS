@@ -1,6 +1,6 @@
 ## Defines all the settings for boot.
 
-{ config, pkgs, lib, machine-settings, ... } : { i18n.extraLocaleSettings = {
+arguments @ { config, pkgs, lib, machine-settings, ... } : { i18n.extraLocaleSettings = {
         LC_ADDRESS = lib.mkDefault "nl_NL.UTF-8";
         LC_IDENTIFICATION = lib.mkDefault "nl_NL.UTF-8";
         LC_MEASUREMENT = lib.mkDefault "nl_NL.UTF-8";

@@ -1,6 +1,6 @@
 ## Defines the packages to use on the system.
 
-{ pkgs, lib, ... } : { environment.systemPackages = with pkgs; [
+arguments @ { config, pkgs, lib, machine-settings, ... } : { environment.systemPackages = with pkgs; [
 
         #` Command Line Tools
         wget curl git gh lf fzf ollama tailscale

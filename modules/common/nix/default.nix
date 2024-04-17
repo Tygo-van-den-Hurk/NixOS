@@ -1,10 +1,10 @@
 ## Defines nix settings.
 
-{ config, pkgs, lib, machine-settings, ... } : { nix = {
+arguments @ { config, pkgs, lib, machine-settings, ... } : { nix = {
     };
 
     imports = [
-        ./settings
-        ./gc
+        ( import ./settings arguments )
+        ( import ./gc       arguments )
     ];
 }

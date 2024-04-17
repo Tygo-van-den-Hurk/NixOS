@@ -1,6 +1,6 @@
 ## Defines the network manager options.
 
-{ config, pkgs, lib, machine-settings, ... } : { networking.networkmanager = {
+arguments @ { config, pkgs, lib, machine-settings, ... } : { networking.networkmanager = {
         enable = lib.mkDefault true;
     };
 }
