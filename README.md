@@ -63,10 +63,20 @@ There is also the `flake.nix`, and `flake.lock` of course here at the root. The 
 ## Learn NixOS
 These video's helped me with building my own configuration file. 
 
-│ Name                                                      │ link                                        │
-│-----------------------------------------------------------│---------------------------------------------│
-│ NixOS Setup Guide - Configuration / Home-Manager / Flakes │ https://www.youtube.com/watch?v=AGVXJ-TIv3Y │
-│ How to Start Adding Modularity to Your NixOS Config       │ https://www.youtube.com/watch?v=bV3hfalcSKs │
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Link</th>
+  </tr>
+  <tr>
+    <td>NixOS Setup Guide - Configuration / Home-Manager / Flakes</td>
+    <td><a href="https://www.youtube.com/watch?v=AGVXJ-TIv3Y">https://www.youtube.com/watch?v=AGVXJ-TIv3Y</a></td>
+  </tr>
+  <tr>
+    <td>How to Start Adding Modularity to Your NixOS Config</td>
+    <td><a href="https://www.youtube.com/watch?v=bV3hfalcSKs">https://www.youtube.com/watch?v=bV3hfalcSKs</a></td>
+  </tr>
+</table>
 
 ## Todo List
 this is a todo-list of things we still need to do to get this system as I'd like. After all these are done, it will become a feature list!
