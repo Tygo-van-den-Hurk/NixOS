@@ -55,8 +55,8 @@
     
     } : let
 
-        lib = nixpkgs.lib;
-       pkgs = import nixpkgs;
+        pkgs = import nixpkgs;
+        lib  = builtins.trace "Loading: flake..." nixpkgs.lib; 
     
     in { 
         #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~` MACHINES `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#

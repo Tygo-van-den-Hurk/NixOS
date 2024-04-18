@@ -1,6 +1,6 @@
 ## Defines the settings for libinput.
 
 arguments @ { config, pkgs, lib, machine-settings, ... } : { services.xserver.libinput = {
-        enable = true; # Enable touchpad support (enabled default in most desktopManager).
+        enable = true; # Enable touchpad support. Enabled by default in most desktopManagers.
     };
 }
