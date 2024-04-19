@@ -20,64 +20,6 @@ Reliable
 ### Reliable
 Nix ensures that installing or upgrading one package cannot break other packages. It allows you to roll back to previous versions, and ensures that no package is in an inconsistent state during an upgrade.
 
-
-## the Structure of this repository
-This repository has 3 main directories:
-- **Modules**: *is used to store a set of modules a `system` can load.*
-- **Systems**: *the systems that I've configured. Load modules from* `modules/` *.*
-- **Users**: *this is were the home-manager data will be stored*
-```
-NixOS/
-├── systems/
-│   ├── category/
-│   │   ├── specific-machine/
-│   │   │   ├── configuration.nix
-│   │   │   ├── hardware-configuration.nix
-│   │   │   └── settings.nix
-│   │   ├── ... 
-│   │   └── common-settings.nix
-│   ├── ... 
-│   └── common-settings.nix
-│   
-├── modules/
-│   │
-│   ├── module/
-│   │   ├── ...
-│   │   └── default.nix
-│   │
-│   │ ...
-│   
-├── user/
-│   ├── tygo/
-│       └── ...
-│
-├── flake.nix
-└── flake.lock
-```
-
-There is also the `flake.nix`, and `flake.lock` of course here at the root. The flow is as follows: 
-- the flake takes the argument from the CLI and loads the *system* from `./systems/`
-- the *system* loads the *modules* it needs from `./modules/`
-- the *system* builds the home directory from the `./users/` folder
-
-## Learn NixOS
-These video's helped me with building my own configuration file. 
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Link</th>
-  </tr>
-  <tr>
-    <td>NixOS Setup Guide - Configuration / Home-Manager / Flakes</td>
-    <td><a href="https://www.youtube.com/watch?v=AGVXJ-TIv3Y">https://www.youtube.com/watch?v=AGVXJ-TIv3Y</a></td>
-  </tr>
-  <tr>
-    <td>How to Start Adding Modularity to Your NixOS Config</td>
-    <td><a href="https://www.youtube.com/watch?v=bV3hfalcSKs">https://www.youtube.com/watch?v=bV3hfalcSKs</a></td>
-  </tr>
-</table>
-
 ## Todo List
 this is a todo-list of things we still need to do to get this system as I'd like. After all these are done, it will become a feature list!
 
@@ -89,3 +31,46 @@ this is a todo-list of things we still need to do to get this system as I'd like
   - [ ] Fix keybindings using the config files so that every machine is immediately fixed.  
   - [ ] configure the a window manager.  
   - [ ] install all apps that you want.  
+
+
+## Learn NixOS
+These resources helped me with building my own configuration file:
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Link</th>
+  </tr>
+  <tr>
+    <td>NixOS Setup Guide - Configuration / Home-Manager / Flakes</td>
+    <td><a href="https://www.youtube.com/watch?v=AGVXJ-TIv3Y">YouTube</a></td>
+  </tr>
+  <tr>
+    <td>How to Start Adding Modularity to Your NixOS Config</td>
+    <td><a href="https://www.youtube.com/watch?v=bV3hfalcSKs">YouTube</a></td>
+  </tr>
+</table>
+
+## Structure of this Repository
+This repository has 3 main directories:
+- **Systems**: *the systems that I've configured. Load modules from* [`modules/`](./modules/README.md) *. You can learn more about that module [here](./systems/README.md).*
+- **Modules**: *is used to store a set of modules a [`system`](./systems/README.md) can load. You can learn more about that module [here](./modules/README.md).*
+- **Users**: *this is were the home-manager data will be stored. You can read more about that module [here](./users/README.md).*
+
+Here is an overview of the structure:
+
+```
+NixOS/
+├── systems/
+├── modules/
+├── user/
+├── flake.nix
+└── flake.lock
+```
+
+There is also the [`flake.nix`](./flake.nix), and [`flake.lock`](./flake.lock) of course here at the root. The flow is as follows: 
+- The flake takes the argument from the CLI and loads the *system* from [`./systems/`](./systems/README.md) somewhere.
+- That *system* loads the *module* loader at [`/modules/default.nix`](./modules/default.nix), which you can read more about [here](./modules/README.md).
+- The **module loader** loads the modules specified in the [**machines settings**](./systems/common-settings.nix).
+
+You can learn more about the structure of the [systems directory](./systems/README.md#structure), [modules directory](./modules/README.md#structure), or [user directory](./systems/README.md#structure) by clicking these links.

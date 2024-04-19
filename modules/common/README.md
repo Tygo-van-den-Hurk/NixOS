@@ -1,25 +1,12 @@
 # Common modules
-This directory contains all the settings that should be applied to all systems. If only one system needs to change a settings, that that should be written down inside that hosts configuration, and if multiple systems need that setting, then it should be created as module that can then be loaded by all systems who need it.
-
+This directory contains all the settings that should be applied to all systems. If only one system needs to change a settings, that that should be written down inside that hosts configuration, or even better, a modules should be written for that so more machines can enable it in the future.
 
 ## How to use
-You can use the module like this:
-
-```NIX
-# You can import all of the setting at once by writing:
-imports = [ 
-    # previous imports...
-    ...path/to/modules/common
-    #                  ^^^^^^
-    #             You are here now.
-    ...path/to/modules/someOtherModule
-    # other imports...
-];
-```
+Every modules should have a setting in [`/systems/common-settings.nix`](../../systems/common-settings.nix)
 
 By importing the module like this, you know for sure that all of the settings that change immediately get applied to all other systems. 
 
-## Modules structure
+## Structure
 This module is structured in such a way that it follows the NixOS attribute flow. That means that if a setting is called: `some.setting.option` you can find it under: `./some/setting/default.nix` starting from this directory. So for example: `boot.loader.grub.enable` can be found in: `./boot/loader/grub/default.nix`. As can any other `boot.loader.grub` setting.
 
 ## How it works
