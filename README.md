@@ -9,15 +9,15 @@
 ## What is NixOS?
 NixOS is a Declarative linux distribution that allows reproducibility, and focuses of reliability.
 
-### Reproducible
+### 1. Reproducible
 Nix builds packages in isolation from each other. This ensures that they are reproducible and don’t have undeclared dependencies, so if a package works on one machine, it will also work on another.
 Declarative
 
-### Declarative
+### 2. Declarative
 Nix makes it trivial to share development and build environments for your projects, regardless of what programming languages and tools you’re using.
 Reliable
 
-### Reliable
+### 3. Reliable
 Nix ensures that installing or upgrading one package cannot break other packages. It allows you to roll back to previous versions, and ensures that no package is in an inconsistent state during an upgrade.
 
 ## Todo List
