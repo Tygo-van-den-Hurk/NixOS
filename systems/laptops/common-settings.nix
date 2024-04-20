@@ -10,4 +10,17 @@ arguments @ { config, pkgs, lib, ... } : let
 
 in ( common-settings // { # add updates below:
 
+
+    #| ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TESTING PROPER FUNCTIONING  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ |#
+    # This section is here to test if the settings are working, and are being overwritten properly.
+
+    TESTING_PROPER_FUNCTIONING = { # This object will contain all the settings to check the output of.
+        SYSTEMS_LEVEL.CATEGORY = "WRITTEN BY CATEGORY"; # Should be "written by category", and should be overwritten.
+        CATEGORY_LEVEL = {                     # Contains all the settings added by category.
+            CATEGORY = "WRITTEN BY CATEGORY";  # Should be "written by category", and should not be overwritten.
+            MACHINE  = "WRITTEN BY CATEGORY";  # Should be "written by machine", and should be overwritten by machine.
+        };
+
+        # Machine Should add their own section.
+    };
 })

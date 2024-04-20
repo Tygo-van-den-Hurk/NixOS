@@ -12,4 +12,14 @@ in ( common-settings // { # add updates below:
 
     system.hostname = "tygos-thinkpad";
     system.architecture = "86x_64-linux";
+
+
+    #| ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TESTING PROPER FUNCTIONING  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ |#
+    # This section is here to test if the settings are working, and are being overwritten properly.
+
+    TESTING_PROPER_FUNCTIONING = { # This object will contain all the settings to check the output of.
+        SYSTEMS_LEVEL.MACHINE  = "WRITTEN BY MACHINE"; # Should be "written by machine".
+        CATEGORY_LEVEL.MACHINE = "WRITTEN BY MACHINE"; # Should be "written by machine".
+        MACHINE_LEVEL.MACHINE  = "WRITTEN BY MACHINE"; # Should be "written by machine".
+    };
 })

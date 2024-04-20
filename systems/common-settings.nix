@@ -1,7 +1,9 @@
 ## This file contains all the settings that will be used in configuration.nix
 #! Changing this will change this setting - unless overwritten - for all machines.
 arguments @ { config, pkgs, lib, ... } : {
+
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SETTINGS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+    
     user = {
         username            = "tygo";       # The username of the main user on the system in lower caps.
         defaultApps = {                     # Sets the default apps to use 
@@ -32,8 +34,18 @@ arguments @ { config, pkgs, lib, ... } : {
         };       
     };
 
+    #! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ DANGER ZONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ !#
 
-    
+    #| ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TESTING PROPER FUNCTIONING  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ |#
+    # This section is here to test if the settings are working, and are being overwritten properly.
 
-    #! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Danger Zone ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ !#
+    TESTING_PROPER_FUNCTIONING = {           # This object will contain all the settings to check the output of.
+        SYSTEMS_LEVEL = {                    # This object contains all the settings created by the system level.
+            SYSTEMS = "WRITTEN BY SYSTEMS";  # Should be "written by systems", and not be overwritten.
+            CATEGORY = "WRITTEN BY SYSTEMS"; # Should be "written by category", and be overwritten.
+            MACHINE = "WRITTEN BY SYSTEMS";  # Should be "written by machine", and be overwritten.
+        };
+
+        # Both Category, and Machine Should add their own sections.
+    };
 }
