@@ -14,10 +14,11 @@ arguments @ { config, pkgs, lib, ... } : {
     };  
 
     modules = { 
-        kmonad              = true;         # Wether or not to remap the keys to MacOS behavior.
-        nvidia              = false;        # Wether or not to load the NVIDIA drivers.
-        gaming              = false;        # Wether or not the system should load the gaming module.
         gui                 = "kde";        # The GUI to use. Go to /modules/gui for an up-to-date list of the options.
+        kmonad              = true;         # Wether or not to load the 'kmonad' module.
+        nvidia              = false;        # Wether or not to load the 'nvidia' module.
+        gaming              = false;        # Wether or not to load the 'gaming' module.
+        onedrive            = false;        # wether or not to load the 'onedrive' module.
     };  
 
     system = {  

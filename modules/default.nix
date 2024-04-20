@@ -12,9 +12,10 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : let
 in { imports = [ 
 
         #| modules to load depending on settings
-        ( if ( modules.gaming ) then ( import ./gaming arguments ) else ( dont-load-that-module ) )
-        ( if ( modules.nvidia ) then ( import ./nvidia arguments ) else ( dont-load-that-module ) )
-        ( if ( modules.kmonad ) then ( import ./kmonad arguments ) else ( dont-load-that-module ) )
+        ( if ( modules.gaming   ) then ( import ./gaming   arguments ) else ( dont-load-that-module ) )
+        ( if ( modules.nvidia   ) then ( import ./nvidia   arguments ) else ( dont-load-that-module ) )
+        ( if ( modules.kmonad   ) then ( import ./kmonad   arguments ) else ( dont-load-that-module ) )
+        ( if ( modules.onedrive ) then ( import ./onedrive arguments ) else ( dont-load-that-module ) )
 
         #| modules to always load
         ( import ./common arguments ) # always import the common modules as that is required to function.
