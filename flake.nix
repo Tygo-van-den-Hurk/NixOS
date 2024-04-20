@@ -36,40 +36,31 @@
     #
     # In this portion we'll modify the iputs to get an output, we you use the command:
     # 
-    #`   sudo nixos-rebuild switch --flake .#[hostname]
+    #?   sudo nixos-rebuild switch --flake .#[hostname]
     #
     # it will look look for this object:
     #
-    #`   outputs.nixosConfigurations.[hostname]
+    #?   outputs.nixosConfigurations.[hostname]
     #
     # and create a working system from that.
     #
-    outputs = ( arguments @ { 
-    
-        home-manager, 
-        nixos-wsl, 
-        nixpkgs, 
-        self, 
-        nur, 
-        ... 
-    
-    } : let
-
+    outputs = ( arguments @ { home-manager, nixos-wsl, nixpkgs, self, nur, ...  } : let
+        # 
         pkgs = import nixpkgs;
-        lib  = builtins.trace "Loading: flake..." nixpkgs.lib; 
-    
-    in { 
-        #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~` MACHINES `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-        nixosConfigurations = {
-            #
-            # This is where the flake decided which system to load.
-            #
-            #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~| MACHINES |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+        lib  = builtins.trace ("Loading: flake...") (nixpkgs.lib); 
+        #
+        #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~` ADDING CUSTOM MODULES FOR ALL MACHINES `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+        #
+        common-modules = [ 
+            nur.nixosModules.nur # Adding the NixOS User Repository
+        ];
+        #
+    in {#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~` MACHINES `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+        nixosConfigurations = { # This is where the flake decided which system to load.
+            #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-            tygos-thinkpad = lib.nixosSystem { modules = [ ./systems/laptops/thinkpad ]; };
+            tygos-thinkpad = lib.nixosSystem { modules = [ ./systems/laptops/thinkpad ] ++ common-modules; };
             
-            #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~| |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-        };
-        #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~` END OF MACHINES `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-    });
+        };#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+    });#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~` END OF MACHINES `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 }
