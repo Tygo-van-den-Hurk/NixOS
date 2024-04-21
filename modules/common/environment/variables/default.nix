@@ -13,5 +13,6 @@ in { environment.variables = {
         EDITOR   = defaultApps.editor;
         VISUAL   = defaultApps.editor;
         TERMINAL = defaultApps.terminal;
+        BROWSER  = defaultApps.browser; 
     }; 
 }
