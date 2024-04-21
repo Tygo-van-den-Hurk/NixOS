@@ -14,7 +14,7 @@ arguments @ { config, pkgs, lib, ... } : {
     };  
 
     modules = { 
-        gui                 = "kde";        # The GUI to use. Go to /modules/gui for an up-to-date list of the options.
+        gui                 = "kde"; # hyprland # The GUI to use. Go to /modules/gui for an up-to-date list of the options.
         kmonad              = true;         # Wether or not to load the 'kmonad' module.
         nvidia              = false;        # Wether or not to load the 'nvidia' module.
         gaming              = false;        # Wether or not to load the 'gaming' module.
@@ -24,14 +24,15 @@ arguments @ { config, pkgs, lib, ... } : {
     system = {  
         hostname            = null;         # The hostname of the computer in lower caps.
         architecture        = null;         # The architecture the system uses.
-        allowUnfreePackages = null;         # Wether or not to allow unfree packages.
-        packages = {                        # The packages that should be on the system.
-            freeSoftware = with pkgs; [     # The packages that can be installed without `allowUnfreePackages` setting.
-
-            ];
-            unFreeSofware = with pkgs; [    #  The packages that can be installed with `allowUnfreePackages` setting.
-
-            ];
+        packages = {     
+            allowUnfree     = null;         # Wether or not to allow unfree packages.
+            # TODO : Make the packages definable in the settings. Currently that causes infinite recursion.
+            # freeSoftware    = [  # The packages that can be installed without `allowUnfreePackages` setting.
+            #     firefox
+            # ];
+            # unFreeSoftware  = with pkgs; [  #  The packages that can be installed with `allowUnfreePackages` setting.
+            # 
+            # ];
         };       
     };
 
