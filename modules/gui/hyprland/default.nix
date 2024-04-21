@@ -11,8 +11,12 @@ arguments @ { config, pkgs, lib, machine-settings, programs, ... } : let
 
 in { # See https://www.youtube.com/watch?v=61wGzIv12Ds
 
-    programs.hyprland.enable  = yes; # check '!' comment
+    programs.hyprland = {
+        enable  = yes; # check '!' comment 
+        xwayland.enable = yes;
+    };
 
+    environment.sessionVariables = { NIXOS_OZONE_WL = "1"; }; # hint electron apps to use wayland
     environment.systemPackages = with pkgs; [ 
         ( waybar.overrideAttrs (
             #! if waybar is not installed add a seprate 'waybar' in this list.
