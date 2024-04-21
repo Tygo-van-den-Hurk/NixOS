@@ -8,9 +8,13 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : let
     yes = builtins.trace ("Loading: /modules/common/boot/loader/grub...") (true); 
 
 in { boot.loader.grub = {
-        enable      = lib.mkDefault yes;
-        useOSProber = lib.mkDefault yes;
-        efiSupport  = lib.mkDefault yes;
+        enable         = lib.mkDefault yes;
+        useOSProber    = lib.mkDefault yes;
+        efiSupport     = lib.mkDefault yes;
+        theme = pkgs.sleek-grub-theme.override { # The theme grub uses defaul : null
+            withBanner = "Hello ${machine-settings.user.username},";
+            withStyle  = "dark";
+        };   
         #// configurationLimit = 5; 
         devices     = [ "nodev" ]; 
     };

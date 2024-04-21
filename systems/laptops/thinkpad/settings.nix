@@ -6,7 +6,7 @@ arguments @ { config, pkgs, lib, ... } : { # add updates below:
     system.architecture = "86x_64-linux";
     system.packages.allowUnfree = true;
 
-    modules.gui = "hyprland";
+    modules.gui = "kde";
     
     #| ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TESTING PROPER FUNCTIONING  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ |#
     # This section is here to test if the settings are working, and are being overwritten properly.

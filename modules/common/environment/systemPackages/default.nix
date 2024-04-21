@@ -24,22 +24,44 @@ let
 
 in { environment.systemPackages = ( with pkgs; [
 
-        #` Command Line Tools
-        wget curl git gh lf fzf ollama tailscale
+        #` Terminals & Command Line Tools
+        
+        #| Terminals
+        xterm 
+        kitty
+
+        #| Command Line Tools
+        wget 
+        curl
+        git
+        gh
+        lf
+        fzf
+        ollama
+        tailscale
 
         #` Text/Code editors
-        kate vim nano vscode
+        kate 
+        vim
+        nano
+        vscode
         
         #` Web browsers
         firefox brave
 
         #` Communication
-        telegram-desktop thunderbird discord
+        telegram-desktop
+        thunderbird
+        discord
 
         #` others
-        localsend gimp stow
+        localsend
+        gimp
+        stow 
+        
+        # obs # TODO : find out why OBS is not allowed.
     ]) 
-    # ++ ( user-defined-free-packages ) ++ ( 
+    # ++ ( user-defined-free-packages ) ++ ( # TODO : Set up settings defined packages.
     #     if ( packages.allowUnfree ) then ( user-defined-unfree-packages ) else ( do-not-add-unfree-packages ) 
     # )
     ;
