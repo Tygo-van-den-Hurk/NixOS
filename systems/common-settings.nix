@@ -42,9 +42,9 @@ arguments @ { config, pkgs, lib, ... } : {
 
     TESTING_PROPER_FUNCTIONING = {           # This object will contain all the settings to check the output of.
         SYSTEMS_LEVEL = {                    # This object contains all the settings created by the system level.
-            SYSTEMS = "WRITTEN BY SYSTEMS";  # Should be "written by systems", and not be overwritten.
-            CATEGORY = "WRITTEN BY SYSTEMS"; # Should be "written by category", and be overwritten.
-            MACHINE = "WRITTEN BY SYSTEMS";  # Should be "written by machine", and be overwritten.
+            SYSTEMS  = "written by systems, and not supposed to be overriden";  
+            CATEGORY = "written by systems, and supposed to be overriden by category";
+            MACHINE  = "written by systems, and supposed to be overriden by category, and then by machine"; 
         };
 
         # Both Category, and Machine Should add their own sections.
