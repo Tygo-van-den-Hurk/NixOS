@@ -1,6 +1,6 @@
 ## imports the right GUI as specified by the machine-settings.
 #! breaking this file could break multiple systems. Only remove modules if you are sure they are unused by all systems.
-arguments @ { config, pkgs, lib, machine-settings, ... } : let 
+arguments @ { config, pkgs, lib, machine-settings, programs, ... } : let 
   
     importNothing = {};
 
@@ -14,12 +14,12 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : let
 
 in { imports = [(    
 
-        /**/ if ( gui == "i3" || gui == "i3wm"  ) then ( import ./i3wm      arguments ) 
-        else if ( gui == "gnome"                ) then ( import ./gnome     arguments ) 
-        else if ( gui == "kde" || gui == "KDE"  ) then ( import ./kde       arguments )
-        else if ( gui == "hyperland"            ) then ( import ./hyperland arguments )
-        else if ( gui == "none" || gui == false ) then ( importNothing                )
-        else abort "\"${gui}\" is not one of the supported GUIs."
+        if ( gui == "i3" || gui == "i3wm"  ) then ( import ./i3wm      arguments ) else 
+        if ( gui == "gnome"                ) then ( import ./gnome     arguments ) else
+        if ( gui == "kde" || gui == "KDE"  ) then ( import ./kde       arguments ) else
+        if ( gui == "hyperland"            ) then ( import ./hyperland arguments ) else 
+        if ( gui == "none" || gui == false ) then ( importNothing                ) else 
+        abort "Error: \"${gui}\" is not one of the supported GUIs."
 
     )];
 }

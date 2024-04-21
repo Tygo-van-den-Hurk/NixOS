@@ -14,7 +14,7 @@ arguments @ { config, pkgs, lib, ... } : {
     };  
 
     modules = { 
-        gui                 = "kde";        # The GUI to use. Go to /modules/gui for an up-to-date list of the options.
+        gui                 = "hyperland";        # The GUI to use. Go to /modules/gui for an up-to-date list of the options.
         kmonad              = true;         # Wether or not to load the 'kmonad' module.
         nvidia              = false;        # Wether or not to load the 'nvidia' module.
         gaming              = false;        # Wether or not to load the 'gaming' module.
