@@ -11,7 +11,7 @@ arguments @ { config, pkgs, lib, machine-settings, programs, ... } : let
 
 in { # See https://www.youtube.com/watch?v=61wGzIv12Ds
 
-    programs.hyperland.enable  = yes; # check '!' comment
+    programs.hyprland.enable  = yes; # check '!' comment
 
     environment.systemPackages = with pkgs; [ 
         ( waybar.overrideAttrs (
