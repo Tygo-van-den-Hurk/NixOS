@@ -15,11 +15,10 @@ arguments @ { config, pkgs, lib, ... } : {
 
     modules = { 
         gui                 = "kde"; # hyprland # The GUI to use. Go to /modules/gui for an up-to-date list of the options.
-        kmonad              = true;         # Wether or not to load the 'kmonad' module.
         nvidia              = false;        # Wether or not to load the 'nvidia' module.
         gaming              = false;        # Wether or not to load the 'gaming' module.
         onedrive            = false;        # wether or not to load the 'onedrive' module.
-        xremap              = true;         # wether or not to load the 'xremap' module.
+        key-remapper        = "xremap";     # wether or not to load the 'xremap' module.
     };  
 
     system = {  

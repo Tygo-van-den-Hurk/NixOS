@@ -14,11 +14,11 @@ arguments @ { config, pkgs, lib, machine-settings, programs, ... } : let
 
 in { imports = [(    
 
-        if ( gui == "i3" || gui == "i3wm"            ) then ( import ./i3wm      arguments ) else 
-        if ( gui == "gnome"                          ) then ( import ./gnome     arguments ) else
-        if ( gui == "kde" || gui == "KDE"            ) then ( import ./kde       arguments ) else
+        if ( gui == "i3" || gui == "i3wm"            ) then ( import ./i3wm     arguments ) else 
+        if ( gui == "gnome"                          ) then ( import ./gnome    arguments ) else
+        if ( gui == "kde" || gui == "KDE"            ) then ( import ./kde      arguments ) else
         if ( gui == "hyprland" || gui == "hyperland" ) then ( import ./hyprland arguments ) else 
-        if ( gui == "none" || gui == false           ) then ( importNothing                ) else 
+        if ( gui == "none" || gui == false           ) then ( importNothing               ) else 
         abort "Error: \"${gui}\" is not one of the supported GUIs."
 
     )];
