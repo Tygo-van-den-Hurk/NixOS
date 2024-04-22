@@ -18,6 +18,30 @@ Reliable
 ### 3. Reliable
 Nix ensures that installing or upgrading one package cannot break other packages. It allows you to roll back to previous versions, and ensures that no package is in an inconsistent state during an upgrade.
 
+## Structure of this Repository
+This repository has 3 main directories:
+- **Systems**: *the systems that I've configured. Load modules from* [`modules/`](./modules/README.md) *. You can learn more about that module [here](./systems/README.md).*
+- **Modules**: *is used to store a set of modules a [`system`](./systems/README.md) can load. You can learn more about that module [here](./modules/README.md).*
+- **Users**: *this is were the home-manager data will be stored. You can read more about that module [here](./users/README.md).*
+
+Here is an overview of the structure:
+
+```
+NixOS/
+├── systems/
+├── modules/
+├── user/
+├── flake.nix
+└── flake.lock
+```
+
+There is also the [`flake.nix`](./flake.nix), and [`flake.lock`](./flake.lock) of course here at the root. The flow is as follows: 
+- The flake takes the argument from the CLI and loads the *system* from [`./systems/`](./systems/README.md) somewhere.
+- That *system* loads the *module* loader at [`/modules/default.nix`](./modules/default.nix), which you can read more about [here](./modules/README.md).
+- The **module loader** loads the modules specified in the [**machines settings**](./systems/common-settings.nix).
+
+You can learn more about the structure of the [systems directory](./systems/README.md#structure), [modules directory](./modules/README.md#structure), or [user directory](./systems/README.md#structure) by clicking these links.
+
 ## Todo List
 this is a todo-list of things we still need to do to get this system as I'd like. After all these are done, it will become a feature list!
 
@@ -82,27 +106,3 @@ These resources helped me with building my own configuration file:
     <td><a href="https://www.youtube.com/watch?v=bV3hfalcSKs">YouTube</a></td>
   </tr>
 </table>
-
-## Structure of this Repository
-This repository has 3 main directories:
-- **Systems**: *the systems that I've configured. Load modules from* [`modules/`](./modules/README.md) *. You can learn more about that module [here](./systems/README.md).*
-- **Modules**: *is used to store a set of modules a [`system`](./systems/README.md) can load. You can learn more about that module [here](./modules/README.md).*
-- **Users**: *this is were the home-manager data will be stored. You can read more about that module [here](./users/README.md).*
-
-Here is an overview of the structure:
-
-```
-NixOS/
-├── systems/
-├── modules/
-├── user/
-├── flake.nix
-└── flake.lock
-```
-
-There is also the [`flake.nix`](./flake.nix), and [`flake.lock`](./flake.lock) of course here at the root. The flow is as follows: 
-- The flake takes the argument from the CLI and loads the *system* from [`./systems/`](./systems/README.md) somewhere.
-- That *system* loads the *module* loader at [`/modules/default.nix`](./modules/default.nix), which you can read more about [here](./modules/README.md).
-- The **module loader** loads the modules specified in the [**machines settings**](./systems/common-settings.nix).
-
-You can learn more about the structure of the [systems directory](./systems/README.md#structure), [modules directory](./modules/README.md#structure), or [user directory](./systems/README.md#structure) by clicking these links.
