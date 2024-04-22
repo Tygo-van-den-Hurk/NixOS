@@ -9,23 +9,27 @@ let
 
     path-to-config = /home/${machine-settings.user.username}/.config/xremap/config;
 
-in 
-
-# assert ( builtins.pathExists path-to-config );
-
-{
-
-    imports = [ input.xremap-flake.nixosModules.default ];
+in { imports = [ input.xremap-flake.nixosModules.default ];
 
     services.xremap = {
-        withWlroots = yes;
+        withWlroots = yes; # TODO : Figure out what EXACTLY this setting does.
         # withHypr  = yes;
         userName    = machine-settings.user.username;
         yamlConfig  = (''
-            # modmap:
-            #   - name: Global
-            #     remap:
-            #       CapsLock: Esc
+            ## Generated from: '.../NixOS/modules/xremap/defaul.nix' at 'services.xremap.yamlConfig'.
+
+            #| Remapping modifiers
+            # this part will remap CTRL to ALT and vise vera to get the layout desired. 
+            modmap:
+              - name: Global Remap CTRL to ALT
+                remap:
+                  CONTROL_L: ALT_L
+              - name: Global Remap ALT to CTRL
+                remap:
+                  ALT_L: CONTROL_L
+            
+            #| Remapping keycombinations
+            # this part will be for adding custom keyboard shortcuts, or remapping to existing ones.
             # keymap:
             #   - name: general keybindings
             #       mode: default
