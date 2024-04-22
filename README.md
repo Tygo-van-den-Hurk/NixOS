@@ -27,7 +27,31 @@ this is a todo-list of things we still need to do to get this system as I'd like
 - [ ] usability:
   - [x] Add "boot to windows" option when booting up.  
   - [ ] Fix keybindings using the config files so that every machine is immediately fixed.  
+    - [x] Remap CTRL to ALT, and vise vera.  
+    - [ ] Remap shortcuts Where`MAC SHORTCUT --> practical effect`:
+      - [ ] Navigation and selection
+        - [ ] `CMD`
+          - [ ] `CMD + RIGHT         --> "end of the line"`
+          - [ ] `CMD + SHIFT + RIGHT --> SHIFT + end`
+          - [ ] `CMD + LEFT          --> "start of the line"`
+          - [ ] `CMD + SHIFT + LEFT  --> "select from here until start of the line"`
+        - [ ] `ALT`
+          - [ ] `ALT + LEFT          --> "Go one word to the left"`
+          - [ ] `ALT + SHIFT + LEFT  --> "Select one word more to the left"`
+          - [ ] `ALT + RIGHT         --> "Go one word to the right"`
+          - [ ] `ALT + SHIFT + RIGHT --> "Select one word more to the right"`
+        - [ ] `CTRL`
+          - [ ] 
   - [ ] configure the a window manager.  
+  - [ ] configure the application launcher.
+    - [ ] must launch applications.   
+    - [ ] must take commands:   
+      - [ ] sleep   
+      - [ ] hibernate   
+      - [ ] reboot   
+      - [ ] shut down   
+    - [ ] must be able to calculate.   
+    - [ ] must be able to run terminal commands.   
   - [ ] install all apps that you want.  
 
 
