@@ -7,7 +7,7 @@ arguments @ { config, pkgs, lib, ... } : {
     user = {
         username            = "tygo";       # The username of the main user on the system in lower caps.
         defaultApps = {                     # Sets the default apps to use 
-            terminal        = "code";       # The default Termial app to load when opening a terminal.
+            terminal        = "alacritty";  # The default Termial app to load when opening a terminal.
             editor          = "code";       # The default Editor to load when editing a file.
             browser         = "firefox";    # The default browser open pages with. # TODO : implement this feature
         };  

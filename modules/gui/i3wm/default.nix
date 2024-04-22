@@ -8,16 +8,25 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : let
     yes = builtins.trace ("Loading: /modules/gui/i3wm...") (true); 
 
 in {
+    
+    programs.dconf.enable = true;
 
     services.xserver.enable                         = yes;
     services.xserver.desktopManager.xterm.enable    = yes;
+    
     services.xserver.displayManager.defaultSession  = "none+i3";
+
     services.xserver.windowManager.i3.enable        = yes;
     services.xserver.windowManager.i3.extraPackages = with pkgs; [
-        dmenu #application launcher most people use
-        i3status # gives you the default i3 status bar
-        i3lock #default i3 screen locker
-        i3blocks #if you are planning on using i3blocks over i3status
+        dmenu       #application launcher most people use
+        i3status    # gives you the default i3 status bar
+        i3lock      #default i3 screen locker
+        i3blocks    #if you are planning on using i3blocks over i3status
+        nitrogen    # wallpaper engine
     ];
 
+    # Depricated: services.xserver.libinput.naturalScrolling = yes;
+    services.xserver.libinput.touchpad.naturalScrolling = yes;
+    
+    environment.pathsToLink = [ "/libexec" ];
 }

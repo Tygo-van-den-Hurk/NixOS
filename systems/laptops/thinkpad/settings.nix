@@ -6,7 +6,7 @@ arguments @ { config, pkgs, lib, ... } : { # add updates below:
     system.architecture = "86x_64-linux";
     system.packages.allowUnfree = true;
 
-    modules.gui = "kde";
+    modules.gui = "i3wm";
     
     #| ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TESTING PROPER FUNCTIONING  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ |#
     # This section is here to test if the settings are working, and are being overwritten properly.

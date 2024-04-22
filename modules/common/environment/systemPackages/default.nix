@@ -29,6 +29,7 @@ in { environment.systemPackages = ( with pkgs; [
         #| Terminals
         xterm 
         kitty
+        alacritty
 
         #| Command Line Tools
         wget 
@@ -59,7 +60,7 @@ in { environment.systemPackages = ( with pkgs; [
         gimp
         stow 
         
-        # obs # TODO : find out why OBS is not allowed.
+        obs-studio
     ]) 
     # ++ ( user-defined-free-packages ) ++ ( # TODO : Set up settings defined packages.
     #     if ( packages.allowUnfree ) then ( user-defined-unfree-packages ) else ( do-not-add-unfree-packages ) 
