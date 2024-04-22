@@ -30,6 +30,9 @@
 
         #| NUR (NixOS User Repository)
         nur.url = "github:nix-community/NUR";
+
+        #| Xremap
+        xremap-flake.url = "github:xremap/nix-flake";
     };
     #
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OUTPUTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -44,7 +47,7 @@
     #
     # and create a working system from that.
     #
-    outputs = ( arguments @ { home-manager, nixos-wsl, nixpkgs, self, nur, ...  } : let
+    outputs = ( input @ { home-manager, nixos-wsl, nixpkgs, self, nur, ...  } : let
         # 
         pkgs = import nixpkgs;
         lib  = builtins.trace ("Loading: flake...") (nixpkgs.lib); 
@@ -59,7 +62,10 @@
         nixosConfigurations = { # This is where the flake decided which system to load.
             #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-            tygos-thinkpad = lib.nixosSystem { modules = [ ./systems/laptops/thinkpad ] ++ common-modules; };
+            tygos-thinkpad = lib.nixosSystem { 
+                specialArgs = { inherit input; }; # TODO : figure out what this does, and how EXACTLY it works.
+                modules = [ ./systems/laptops/thinkpad ] ++ common-modules;  
+            };
             
         };#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
     });#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~` END OF MACHINES `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#

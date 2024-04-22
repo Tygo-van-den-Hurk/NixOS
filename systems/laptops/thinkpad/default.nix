@@ -1,6 +1,6 @@
 ## Defines the configuration options for this machine.
 #! You should not have to change this file, all changes should happen in either the modules, or the settings.
-arguments @ { config, pkgs, lib, programs, ... } : let
+arguments @ { config, pkgs, lib, programs, input, ... } : let
 
     recursiveMerge = ( builtins.trace ( "Merging settings..." ) ( import ../../recursive-merge.nix arguments_ ) );
     arguments_     = ( builtins.trace ( "Loading: system..."  ) ( arguments // { 

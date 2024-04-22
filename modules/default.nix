@@ -1,6 +1,6 @@
 ## imports all the modules in this directory as specified by the machine-settings.
 #! breaking this file could break multiple systems. Only remove modules if you are sure they are unused by all systems.
-arguments @ { config, pkgs, lib, machine-settings, programs, ... } : let 
+arguments @ { config, pkgs, lib, machine-settings, programs, input, ... } : let 
     
     dont-load-that-module = {}; 
 
@@ -15,6 +15,7 @@ in { imports = [
         ( if ( modules.gaming   ) then ( import ./gaming   arguments ) else ( dont-load-that-module ) )
         ( if ( modules.nvidia   ) then ( import ./nvidia   arguments ) else ( dont-load-that-module ) )
         ( if ( modules.kmonad   ) then ( import ./kmonad   arguments ) else ( dont-load-that-module ) )
+        ( if ( modules.xremap   ) then ( import ./xremap   arguments ) else ( dont-load-that-module ) )
         ( if ( modules.onedrive ) then ( import ./onedrive arguments ) else ( dont-load-that-module ) )
 
         #| modules to always load
