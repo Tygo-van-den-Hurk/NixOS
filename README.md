@@ -27,21 +27,31 @@ this is a todo-list of things we still need to do to get this system as I'd like
 - [ ] usability:
   - [x] Add "boot to windows" option when booting up.  
   - [ ] Fix keybindings using the config files so that every machine is immediately fixed.  
-    - [x] Remap CTRL to ALT, and vise vera.  
-    - [ ] Remap shortcuts Where`MAC SHORTCUT --> practical effect`:
-      - [ ] Navigation and selection
-        - [ ] `CMD`
-          - [ ] `CMD + RIGHT         --> "end of the line"`
-          - [ ] `CMD + SHIFT + RIGHT --> SHIFT + end`
-          - [ ] `CMD + LEFT          --> "start of the line"`
-          - [ ] `CMD + SHIFT + LEFT  --> "select from here until start of the line"`
-        - [ ] `ALT`
-          - [ ] `ALT + LEFT          --> "Go one word to the left"`
-          - [ ] `ALT + SHIFT + LEFT  --> "Select one word more to the left"`
-          - [ ] `ALT + RIGHT         --> "Go one word to the right"`
-          - [ ] `ALT + SHIFT + RIGHT --> "Select one word more to the right"`
-        - [ ] `CTRL`
-          - [ ] 
+    - [x] Remap the linux modifiers to the Mac modifiers so the system behaves like a Mac.  
+    - [x] Remap shortcuts Where`MAC SHORTCUT --> practical effect`:
+      - [x] Navigation
+        - [x] `CMD + RIGHT` $\rightarrow$ Go to the end of the line.
+        - [x] `CMD + LEFT` $\rightarrow$ Go to the beginning of the line.
+        - [x] `CMD + DOWN` $\rightarrow$ Go to the end of the file.
+        - [x] `CMD + UP` $\rightarrow$ Go to the beginning of the file.
+        - [x] `ALT + LEFT` $\rightarrow$ Go one word to the left.
+        - [x] `ALT + RIGHT` $\rightarrow$ Go one word to the right
+        - [x] `ALT + DOWN` $\rightarrow$ Go to the end of the current alinea.
+        - [x] `ALT + UP` $\rightarrow$ Go to the beginning of current alinea.
+      - [x] Selection
+        - [x] `CMD + SHIFT + RIGHT` $\rightarrow$ Select from here to the end of the line.
+        - [x] `CMD + SHIFT + LEFT` $\rightarrow$ Select from here to the beginning of the line.
+        - [ ] `CMD + SHIFT + DOWN` $\rightarrow$ Select from here to the end of the file.
+        - [x] `CMD + SHIFT + UP` $\rightarrow$ Select from here to the beginning of the file.
+        - [x] `ALT + SHIFT + LEFT` $\rightarrow$ Select from here one word (more) to the left.
+        - [x] `ALT + SHIFT + RIGHT` $\rightarrow$ Select from here one word (more) to the right
+        - [x] `ALT + SHIFT + DOWN` $\rightarrow$ Select from here to the end of the current alinea.
+        - [x] `ALT + SHIFT + UP` $\rightarrow$ Select from here to the beginning of current alinea.
+      - [x] Deletion
+        - [x] `CMD + BACK_SPACE` $\rightarrow$ Delete from here to the beginning of the line.
+        - [x] `CMD + DELETE` $\rightarrow$ Delete from here to the end of the line
+        - [x] `ALT + BACK_SPACE` $\rightarrow$ Delete from here one word to the left.
+        - [x] `ALT + DELETE` $\rightarrow$ Delete from here one word to the right
   - [ ] configure the a window manager.  
   - [ ] configure the application launcher.
     - [ ] must launch applications.   
