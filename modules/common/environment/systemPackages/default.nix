@@ -41,11 +41,16 @@ in { environment.systemPackages = ( with pkgs; [
         ollama
         tailscale
 
-        #` Text/Code editors
+        #` Programming
+        
+        #|Text/Code editors
         kate 
         vim
         nano
         vscode
+        
+        #| Programming languages
+        rustc rustup cargo
         
         #` Web browsers
         firefox brave
@@ -54,6 +59,7 @@ in { environment.systemPackages = ( with pkgs; [
         telegram-desktop
         thunderbird
         discord
+	    whatsapp-for-linux
 
         #` others
         localsend
