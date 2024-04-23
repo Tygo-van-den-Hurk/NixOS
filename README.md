@@ -65,7 +65,7 @@ this is a todo-list of things we still need to do to get this system as I'd like
       - [x] Selection
         - [x] `CMD + SHIFT + RIGHT` $\rightarrow$ Select from here to the end of the line.
         - [x] `CMD + SHIFT + LEFT` $\rightarrow$ Select from here to the beginning of the line.
-        - [ ] `CMD + SHIFT + DOWN` $\rightarrow$ Select from here to the end of the file.
+        - [x] `CMD + SHIFT + DOWN` $\rightarrow$ Select from here to the end of the file.
         - [x] `CMD + SHIFT + UP` $\rightarrow$ Select from here to the beginning of the file.
         - [x] `ALT + SHIFT + LEFT` $\rightarrow$ Select from here one word (more) to the left.
         - [x] `ALT + SHIFT + RIGHT` $\rightarrow$ Select from here one word (more) to the right
