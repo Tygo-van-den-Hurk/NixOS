@@ -24,7 +24,7 @@ let
 
 in { environment.systemPackages = ( with pkgs; [
 
-        #` Terminals & Command Line Tools
+        #` 1) Terminals & Command Line Tools
         
         #| Terminals
         xterm 
@@ -41,7 +41,7 @@ in { environment.systemPackages = ( with pkgs; [
         ollama
         tailscale
 
-        #` Programming
+        #` 2) Programming
         
         #|Text/Code editors
         kate 
@@ -52,16 +52,19 @@ in { environment.systemPackages = ( with pkgs; [
         #| Programming languages
         rustc rustup cargo
         
-        #` Web browsers
+        #` 3) Web browsers
         firefox brave
 
-        #` Communication
+        #` 4) Communication
         telegram-desktop
         thunderbird
         discord
 	    whatsapp-for-linux
 
-        #` others
+        #` 5) Files and VM's
+        
+
+        #` *) others
         localsend
         gimp
         stow 

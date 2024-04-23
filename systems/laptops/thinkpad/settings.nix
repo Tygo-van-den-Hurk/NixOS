@@ -7,6 +7,7 @@ arguments @ { config, pkgs, lib, ... } : { # add updates below:
     system.packages.allowUnfree = true;
 
     modules.gui = "i3wm";
+    modules.virtualbox = true;
     
     #| ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TESTING PROPER FUNCTIONING  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ |#
     # This section is here to test if the settings are working, and are being overwritten properly.

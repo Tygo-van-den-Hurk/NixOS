@@ -81,8 +81,8 @@ keymap:
 # - MAC_ALT + [ UP   | DOWN  ] --> Move to the BEGINING, or END of the current alinea respectively. 
 #
 # TODO : Add the Thirdiary navigation shortcuts
-# - MAC_CTRL + [ LEFT | RIGHT ] --> #? unknown
-# - MAC_CTRL + [ UP   | DOWN  ] --> #? unknown 
+# - MAC_CTRL + [ LEFT | RIGHT ] --> Move to virtual desktop/workspace on the left, or right respectively.
+# - MAC_CTRL + [ UP   | DOWN  ] --> show all windows, or show desktop respectively
 #  
 # So what are these commands on windows and linux? Well, this is what they map to:
 # 
@@ -93,8 +93,8 @@ keymap:
 # - WIN_CTRL + [ UP   | DOWN  ] --> Move to the BEGINING, or END of the current alinea respectively. 
 #
 # TODO : Add the Thirdiary navigation shortcuts in windows
-# ? unknown
-# ? unknown
+# ? Depends on the desktop enviorment
+# ? Depends on the desktop enviorment
 #  
 # So that leaves us with this mapping:
 #
@@ -104,10 +104,6 @@ keymap:
 # - MAC_ALT + [ LEFT | RIGHT ] --> WIN_CTRL + [ LEFT | RIGHT ]
 # - MAC_ALT + [ UP   | DOWN  ] --> WIN_CTRL + [ UP   | DOWN  ]
 #  
-# TODO : Add the Thirdiary navigation shortcuts conclusion
-# ? unknown
-# ? unknown
-#
 # Resulting in the following remaps:
 #
 # Navigation : Primary   : MAC_CMD  ( WIN_ALT )
@@ -121,7 +117,6 @@ keymap:
         Alt-Up: Ctrl-Up             # MAC_ALT + Up    --> ( WIN_SUPER + Up    --> ) WIN_CTRL + Up
         Alt-Down: Ctrl-Down         # MAC_ALT + Down  --> ( WIN_SUPER + Down  --> ) WIN_CTRL + Down
 # Navigation : Thirdiary  : MAC_CTRL ( WIN_CTRL )
-# TODO : Add the Thirdiary navigation shortcuts realisation
 #
 #| SELECTION
 # Selection is nothing more then the navigation, but you hold shift, selecting the distance you've travelled.
@@ -145,7 +140,6 @@ keymap:
         Alt-Shift-Up:    Ctrl-Shift-Up    # MAC_ALT + Shift + Up    --> ( WIN_SUPER + Up    --> ) WIN_CTRL + Up
         Alt-Shift-Down:  Ctrl-Shift-Down  # MAC_ALT + Shift + Down  --> ( WIN_SUPER + Down  --> ) WIN_CTRL + Down
 # Selection : Thirdiary  : MAC_CTRL ( WIN_CTRL )
-# TODO : Add the Thirdiary navigation shortcuts realisation
 #
 #| DELETION
 # When you press the Primary, Secondary pluse backspace, or delete, it should remove the characters that were travel 
@@ -164,7 +158,16 @@ keymap:
         Alt-BackSpace:  [ Ctrl-Shift-Left,  BackSpace ] # MAC_CMD + BackSpace --> ( [ WIN_CTRL + Shift + Left, BackSpace ] --> ) [ Shift-Home, BackSpace]
         Alt-Delete:     [ Ctrl-Shift-Right, Delete    ] # MAC_CMD + Delete    --> ( [ WIN_CTRL + Shift + Left, Delete    ] --> ) [ Shift-End,  Delete   ]
 # Deletion : Thirdiary  : MAC_CTRL ( WIN_CTRL )
-# TODO : Add the Thirdiary Deletion shortcuts realisation
+#
+#| Closing DMENU when pressing MAC_CMD + SPACE
+    - name: close DMENU with it's activation
+      application:
+        only: dmenu Brave-browser
+      remap:
+        # Ctrl-Space: Esc
+        Ctrl-Space: 
+          launch: ["bash", "-c", "echo hello > /tmp/test"]
+#
 #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ END XREMAP CONFIGURATION FILE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
         '');

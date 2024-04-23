@@ -18,6 +18,7 @@ arguments @ { config, pkgs, lib, ... } : {
         nvidia              = false;        # Wether or not to load the 'nvidia' module.
         gaming              = false;        # Wether or not to load the 'gaming' module.
         onedrive            = false;        # wether or not to load the 'onedrive' module.
+        virtualbox          = false;        # wether or not to load the 'onedrive' module.
         key-remapper        = "xremap";     # wether or not to load the 'xremap' module.
     };  
 
