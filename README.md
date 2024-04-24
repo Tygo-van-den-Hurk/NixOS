@@ -87,6 +87,7 @@ this is a todo-list of things we still need to do to get this system as I'd like
     - [ ] must be able to calculate.   
     - [ ] must be able to run terminal commands.   
   - [ ] install all apps that you want.  
+  - [ ] Add fonts using the config.
 
 
 ## Learn NixOS
