@@ -9,6 +9,6 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : let
 
 in { programs.java = { 
         enable = yes; 
-        package = pkgs.jdk22;
+        package = pkgs.jdk21;
     };
 }
