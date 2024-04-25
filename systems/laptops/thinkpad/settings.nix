@@ -8,6 +8,16 @@ arguments @ { config, pkgs, lib, ... } : { # add updates below:
 
     modules.gui = "i3wm";
     modules.virtualbox = true;
+
+    modules.nvidia = {
+        enable = true;
+        hardwarePackage = "stable";
+        prime = {
+            offload = true;
+            nvidia = "PCI:1:0:0";
+            intel  = "PCI:0:2:0";
+        };
+    };
     
     #| ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TESTING PROPER FUNCTIONING  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ |#
     # This section is here to test if the settings are working, and are being overwritten properly.
