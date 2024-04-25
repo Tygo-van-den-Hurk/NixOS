@@ -6,7 +6,7 @@ arguments @ { config, pkgs, lib, ... } : { # add updates below:
     system.architecture = "86x_64-linux";
     system.packages.allowUnfree = true;
 
-    modules.gui = "i3wm";
+    modules.gui = "hyperland"; # "i3"; # 
     modules.virtualbox = true;
 
     modules.nvidia = {
