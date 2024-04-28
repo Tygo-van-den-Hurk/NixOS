@@ -15,7 +15,6 @@ in { imports = [
         ( import  ./networking   arguments_ )
         ( import  ./nix          arguments_ )
         ( import  ./nixpkgs      arguments_ )
-        ( import  ./programs     arguments_ )
         ( import  ./security     arguments_ )
         ( import  ./services     arguments_ )
         ( import  ./sound        arguments_ )

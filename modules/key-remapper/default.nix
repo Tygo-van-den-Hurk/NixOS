@@ -13,7 +13,14 @@ arguments @ { config, pkgs, lib, machine-settings, programs, ... } : let
         __keyRemapper_
     ); 
 
-in { imports = [(    
+in 
+
+#! The key-remapper must be specified in the variable !#
+assert ( key-remapper != "" && key-remapper != false); 
+#! The key-remapper must be specified in the variable !#
+
+{ 
+    imports = [(    
 
         if ( key-remapper == "kmonad" ) then ( import ./kmonad arguments ) else
         if ( key-remapper == "xremap" ) then ( import ./xremap arguments ) else 

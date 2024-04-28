@@ -12,7 +12,13 @@ arguments @ { config, pkgs, lib, machine-settings, programs, ... } : let
         machine-settings.modules.gui 
     ); 
 
-in { imports = [(    
+in 
+
+#! The gui must be specified in the variable !#
+assert ( gui != "" && gui != false); 
+#! The gui must be specified in the variable !#
+
+{ imports = [(    
 
         if ( gui == "i3" || gui == "i3wm"            ) then ( import ./i3wm     arguments ) else 
         if ( gui == "gnome"                          ) then ( import ./gnome    arguments ) else

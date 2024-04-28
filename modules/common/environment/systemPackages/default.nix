@@ -52,7 +52,6 @@ in { environment.systemPackages = ( with pkgs; [
         
         #| Programming languages
         rustc rustup cargo
-        maven
         
         #` 3) Web browsers
         firefox brave

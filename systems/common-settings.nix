@@ -14,12 +14,13 @@ arguments @ { config, pkgs, lib, ... } : {
     };  
 
     modules = { 
-        gui                 = "kde"; # hyprland # The GUI to use. Go to /modules/gui for an up-to-date list of the options.
-        nvidia.enable       = false;        # Wether or not to load the 'nvidia' module.
+        gui                 = "kde";        # The GUI to use. Go to /modules/gui for an up-to-date list of the options.
+        nvidia              = false;        # Wether or not to load the 'nvidia' module.
         gaming              = false;        # Wether or not to load the 'gaming' module.
         onedrive            = false;        # wether or not to load the 'onedrive' module.
         virtualbox          = false;        # wether or not to load the 'onedrive' module.
         key-remapper        = "xremap";     # wether or not to load the 'xremap' module.
+        java                = false;        # wether or not to load the 'java' module.
     };  
 
     system = {  

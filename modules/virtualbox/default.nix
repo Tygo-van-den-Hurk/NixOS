@@ -7,9 +7,14 @@ arguments @ { config, pkgs, lib, machine-settings, programs, input, ... } : let
     #` that's why you have to go through hoops and bounds to get this variable used so that it prints the message.
     yes = builtins.trace ("Loading: /modules/virtualbox...") (true); 
 
-in { 
+in 
 
-    nixpkgs.config.allowUnfree = lib.mkForce yes;
+#! you CANNOT load this module without enabling unfree software !#
+assert( machine-settings.system.packages.allowUnfree == true );
+#! you CANNOT load this module without enabling unfree software !#
+
+{ 
+
     environment.systemPackages = [ pkgs.virtualboxWithExtpack ];
 
     virtualisation.virtualbox.host.enable = yes;
