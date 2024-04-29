@@ -7,8 +7,25 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : let
     #` that's why you have to go through hoops and bounds to get this variable used so that it prints the message.
     yes = builtins.trace ("Loading: /modules/gaming...") (true); 
 
-in {
+in 
+
+#! you CANNOT load this module without enabling unfree software !#
+assert ( machine-settings.system.packages.allowUnfree == true );
+#! you CANNOT load this module without enabling unfree software !#
+
+{
     
     programs.gamemode.enable = lib.mkDefault yes;
 
+    programs.steam = {
+        enable = true;
+        remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+        dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    };
+
+    environment.systemPackages = with pkgs; [
+        steam
+        # steam-original # is no longer needed? I think?
+        steam-run
+    ];
 }

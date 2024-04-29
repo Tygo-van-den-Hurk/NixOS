@@ -10,6 +10,7 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : let
 in { imports = [ 
         ( import  ./boot         arguments_ )
         ( import  ./environment  arguments_ )
+        ( import  ./fonts        arguments_ )
         ( import  ./hardware     arguments_ )
         ( import  ./i18n         arguments_ )
         ( import  ./networking   arguments_ )

@@ -6,15 +6,16 @@ arguments @ { config, pkgs, lib, ... } : { # add updates below:
     system.architecture = "86x_64-linux";
     system.packages.allowUnfree = true;
 
-    modules.gui = "i3"; # "hyperland"; # "i3"; # 
-    modules.virtualbox = true;
-    modules.java = "jdk21";
-    modules.nvidia = {
-        hardwarePackage = "stable";
-        prime = {
-            offload = true;
-            nvidia = "PCI:1:0:0";
-            intel  = "PCI:0:2:0";
+    modules.gui           = "i3";
+    modules.virtualbox    = true;
+    modules.java          = "jdk21";
+    modules.gaming        = true;
+    modules.nvidia = {  
+        hardwarePackage   = "stable";
+        prime = {  
+            offload       = true;
+            nvidia        = "PCI:1:0:0";
+            intel         = "PCI:0:2:0";
         };
     };
     
