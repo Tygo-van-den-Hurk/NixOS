@@ -43,52 +43,7 @@ There is also the [`flake.nix`](./flake.nix), and [`flake.lock`](./flake.lock) o
 You can learn more about the structure of the [systems directory](./systems/README.md#structure), [modules directory](./modules/README.md#structure), or [user directory](./systems/README.md#structure) by clicking these links.
 
 ## Todo List
-this is a todo-list of things we still need to do to get this system as I'd like. After all these are done, it will become a feature list!
-
-- [x] modularity of the configurations:  
-  - [x] create the 'module loader' that loads modules based on settings.  
-  - [x] make it possible to load the config of a certain machine using the flake.  
-- [ ] usability:
-  - [x] Add "boot to windows" option when booting up.  
-  - [ ] Fix keybindings using the config files so that every machine is immediately fixed.  
-    - [x] Remap the linux modifiers to the Mac modifiers so the system behaves like a Mac.  
-    - [x] Remap shortcuts Where`MAC SHORTCUT --> practical effect`:
-      - [x] Navigation
-        - [x] `CMD + RIGHT` $\rightarrow$ Go to the end of the line.
-        - [x] `CMD + LEFT` $\rightarrow$ Go to the beginning of the line.
-        - [x] `CMD + DOWN` $\rightarrow$ Go to the end of the file.
-        - [x] `CMD + UP` $\rightarrow$ Go to the beginning of the file.
-        - [x] `ALT + LEFT` $\rightarrow$ Go one word to the left.
-        - [x] `ALT + RIGHT` $\rightarrow$ Go one word to the right
-        - [x] `ALT + DOWN` $\rightarrow$ Go to the end of the current alinea.
-        - [x] `ALT + UP` $\rightarrow$ Go to the beginning of current alinea.
-      - [x] Selection
-        - [x] `CMD + SHIFT + RIGHT` $\rightarrow$ Select from here to the end of the line.
-        - [x] `CMD + SHIFT + LEFT` $\rightarrow$ Select from here to the beginning of the line.
-        - [x] `CMD + SHIFT + DOWN` $\rightarrow$ Select from here to the end of the file.
-        - [x] `CMD + SHIFT + UP` $\rightarrow$ Select from here to the beginning of the file.
-        - [x] `ALT + SHIFT + LEFT` $\rightarrow$ Select from here one word (more) to the left.
-        - [x] `ALT + SHIFT + RIGHT` $\rightarrow$ Select from here one word (more) to the right
-        - [x] `ALT + SHIFT + DOWN` $\rightarrow$ Select from here to the end of the current alinea.
-        - [x] `ALT + SHIFT + UP` $\rightarrow$ Select from here to the beginning of current alinea.
-      - [x] Deletion
-        - [x] `CMD + BACK_SPACE` $\rightarrow$ Delete from here to the beginning of the line.
-        - [x] `CMD + DELETE` $\rightarrow$ Delete from here to the end of the line
-        - [x] `ALT + BACK_SPACE` $\rightarrow$ Delete from here one word to the left.
-        - [x] `ALT + DELETE` $\rightarrow$ Delete from here one word to the right
-  - [ ] configure the a window manager.  
-  - [ ] configure the application launcher.
-    - [ ] must launch applications.   
-    - [ ] must take commands:   
-      - [ ] sleep   
-      - [ ] hibernate   
-      - [ ] reboot   
-      - [ ] shut down   
-    - [ ] must be able to calculate.   
-    - [ ] must be able to run terminal commands.   
-  - [ ] install all apps that you want.  
-  - [ ] Add fonts using the config.
-
+This is a todo-list of things we still need to do to get this system as I'd like. After all these are done, it will become a feature list! [Go to To Do list](./TODO-LIST.md)
 
 ## Learn NixOS
 These resources helped me with building my own configuration file:
