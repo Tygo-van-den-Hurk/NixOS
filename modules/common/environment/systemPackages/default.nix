@@ -34,8 +34,7 @@ in { environment.systemPackages = ( with pkgs; [
         #| Command Line Tools
         wget 
         curl
-        git
-        gh
+        git gh glab
         lf
         fzf
         ollama

@@ -21,6 +21,7 @@ arguments @ { config, pkgs, lib, ... } : {
         virtualbox          = false;        # wether or not to load the 'onedrive' module.
         key-remapper        = "xremap";     # wether or not to load the 'xremap' module.
         java                = false;        # wether or not to load the 'java' module.
+        docker              = false;        # wether or not to load the 'docker' module.
     };  
 
     system = {  

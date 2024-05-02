@@ -48,8 +48,14 @@ modmap:
       remap:
         ALT_L: CONTROL_L    # WIN_ALT   gets assigned MAC_CMD  (WIN_CTRL)  --> ( Primaray   goes to right  key )
         ALT_R: CONTROL_R    # WIN_ALT   gets assigned MAC_CMD  (WIN_CTRL)  --> ( Primaray   goes to right  key )
-        SUPER_L: ALT_L      # WIN_SUPER gets assigned MAC_ALT  (WIN_ALT)   --> ( Secondary goes to middle key )
-        SUPER_R: ALT_R      # WIN_SUPER gets assigned MAC_ALT  (WIN_ALT)   --> ( Secondary goes to middle key )
+        SUPER_L:            # WIN_SUPER gets assigned MAC_ALT  (WIN_ALT)   --> ( Secondary goes to middle key )
+          held: ALT_L
+          alone: []
+          #alone_timeout_millis: 1000
+        SUPER_R:            # WIN_SUPER gets assigned MAC_ALT  (WIN_ALT)   --> ( Secondary goes to middle key )
+          held: ALT_R
+          alone: []
+          #alone_timeout_millis: 1000
         CONTROL_L: SUPER_L  # WIN_CTRL  gets assigned MAC_CTRL (WIN_SUPER) --> ( Thirdairy  goes to left   key )
         CONTROL_R: SUPER_R  # WIN_CTRL  gets assigned MAC_CTRL (WIN_SUPER) --> ( Thirdairy  goes to left   key )
 #

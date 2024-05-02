@@ -25,6 +25,7 @@ in { imports = [
         ( if ( modules.java         ) then ( import ./java         arguments ) else ( dont-load-that-module ) )
         ( if ( modules.gui          ) then ( import ./gui          arguments ) else ( dont-load-that-module ) )
         ( if ( modules.key-remapper ) then ( import ./key-remapper arguments ) else ( dont-load-that-module ) )
+        ( if ( modules.docker       ) then ( import ./docker       arguments ) else ( dont-load-that-module ) )
 
         #| modules to always load
         ( import ./common       arguments ) # always import the common modules as that is required to function.

@@ -10,6 +10,7 @@ arguments @ { config, pkgs, lib, ... } : { # add updates below:
     modules.virtualbox    = true;
     modules.java          = "jdk21";
     modules.gaming        = true;
+    modules.docker        = true;
     modules.nvidia = {  
         hardwarePackage   = "stable";
         prime = {  
