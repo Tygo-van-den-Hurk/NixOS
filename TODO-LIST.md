@@ -71,6 +71,16 @@ All the things the Window Manager needs to do:
    - [ ] hyprland
   
 #### Window Manager Keybindings
+- [ ] Changing layouts:
+  - [ ] Pressing `CTRL + M` must switch to the master layout. This has been implemented on:
+    - [x] i3wm
+    - [ ] hyprland
+  - [ ] Pressing `CTRL + S` must switch to the split layout. This has been implemented on:
+    - [x] i3wm
+    - [ ] hyprland
+  - [ ] Pressing `CTRL + T` must switch to the tabbed layout. This has been implemented on:
+    - [x] i3wm
+    - [ ] hyprland
 - [ ] `CMD + SPACE` must open the Application Launcher. This a been implemented on:
    - [x] i3wm
    - [ ] hyprland
