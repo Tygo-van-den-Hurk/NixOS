@@ -9,7 +9,7 @@ arguments @ { config, pkgs, lib, machine-settings, programs, ... } : let
     #` this is because `builtins.trace` only prints a trace on the output if the variable gets used.
     #` that's why you have to go through hoops and bounds to get this variable used so that it prints the message.
     key-remapper = ( 
-        builtins.trace "Loading: /modules/key-remapper... ( key-remappers requested: ${__keyRemapper_} )" 
+        builtins.trace "Loading: /modules/key-remapper... ( key-remapper requested: ${__keyRemapper_} )" 
         __keyRemapper_
     ); 
 

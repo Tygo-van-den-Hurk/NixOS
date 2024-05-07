@@ -21,33 +21,56 @@
 #   - WIN_ALT   needs to be swapped with WIN_SUPER. ( secondary goes to middle key )
 #
 modmap:
-    - name: Global 
-      remap:
-        ALT_L: CONTROL_L    # WIN_ALT   gets assigned MAC_CMD  (WIN_CTRL)  --> ( Primaray   goes to right  key )
-        ALT_R: CONTROL_R    # WIN_ALT   gets assigned MAC_CMD  (WIN_CTRL)  --> ( Primaray   goes to right  key )
-        SUPER_L:            # WIN_SUPER gets assigned MAC_ALT  (WIN_ALT)   --> ( Secondary goes to middle key )
-          held: ALT_L
-          alone: []
-          #alone_timeout_millis: 1000
-        SUPER_R:            # WIN_SUPER gets assigned MAC_ALT  (WIN_ALT)   --> ( Secondary goes to middle key )
-          held: ALT_R
-          alone: []
-          #alone_timeout_millis: 1000
-        CONTROL_L: SUPER_L  # WIN_CTRL  gets assigned MAC_CTRL (WIN_SUPER) --> ( Thirdairy  goes to left   key )
-        CONTROL_R: SUPER_R  # WIN_CTRL  gets assigned MAC_CTRL (WIN_SUPER) --> ( Thirdairy  goes to left   key )
+  - name: Global 
+    remap:
+      ALT_L: CONTROL_L    # WIN_ALT   gets assigned MAC_CMD  (WIN_CTRL)  --> ( Primaray   goes to right  key )
+      ALT_R: CONTROL_R    # WIN_ALT   gets assigned MAC_CMD  (WIN_CTRL)  --> ( Primaray   goes to right  key )
+      SUPER_L:            # WIN_SUPER gets assigned MAC_ALT  (WIN_ALT)   --> ( Secondary goes to middle key )
+        held: ALT_L
+        alone: []
+        #alone_timeout_millis: 1000
+      SUPER_R:            # WIN_SUPER gets assigned MAC_ALT  (WIN_ALT)   --> ( Secondary goes to middle key )
+        held: ALT_R
+        alone: []
+        #alone_timeout_millis: 1000
+      CONTROL_L: SUPER_L  # WIN_CTRL  gets assigned MAC_CTRL (WIN_SUPER) --> ( Thirdairy  goes to left   key )
+      CONTROL_R: SUPER_R  # WIN_CTRL  gets assigned MAC_CTRL (WIN_SUPER) --> ( Thirdairy  goes to left   key )
 #
 #~ Remapping keycombinations
 # this part will be for adding custom keyboard shortcuts, or remapping to existing ones.
 # The topics we'll discuss are:
-#  - Navigation & Selection
+#  - Closing Dmenu with MAC_CMD when Dmenu is in focus
+#  - Making Firefox switch tabs using MAC_CMD instead of MAC_ALT.
+#  - Navigation & Selection using MAC_CMD, and MAC_ALT
 #  - Deletion
 #  - ...
 #
 keymap:
-#   default_mode: default
-    - name: general
-      # mode: default
-      remap:
+#| Switching between tabs using MAC_CMD instead of MAC_ALT
+#   - name: Firefox-Tab-Switching # TODO : make this work.
+#     application:
+#       only: [firefox]
+#     remap:
+#       Ctrl-1: Alt-1
+#       Ctrl-2: Alt-2
+#       Ctrl-3: Alt-3
+#       Ctrl-4: Alt-4
+#       Ctrl-5: Alt-5
+#       Ctrl-6: Alt-6
+#       Ctrl-7: Alt-7
+#       Ctrl-8: Alt-8
+#       Ctrl-9: Alt-9
+#
+#| Making Tab switching work with MAC_CMD instead of MAC_ALT.
+  - name: close-Dmenu # TODO : make this work.
+    application:
+      only: [ Dmenu ]
+    remap:
+      Ctrl-Space: Esc
+#
+#| Default settings, may get overwritten by the settings above
+  - name: Default
+    remap:
 #
 #` Navigation & Selection 
 #  Some of my most used commands that are only on MacOS are the navigation commands. Let's start with navigation.
@@ -90,15 +113,15 @@ keymap:
 # Resulting in the following remaps:
 #
 # Navigation : Primary   : MAC_CMD  ( WIN_ALT )
-        Ctrl-Left: Home             # MAC_CMD + Left  --> ( WIN_CTRL + Left  --> ) Home
-        Ctrl-Right: End             # MAC_CMD + Right --> ( WIN_CTRL + Right --> ) End
-        Ctrl-Up: Ctrl-Home          # MAC_CMD + Up    --> ( WIN_CTRL + Up    --> ) WIN_CTRL + Home
-        Ctrl-Down: Ctrl-End         # MAC_CMD + Down  --> ( WIN_CTRL + Down  --> ) WIN_CTRL + End
+      Ctrl-Left: Home             # MAC_CMD + Left  --> ( WIN_CTRL + Left  --> ) Home
+      Ctrl-Right: End             # MAC_CMD + Right --> ( WIN_CTRL + Right --> ) End
+      Ctrl-Up: Ctrl-Home          # MAC_CMD + Up    --> ( WIN_CTRL + Up    --> ) WIN_CTRL + Home
+      Ctrl-Down: Ctrl-End         # MAC_CMD + Down  --> ( WIN_CTRL + Down  --> ) WIN_CTRL + End
 # Navigation : Secondary : MAC_ALT  ( WIN_SUPER )
-        Alt-Left: Ctrl-Left         # MAC_ALT + Left  --> ( WIN_SUPER + Left  --> ) WIN_CTRL + Left
-        Alt-Right: Ctrl-Right       # MAC_ALT + Right --> ( WIN_SUPER + Right --> ) WIN_CTRL + Right
-        Alt-Up: Ctrl-Up             # MAC_ALT + Up    --> ( WIN_SUPER + Up    --> ) WIN_CTRL + Up
-        Alt-Down: Ctrl-Down         # MAC_ALT + Down  --> ( WIN_SUPER + Down  --> ) WIN_CTRL + Down
+      Alt-Left: Ctrl-Left         # MAC_ALT + Left  --> ( WIN_SUPER + Left  --> ) WIN_CTRL + Left
+      Alt-Right: Ctrl-Right       # MAC_ALT + Right --> ( WIN_SUPER + Right --> ) WIN_CTRL + Right
+      Alt-Up: Ctrl-Up             # MAC_ALT + Up    --> ( WIN_SUPER + Up    --> ) WIN_CTRL + Up
+      Alt-Down: Ctrl-Down         # MAC_ALT + Down  --> ( WIN_SUPER + Down  --> ) WIN_CTRL + Down
 # Navigation : Tertiary  : MAC_CTRL ( WIN_CTRL )
 #
 #| SELECTION
@@ -113,15 +136,15 @@ keymap:
 # They are basically the same but with space added. The conclusion is then also no different:
 #  
 # Selection : Primary   : MAC_CMD  ( WIN_ALT )
-        Ctrl-Shift-Left:  Shift-Home      # MAC_CMD + Shift + Left  --> ( WIN_CTRL + Shift + Left  --> ) Shift + Home
-        Ctrl-Shift-Right: Shift-End       # MAC_CMD + Shift + Right --> ( WIN_CTRL + Shift + Right --> ) Shift + End
-        Ctrl-Shift-Up:    Ctrl-Shift-Home # MAC_CMD + Shift + Up    --> ( WIN_CTRL + Shift + Up    --> ) WIN_CTRL + Shift + Home
-        Ctrl-Shift-Down:  Ctrl-Shift-End  # MAC_CMD + Shift + Down  --> ( WIN_CTRL + Shift + Down  --> ) WIN_CTRL + Shift + End
+      Ctrl-Shift-Left:  Shift-Home      # MAC_CMD + Shift + Left  --> ( WIN_CTRL + Shift + Left  --> ) Shift + Home
+      Ctrl-Shift-Right: Shift-End       # MAC_CMD + Shift + Right --> ( WIN_CTRL + Shift + Right --> ) Shift + End
+      Ctrl-Shift-Up:    Ctrl-Shift-Home # MAC_CMD + Shift + Up    --> ( WIN_CTRL + Shift + Up    --> ) WIN_CTRL + Shift + Home
+      Ctrl-Shift-Down:  Ctrl-Shift-End  # MAC_CMD + Shift + Down  --> ( WIN_CTRL + Shift + Down  --> ) WIN_CTRL + Shift + End
 # Selection : Secondary : MAC_ALT  ( WIN_SUPER )
-        Alt-Shift-Left:  Ctrl-Shift-Left  # MAC_ALT + Shift + Left  --> ( WIN_SUPER + Left  --> ) WIN_CTRL + Left
-        Alt-Shift-Right: Ctrl-Shift-Right # MAC_ALT + Shift + Right --> ( WIN_SUPER + Right --> ) WIN_CTRL + Right
-        Alt-Shift-Up:    Ctrl-Shift-Up    # MAC_ALT + Shift + Up    --> ( WIN_SUPER + Up    --> ) WIN_CTRL + Up
-        Alt-Shift-Down:  Ctrl-Shift-Down  # MAC_ALT + Shift + Down  --> ( WIN_SUPER + Down  --> ) WIN_CTRL + Down
+      Alt-Shift-Left:  Ctrl-Shift-Left  # MAC_ALT + Shift + Left  --> ( WIN_SUPER + Left  --> ) WIN_CTRL + Left
+      Alt-Shift-Right: Ctrl-Shift-Right # MAC_ALT + Shift + Right --> ( WIN_SUPER + Right --> ) WIN_CTRL + Right
+      Alt-Shift-Up:    Ctrl-Shift-Up    # MAC_ALT + Shift + Up    --> ( WIN_SUPER + Up    --> ) WIN_CTRL + Up
+      Alt-Shift-Down:  Ctrl-Shift-Down  # MAC_ALT + Shift + Down  --> ( WIN_SUPER + Down  --> ) WIN_CTRL + Down
 # Selection : Tertiary  : MAC_CTRL ( WIN_CTRL )
 #
 #| DELETION
@@ -135,21 +158,10 @@ keymap:
 # after it gets selected, as deleting it in one step is not supported.
 #
 # Deletion : Primary   : MAC_CMD  ( WIN_ALT )
-        Ctrl-BackSpace: [ Shift-Home, BackSpace ] # MAC_CMD + BackSpace  --> ( [ WIN_CTRL + Shift + Left, BackSpace ] --> ) [ Shift-Home, BackSpace]
-        Ctrl-Delete:    [ Shift-End,  Delete    ] # MAC_CMD + Delete     --> ( [ WIN_CTRL + Shift + Left, Delete    ] --> ) [ Shift-End,  Delete   ]
+      Ctrl-BackSpace: [ Shift-Home, BackSpace ] # MAC_CMD + BackSpace  --> ( [ WIN_CTRL + Shift + Left, BackSpace ] --> ) [ Shift-Home, BackSpace]
+      Ctrl-Delete:    [ Shift-End,  Delete    ] # MAC_CMD + Delete     --> ( [ WIN_CTRL + Shift + Left, Delete    ] --> ) [ Shift-End,  Delete   ]
 # Deletion : Secondary : MAC_ALT  ( WIN_SUPER )
-        Alt-BackSpace:  [ Ctrl-Shift-Left,  BackSpace ] # MAC_CMD + BackSpace --> ( [ WIN_CTRL + Shift + Left, BackSpace ] --> ) [ Shift-Home, BackSpace]
-        Alt-Delete:     [ Ctrl-Shift-Right, Delete    ] # MAC_CMD + Delete    --> ( [ WIN_CTRL + Shift + Left, Delete    ] --> ) [ Shift-End,  Delete   ]
-# Deletion : Tertiary  : MAC_CTRL ( WIN_CTRL )
-#
-#| Closing DMENU when pressing MAC_CMD + SPACE
-    - name: close DMENU with it's activation
-      application:
-        only: dmenu Brave-browser
-      remap:
-        # Ctrl-Space: Esc
-        Ctrl-Space: 
-          launch: ["bash", "-c", "echo hello > /tmp/test"]
-#
+      Alt-BackSpace:  [ Ctrl-Shift-Left,  BackSpace ] # MAC_CMD + BackSpace --> ( [ WIN_CTRL + Shift + Left, BackSpace ] --> ) [ Shift-Home, BackSpace]
+      Alt-Delete:     [ Ctrl-Shift-Right, Delete    ] # MAC_CMD + Delete    --> ( [ WIN_CTRL + Shift + Left, Delete    ] --> ) [ Shift-End,  Delete   ]
 #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ END XREMAP CONFIGURATION FILE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
