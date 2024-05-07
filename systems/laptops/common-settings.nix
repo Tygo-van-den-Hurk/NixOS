@@ -2,6 +2,8 @@
 #! This file will overwrite the global settings!
 arguments @ { config, pkgs, lib, ... } : { # add updates below:
 
+    system.type = "laptop";
+
     # overrides go here...
 
     #| ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TESTING PROPER FUNCTIONING  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ |#

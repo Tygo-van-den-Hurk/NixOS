@@ -25,6 +25,7 @@ arguments @ { config, pkgs, lib, ... } : {
     };  
 
     system = {  
+        type                = null;         # The type of the system, example is "laptop".
         hostname            = null;         # The hostname of the computer in lower caps.
         architecture        = null;         # The architecture the system uses.
         packages = {     
