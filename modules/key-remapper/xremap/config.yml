@@ -3,7 +3,7 @@
 #! Do not edit this YAML file, it is read only, edit the configuration mentioned above. 
 # Read https://github.com/xremap/xremap/blob/master/README.md for more information.
 #
-#~ Remapping modifiers
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Remapping modifiers ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 # this part will remap windows/linux modifiers to function like mac modifiers. 
 # This is what the keys and their function are on respective platforms:
 #
@@ -21,7 +21,10 @@
 #   - WIN_ALT   needs to be swapped with WIN_SUPER. ( secondary goes to middle key )
 #
 modmap:
+#
+#| REMAPPING EVERYTHING
   - name: Global 
+    # mode: remapping
     remap:
       ALT_L: CONTROL_L    # WIN_ALT   gets assigned MAC_CMD  (WIN_CTRL)  --> ( Primaray   goes to right  key )
       ALT_R: CONTROL_R    # WIN_ALT   gets assigned MAC_CMD  (WIN_CTRL)  --> ( Primaray   goes to right  key )
@@ -36,7 +39,11 @@ modmap:
       CONTROL_L: SUPER_L  # WIN_CTRL  gets assigned MAC_CTRL (WIN_SUPER) --> ( Thirdairy  goes to left   key )
       CONTROL_R: SUPER_R  # WIN_CTRL  gets assigned MAC_CTRL (WIN_SUPER) --> ( Thirdairy  goes to left   key )
 #
-#~ Remapping keycombinations
+#| REMAPPING NOTHING
+  # - name: not-remapping 
+    # mode: not-remapping
+#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Remapping keycombinations ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 # this part will be for adding custom keyboard shortcuts, or remapping to existing ones.
 # The topics we'll discuss are:
 #  - Closing Dmenu with MAC_CMD when Dmenu is in focus
@@ -48,6 +55,7 @@ modmap:
 keymap:
 #| Switching between tabs using MAC_CMD instead of MAC_ALT
 #   - name: Firefox-Tab-Switching # TODO : make this work.
+#     mode: remapping
 #     application:
 #       only: [firefox]
 #     remap:
@@ -63,22 +71,21 @@ keymap:
 #
 #| Making Tab switching work with MAC_CMD instead of MAC_ALT.
   - name: close-Dmenu # TODO : make this work.
+    mode: remapping
+    exact_match: true
     application:
-      only: [ Dmenu ]
+      only: [ firefox ]
     remap:
-      Ctrl-Space: Esc
+      Alt-Space: Esc
 #
-#| Default settings, may get overwritten by the settings above
-  - name: Default
-    remap:
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Default settings, may get overwritten by the settings above ~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #
 #` Navigation & Selection 
 #  Some of my most used commands that are only on MacOS are the navigation commands. Let's start with navigation.
 #
 #| NAVIGATION
 # There is a hierarchy to this. CMD is the primary modifier, and is therefor at the top of the list. It moves the most.
-# Then there is ALT, secondary on the list, so moves less then CMD, but still more then CTRL, which is at ht bottom 
-# of the list. Lets go over them:
+# Then there is ALT, secondary on the list, so moves less then CMD. Lets go over them:
 #
 # - MAC_CMD + [ LEFT | RIGHT ] --> Move to the BEGINNING, or END of the LINE respectively. 
 # - MAC_CMD + [ UP   | DOWN  ] --> Move to the BEGINNING, or END of the FILE respectively. 
@@ -86,10 +93,6 @@ keymap:
 # - MAC_ALT + [ LEFT | RIGHT ] --> Move one word LEFT, or RIGHT respectively. 
 # - MAC_ALT + [ UP   | DOWN  ] --> Move to the BEGINNING, or END of the current alinea respectively. 
 #
-# TODO : Add the Tertiary navigation shortcuts
-# - MAC_CTRL + [ LEFT | RIGHT ] --> Move to virtual desktop/workspace on the left, or right respectively.
-# - MAC_CTRL + [ UP   | DOWN  ] --> show all windows, or show desktop respectively
-#  
 # So what are these commands on windows and linux? Well, this is what they map to:
 # 
 # -            [ HOME | END   ] --> Move to the BEGINNING, or END of the LINE respectively. 
@@ -97,10 +100,6 @@ keymap:
 #
 # - WIN_CTRL + [ LEFT | RIGHT ] --> Move one word LEFT, or RIGHT respectively. 
 # - WIN_CTRL + [ UP   | DOWN  ] --> Move to the BEGINNING, or END of the current alinea respectively. 
-#
-# TODO : Add the Tertiary navigation shortcuts in windows
-# ? Depends on the desktop environment
-# ? Depends on the desktop environment
 #  
 # So that leaves us with this mapping:
 #
@@ -112,6 +111,10 @@ keymap:
 #  
 # Resulting in the following remaps:
 #
+  - name: Navigation
+    mode: remapping
+    exact_match: true
+    remap:
 # Navigation : Primary   : MAC_CMD  ( WIN_ALT )
       Ctrl-Left: Home             # MAC_CMD + Left  --> ( WIN_CTRL + Left  --> ) Home
       Ctrl-Right: End             # MAC_CMD + Right --> ( WIN_CTRL + Right --> ) End
@@ -122,7 +125,6 @@ keymap:
       Alt-Right: Ctrl-Right       # MAC_ALT + Right --> ( WIN_SUPER + Right --> ) WIN_CTRL + Right
       Alt-Up: Ctrl-Up             # MAC_ALT + Up    --> ( WIN_SUPER + Up    --> ) WIN_CTRL + Up
       Alt-Down: Ctrl-Down         # MAC_ALT + Down  --> ( WIN_SUPER + Down  --> ) WIN_CTRL + Down
-# Navigation : Tertiary  : MAC_CTRL ( WIN_CTRL )
 #
 #| SELECTION
 # Selection is nothing more then the navigation, but you hold shift, selecting the distance you've travelled.
@@ -135,6 +137,10 @@ keymap:
 #
 # They are basically the same but with space added. The conclusion is then also no different:
 #  
+  - name: Selection
+    mode: remapping
+    exact_match: true
+    remap:
 # Selection : Primary   : MAC_CMD  ( WIN_ALT )
       Ctrl-Shift-Left:  Shift-Home      # MAC_CMD + Shift + Left  --> ( WIN_CTRL + Shift + Left  --> ) Shift + Home
       Ctrl-Shift-Right: Shift-End       # MAC_CMD + Shift + Right --> ( WIN_CTRL + Shift + Right --> ) Shift + End
@@ -157,11 +163,31 @@ keymap:
 # We can use our previously discovered results to to this. Where we add a tiny delay to make sure that it gets deleted
 # after it gets selected, as deleting it in one step is not supported.
 #
+  - name: Deletion
+    exact_match: true
+    mode: remapping
+    remap:
 # Deletion : Primary   : MAC_CMD  ( WIN_ALT )
       Ctrl-BackSpace: [ Shift-Home, BackSpace ] # MAC_CMD + BackSpace  --> ( [ WIN_CTRL + Shift + Left, BackSpace ] --> ) [ Shift-Home, BackSpace]
       Ctrl-Delete:    [ Shift-End,  Delete    ] # MAC_CMD + Delete     --> ( [ WIN_CTRL + Shift + Left, Delete    ] --> ) [ Shift-End,  Delete   ]
 # Deletion : Secondary : MAC_ALT  ( WIN_SUPER )
       Alt-BackSpace:  [ Ctrl-Shift-Left,  BackSpace ] # MAC_CMD + BackSpace --> ( [ WIN_CTRL + Shift + Left, BackSpace ] --> ) [ Shift-Home, BackSpace]
       Alt-Delete:     [ Ctrl-Shift-Right, Delete    ] # MAC_CMD + Delete    --> ( [ WIN_CTRL + Shift + Left, Delete    ] --> ) [ Shift-End,  Delete   ]
+#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SWITCHING MODES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#
+# pressing this key combo will disable, or enable the key remapping
+  - name: remapping
+    exact_match: true
+    mode: remapping
+    remap:
+      Ctrl-Alt-Shift-Super-Esc: { set_mode: not-remapping }
+  - name: not-remapping
+    exact_match: true
+    mode: not-remapping
+    remap:
+      Ctrl-Alt-Shift-Super-Esc: { set_mode: remapping }
+# 
+default_mode: remapping
 #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ END XREMAP CONFIGURATION FILE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
