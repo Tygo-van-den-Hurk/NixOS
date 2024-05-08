@@ -25,6 +25,7 @@ in {
         nitrogen      # wallpaper engine
         brightnessctl # allows for adjusting the screen brightness.
         pulseaudio    # allows for adjusting the volume.  
+        wmctrl        # to interact with windows for window managers.
     ];
 
     # Depricated: services.xserver.libinput.naturalScrolling = yes;
