@@ -22,6 +22,7 @@ in { imports = [
         ( if ( modules.nvidia       ) then ( import ./nvidia       arguments ) else ( dont-load-that-module ) )
         ( if ( modules.onedrive     ) then ( import ./onedrive     arguments ) else ( dont-load-that-module ) )
         ( if ( modules.virtualbox   ) then ( import ./virtualbox   arguments ) else ( dont-load-that-module ) )
+        ( if ( modules.openssh      ) then ( import ./openssh      arguments ) else ( dont-load-that-module ) )
         ( if ( modules.java         ) then ( import ./java         arguments ) else ( dont-load-that-module ) )
         ( if ( modules.gui          ) then ( import ./gui          arguments ) else ( dont-load-that-module ) )
         ( if ( modules.key-remapper ) then ( import ./key-remapper arguments ) else ( dont-load-that-module ) )
