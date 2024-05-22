@@ -89,9 +89,10 @@ in ({ # See https://www.youtube.com/watch?v=61wGzIv12Ds
 } // ( if ( builtins.isAttrs machine-settings.modules.nvidia ) then ({ # We only load these if the NVIDIA module is loaded. 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ START NVIDIA PATCHES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-    #|id=FRDyE5PUJj| \/ \/ \/ BEGIN PATCHES FROM REDDIT \/ \/ \/ 
+    #| \/ \/ \/ BEGIN PATCHES FROM REDDIT \/ \/ \/ 
+    #` below patches from: id=FRDyE5PUJj
     services.xserver.videoDrivers = [ "nvidia" ];
-    #|id=FRDyE5PUJj| /\ /\ /\  END PATCHES FROM REDDIT  /\ /\ /\ 
+    #| /\ /\ /\  END PATCHES FROM REDDIT  /\ /\ /\ 
 
     programs.hyprland.enableNvidiaPatches = yes;
     
