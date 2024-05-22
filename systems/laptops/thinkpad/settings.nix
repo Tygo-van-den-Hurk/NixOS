@@ -6,8 +6,8 @@ arguments @ { config, pkgs, lib, ... } : { # add updates below:
     system.architecture = "86x_64-linux";
     system.packages.allowUnfree = true;
 
-    modules.gui           = "i3";
-    modules.virtualbox    = true;
+    modules.gui           = "i3"; # "hyprland";
+    modules.virtualbox    = true; # This module can dramatically increate switch time when it gets an update
     modules.java          = "jdk21";
     modules.gaming        = true;
     modules.docker        = true;
