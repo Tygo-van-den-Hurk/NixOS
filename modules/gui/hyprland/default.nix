@@ -9,9 +9,9 @@ arguments @ { config, pkgs, lib, machine-settings, programs, ... } : let
 
     wallpaperApp = "swww"; # used to select which wallpaper app to use.
 
-    # Suggestion ID --> link to the suggestion
-    #?id=FRDyE5PUJj --> https://www.reddit.com/r/hyprland/s/FRDyE5PUJj
-    #?id=fM7Zqy5uak --> https://discourse.nixos.org/t/how-to-enable-login-screen-and-start-hyperland-after-login/37775
+    #| Suggestion ID --> link to the suggestion
+    #? id=FRDyE5PUJj --> https://www.reddit.com/r/hyprland/s/FRDyE5PUJj
+    #? id=fM7Zqy5uak --> https://discourse.nixos.org/t/how-to-enable-login-screen-and-start-hyperland-after-login/37775
 
 in ({ # See https://www.youtube.com/watch?v=61wGzIv12Ds
 
@@ -55,7 +55,9 @@ in ({ # See https://www.youtube.com/watch?v=61wGzIv12Ds
         libnotify       # Dependancy from 'dunst'.
         rofi-wayland    # Application launcher know as 'rofi', this is the wayland version.
         kitty           # The terminal Hyperland assumes you use.
-        (#` Programs for wallpapers 
+        
+        #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Programs for wallpapers ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+        (
             if ( wallpaperApp == "hyperpaper" ) then ( hyperpaper ) else 
             if ( wallpaperApp == "swaybg"     ) then ( swaybg ) else 
             if ( wallpaperApp == "wpaperd"    ) then ( wpaperd ) else 
@@ -84,7 +86,7 @@ in ({ # See https://www.youtube.com/watch?v=61wGzIv12Ds
 
 
 #! NVIDIA needs some patches. These are the patches in question:
-} // ( if ( machine-settings.modules.nvidia.enable ) then ({ # We only load these if the NVIDIA module is loaded. 
+} // ( if ( builtins.isAttrs machine-settings.modules.nvidia ) then ({ # We only load these if the NVIDIA module is loaded. 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ START NVIDIA PATCHES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
     #|id=FRDyE5PUJj| \/ \/ \/ BEGIN PATCHES FROM REDDIT \/ \/ \/ 
@@ -94,7 +96,8 @@ in ({ # See https://www.youtube.com/watch?v=61wGzIv12Ds
     programs.hyprland.enableNvidiaPatches = yes;
     
     # in case you have an invisible cursor:
-    # environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
+    # FIXME : When you enable this setting you stop having the program 'Hyprland', 'hyprctl' etc installed.
+    #environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ END NVIDIA PATCHES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 }) else {} ) )
