@@ -48,10 +48,20 @@
     # and create a working system from that.
     #
     # This is where we'll use it
-    outputs = ( input @ { home-manager, nixos-wsl, nixpkgs, self, nur, ...  } : { 
-
-            nixosConfigurations = ( import ./systems/get.nix { inherit input; } );
+    outputs = ( input @ { home-manager, nixos-wsl, nixpkgs, self, nur, ...  } : let
+    
+        __nixosConfigurations_ = ( import ./systems/get.nix { inherit input; } );
+        nixosConfigurations = let 
         
-        }
+            avalible-system-names = (nixpkgs.lib.attrNames __nixosConfigurations_);
+            sperator = ("\n\t - ");
+            avalible-systems-string = (builtins.concatStringsSep sperator avalible-system-names);
+
+        in (builtins.trace
+            "Avalible systems:${sperator+avalible-systems-string}"
+            __nixosConfigurations_
+        );
+    
+    in { inherit nixosConfigurations; }
     );
 }
