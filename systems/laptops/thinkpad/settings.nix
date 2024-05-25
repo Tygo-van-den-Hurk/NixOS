@@ -1,13 +1,14 @@
 ## This is the specific Setting file for this machine
 #! Any setting you write here will overwrite whatever anyone has tried to set before.
-arguments @ { config, pkgs, lib, ... } : { # add updates below:
+{ # add updates below:
 
-    system.hostname = "tygos-thinkpad";
+    system.hostname = "tygos-thinkpad-nixos";
     system.architecture = "86x_64-linux";
     system.packages.allowUnfree = true;
 
-    modules.gui           = "i3"; # "hyprland";
-    modules.virtualbox    = true; # This module can dramatically increate switch time when it gets an update
+    # This module can dramatically increate switch time when it gets an update
+    #// modules.virtualbox    = true;
+    modules.gui           = "i3wm"; #"hyprland";
     modules.java          = "jdk21";
     modules.gaming        = true;
     modules.docker        = true;
@@ -20,12 +21,12 @@ arguments @ { config, pkgs, lib, ... } : { # add updates below:
         };
     };
     
-    #| ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TESTING PROPER FUNCTIONING  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ |#
-    # This section is here to test if the settings are working, and are being overwritten properly.
+    # #| ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TESTING PROPER FUNCTIONING  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ |#
+    # # This section is here to test if the settings are working, and are being overwritten properly.
 
-    TESTING_PROPER_FUNCTIONING = { # This object will contain all the settings to check the output of.
-        SYSTEMS_LEVEL.MACHINE  = "written by machine, and overridden twice"; # Should be "written by machine".
-        CATEGORY_LEVEL.MACHINE = "written by machine, and overridden once"; # Should be "written by machine".
-        MACHINE_LEVEL.MACHINE  = "written by machine"; # Should be "written by machine".
-    };
+    # TESTING_PROPER_FUNCTIONING = { # This object will contain all the settings to check the output of.
+    #     SYSTEMS_LEVEL.MACHINE  = "written by machine, and overridden twice"; # Should be "written by machine".
+    #     CATEGORY_LEVEL.MACHINE = "written by machine, and overridden once"; # Should be "written by machine".
+    #     MACHINE_LEVEL.MACHINE  = "written by machine"; # Should be "written by machine".
+    # };
 }

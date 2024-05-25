@@ -1,6 +1,6 @@
 {
     description = "The flake that is used to configure all my machines.";
-  
+    #
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ INPUTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
     #
     # I this block we define the inputs of the flake, these inputs are other flakes. So for example the Nix packages is
@@ -8,11 +8,11 @@
     #
     inputs = {
 
-        #| Nix Packages
+        #| Nix Packages (Where all your packages come from)
         nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
         nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
         
-        #| Home Manager
+        #| Home Manager (Declaratively create dot files)
         home-manager.url = "github:nix-community/home-manager/release-23.11";
         home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -24,14 +24,14 @@
         # nix-index-database.url = "github:Mic92/nix-index-database";
         # nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
         
-        #| Disko (Declarative disk partitioning)
-        disko.url = "github:nix-community/disko";
-        disko.inputs.nixpkgs.follows = "nixpkgs";
+        #| Disko (Declarative disk partitioning & disk wiping)
+        # disko.url = "github:nix-community/disko";
+        # disko.inputs.nixpkgs.follows = "nixpkgs";
 
         #| NUR (NixOS User Repository)
         nur.url = "github:nix-community/NUR";
 
-        #| Xremap
+        #| Xremap (Easy keyremapping)
         xremap-flake.url = "github:xremap/nix-flake";
     };
     #
@@ -47,26 +47,11 @@
     #
     # and create a working system from that.
     #
-    outputs = ( input @ { home-manager, nixos-wsl, nixpkgs, self, nur, ...  } : let
-        # 
-        pkgs = import nixpkgs;
-        lib  = builtins.trace ("Loading: flake...") (nixpkgs.lib); 
-        #
-        #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~` ADDING CUSTOM MODULES FOR ALL MACHINES `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-        #
-        common-modules = [ 
-            nur.nixosModules.nur # Adding the NixOS User Repository
-        ];
-        #
-    in {#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~` MACHINES `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-        nixosConfigurations = { # This is where the flake decided which system to load.
-            #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+    # This is where we'll use it
+    outputs = ( input @ { home-manager, nixos-wsl, nixpkgs, self, nur, ...  } : { 
 
-            tygos-thinkpad = lib.nixosSystem { 
-                specialArgs = { inherit input; }; # TODO : figure out what this does, and how EXACTLY it works.
-                modules = [ ./systems/laptops/thinkpad ] ++ common-modules;  
-            };
-            
-        };#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-    });#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~` END OF MACHINES `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+            nixosConfigurations = ( import ./systems/get.nix { inherit input; } );
+        
+        }
+    );
 }

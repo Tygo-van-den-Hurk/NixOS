@@ -1,4 +1,4 @@
-##Merges list of records, concatenates arrays, if two values can't be merged - the latter is preferred
+## Merges lists, or sets recursively. Overrides a value in a set if it's newer.
 #! I did not write this function and cannot garantee it's correctness.
 { lib, ... }: with lib; let
 
@@ -25,9 +25,9 @@ in recursiveMerge
 #     { a = "y"; b = "z"; list = [2]; }
 #   ]
 #
-#| returns
+#` returns
 #
-#    { a = "y"; b = "z"; c="m"; list = [1 2] }
+#    { a = "y"; b = "z"; c="m"; list = [1 2]; }
 #
 #
 #| Example 2:
@@ -48,7 +48,7 @@ in recursiveMerge
 #     }
 #   ]
 #
-#| returns
+#` returns
 #
 #    {
 #     a = {
