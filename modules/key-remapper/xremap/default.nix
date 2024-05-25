@@ -26,12 +26,15 @@ let
         "To fix this, either edit the xremapper module, or disable it entirely. "
     );
 
+    # the username of the person who is going to use it.
+    userName = machine-settings.users.primary-user.name;
+
 in { imports = [ input.xremap-flake.nixosModules.default ];
 
     services.xremap = ({
         
         serviceMode = "system";
-        userName    = machine-settings.user.username;
+        inherit userName;
         yamlConfig  = (config);
 
     } // ( 
@@ -49,6 +52,6 @@ in { imports = [ input.xremap-flake.nixosModules.default ];
 
     hardware.uinput.enable = true;
 
-    users.groups.uinput.members = [ machine-settings.user.username ];
-    users.groups.input.members  = [ machine-settings.user.username ];
+    users.groups.uinput.members = [ userName ];
+    users.groups.input.members  = [ userName ];
 }

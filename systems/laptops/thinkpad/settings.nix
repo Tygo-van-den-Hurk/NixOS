@@ -6,8 +6,7 @@
     system.architecture = "86x_64-linux";
     system.packages.allowUnfree = true;
 
-    # This module can dramatically increate switch time when it gets an update
-    #// modules.virtualbox    = true;
+    #// modules.virtualbox    = true; # This module can dramatically increate switch time when it gets an update
     modules.gui           = "i3wm"; #"hyprland";
     modules.java          = "jdk21";
     modules.gaming        = true;

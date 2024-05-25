@@ -4,32 +4,26 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : let
     #! make sure that the variable that `builtins.trace` assigns get used to trigger the print.
     #` this is because `builtins.trace` only prints a trace on the output if the variable gets used.
     #` that's why you have to go through hoops and bounds to get this variable used so that it prints the message.
-    initial-password = builtins.trace ("Loading: /modules/common/users/extraUsers...") ("changeme"); 
+    # __users_ 
+    users = builtins.trace ("Loading: /modules/common/users/extraUsers...") (machine-settings.users.all);
+    # users = let 
+    
+    #     all-user-names = (lib.attrNames __users_);
+    #     sperator = ("\n\t - "); 
+    #     all-user-names-string = (builtins.concatStringsSep sperator all-user-names);
 
-in { users.extraUsers = {
+    # in (builtins.trace
+    #     "defined users:${sperator+all-user-names-string}"
+    #     __users_
+    # );
 
-        tygo = {
-            #! Defines user accounts with a weak password. 
-            initialPassword = lib.mkDefault initial-password; 
-            #! Don't forget to set a password with ‘passwd’.
-            isNormalUser = lib.mkDefault true;
-            description = lib.mkDefault "Tygo van den Hurk";
-            extraGroups = lib.mkForce [ 
-                "networkmanager"        # used for configuring the network
-                "wheel" "adm" "admin "  # used for sudo
-                "input"                 # used for xmonad
-                "uinput"                # used for xmonad 
-                "video"                 #? unknown
-                "audio"                 #? unknown
-                "camera"                #? unknown
-                "lp"                    #? unknown
-                "scanner"               #? unknown
-                "plex"                  #? unknown
-            ];
-            packages = with pkgs; [
-                # personal packages go here...
-            ];
-        };
-
-    };
+in {
+    
+    # TODO : make all the users get printed to the console
+    users.extraUsers = (builtins.listToAttrs (map (user: lib.nameValuePair (user.name) (
+            builtins.removeAttrs user [ "defaultApps" ] # remove attributes that Nix does not reconise
+        )) 
+        users
+    ));
+    
 }

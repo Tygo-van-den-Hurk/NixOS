@@ -12,7 +12,7 @@ in { boot.loader.grub = {
         useOSProber    = lib.mkDefault yes;
         efiSupport     = lib.mkDefault yes;
         theme = pkgs.sleek-grub-theme.override { # The theme grub uses defaul : null
-            withBanner = "Hello ${machine-settings.user.username},";
+            withBanner = "Hello ${machine-settings.users.primary-user.name},";
             withStyle  = "dark";
         };   
         #// configurationLimit = 5; 

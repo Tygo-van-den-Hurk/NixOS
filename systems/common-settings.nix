@@ -1,16 +1,42 @@
 ## This file contains all the settings that will be used in configuration.nix
 #! Changing this will change this setting - unless overwritten - for all machines.
-{
+let 
+
+    primary-user = {
+        name            = "tygo";               # The username of the main user on the system in lower caps.
+        initialPassword = "changeme";           #! Defines user accounts with a weak password. 
+        isNormalUser    = true;                 # wether or not you're a human user
+        description     = "Tygo van den Hurk";  # Your full name
+        extraGroups = [ 
+            "networkmanager"                    # used for configuring the network
+            "wheel" "adm" "admin "              # used for sudo
+            "input"                             # used for xmonad
+            "uinput"                            # used for xmonad 
+            "video"                             #? unknown
+            "audio"                             #? unknown
+            "camera"                            #? unknown
+            "lp"                                #? unknown
+            "scanner"                           #? unknown
+            "plex"                              #? unknown
+        ];
+        packages = [ ];                         # personal packages go here...
+        defaultApps = {                         # Sets the default apps to use 
+            terminal        = "alacritty";      # The default Termial app to load when opening a terminal.
+            editor          = "code";           # The default Editor to load when editing a file.
+            browser         = "firefox";        # The default browser open pages with.
+        };  
+    };
+    
+in {
 
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SETTINGS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
     
-    user = {
-        username            = "tygo";       # The username of the main user on the system in lower caps.
-        defaultApps = {                     # Sets the default apps to use 
-            terminal        = "alacritty";  # The default Termial app to load when opening a terminal.
-            editor          = "code";       # The default Editor to load when editing a file.
-            browser         = "firefox";    # The default browser open pages with. # TODO : implement this feature
-        };  
+    users = {
+        inherit primary-user;
+        all = [ 
+            primary-user 
+            # copy the primary user, and insert it down here below
+        ];
     };  
 
     modules = { 
