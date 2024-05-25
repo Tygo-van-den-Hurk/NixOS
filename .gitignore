@@ -1,4 +1,4 @@
 # Add the the result directory to the list of things to ignore.
 result/
 **/result/
-test/*.nix
+test/**/*.nix
