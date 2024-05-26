@@ -47,6 +47,7 @@ in { environment.systemPackages = ( with pkgs; [
         kate 
         vim
         nano
+        micro
         vscode
         
         #| Programming languages
