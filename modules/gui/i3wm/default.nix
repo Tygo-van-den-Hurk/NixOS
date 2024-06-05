@@ -26,6 +26,10 @@ in {
         brightnessctl # allows for adjusting the screen brightness.
         pulseaudio    # allows for adjusting the volume.  
         wmctrl        # to interact with windows for window managers.
+        maim          # for taking screenshots
+        xclip         # for pushing things to the clibboard
+        xdotool       # For getting the active window
+
     ];
 
     # Depricated: services.xserver.libinput.naturalScrolling = yes;
