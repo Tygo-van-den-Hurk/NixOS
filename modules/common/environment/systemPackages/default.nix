@@ -40,6 +40,7 @@ in { environment.systemPackages = ( with pkgs; [
         ollama
         tailscale
         lshw
+        yt-dlp
 
         #` 2) Programming
         
