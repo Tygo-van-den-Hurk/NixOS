@@ -16,6 +16,10 @@
         home-manager.url = "github:nix-community/home-manager/release-23.11";
         home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+        #| Home Manager (Declaratively create dot files)
+        stylix.url = "github:nix-community/home-manager/release-23.11";
+        stylix.inputs.nixpkgs.follows = "nixpkgs";
+
         #| WSL (Window SubSystem for Linux)
         nixos-wsl.url = "github:nix-community/NixOS-WSL";
         nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
@@ -48,7 +52,7 @@
     # and create a working system from that.
     #
     # This is where we'll use it
-    outputs = ( input @ { home-manager, nixos-wsl, nixpkgs, self, nur, ...  } : let
+    outputs = ( input @ { self, nixpkgs, nur, home-manager, stylix, nixos-wsl, ...  } : let
     
         __nixosConfigurations_ = ( import ./systems/get.nix { inherit input; } );
         nixosConfigurations = let 
@@ -62,6 +66,5 @@
             __nixosConfigurations_
         );
     
-    in { inherit nixosConfigurations; }
-    );
+    in { inherit nixosConfigurations; } );
 }
