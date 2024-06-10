@@ -1,4 +1,9 @@
 # Add the the result directory to the list of things to ignore.
 result/
 **/result/
+
+# removing the tracking of all Nix files in the test directory
 test/**/*.nix
+
+# removing tracking of all secret files
+**/secrets.*
