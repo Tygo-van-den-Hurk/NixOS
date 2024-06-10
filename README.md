@@ -28,6 +28,7 @@ Here is an overview of the structure:
 
 ```
 NixOS/
+├── library/
 ├── systems/
 ├── modules/
 ├── user/
@@ -52,13 +53,21 @@ These resources helped me with building my own configuration file:
   <tr>
     <th>Name</th>
     <th>Link</th>
+    <th>Explanation</th>
   </tr>
   <tr>
     <td>NixOS Setup Guide - Configuration / Home-Manager / Flakes</td>
     <td><a href="https://www.youtube.com/watch?v=AGVXJ-TIv3Y">YouTube</a></td>
+    <td>A good start/run down of how to make your NixOS config.</td>
   </tr>
   <tr>
     <td>How to Start Adding Modularity to Your NixOS Config</td>
     <td><a href="https://www.youtube.com/watch?v=bV3hfalcSKs">YouTube</a></td>
+    <td>A guid to modularity. I recommend all his video's.</td>
+  </tr>
+  <tr>
+    <td>Nix Packages Manual</td>
+    <td><a href="https://ryantm.github.io/nixpkgs/">ryantm's GitHub Pages</a></td>
+    <td>Contains SO MANY useful library functions and their descriptions.</td>
   </tr>
 </table>
