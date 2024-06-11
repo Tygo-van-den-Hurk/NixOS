@@ -1,4 +1,12 @@
 # Key Remapping
+
+## Pieces of Software to look into
+The following pieces of software can do the trick:
+- xremap
+- kmonad
+- keyd
+
+## Key Remaps
 The following things need to remapped to have the following effect:
 - [x] Remap the linux modifiers to the Mac modifiers so the system behaves like a Mac. This means that the primary modifier is on the side of the space bar, the secondary key is to the side of that, and lastly where the tertiary key is to the side of that.
 - [x] Navigation
