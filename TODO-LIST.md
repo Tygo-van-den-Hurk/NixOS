@@ -8,6 +8,9 @@ Some point
 - [x] modularity of the configurations:  
   - [x] create the 'module loader' that loads modules based on settings.  
   - [x] make it possible to load the config of a certain machine using the flake.  
+- [ ] secrets: 
+  - [ ] Make it possible for this repository to maintain secrets, locked behind a passphrase. Look into [SOPS](https://www.youtube.com/watch?v=G5f6GC7SnhU).
+
 
 ## Usability
 Here are some things that I still want to configure for the system to be as usable as possible:
