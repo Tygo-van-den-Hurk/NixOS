@@ -66,6 +66,9 @@ in { environment.systemPackages = ( with pkgs; [
         hunspellDicts.uk_UA
         hunspellDicts.th_TH
         
+        #| Picture Editors
+        gimp
+
         #` 3) Web browsers
         firefox brave
 
@@ -77,13 +80,11 @@ in { environment.systemPackages = ( with pkgs; [
 	    whatsapp-for-linux
 
         #` 5) Files and VM's
-        
+        xfce.thunar
 
         #` *) others
         localsend
-        gimp
         stow 
-        
         obs-studio
     ]) 
     # ++ ( user-defined-free-packages ) ++ ( # TODO : Set up settings defined packages.
