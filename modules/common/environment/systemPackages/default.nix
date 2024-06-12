@@ -42,23 +42,36 @@ in { environment.systemPackages = ( with pkgs; [
         lshw
         yt-dlp
 
-        #` 2) Programming
+        #| Terminal user interfaces
+        lazygit
+        micro
+        vim
+        neovim
+
+        #` 2) File Editing
         
         #|Text/Code editors
-        kate 
-        vim
-        nano
-        micro
+        kate        
         vscode
         
         #| Programming languages
         rustc rustup cargo
+        
+        #| Document editing
+        onlyoffice-bin
+        libreoffice-qt
+
+        #| Spell Checkers
+        hunspell
+        hunspellDicts.uk_UA
+        hunspellDicts.th_TH
         
         #` 3) Web browsers
         firefox brave
 
         #` 4) Communication
         telegram-desktop
+        signal-desktop
         thunderbird
         discord
 	    whatsapp-for-linux
