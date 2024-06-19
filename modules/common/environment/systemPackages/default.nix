@@ -32,30 +32,30 @@ in { environment.systemPackages = ( with pkgs; [
         alacritty
 
         #| Command Line Tools
-        wget 
-        curl
-        git gh glab
-        lf
-        fzf
-        ollama
-        tailscale
-        lshw
-        yt-dlp
+        wget                    # get files
+        curl                    # Make HTTP requests
+        git gh glab             # for Git
+        lf                      # ?unknown?
+        fzf                     # find a file or folder very quickly
+        tailscale               # A private network of all my devices
+        lshw                    # For seeing connected devices
+        yt-dlp                  # Downloading Youtube video's
+        octaveFull              # Open Source version of MathLab
 
         #| Terminal user interfaces
-        lazygit
-        micro
-        vim
-        neovim
+        lazygit                 # A TUI for interacting with git
+        micro                   # The supirior option for editing text in the terminal over Nano
+        vim                     # An advance TUI for editing text.
+        neovim                  # A more extensible version of vim
 
         #` 2) File Editing
         
         #|Text/Code editors
-        kate        
-        vscode
+        kate                    # A basic GUI for editing text.
+        vscode                  # A code editor
         
         #| Programming languages
-        rustc rustup cargo
+        rustc rustup cargo      # For Rust development
         
         #| Document editing
         onlyoffice-bin
@@ -67,7 +67,7 @@ in { environment.systemPackages = ( with pkgs; [
         hunspellDicts.th_TH
         
         #| Picture Editors
-        gimp
+        gimp                    # For editing photos
 
         #` 3) Web browsers
         firefox brave
@@ -80,12 +80,12 @@ in { environment.systemPackages = ( with pkgs; [
 	    whatsapp-for-linux
 
         #` 5) Files and VM's
-        xfce.thunar
+        xfce.thunar             # A GUI file manager
 
         #` *) others
         localsend
-        stow 
-        obs-studio
+        stow                    # A symlink farmer to be able to sent your dot files as symlinks from any place to the repository
+        obs-studio              # for recording your screen or window
     ]) 
     # ++ ( user-defined-free-packages ) ++ ( # TODO : Set up settings defined packages.
     #     if ( packages.allowUnfree ) then ( user-defined-unfree-packages ) else ( do-not-add-unfree-packages ) 
