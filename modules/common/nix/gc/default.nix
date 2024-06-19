@@ -10,6 +10,6 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : let
 in { nix.gc = {
         automatic = yes;
         dates     =  "weekly";
-        options   = "--delete-older-than 7d";
+        options   = "--delete-older-than 30d";
     };
 }
