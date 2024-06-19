@@ -73,8 +73,8 @@ let
 
             blueprint = let 
                 message = (
-                    "Creating blueprint for ${machine-settings.system.hostname} with final settings:"
-                    + "\n\t${builtins.toJSON __settings_.machine}"
+                    "Creating blueprint for \"${machine-settings.system.hostname}\" with final settings:"
+                    + "\n\t${builtins.toJSON machine-settings}"
                 );
             in (builtins.trace message {
                 
