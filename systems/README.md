@@ -26,3 +26,53 @@ First, `default.nix` is what gets loaded when a system get's loaded. In this fil
 Next, `hardware-configuration.nix` is created when you first boot into NixOS, and I'd recommend you just paste that into the folder of that machine. I'd also recommend editing it unless you know what you're doing.
 
 Lastly, `settings.nix` is where the settings can be overwritten for a particular machine. An example of a setting I would override is `system.hostname`, as every machine needs it's own hostname. if you leave a setting out of this file, it will go to the defaults of that category. That is why `/systems/category/common-settings.nix` exist. Here you can override settings for all machines of that category. The category settings, when unspecified in turn go to the overal system settings in `/systems/common-settings.nix`.
+
+## Settings
+Settings are what loads and unloads modules. The settings have the following schema:
+```NIX
+machine-settings = {
+    users  = { ... };
+    system = { ... };
+};
+```
+
+### Users
+The `users` settings is a set of `Users`. This is what a users attribute set looks like with one user:
+```NIX
+users = {
+
+    username = {
+        description     = string;  # Your full name
+        isNormalUser    = boolean; #
+        initialPassword = string   # the initial password for the user
+        isNormalUser    = boolean; # wether or not you're a human user
+        init = {
+            modules         = { ... };
+            packages        = { ... };
+        };
+    };
+};
+```
+
+#### Modules
+The user has a couple of modules that they can enable. You can read more about it [here](../modules/README.md).
+
+#### Packages
+This option stores information about the user packages. Meaning that any package listed here will be available system wide. Not that some modules can add packages by them selfs. For example, enabling docker will make docker available to the user.
+
+### System
+The `system` option is a set with a few options, here is an overview:
+```NIX
+system = {
+    hostname      = string;
+    architecture  = string;
+    packages      = { ... };
+    modules       = { ... }; 
+};
+```
+
+#### Modules
+There are a few system level modules that can be enabled. You can read more about it [here](../modules/README.md).
+
+#### Packages
+This option stores information about the system packages. Meaning that any package listed here will be available system wide. Not that some modules can add packages by them selfs. For example, enabling docker will make docker available to the user.
