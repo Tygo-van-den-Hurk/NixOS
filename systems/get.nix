@@ -2,8 +2,11 @@ arguments @ { input, ... } :
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 let
             
-    pkgs = builtins.trace ( "Loading: Nix Packages from the input..." ) ( import input.nixpkgs { } );
-    lib  = builtins.trace ( "Loading: Library from Nix Packages..."   ) (        input.nixpkgs.lib ); 
+    __pkgs_ = builtins.trace ( "Loading: Nix Packages (stable) from the input..." ) ( import input.nixpkgs { } );
+    __pkgs_unstable_ = builtins.trace ( "Loading: Nix Packages (unstable) from the input..." ) ( import input.nixpkgs-unstable { } );
+    pkgs = __pkgs_ // { unstable = __pkgs_unstable_; };
+
+    lib = builtins.trace ( "Loading: Library from Nix Packages..."   ) ( input.nixpkgs.lib ); 
 
     # For debugging
     # lib = (import <nixpkgs> {}).lib;
@@ -86,10 +89,13 @@ let
                     
                     modules = [ 
 
-                        ( machine-settings.pathToConfig + "/default.nix" )
-
+                        ( machine-settings.pathToConfig + "/overrides.nix"               )
+                        ( machine-settings.pathToConfig + "/hardware-configuration.nix"  )
+                        ( ../modules )
+                        
                         #` Custom input modules
                         input.nur.nixosModules.nur # Adding the NixOS User Repository
+                        # (if machine-settings.system.modules.wsl.enable == true then nixos-wsl.nixosModules.default else {} )
                     ];  
                 }  
             );
