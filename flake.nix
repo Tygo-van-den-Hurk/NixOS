@@ -9,11 +9,11 @@
     inputs = {
 
         #| Nix Packages (Where all your packages come from)
-        nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+        nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
         nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
         
         #| Home Manager (Declaratively create dot files)
-        home-manager.url = "github:nix-community/home-manager/release-23.11";
+        home-manager.url = "github:nix-community/home-manager/release-24.05";
         home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
         #| Home Manager (Declaratively create dot files)
@@ -21,7 +21,7 @@
         stylix.inputs.nixpkgs.follows = "nixpkgs";
 
         #| WSL (Window SubSystem for Linux)
-        nixos-wsl.url = "github:nix-community/NixOS-WSL";
+        nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
         nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
 
         #|? Unknown
