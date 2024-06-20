@@ -20,6 +20,16 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : let
 
 in { services.logind = {
 
+        #!  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        #!  %                                            %
+        #!  %  This does not actually do something yet!  %
+        #!  %                                            %
+        #!  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        #!
+        #! This is because logind isn't running yet. I don't know why,
+        #! or how to enable it yet. 
+        #!
+
         lidSwitchDocked         = options.ignore;  # laptop lid is closed and another screen is added.
         lidSwitchExternalPower  = options.ignore;  # laptop lid is closed and the system is on external power.
         lidSwitch               = options.suspend; # laptop lid is closed
