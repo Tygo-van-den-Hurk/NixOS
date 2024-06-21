@@ -41,6 +41,7 @@ in { environment.systemPackages = ( with pkgs; [
         lshw                    # For seeing connected devices
         yt-dlp                  # Downloading Youtube video's
         octaveFull              # Open Source version of MathLab
+        zoxide                  # A beter way of doing `cd`.
 
         #| Terminal user interfaces
         lazygit                 # A TUI for interacting with git
@@ -53,7 +54,8 @@ in { environment.systemPackages = ( with pkgs; [
         #|Text/Code editors
         kate                    # A basic GUI for editing text.
         vscode                  # A code editor
-        
+        obsidian                # A markdown editor
+
         #| Programming languages
         rustc rustup cargo      # For Rust development
         
