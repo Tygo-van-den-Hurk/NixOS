@@ -1,13 +1,12 @@
 {
     description = "The flake that is used to configure all my machines.";
-    #
+    
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ INPUTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-    #
-    # I this block we define the inputs of the flake, these inputs are other flakes. So for example the Nix packages is
+    # In this block we define the inputs of the flake, these inputs are other flakes. So for example the Nix packages is
     # it self a flake, and we pass this down as `pkgs`, and `lib`. We can also add other repositories, or applications.
-    #
-    inputs = {
 
+    inputs  = {
+    
         #| Nix Packages (Where all your packages come from)
         nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
         nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -17,7 +16,7 @@
         home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
         #| Home Manager (Declaratively create dot files)
-        stylix.url = "github:nix-community/home-manager/release-23.11";
+        stylix.url = "github:danth/stylix";
         stylix.inputs.nixpkgs.follows = "nixpkgs";
 
         #| WSL (Window SubSystem for Linux)
@@ -38,9 +37,8 @@
         #| Xremap (Easy keyremapping)
         xremap-flake.url = "github:xremap/nix-flake";
     };
-    #
+
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OUTPUTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-    #
     # In this portion we'll modify the iputs to get an output, we you use the command:
     # 
     #?   sudo nixos-rebuild switch --flake .#[hostname]
@@ -50,21 +48,15 @@
     #?   outputs.nixosConfigurations.[hostname]
     #
     # and create a working system from that.
-    #
-    # This is where we'll use it
-    outputs = ( input @ { self, nixpkgs, nur, home-manager, stylix, nixos-wsl, ...  } : let
-    
-        __nixosConfigurations_ = ( import ./systems/get.nix { inherit input; } );
-        nixosConfigurations = let 
+    outputs = input @ { self, nixpkgs, nur, home-manager, stylix, nixos-wsl, ...  } : let
         
+        # Getting the NixOS hosts
+        nixosConfigurations = let 
+            __nixosConfigurations_ = ( import ./systems/get.nix { inherit input; } );
             avalible-system-names = (nixpkgs.lib.attrNames __nixosConfigurations_);
             sperator = ("\n\t - ");
             avalible-systems-string = (builtins.concatStringsSep sperator avalible-system-names);
-
-        in (builtins.trace
-            "Avalible systems:${sperator+avalible-systems-string}"
-            __nixosConfigurations_
-        );
-    
-    in { inherit nixosConfigurations; } );
+        in (builtins.trace "Avalible systems:${sperator+avalible-systems-string}" __nixosConfigurations_ );
+        
+    in { inherit nixosConfigurations; };
 }
