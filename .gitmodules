@@ -1,0 +1,4 @@
+# This module my personal dotfiles
+[submodule "tygo-van-den-hurks-home-manager-configuration"]
+	path = home-manager/tygo-van-den-hurk/
+	url = git://github.com/Tygo-van-den-Hurk/dotfiles.git
