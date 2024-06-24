@@ -7,3 +7,6 @@ test/**/*.nix
 
 # removing tracking of all secret files
 **/secrets.*
+
+# untracking the VScode workspace settings folder.
+**/.vscode
