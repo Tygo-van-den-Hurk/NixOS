@@ -1,5 +1,15 @@
 > This repository contains the the configuration files for the NixOS.
 
+<center>
+    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/graphs/contributors" alt="Contributors">
+        <img src="https://img.shields.io/github/contributors/Tygo-van-den-Hurk/NixOS" />
+    </a>
+    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22"
+        alt="Good first issues">
+        <img src="https://img.shields.io/github/issues/Tygo-van-den-Hurk/NixOS/good%20first%20issue" />
+    </a>
+</center>
+
 # NixOS
 
 ![The NixOS logo](./nixos-logo.svg)
