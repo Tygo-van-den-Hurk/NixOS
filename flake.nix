@@ -33,9 +33,6 @@
         #| Xremap (Easy keyremapping)
         xremap-flake.url = "github:xremap/nix-flake";
 
-        #| Custom inputs
-        repository-root = ./.; # current directory.
-
         #|? Unknown
         # nix-index-database.url = "github:Mic92/nix-index-database";
         # nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
