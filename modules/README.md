@@ -8,6 +8,7 @@ The modules directory is where all the modules get stored. Each module is suppos
 
 Which brings us to our next point, how are those modules being loaded and ignored?
 
+<!-- TODO update me! -->
 ```
 NixOS/
 ├── modules/
@@ -20,3 +21,9 @@ NixOS/
 ```
 
 This is why every system at `/systems/category/machine/` imports `/modules/` the file that gets loaded is `/modules/default.nix`. Which in turn takes the `machine-settings` argument, and loads the modules as needed. The `/modules/default.nix` loads the  `/modules/moduleName/default.nix` file if the settings match. Do **not** load modules individually. 
+
+## System Level Modules
+There are modules that are system level, meaning that if enabled, they're enabled for the entire system. You can read more about it [here](./system-level/README.md).
+
+## User Level Modules
+The same goes for user level modules. If enabled, they're enabled for the only this user. This does not mean that it won't effect the system. A good example is the docker module. This will be enabled on the system, however only users who have it enabled have access. You can read more about it [here](./user-level/README.md).

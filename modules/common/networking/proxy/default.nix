@@ -2,7 +2,7 @@
  
 arguments @ { config, pkgs, lib, machine-settings, ... } : let 
     
-    _ = builtins.trace "Loading: /modules/common/networking/proxy..." machine-settings; 
+    _ = builtins.trace "Loading: ${toString ./.}..." machine-settings; 
 
 in { networking.proxy  = {
         # default = "http://user:password@proxy:port/";

@@ -1,7 +1,7 @@
 ## Defines the networking options.
 
 arguments @ { config, pkgs, lib, machine-settings, ... } : let 
-    _ = builtins.trace "Loading: /modules/common/networking/wireless..." machine-settings; 
+    _ = builtins.trace "Loading: ${toString ./.}..." machine-settings; 
 in { networking.wireless = {
         #// enable = true;
     };

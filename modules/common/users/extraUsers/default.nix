@@ -5,7 +5,7 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : let
     #` this is because `builtins.trace` only prints a trace on the output if the variable gets used.
     #` that's why you have to go through hoops and bounds to get this variable used so that it prints the message.
     # __users_ 
-    users = builtins.trace ("Loading: /modules/common/users/extraUsers...") (machine-settings.users.all);
+    users = builtins.trace ("Loading: ${toString ./.}...") (machine-settings.users.all);
     # users = let 
     
     #     all-user-names = (lib.attrNames __users_);
