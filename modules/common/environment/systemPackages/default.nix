@@ -42,6 +42,7 @@ in { environment.systemPackages = ( with pkgs; [
         yt-dlp                  # Downloading Youtube video's
         octaveFull              # Open Source version of MathLab
         zoxide                  # A beter way of doing `cd`.
+        bat                     # A beter way of doing `cat`. #TODO : make an alias for 'cat' to 'bat --paging=never'.
 
         #| Terminal user interfaces
         lazygit                 # A TUI for interacting with git
