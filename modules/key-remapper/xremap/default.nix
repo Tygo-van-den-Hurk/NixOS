@@ -5,7 +5,10 @@ let
     #! make sure that the variable that `builtins.trace` assigns get used to trigger the print.
     #` this is because `builtins.trace` only prints a trace on the output if the variable gets used.
     #` that's why you have to go through hoops and bounds to get this variable used so that it prints the message.
-    config = ( builtins.trace ("Loading: /modules/key-remapper/xremap... (with gui option: ${gui})") ( builtins.readFile ./config.yml ) ); 
+    config = ( builtins.trace "xremap with gui support for: ${__gui_}" (
+            builtins.trace "Loading: ${toString ./.}..." (builtins.readFile ./config.yml)
+        ) 
+    ); 
 
     # For enableing the setting
     __gui_ = machine-settings.modules.gui;

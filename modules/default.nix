@@ -8,7 +8,7 @@ arguments @ { config, pkgs, lib, machine-settings, programs, input, ... } : let
     #! make sure that the variable that `builtins.trace` assigns get used to trigger the print.
     #` this is because `builtins.trace` only prints a trace on the output if the variable gets used.
     #` that's why you have to go through hoops and bounds to get this variable used so that it prints the message.
-    modules = builtins.trace ( "Loading: /modules..." ) ( __modules_ // {
+    modules = builtins.trace ( "Loading: ${toString ./.}..." ) ( __modules_ // {
         gui          = ( builtins.isString  __modules_.gui            );
         java         = ( builtins.isString  __modules_.java           );
         key-remapper = ( builtins.isString  __modules_.key-remapper   );
@@ -31,9 +31,9 @@ in { imports = [
         ( if ( modules.nfs          ) then ( import ./nfs          arguments ) else ( dont-load-that-module ) )
 
         #| modules to always load
-        ( import ./system-level     )
+        ./system-level
         # ( import ./user-level     )
-        ( import ./common arguments ) # always import the common modules as that is required to function.
+        ./common
     ];
 }
   
