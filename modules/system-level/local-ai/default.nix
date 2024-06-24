@@ -31,21 +31,19 @@ arguments @ { config, pkgs, lib, machine-settings, programs, input, ... } : let
 
     # assert ( containerization-is-enabled && ( podman-is-enabled || docker-is-enabled ) );
     
-in {
+in ( if local-ai-settings.enable == true then {
 
     services.ollama = {
         package = pkgs.ollama;
         enable = true;
-        # These should all be auto detected
-        # acceleration = local-ai-settings.acceleration;
-        # environmentVariables = {
-            # HIP_VISIBLE_DEVICES = "0,1";
-            # CUDA_VISIBLE_DEVICES = "0";
+        acceleration = local-ai-settings.acceleration;
+        environmentVariables = {
+            HIP_VISIBLE_DEVICES = local-ai-settings.devices.hip;
+            CUDA_VISIBLE_DEVICES = local-ai-settings.devices.cuda;
             # OLLAMA_LLM_LIBRARY = "cpu";
-            # OLLAMA_MODELS = "/home/ollama/models";
             # OLLAMA_HOST = "0.0.0.0:11434"; # Make Ollama accesible outside of localhost
-            # OLLAMA_ORIGINS = "http://localhost:8080,http://192.168.0.10:*"; # Allow access, otherwise Ollama returns 403 forbidden due to CORS
-        # };
+            OLLAMA_ORIGINS = "http://localhost:*,http://127.0.0.1:*"; # CORS
+        };
     };
 
     environment.systemPackages = with pkgs; [
@@ -89,6 +87,7 @@ in {
             ];
         };
     };
-}
+
+} else { } )
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ END ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
