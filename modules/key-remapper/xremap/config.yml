@@ -40,8 +40,8 @@ modmap:
       CONTROL_R: SUPER_R  # WIN_CTRL  gets assigned MAC_CTRL (WIN_SUPER) --> ( Thirdairy  goes to left   key )
 #
 #| REMAPPING NOTHING
-  # - name: not-remapping 
-    # mode: not-remapping
+#   - name: not-remapping 
+#     mode: not-remapping
 #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Remapping keycombinations ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 # this part will be for adding custom keyboard shortcuts, or remapping to existing ones.
@@ -116,15 +116,15 @@ keymap:
     exact_match: true
     remap:
 # Navigation : Primary   : MAC_CMD  ( WIN_ALT )
-      Ctrl-Left: Home             # MAC_CMD + Left  --> ( WIN_CTRL + Left  --> ) Home
-      Ctrl-Right: End             # MAC_CMD + Right --> ( WIN_CTRL + Right --> ) End
-      Ctrl-Up: Ctrl-Home          # MAC_CMD + Up    --> ( WIN_CTRL + Up    --> ) WIN_CTRL + Home
-      Ctrl-Down: Ctrl-End         # MAC_CMD + Down  --> ( WIN_CTRL + Down  --> ) WIN_CTRL + End
+      Ctrl-Left:         Home             # MAC_CMD + Left  --> ( WIN_CTRL + Left  --> ) Home
+      Ctrl-Right:        End              # MAC_CMD + Right --> ( WIN_CTRL + Right --> ) End
+      Ctrl-Up:           Ctrl-Home        # MAC_CMD + Up    --> ( WIN_CTRL + Up    --> ) WIN_CTRL + Home
+      Ctrl-Down:         Ctrl-End         # MAC_CMD + Down  --> ( WIN_CTRL + Down  --> ) WIN_CTRL + End
 # Navigation : Secondary : MAC_ALT  ( WIN_SUPER )
-      Alt-Left: Ctrl-Left         # MAC_ALT + Left  --> ( WIN_SUPER + Left  --> ) WIN_CTRL + Left
-      Alt-Right: Ctrl-Right       # MAC_ALT + Right --> ( WIN_SUPER + Right --> ) WIN_CTRL + Right
-      Alt-Up: Ctrl-Up             # MAC_ALT + Up    --> ( WIN_SUPER + Up    --> ) WIN_CTRL + Up
-      Alt-Down: Ctrl-Down         # MAC_ALT + Down  --> ( WIN_SUPER + Down  --> ) WIN_CTRL + Down
+      Alt-Left:          Ctrl-Left        # MAC_ALT + Left  --> ( WIN_SUPER + Left  --> ) WIN_CTRL + Left
+      Alt-Right:         Ctrl-Right       # MAC_ALT + Right --> ( WIN_SUPER + Right --> ) WIN_CTRL + Right
+      Alt-Up:            Ctrl-Up          # MAC_ALT + Up    --> ( WIN_SUPER + Up    --> ) WIN_CTRL + Up
+      Alt-Down:          Ctrl-Down        # MAC_ALT + Down  --> ( WIN_SUPER + Down  --> ) WIN_CTRL + Down
 #
 #| SELECTION
 # Selection is nothing more then the navigation, but you hold shift, selecting the distance you've travelled.
@@ -142,15 +142,15 @@ keymap:
     exact_match: true
     remap:
 # Selection : Primary   : MAC_CMD  ( WIN_ALT )
-      Ctrl-Shift-Left:  Shift-Home      # MAC_CMD + Shift + Left  --> ( WIN_CTRL + Shift + Left  --> ) Shift + Home
-      Ctrl-Shift-Right: Shift-End       # MAC_CMD + Shift + Right --> ( WIN_CTRL + Shift + Right --> ) Shift + End
-      Ctrl-Shift-Up:    Ctrl-Shift-Home # MAC_CMD + Shift + Up    --> ( WIN_CTRL + Shift + Up    --> ) WIN_CTRL + Shift + Home
-      Ctrl-Shift-Down:  Ctrl-Shift-End  # MAC_CMD + Shift + Down  --> ( WIN_CTRL + Shift + Down  --> ) WIN_CTRL + Shift + End
+      Ctrl-Shift-Left:   Shift-Home       # MAC_CMD + Shift + Left  --> ( WIN_CTRL + Shift + Left  --> ) Shift + Home
+      Ctrl-Shift-Right:  Shift-End        # MAC_CMD + Shift + Right --> ( WIN_CTRL + Shift + Right --> ) Shift + End
+      Ctrl-Shift-Up:     Ctrl-Shift-Home  # MAC_CMD + Shift + Up    --> ( WIN_CTRL + Shift + Up    --> ) WIN_CTRL + Shift + Home
+      Ctrl-Shift-Down:   Ctrl-Shift-End   # MAC_CMD + Shift + Down  --> ( WIN_CTRL + Shift + Down  --> ) WIN_CTRL + Shift + End
 # Selection : Secondary : MAC_ALT  ( WIN_SUPER )
-      Alt-Shift-Left:  Ctrl-Shift-Left  # MAC_ALT + Shift + Left  --> ( WIN_SUPER + Left  --> ) WIN_CTRL + Left
-      Alt-Shift-Right: Ctrl-Shift-Right # MAC_ALT + Shift + Right --> ( WIN_SUPER + Right --> ) WIN_CTRL + Right
-      Alt-Shift-Up:    Ctrl-Shift-Up    # MAC_ALT + Shift + Up    --> ( WIN_SUPER + Up    --> ) WIN_CTRL + Up
-      Alt-Shift-Down:  Ctrl-Shift-Down  # MAC_ALT + Shift + Down  --> ( WIN_SUPER + Down  --> ) WIN_CTRL + Down
+      Alt-Shift-Left:    Ctrl-Shift-Left  # MAC_ALT + Shift + Left  --> ( WIN_SUPER + Left  --> ) WIN_CTRL + Left
+      Alt-Shift-Right:   Ctrl-Shift-Right # MAC_ALT + Shift + Right --> ( WIN_SUPER + Right --> ) WIN_CTRL + Right
+      Alt-Shift-Up:      Ctrl-Shift-Up    # MAC_ALT + Shift + Up    --> ( WIN_SUPER + Up    --> ) WIN_CTRL + Up
+      Alt-Shift-Down:    Ctrl-Shift-Down  # MAC_ALT + Shift + Down  --> ( WIN_SUPER + Down  --> ) WIN_CTRL + Down
 # Selection : Tertiary  : MAC_CTRL ( WIN_CTRL )
 #
 #| DELETION
@@ -168,11 +168,11 @@ keymap:
     mode: remapping
     remap:
 # Deletion : Primary   : MAC_CMD  ( WIN_ALT )
-      Ctrl-BackSpace: [ Shift-Home, BackSpace ] # MAC_CMD + BackSpace  --> ( [ WIN_CTRL + Shift + Left, BackSpace ] --> ) [ Shift-Home, BackSpace]
-      Ctrl-Delete:    [ Shift-End,  Delete    ] # MAC_CMD + Delete     --> ( [ WIN_CTRL + Shift + Left, Delete    ] --> ) [ Shift-End,  Delete   ]
+      Ctrl-BackSpace:    [ Shift-Home, BackSpace ]        # MAC_CMD + BackSpace  --> ( [ WIN_CTRL + Shift + Left, BackSpace ] --> ) [ Shift-Home, BackSpace]
+      Ctrl-Delete:       [ Shift-End,  Delete    ]        # MAC_CMD + Delete     --> ( [ WIN_CTRL + Shift + Left, Delete    ] --> ) [ Shift-End,  Delete   ]
 # Deletion : Secondary : MAC_ALT  ( WIN_SUPER )
-      Alt-BackSpace:  [ Ctrl-Shift-Left,  BackSpace ] # MAC_CMD + BackSpace --> ( [ WIN_CTRL + Shift + Left, BackSpace ] --> ) [ Shift-Home, BackSpace]
-      Alt-Delete:     [ Ctrl-Shift-Right, Delete    ] # MAC_CMD + Delete    --> ( [ WIN_CTRL + Shift + Left, Delete    ] --> ) [ Shift-End,  Delete   ]
+      Alt-BackSpace:     [ Ctrl-Shift-Left,  BackSpace ]  # MAC_CMD + BackSpace --> ( [ WIN_CTRL + Shift + Left, BackSpace ] --> ) [ Shift-Home, BackSpace]
+      Alt-Delete:        [ Ctrl-Shift-Right, Delete    ]  # MAC_CMD + Delete    --> ( [ WIN_CTRL + Shift + Left, Delete    ] --> ) [ Shift-End,  Delete   ]
 #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SWITCHING MODES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #
