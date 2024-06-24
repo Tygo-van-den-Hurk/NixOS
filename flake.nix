@@ -23,10 +23,6 @@
         nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
         nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
 
-        #|? Unknown
-        # nix-index-database.url = "github:Mic92/nix-index-database";
-        # nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-        
         #| Disko (Declarative disk partitioning & disk wiping)
         # disko.url = "github:nix-community/disko";
         # disko.inputs.nixpkgs.follows = "nixpkgs";
@@ -36,6 +32,13 @@
 
         #| Xremap (Easy keyremapping)
         xremap-flake.url = "github:xremap/nix-flake";
+
+        #| Custom inputs
+        repository-root = ./.; # current directory.
+
+        #|? Unknown
+        # nix-index-database.url = "github:Mic92/nix-index-database";
+        # nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     };
 
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OUTPUTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
