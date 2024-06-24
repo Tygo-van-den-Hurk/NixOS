@@ -29,7 +29,7 @@ in {
         maim          # for taking screenshots
         xclip         # for pushing things to the clibboard
         xdotool       # For getting the active window
-
+        mpg123        # for playing sounds (first used for taking screen shot sounds)
     ];
 
     # Depricated: services.xserver.libinput.naturalScrolling = yes;
