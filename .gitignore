@@ -9,4 +9,4 @@ test/**/*.nix
 **/secrets.*
 
 # untracking the VScode workspace settings folder.
-**/.vscode
+**/.vscode/
