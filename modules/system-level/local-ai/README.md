@@ -19,3 +19,10 @@ This is what the options look like you can add to your machine-settings:
     };
 }
 ```
+
+## Note
+Created with help of [this guide](https://fictionbecomesfact.com/nixos-ollama-oterm-openwebui). To debug a docker container use: 
+
+```BASH
+journalctl _SYSTEMD_INVOCATION_ID=$(systemctl show -p InvocationID --value docker-open-webui.service) --no-pager
+```

@@ -1,28 +1,11 @@
-
 ## Enable Ollama and open-webui as a service, and run it in the background.
 
 arguments @ { config, pkgs, lib, machine-settings, programs, input, ... } : let 
     
-    #! make sure that the variable that `builtins.trace` assigns get used to trigger the print.
-    #` this is because `builtins.trace` only prints a trace on the output if the variable gets used.
-    #` that's why you have to go through hoops and bounds to get this variable used so that it prints the message.
-    module-settings = (builtins.trace "Loading: ${toString ./.}..." machine-settings.system.modules.local-ai); 
-
-    #
-    # Created with help of: 
-    #
-    #`  https://fictionbecomesfact.com/nixos-ollama-oterm-openwebui
-    #
-    # To debug a docker container use: 
-    #
-    #`  journalctl _SYSTEMD_INVOCATION_ID=$(systemctl show -p InvocationID --value docker-open-webui.service) --no-pager
-    #
-
+    module-settings = machine-settings.system.modules.local-ai; 
     open-webui-path = "/var/lib/private/open-webui/";
         
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Making an assertion ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
-    
-in ( if module-settings.enable == true then {
+in ( if module-settings.enable == true then builtins.trace "Loading: ${toString ./.}..." {
 
     services.ollama = {
         package = pkgs.ollama;
