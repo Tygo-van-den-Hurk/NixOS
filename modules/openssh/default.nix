@@ -28,6 +28,5 @@ in { services.openssh = {
         users.users.${machine-settings.user.username}.openssh.authorizedKeys.keys = [
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHvSu8xkYJQX2br3EHxNADY7byEzRAXlc+Z8X+vbwuRd tygo@tygos-thinkpad"
         ];
-
     };
 }
