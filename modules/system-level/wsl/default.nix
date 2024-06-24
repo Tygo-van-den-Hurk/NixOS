@@ -10,6 +10,6 @@ arguments @ { config, pkgs, lib, machine-settings, programs, input, ... } : let
 in ( if module-settings.enable == true then {
 
     wsl.enable = true;
-    wsl.defaultUser = wsl-settings.defaultUser;
+    wsl.defaultUser = module-settings.defaultUser;
 
 } else {} )
