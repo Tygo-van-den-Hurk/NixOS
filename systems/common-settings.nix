@@ -7,6 +7,7 @@ let
         initialPassword = "changeme";           #! Defines user accounts with a weak password. 
         isNormalUser    = true;                 # wether or not you're a human user
         description     = "Tygo van den Hurk";  # Your full name
+        uid             = 1000;
         extraGroups = [ 
             "networkmanager"                    # used for configuring the network
             "wheel" "adm" "admin "              # used for sudo
