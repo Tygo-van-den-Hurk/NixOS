@@ -6,10 +6,7 @@ arguments @ { config, pkgs, lib, machine-settings, programs, input, ... } : let
     #! make sure that the variable that `builtins.trace` assigns get used to trigger the print.
     #` this is because `builtins.trace` only prints a trace on the output if the variable gets used.
     #` that's why you have to go through hoops and bounds to get this variable used so that it prints the message.
-    local-ai-settings = ( builtins.trace 
-        "Loading: /modules/system-level/local-ai..." 
-        machine-settings.system.modules.local-ai
-    ); 
+    module-settings = (builtins.trace "Loading: ${toString ./.}..." machine-settings.system.modules.local-ai); 
 
     #
     # Created with help of: 
@@ -24,22 +21,16 @@ arguments @ { config, pkgs, lib, machine-settings, programs, input, ... } : let
     open-webui-path = "/var/lib/private/open-webui/";
         
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Making an assertion ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
-
-    # containerization-is-enabled = virtualisation.containers.enable == true;
-    # podman-is-enabled = virtualisation.podman.enable == true;
-    # docker-is-enabled = virtualisation.docker.enable == true;
-
-    # assert ( containerization-is-enabled && ( podman-is-enabled || docker-is-enabled ) );
     
-in ( if local-ai-settings.enable == true then {
+in ( if module-settings.enable == true then {
 
     services.ollama = {
         package = pkgs.ollama;
         enable = true;
-        acceleration = local-ai-settings.acceleration;
+        acceleration = module-settings.acceleration;
         environmentVariables = {
-            HIP_VISIBLE_DEVICES = local-ai-settings.devices.hip;
-            CUDA_VISIBLE_DEVICES = local-ai-settings.devices.cuda;
+            HIP_VISIBLE_DEVICES = module-settings.devices.hip;
+            CUDA_VISIBLE_DEVICES = module-settings.devices.cuda;
             # OLLAMA_LLM_LIBRARY = "cpu";
             # OLLAMA_HOST = "0.0.0.0:11434"; # Make Ollama accesible outside of localhost
             OLLAMA_ORIGINS = "http://localhost:*,http://127.0.0.1:*"; # CORS
@@ -55,14 +46,7 @@ in ( if local-ai-settings.enable == true then {
         install -d -m 755 ${open-webui-path} -o root -g root
     '');
 
-    virtualisation.oci-containers.backend = "docker";
-    # ( 
-    #     if docker-is-enabled then "docker" else 
-    #     if podman-is-enabled then "podman" else 
-    #     abort "unknow container host requested."
-    #     + "See \'local-ai\' module for more." 
-    # );
-
+    virtualisation.oci-containers.backend = module-settings.backend;
     virtualisation.oci-containers.containers = {
 
         #| Open web ui

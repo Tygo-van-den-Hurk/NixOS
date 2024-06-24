@@ -10,6 +10,12 @@ This is what the options look like you can add to your machine-settings:
 {
     machine-settings.system.modules.local-ai = {
         enable = boolean;
+        backend = string;
+        acceleration = string;
+        devices = {
+            cuda  = string;
+            hip   = string;
+        };
     };
 }
 ```

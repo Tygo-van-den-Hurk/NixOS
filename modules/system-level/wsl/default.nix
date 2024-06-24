@@ -5,13 +5,11 @@ arguments @ { config, pkgs, lib, machine-settings, programs, input, ... } : let
     #! make sure that the variable that `builtins.trace` assigns get used to trigger the print.
     #` this is because `builtins.trace` only prints a trace on the output if the variable gets used.
     #` that's why you have to go through hoops and bounds to get this variable used so that it prints the message.
-    wsl-settings = (builtins.trace 
-        "Loading: /modules/system-level/wsl/..." 
-        machine-settings.system.modules.wsl
-    ); 
+    module-settings = (builtins.trace "Loading: ${toString ./.}..." machine-settings.system.modules.wsl); 
 
-in {
-    wsl.enable = wsl-settings.enable;
+in ( if module-settings.enable == true then {
+
+    wsl.enable = true;
     wsl.defaultUser = wsl-settings.defaultUser;
-}
-  
+
+} else {} )
