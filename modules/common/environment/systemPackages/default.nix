@@ -1,28 +1,8 @@
 ## Defines the packages to use on the system.
 
-arguments @ { config, pkgs, lib, machine-settings, ... } : let 
-
-    #! make sure that the variable that `builtins.trace` assigns get used to trigger the print.
-    #` this is because `builtins.trace` only prints a trace on the output if the variable gets used.
-    #` that's why you have to go through hoops and bounds to get this variable used so that it prints the message.
-    packages = builtins.trace ("Loading: ${toString ./.}...") (
-        machine-settings.system.packages
-    ); 
-
-in 
-
-assert ( packages                != null ); # The packages set was not defined in the settings.
-assert ( packages.allowUnfree    != null ); # The settings do not specify wether or not to allow unfree software.
-# assert ( packages.freeSoftware   != null ); # The the free software to install.
-# assert ( packages.unFreeSoftware != null ); # The the non-free software to install if allowed.
-
-let 
-
-    do-not-add-unfree-packages  = [];                       # explanation for a constant
-    user-defined-unfree-packages = packages.unFreeSoftware; # explanation for a constant
-    user-defined-free-packages   = packages.freeSoftware;   # explanation for a constant
-
-in { environment.systemPackages = ( with pkgs; [
+arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "Loading: ${toString ./.}..." { 
+    
+    environment.systemPackages = with pkgs; [
 
         #` 1) Terminals & Command Line Tools
         
@@ -95,9 +75,5 @@ in { environment.systemPackages = ( with pkgs; [
         localsend
         stow                    # A symlink farmer to be able to sent your dot files as symlinks from any place to the repository
         obs-studio              # for recording your screen or window
-    ]) 
-    # ++ ( user-defined-free-packages ) ++ ( # TODO : Set up settings defined packages.
-    #     if ( packages.allowUnfree ) then ( user-defined-unfree-packages ) else ( do-not-add-unfree-packages ) 
-    # )
-    ;
-}
+    ];
+})

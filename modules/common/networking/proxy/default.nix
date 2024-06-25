@@ -1,11 +1,10 @@
 ## Defines the networking proxy options.
  
-arguments @ { config, pkgs, lib, machine-settings, ... } : let 
-    
-    _ = builtins.trace "Loading: ${toString ./.}..." machine-settings; 
+arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "Loading: ${toString ./.}..." { 
 
-in { networking.proxy  = {
-        # default = "http://user:password@proxy:port/";
-        # noProxy = "127.0.0.1,localhost,internal.domain";
+    networking.proxy  = {
+        # default = (lib.mkDefault "http://user:password@proxy:port/");
+        # noProxy = (lib.mkDefault "127.0.0.1,localhost,internal.domain");
     };
-}
+
+})

@@ -40,16 +40,5 @@
         };
     };
 
-    modules = {
-        gui                   = "i3wm";
-        java                  = "jdk21";
-        gaming                = true;
-        docker                = true;
-
-        # currently to unstable 
-        #// gui               = "hyprland";
-        
-        # This module can dramatically increate switch time when it gets an update as it compiles from source
-        #// virtualbox        = true;
-    };
+    modules.gui = "i3wm";
 }

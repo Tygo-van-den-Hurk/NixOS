@@ -6,6 +6,10 @@ arguments @ { config, pkgs, lib, machine-settings, programs, input, ... } : let
 
 in ( if module-settings.enable == true then builtins.trace "Loading: ${toString ./.}..." {
 
+    imports = [ 
+       input.nixos-wsl.nixosModules.default
+    ];
+
     wsl.enable = true;
     wsl.defaultUser = module-settings.defaultUser;
 

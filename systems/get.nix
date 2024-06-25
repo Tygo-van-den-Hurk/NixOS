@@ -95,7 +95,6 @@ let
                         
                         #` Custom input modules
                         input.nur.nixosModules.nur # Adding the NixOS User Repository
-                        # (if machine-settings.system.modules.wsl.enable == true then nixos-wsl.nixosModules.default else {} )
                     ];  
                 }  
             );

@@ -56,5 +56,3 @@ in ( if module-settings.enable == true then builtins.trace "Loading: ${toString 
     };
 
 } else { } )
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ END ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #

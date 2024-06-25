@@ -1,8 +1,9 @@
 ## Defines the networking options.
 
-arguments @ { config, pkgs, lib, machine-settings, ... } : let 
-    _ = builtins.trace "Loading: ${toString ./.}..." machine-settings; 
-in { networking.wireless = {
-        #// enable = true;
+arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "Loading: ${toString ./.}..." { 
+
+    networking.wireless = {
+        #// enable = (lib.mkDefault true);
     };
-}
+
+})

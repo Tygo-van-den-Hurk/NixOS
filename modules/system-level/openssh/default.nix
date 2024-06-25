@@ -7,7 +7,7 @@ arguments @ { config, pkgs, lib, machine-settings, programs, input, ... } : let
 in ( if module-settings.enable == true then builtins.trace "Loading: ${toString ./.}..." { 
 
     services.openssh = {
-        enable = yes;
+        enable = true;
         settings = { # Enhance Security
             PasswordAuthentication = false;
             KbdInteractiveAuthentication = false;

@@ -1,14 +1,8 @@
-arguments @ { input, machine-settings, ... } :
+# this module enables xremap as a service.
 
-let 
-
-    #! make sure that the variable that `builtins.trace` assigns get used to trigger the print.
-    #` this is because `builtins.trace` only prints a trace on the output if the variable gets used.
-    #` that's why you have to go through hoops and bounds to get this variable used so that it prints the message.
-    config = ( builtins.trace "xremap with gui support for: ${__gui_}" (
-            builtins.trace "Loading: ${toString ./.}..." (builtins.readFile ./config.yml)
-        ) 
-    ); 
+arguments @ { config, pkgs, lib, machine-settings, programs, input, ... } : let 
+    
+    config = ( builtins.readFile ./config.yml ); 
 
     # For enableing the setting
     __gui_ = machine-settings.modules.gui;
@@ -30,9 +24,12 @@ let
     );
 
     # the username of the person who is going to use it.
-    userName = machine-settings.users.primary-user.name;
+    userName = "tygo"; # TODO : make dynamic
 
-in { imports = [ input.xremap-flake.nixosModules.default ];
+# in ( if machine-settings.modules.keyre then ( builtins.trace "Loading: ${toString ./.}..." { 
+in {
+
+    imports = [ input.xremap-flake.nixosModules.default ];
 
     services.xremap = ({
         
@@ -57,4 +54,6 @@ in { imports = [ input.xremap-flake.nixosModules.default ];
 
     users.groups.uinput.members = [ userName ];
     users.groups.input.members  = [ userName ];
+
 }
+# }) else {} )
