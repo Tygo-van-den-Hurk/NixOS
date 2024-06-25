@@ -72,8 +72,14 @@ in { environment.systemPackages = ( with pkgs; [
         #| Picture Editors
         gimp                    # For editing photos
 
-        #` 3) Web browsers
-        firefox brave
+        #` 3) Viewing reference material
+
+		#| Viewing web pages
+        firefox 
+        brave
+
+		#| viewing pdfs
+		zathura
 
         #` 4) Communication
         telegram-desktop
