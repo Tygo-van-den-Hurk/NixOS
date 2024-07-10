@@ -23,6 +23,7 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "Loa
         octaveFull              # Open Source version of MathLab
         zoxide                  # A beter way of doing `cd`.
         bat                     # A beter way of doing `cat`. #TODO : make an alias for 'cat' to 'bat --paging=never'.
+		zip unzip				# For Working with ZIP archives
 
         #| Terminal user interfaces
         lazygit                 # A TUI for interacting with git
