@@ -31,7 +31,7 @@
         nur.url = "github:nix-community/NUR";
 
         #| Xremap (Easy keyremapping)
-        xremap-flake.url = "github:xremap/nix-flake";
+        xremap.url = "github:xremap/nix-flake";
 
         #|? Unknown
         # nix-index-database.url = "github:Mic92/nix-index-database";

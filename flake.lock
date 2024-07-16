@@ -117,7 +117,7 @@
     "crane": {
       "inputs": {
         "nixpkgs": [
-          "xremap-flake",
+          "xremap",
           "nixpkgs"
         ]
       },
@@ -336,17 +336,17 @@
     "hyprcursor": {
       "inputs": {
         "hyprlang": [
-          "xremap-flake",
+          "xremap",
           "hyprland",
           "hyprlang"
         ],
         "nixpkgs": [
-          "xremap-flake",
+          "xremap",
           "hyprland",
           "nixpkgs"
         ],
         "systems": [
-          "xremap-flake",
+          "xremap",
           "hyprland",
           "systems"
         ]
@@ -391,13 +391,13 @@
     "hyprland-protocols": {
       "inputs": {
         "nixpkgs": [
-          "xremap-flake",
+          "xremap",
           "hyprland",
           "xdph",
           "nixpkgs"
         ],
         "systems": [
-          "xremap-flake",
+          "xremap",
           "hyprland",
           "xdph",
           "systems"
@@ -420,12 +420,12 @@
     "hyprlang": {
       "inputs": {
         "nixpkgs": [
-          "xremap-flake",
+          "xremap",
           "hyprland",
           "nixpkgs"
         ],
         "systems": [
-          "xremap-flake",
+          "xremap",
           "hyprland",
           "systems"
         ]
@@ -447,12 +447,12 @@
     "hyprwayland-scanner": {
       "inputs": {
         "nixpkgs": [
-          "xremap-flake",
+          "xremap",
           "hyprland",
           "nixpkgs"
         ],
         "systems": [
-          "xremap-flake",
+          "xremap",
           "hyprland",
           "systems"
         ]
@@ -641,7 +641,7 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
         "stylix": "stylix",
-        "xremap-flake": "xremap-flake"
+        "xremap": "xremap"
       }
     },
     "stylix": {
@@ -741,17 +741,17 @@
       "inputs": {
         "hyprland-protocols": "hyprland-protocols",
         "hyprlang": [
-          "xremap-flake",
+          "xremap",
           "hyprland",
           "hyprlang"
         ],
         "nixpkgs": [
-          "xremap-flake",
+          "xremap",
           "hyprland",
           "nixpkgs"
         ],
         "systems": [
-          "xremap-flake",
+          "xremap",
           "hyprland",
           "systems"
         ]
@@ -771,6 +771,31 @@
       }
     },
     "xremap": {
+      "inputs": {
+        "crane": "crane",
+        "devshell": "devshell",
+        "flake-parts": "flake-parts",
+        "home-manager": "home-manager_3",
+        "hyprland": "hyprland",
+        "nixpkgs": "nixpkgs_5",
+        "treefmt-nix": "treefmt-nix",
+        "xremap": "xremap_2"
+      },
+      "locked": {
+        "lastModified": 1716231478,
+        "narHash": "sha256-54nR//0El4CKIwIeWYHY0/HFeh+2s00/NUuemH5DDDA=",
+        "owner": "xremap",
+        "repo": "nix-flake",
+        "rev": "7a9a071a84c9b5bdd48d4b3eacf6efa448665aed",
+        "type": "github"
+      },
+      "original": {
+        "owner": "xremap",
+        "repo": "nix-flake",
+        "type": "github"
+      }
+    },
+    "xremap_2": {
       "flake": false,
       "locked": {
         "lastModified": 1716230517,
@@ -784,31 +809,6 @@
         "owner": "k0kubun",
         "ref": "v0.9.0",
         "repo": "xremap",
-        "type": "github"
-      }
-    },
-    "xremap-flake": {
-      "inputs": {
-        "crane": "crane",
-        "devshell": "devshell",
-        "flake-parts": "flake-parts",
-        "home-manager": "home-manager_3",
-        "hyprland": "hyprland",
-        "nixpkgs": "nixpkgs_5",
-        "treefmt-nix": "treefmt-nix",
-        "xremap": "xremap"
-      },
-      "locked": {
-        "lastModified": 1716231478,
-        "narHash": "sha256-54nR//0El4CKIwIeWYHY0/HFeh+2s00/NUuemH5DDDA=",
-        "owner": "xremap",
-        "repo": "nix-flake",
-        "rev": "7a9a071a84c9b5bdd48d4b3eacf6efa448665aed",
-        "type": "github"
-      },
-      "original": {
-        "owner": "xremap",
-        "repo": "nix-flake",
         "type": "github"
       }
     }
