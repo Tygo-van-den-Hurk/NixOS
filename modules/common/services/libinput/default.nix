@@ -2,6 +2,8 @@
 
 arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "Loading: ${toString ./.}..." { 
 
-    imports = [ ./libinput ./logind ./pipewire ./printing ./tailscale ]; 
-    
+    services.libinput = {
+        touchpad.naturalScrolling = true;
+    };
+
 })
