@@ -76,5 +76,12 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "Loa
         localsend
         stow                    # A symlink farmer to be able to sent your dot files as symlinks from any place to the repository
         obs-studio              # for recording your screen or window
+
+        #` Ricing
+        cmatrix
+        cowsay
+        cava
+        fastfetch
+        pipes
     ];
 })
