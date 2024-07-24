@@ -4,6 +4,7 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "Loa
     
     imports = [
         ./gaming 
+        ./gui
         ./local-ai 
         ./nvidia 
         ./onedrive

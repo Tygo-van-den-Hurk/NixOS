@@ -6,14 +6,15 @@ arguments @ { config, pkgs, lib, machine-settings, programs, input, ... } : let
 
     # For enableing the setting
     __gui_ = machine-settings.modules.gui;
-    gui = ( 
-        if (__gui_ == ""      || __gui_ == null       || __gui_ == false       ) then ( "none"    ) else 
-        if (__gui_ == "sway"  || __gui_ == "hyprland" || __gui_ == "hyperland" ) then ( "wayland" ) else 
-        if (__gui_ == "kde"   || __gui_ == "KDE"                               ) then ( "kde"     ) else 
-        if (__gui_ == "gnome" || __gui_ == "GNOME"                             ) then ( "gnome"   ) else 
-        if (__gui_ == "i3wm"  || __gui_ == "i3"                                ) then ( "x11"   ) else 
-        (__gui_) 
-    );
+    gui = "x11";
+    # ( 
+    #     if (__gui_ == ""      || __gui_ == null       || __gui_ == false       ) then ( "none"    ) else 
+    #     if (__gui_ == "sway"  || __gui_ == "hyprland" || __gui_ == "hyperland" ) then ( "wayland" ) else 
+    #     if (__gui_ == "kde"   || __gui_ == "KDE"                               ) then ( "kde"     ) else 
+    #     if (__gui_ == "gnome" || __gui_ == "GNOME"                             ) then ( "gnome"   ) else 
+    #     if (__gui_ == "i3wm"  || __gui_ == "i3"                                ) then ( "x11"   ) else 
+    #     (__gui_) 
+    # );
 
     # In case of failure
     abort_message =  (
@@ -29,7 +30,7 @@ arguments @ { config, pkgs, lib, machine-settings, programs, input, ... } : let
 # in ( if machine-settings.modules.keyre then ( builtins.trace "Loading: ${toString ./.}..." { 
 in {
 
-    imports = [ input.xremap-flake.nixosModules.default ];
+    imports = [ input.xremap.nixosModules.default ];
 
     services.xremap = ({
         

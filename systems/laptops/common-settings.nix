@@ -3,5 +3,6 @@
 { # add updates below:
 
     system.type = "laptop";
+    system.modules.gui.i3wm.enable = true;
 
 }

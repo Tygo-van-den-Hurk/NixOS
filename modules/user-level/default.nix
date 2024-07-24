@@ -4,7 +4,8 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "Loa
     
     imports = [ 
         ./docker
-        # ./nfs 
+        ./key-remapper
+        ./nfs 
         ./virtualbox
     ]; 
     
