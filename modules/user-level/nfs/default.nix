@@ -2,18 +2,13 @@
 
 arguments @ { config, pkgs, lib, machine-settings, programs, input, ... } : let 
     
-    #! make sure that the variable that `builtins.trace` assigns get used to trigger the print.
-    #` this is because `builtins.trace` only prints a trace on the output if the variable gets used.
-    #` that's why you have to go through hoops and bounds to get this variable used so that it prints the message.
-    users = ( builtins.trace "Loading: ${toString ./.}..." machine-settings.users ); 
+    users-with-this-module-enabled = (lib.attrNames ( lib.attrsets.concatMapAttrs ( user-name: user-settings: 
+        if user-settings.init.modules.docker.enable then { "${user-name}" = user-settings; } else { }
+    ) machine-settings.users ));
 
-    nothing = { };
-
-in
-#| Filtering users, server, shares that aren't enabled and transforming them
-let 
+in ( if ((builtins.length users-with-this-module-enabled) > 0) then let 
     
-    shares-and-where-to-mount-them = ( builtins.attrValues (( __users_:
+    shares-and-where-to-mount-them = ( builtins.attrValues (( __users_: let nothing = {}; in
         ( lib.attrsets.concatMapAttrs (__username_: __usersettings_: 
 
             let nfs-module = __usersettings_.init.modules.nfs; in 
@@ -50,9 +45,9 @@ let
                 ) __server_settings_.shares )
             ) nfs-module.servers )
         ) __users_ )
-    ) users ));
+    ) machine-settings.users ));
 
-in # shares-and-where-to-mount-them
+in
 #| converting them into a list
 let
 
@@ -79,10 +74,10 @@ let
         # )
     );
 
-in {
+in ( builtins.trace "Loading: ${toString ./.}..." { 
 
     services.rpcbind.enable = true; 
     systemd.mounts = systemd-mounts;
     systemd.automounts = systemd-auto-mounts;
 
-}
+}) else {} )

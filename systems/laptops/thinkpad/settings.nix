@@ -3,11 +3,12 @@
 { # add updates below:
 
     users = let username = "tygo"; in {
-        "${username}".init.modules.nfs = {
-            enable = true;
-            servers."tygos-nasserver" = {
+        "${username}".init.modules = { 
+            docker.enable = true;
+            virtualbox.enable = true;
+            nfs = {
                 enable = true;
-                shares."school" = {
+                servers."tygos-nasserver".shares."school" = {
                     enable = true;
                     mount-location = "/home/${username}/school/";
                 };
@@ -20,6 +21,7 @@
         architecture = "86x_64-linux";
         packages.allowUnfree = true;
         modules = {
+
             local-ai = {
                 enable       = true;
                 acceleration = "cuda";
@@ -29,7 +31,9 @@
                     hip      = "";
                 };
             };
+
             nvidia = {  
+                enable = true;
                 hardwarePackage   = "stable";
                 prime = {  
                     offload       = true;
@@ -39,6 +43,4 @@
             };
         };
     };
-
-    modules.gui = "i3wm";
 }

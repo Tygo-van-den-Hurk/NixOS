@@ -43,7 +43,6 @@
     };  
 
     modules = { 
-        gui                 = "kde";        # The GUI to use. Go to /modules/gui for an up-to-date list of the options.
         key-remapper        = "xremap";     # wether or not to load the 'xremap' module.
     };  
 
@@ -66,6 +65,12 @@
             nvidia.enable           = false;
             gaming.enable           = false;
             onedrive.enable         = false;
+            gui = {
+                hyprland .enable = true;
+                gnome    .enable = true;
+                kde      .enable = true;
+                i3wm     .enable = true;
+            };
         };
     };
 }

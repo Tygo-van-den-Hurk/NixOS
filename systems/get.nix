@@ -4,12 +4,9 @@ let
             
     __pkgs_ = builtins.trace ( "Loading: Nix Packages (stable) from the input..." ) ( import input.nixpkgs { } );
     __pkgs_unstable_ = builtins.trace ( "Loading: Nix Packages (unstable) from the input..." ) ( import input.nixpkgs-unstable { } );
-    pkgs = __pkgs_ // { unstable = __pkgs_unstable_; };
+    pkgs = (__pkgs_ // { unstable = __pkgs_unstable_; });
 
-    lib = builtins.trace ( "Loading: Library from Nix Packages..."   ) ( input.nixpkgs.lib ); 
-
-    # For debugging
-    # lib = (import <nixpkgs> {}).lib;
+    lib = (builtins.trace "Loading: Library from Nix Packages..." input.nixpkgs.lib );
 
 in 
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
