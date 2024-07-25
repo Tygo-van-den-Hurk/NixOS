@@ -22,6 +22,8 @@
         packages.allowUnfree = true;
         modules = {
 
+            gaming.enable = true;
+            
             local-ai = {
                 enable       = true;
                 acceleration = "cuda";

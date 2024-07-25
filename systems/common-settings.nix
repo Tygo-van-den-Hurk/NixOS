@@ -66,10 +66,10 @@
             gaming.enable           = false;
             onedrive.enable         = false;
             gui = {
-                hyprland .enable = true;
-                gnome    .enable = true;
-                kde      .enable = true;
-                i3wm     .enable = true;
+                hyprland .enable = false;
+                gnome    .enable = false;
+                kde      .enable = false;
+                i3wm     .enable = false;
             };
         };
     };
