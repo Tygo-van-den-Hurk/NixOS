@@ -22,8 +22,9 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "Loa
         yt-dlp                  # Downloading Youtube video's
         octaveFull              # Open Source version of MathLab
         zoxide                  # A beter way of doing `cd`.
-        bat                     # A beter way of doing `cat`. #TODO : make an alias for 'cat' to 'bat --paging=never'.
-		zip unzip				# For Working with ZIP archives
+        bat                     # A beter way of doing `cat`.
+		zip unzip				# For Working with ZIP archives.
+        gnupg                   # for signing code.
 
         #| Terminal user interfaces
         lazygit                 # A TUI for interacting with git
