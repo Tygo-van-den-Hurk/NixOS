@@ -24,6 +24,8 @@
 
             gaming.enable = true;
             
+            gpg.enable = true;
+
             local-ai = {
                 enable       = true;
                 acceleration = "cuda";
