@@ -57,6 +57,7 @@
         };
         
         modules = {
+            gpg.enable              = false;
             local-ai.enable         = false;
             podman.enable           = false;
             power-efficiency.enable = false;

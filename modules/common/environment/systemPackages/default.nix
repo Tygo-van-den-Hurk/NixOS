@@ -22,7 +22,6 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "Loa
         zoxide                  # A beter way of doing `cd`.
         bat                     # A beter way of doing `cat`.
 		zip unzip				# For Working with ZIP archives.
-        gnupg                   # for signing code.
 
         #| Terminal user interfaces
         lazygit                 # A TUI for interacting with git
