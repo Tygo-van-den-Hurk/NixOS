@@ -15,12 +15,10 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "Loa
         wget                    # get files
         curl                    # Make HTTP requests
         git gh glab             # for Git
-        lf                      # ?unknown?
         fzf                     # find a file or folder very quickly
         tailscale               # A private network of all my devices
         lshw                    # For seeing connected devices
         yt-dlp                  # Downloading Youtube video's
-        octaveFull              # Open Source version of MathLab
         zoxide                  # A beter way of doing `cd`.
         bat                     # A beter way of doing `cat`.
 		zip unzip				# For Working with ZIP archives.
@@ -31,6 +29,8 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "Loa
         micro                   # The supirior option for editing text in the terminal over Nano
         vim                     # An advance TUI for editing text.
         neovim                  # A more extensible version of vim
+        lf                      # A terminal file manager
+        octaveFull              # Open Source version of MathLab
 
         #` 2) File Editing
         
