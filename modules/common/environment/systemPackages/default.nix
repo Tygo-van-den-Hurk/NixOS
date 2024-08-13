@@ -7,9 +7,9 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "Loa
         #` 1) Terminals & Command Line Tools
         
         #| Terminals
-        xterm 
-        kitty
-        alacritty
+        xterm                   # A terminal emulator
+        kitty                   # A terminal emulator
+        alacritty               # A terminal emulator
 
         #| Command Line Tools
         wget                    # get files
@@ -21,7 +21,7 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "Loa
         yt-dlp                  # Downloading Youtube video's
         zoxide                  # A beter way of doing `cd`.
         bat                     # A beter way of doing `cat`.
-		zip unzip				# For Working with ZIP archives.
+        zip unzip                        # For Working with ZIP archives.
 
         #| Terminal user interfaces
         lazygit                 # A TUI for interacting with git
@@ -29,7 +29,13 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "Loa
         vim                     # An advance TUI for editing text.
         neovim                  # A more extensible version of vim
         lf                      # A terminal file manager
-        octaveFull              # Open Source version of MathLab
+        (octave.withPackages (  # Open Source version of MathLab
+            octavePackages:     # ( Adding some extentions to octave )
+            with octavePackages; [ 
+                symbolic        # Adds the ability for symbolic variables and caclulations to Octave
+                linear-algebra  # Adds more linear algebra functions to Octave
+            ]
+        ))
 
         #` 2) File Editing
         
@@ -39,49 +45,49 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "Loa
         obsidian                # A markdown editor
 
         #| Programming languages
-        rustc rustup cargo      # For Rust development
-        
+        #! All programming dependancies should be in a shell.nix or flake.nix file to prevent version mismatches.
+
         #| Document editing
-        onlyoffice-bin
-        libreoffice-qt
+        onlyoffice-bin          # An open source document suite
+        libreoffice-qt          # An open source document suite
 
         #| Spell Checkers
-        hunspell
-        hunspellDicts.uk_UA
-        hunspellDicts.th_TH
+        hunspell                # A free and opensource spell checker
+        hunspellDicts.uk_UA     # English spell checker
+        hunspellDicts.nl_NL     # Dutch spell checker
         
         #| Picture Editors
         gimp                    # For editing photos
 
         #` 3) Viewing reference material
 
-		#| Viewing web pages
-        firefox 
-        brave
+        #| Viewing web pages
+        firefox                 # A non-chromium based broweser, and my browser of choice
+        brave                   # A chromium based broweser with build in add blocking
 
-		#| viewing pdfs
-		zathura
+        #| viewing pdfs
+        zathura                 # Allows for opening PDF documents without bloat
 
         #` 4) Communication
-        telegram-desktop
-        signal-desktop
-        thunderbird
-        discord
-	    whatsapp-for-linux
+        telegram-desktop        # A popular private messaging platform
+        signal-desktop          # A popular private messaging platform
+        thunderbird             # A popular opensource email client
+        discord                 # A messaging platform
+        whatsapp-for-linux      # A messaging platform owned by facebook (meta)
 
         #` 5) Files and VM's
         xfce.thunar             # A GUI file manager
 
         #` *) others
-        localsend
-        stow                    # A symlink farmer to be able to sent your dot files as symlinks from any place to the repository
-        obs-studio              # for recording your screen or window
+        localsend               # A program that allows for sending files between devices regardless of OS
+        stow                    # A symlink farmer I use for managing my dotfiles
+        obs-studio              # For recording your screen or window
 
         #` Ricing
-        cmatrix
-        cowsay
-        cava
-        fastfetch
-        pipes
+        cmatrix                 # A program that displays random floating characters like in the matrix
+        cowsay                  # A program that displays an animal saying what you want it to say
+        cava                    # A program that displays audio bars in real time
+        fastfetch               # A program that displays system statistics
+        pipes                   # A program that displays random forming pipes 
     ];
 })
