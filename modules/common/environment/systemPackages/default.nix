@@ -14,6 +14,7 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "Loa
         #| Command Line Tools
         wget                    # get files
         curl                    # Make HTTP requests
+        git-filter-repo         # Quickly rewrite git repository history.
         git gh glab             # for Git
         fzf                     # find a file or folder very quickly
         tailscale               # A private network of all my devices
@@ -21,7 +22,7 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "Loa
         yt-dlp                  # Downloading Youtube video's
         zoxide                  # A beter way of doing `cd`.
         bat                     # A beter way of doing `cat`.
-        zip unzip                        # For Working with ZIP archives.
+        zip unzip               # For Working with ZIP archives.
 
         #| Terminal user interfaces
         lazygit                 # A TUI for interacting with git
