@@ -23,6 +23,7 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "Loa
         zoxide                  # A beter way of doing `cd`.
         bat                     # A beter way of doing `cat`.
         zip unzip               # For Working with ZIP archives.
+        tiv                     # a program that gives a preview of image files, right in the terminal.
 
         #| Terminal user interfaces
         lazygit                 # A TUI for interacting with git
