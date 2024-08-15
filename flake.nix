@@ -36,6 +36,15 @@
         #|? Unknown
         # nix-index-database.url = "github:Mic92/nix-index-database";
         # nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+
+        # my personal dotfiles
+        tygo-van-den-hurk-dotfiles = {
+            # got that from: https://github.com/8bitbuddhist/nix-configuration/blob/main/flake.nix
+            url = "git+file:./modules/user-level/home-manager/tygo-van-den-hurk";
+            flake = false;
+            # ref = "main";
+            # rev = "55fc814d477d956ab885e157f24c2d43f433dc7a";
+        };
     };
 
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OUTPUTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#

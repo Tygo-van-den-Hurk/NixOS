@@ -15,6 +15,10 @@ in ( if (builtins.length users-with-this-module-enabled) > 0 then ( builtins.tra
     
     # stylix.enable = true;
     home-manager = {
+
+        useGlobalPkgs = true;
+        useUserPackages = true;
+
         extraSpecialArgs = { inherit input; };
 
         users = let 
@@ -22,9 +26,7 @@ in ( if (builtins.length users-with-this-module-enabled) > 0 then ( builtins.tra
             user-to-home-manager-configurations = (__username_: __user_settings_: 
                 (if (__user_settings_.init.modules.home-manager.enable == true) then {
                     "${__username_}" = (
-                        import ((toString ./.) + "/${__user_settings_.init.modules.home-manager.configPath}") (
-                            arguments
-                        )
+                        import input."${__user_settings_.init.modules.home-manager.configPath}"
                     );
                 } else {})
             );
@@ -35,7 +37,9 @@ in ( if (builtins.length users-with-this-module-enabled) > 0 then ( builtins.tra
             ));
 
         in (
-            builtins.trace "Home-Manager configurations: ${builtins.toJSON (builtins.attrNames home-manager-configurations)}..." 
+            builtins.trace "Loading: Home-Manager configurations: ${
+                builtins.toJSON (builtins.attrNames home-manager-configurations)
+            }..." 
             home-manager-configurations
         );
     };

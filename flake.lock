@@ -641,6 +641,7 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
         "stylix": "stylix",
+        "tygo-van-den-hurk-dotfiles": "tygo-van-den-hurk-dotfiles",
         "xremap": "xremap"
       }
     },
@@ -735,6 +736,21 @@
         "owner": "numtide",
         "repo": "treefmt-nix",
         "type": "github"
+      }
+    },
+    "tygo-van-den-hurk-dotfiles": {
+      "flake": false,
+      "locked": {
+        "dirtyRev": "6521b285612dd8ba028b62393005bd483778179a-dirty",
+        "dirtyShortRev": "6521b28-dirty",
+        "lastModified": 1723756696,
+        "narHash": "sha256-eElSPnnBDDyRZpy7pw8sLnWIgXElQkTM0Fo7ZfdZK4s=",
+        "type": "git",
+        "url": "file:./modules/user-level/home-manager/tygo-van-den-hurk"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:./modules/user-level/home-manager/tygo-van-den-hurk"
       }
     },
     "xdph": {

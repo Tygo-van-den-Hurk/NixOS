@@ -30,7 +30,7 @@
                     docker.enable = true;
                     home-manager = {
                         enable = true;
-                        configPath = "tygo-van-den-hurk";
+                        configPath = "tygo-van-den-hurk-dotfiles";
                     };
                     nfs.enable = false;
                     virtualbox.enable = false;
