@@ -27,9 +27,13 @@
             init = {
                 
                 modules = {
+                    docker.enable = true;
+                    home-manager = {
+                        enable = true;
+                        configPath = "tygo-van-den-hurk";
+                    };
                     nfs.enable = false;
                     virtualbox.enable = false;
-                    docker.enable = true;
                 };
                 
                 defaultApps = {                         # Sets the default apps to use 

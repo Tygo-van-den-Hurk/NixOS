@@ -52,7 +52,7 @@
         
         # Getting the NixOS hosts
         nixosConfigurations = let 
-            __nixosConfigurations_ = ( import ./systems/get.nix { inherit input; } );
+            __nixosConfigurations_ = ( import ./systems/get.nix { inherit input; root-directory-repository = ./.; } );
             avalible-system-names = (nixpkgs.lib.attrNames __nixosConfigurations_);
             sperator = ("\n\t - ");
             avalible-systems-string = (builtins.concatStringsSep sperator avalible-system-names);

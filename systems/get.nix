@@ -1,4 +1,4 @@
-arguments @ { input, ... } : 
+arguments @ { input, root-directory-repository, ... } : 
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 let
             
@@ -82,6 +82,7 @@ let
                     specialArgs = { 
                         inherit input; 
                         inherit machine-settings;
+                        inherit root-directory-repository;
                     };
                     
                     modules = [ 

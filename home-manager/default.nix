@@ -1,3 +1,0 @@
-{
-    
-    home-manager.useUserPackages = true;
