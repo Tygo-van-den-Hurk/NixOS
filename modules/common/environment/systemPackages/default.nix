@@ -22,6 +22,7 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "Loa
         yt-dlp                  # Downloading Youtube video's
         zoxide                  # A beter way of doing `cd`.
         bat                     # A beter way of doing `cat`.
+        eza                     # A beter way of doing `ls`.
         zip unzip               # For Working with ZIP archives.
         tiv                     # a program that gives a preview of image files, right in the terminal.
 
