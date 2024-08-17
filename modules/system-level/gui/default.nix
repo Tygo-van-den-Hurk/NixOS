@@ -16,7 +16,7 @@ in let
         } else {}
     ) module-settings ));
 
-    amount-of-GUIs-enabled = builtins.trace "MY TRACE: ${builtins.toJSON enabled-GUIs}" (builtins.length enabled-GUIs);
+    amount-of-GUIs-enabled = (builtins.length enabled-GUIs);
   
 in ( if ( amount-of-GUIs-enabled > 1 ) then ( 
     
