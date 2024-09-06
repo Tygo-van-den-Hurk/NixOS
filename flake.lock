@@ -851,10 +851,11 @@
     "tygo-van-den-hurk-dotfiles": {
       "flake": false,
       "locked": {
-        "dirtyRev": "00764827b76af90b7a851ad5a650e6de49781842-dirty",
-        "dirtyShortRev": "0076482-dirty",
-        "lastModified": 1725441577,
+        "lastModified": 1725640360,
         "narHash": "sha256-uI0kFKPu/IrK49WlWywwJi5BLXDxkip0eX7buYCK6Ns=",
+        "ref": "refs/heads/main",
+        "rev": "fbe393b9e5dea6ef9149037c90f0d4d38ae8d9a8",
+        "revCount": 95,
         "type": "git",
         "url": "file:./modules/user-level/home-manager/tygo-van-den-hurk"
       },
