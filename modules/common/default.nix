@@ -13,6 +13,7 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "Loa
         ./nixpkgs
         ./security
         ./services
+        ./sops
         ./sound
         ./system
         ./time

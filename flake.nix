@@ -1,71 +1,67 @@
 {
-    description = "The flake that is used to configure all my machines.";
+  description = "The flake that is used to configure all my machines.";
+
+  inputs  = {
+  
+    #| Nix Packages (Where all your packages come from)
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     
-    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ INPUTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-    # In this block we define the inputs of the flake, these inputs are other flakes. So for example the Nix packages is
-    # it self a flake, and we pass this down as `pkgs`, and `lib`. We can also add other repositories, or applications.
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Home Manager ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
-    inputs  = {
+    #| Home Manager (Declaratively create dot files)
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    #| Stylix (Manage theming for home manager)
+    stylix.url = "github:danth/stylix";
+    stylix.inputs.nixpkgs.follows = "nixpkgs";
+
+    #` Tygo van den Hurk's Dotfiles
+    tygo-van-den-hurk-dotfiles.url = "git+file:./modules/user-level/home-manager/tygo-van-den-hurk";
+    tygo-van-den-hurk-dotfiles.flake = false;
+
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Secret Management ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
     
-        #| Nix Packages (Where all your packages come from)
-        nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-        nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-        
-        #| Home Manager (Declaratively create dot files)
-        home-manager.url = "github:nix-community/home-manager/release-24.05";
-        home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    #| SOPS (Secret management)
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-        #| Home Manager (Declaratively create dot files)
-        stylix.url = "github:danth/stylix";
-        stylix.inputs.nixpkgs.follows = "nixpkgs";
+    #` Tygo van den Hurk's Secrets
+    tygo-van-den-hurk-secrets.url = "git+file:./modules/common/sops/tygo-van-den-hurk";
+    tygo-van-den-hurk-secrets.flake = false;
+    
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Miscellaneous ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
-        #| WSL (Window SubSystem for Linux)
-        nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
-        nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
+    #| WSL (Window SubSystem for Linux)
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
 
-        #| Disko (Declarative disk partitioning & disk wiping)
-        # disko.url = "github:nix-community/disko";
-        # disko.inputs.nixpkgs.follows = "nixpkgs";
+    #| Disko (Declarative disk partitioning & disk wiping)
+    # disko.url = "github:nix-community/disko";
+    # disko.inputs.nixpkgs.follows = "nixpkgs";
 
-        #| NUR (NixOS User Repository)
-        nur.url = "github:nix-community/NUR";
+    #| NUR (NixOS User Repository)
+    nur.url = "github:nix-community/NUR";
 
-        #| Xremap (Easy keyremapping)
-        xremap.url = "github:xremap/nix-flake";
+    #| Xremap (Easy keyremapping)
+    xremap.url = "github:xremap/nix-flake";
 
-        #|? Unknown
-        # nix-index-database.url = "github:Mic92/nix-index-database";
-        # nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    #| Nix Index Database (Replaces the program not found message)
+    # nix-index-database.url = "github:Mic92/nix-index-database";
+    # nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+  };
 
-        # my personal dotfiles
-        tygo-van-den-hurk-dotfiles = {
-            # got that from: https://github.com/8bitbuddhist/nix-configuration/blob/main/flake.nix
-            url = "git+file:./modules/user-level/home-manager/tygo-van-den-hurk";
-            flake = false;
-            # ref = "main";
-            # rev = "55fc814d477d956ab885e157f24c2d43f433dc7a";
-        };
-    };
-
-    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OUTPUTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-    # In this portion we'll modify the iputs to get an output, we you use the command:
-    # 
-    #?   sudo nixos-rebuild switch --flake .#[hostname]
-    #
-    # it will look look for this object:
-    #
-    #?   outputs.nixosConfigurations.[hostname]
-    #
-    # and create a working system from that.
-    outputs = input @ { self, nixpkgs, nur, home-manager, stylix, nixos-wsl, ...  } : let
-        
-        # Getting the NixOS hosts
-        nixosConfigurations = let 
-            __nixosConfigurations_ = ( import ./systems/get.nix { inherit input; root-directory-repository = ./.; } );
-            avalible-system-names = (nixpkgs.lib.attrNames __nixosConfigurations_);
-            sperator = ("\n\t - ");
-            avalible-systems-string = (builtins.concatStringsSep sperator avalible-system-names);
-        in (builtins.trace "Avalible systems:${sperator+avalible-systems-string}" __nixosConfigurations_ );
-        
-    in { inherit nixosConfigurations; };
+  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OUTPUTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+  outputs = input @ { self, nixpkgs, nur, home-manager, stylix, nixos-wsl, ...  } : let
+      
+    #| Getting the NixOS hosts
+    nixosConfigurations = let 
+      __nixosConfigurations_ = ( import ./systems/get.nix { inherit input; root-directory-repository = ./.; } );
+      avalible-system-names = (nixpkgs.lib.attrNames __nixosConfigurations_);
+      sperator = ("\n\t - ");
+      avalible-systems-string = (builtins.concatStringsSep sperator avalible-system-names);
+    in (builtins.trace "Avalible systems:${sperator+avalible-systems-string}" __nixosConfigurations_ );
+      
+  in { inherit nixosConfigurations; };
 }
