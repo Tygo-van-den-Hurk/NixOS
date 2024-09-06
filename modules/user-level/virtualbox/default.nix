@@ -6,14 +6,14 @@ arguments @ { config, pkgs, lib, machine-settings, programs, input, ... } : let
         if user-settings.init.modules.virtualbox.enable then { "${user-name}" = user-settings; } else { }
     ) machine-settings.users ));
 
-in ( if (builtins.length users-with-this-module-enabled) > 0 then ( builtins.trace "Loading: ${toString ./.}..." { 
-
+in ( if (builtins.length users-with-this-module-enabled) > 0 then (lib.warn 
+  "Loading virtualbox, this can slow down rebuilds. Consider disabling this module." 
+  ( builtins.trace "Loading: ${toString ./.}..." { 
     users.extraGroups.vboxusers.members = users-with-this-module-enabled;
-
     environment.systemPackages = [ pkgs.virtualboxWithExtpack ];
     virtualisation.virtualbox.host = {
-        enable = true;
-        enableExtensionPack = true;
+      enable = true;
+      enableExtensionPack = true;
     };
-
-}) else {} )
+  })
+) else {} )
