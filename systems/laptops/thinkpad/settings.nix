@@ -5,7 +5,7 @@
     users = let username = "tygo"; in {
         "${username}".init.modules = { 
             docker.enable = true;
-            virtualbox.enable = true;
+            virtualbox.enable = false;
         };
     };
 
