@@ -6,13 +6,6 @@
         "${username}".init.modules = { 
             docker.enable = true;
             virtualbox.enable = true;
-            nfs = {
-                enable = true;
-                servers."tygos-nasserver".shares."school" = {
-                    enable = true;
-                    mount-location = "/home/${username}/school/";
-                };
-            };
         };
     };
 

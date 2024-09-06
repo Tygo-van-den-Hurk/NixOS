@@ -32,7 +32,6 @@
                         enable = true;
                         configPath = "tygo-van-den-hurk-dotfiles";
                     };
-                    nfs.enable = false;
                     virtualbox.enable = false;
                 };
                 
