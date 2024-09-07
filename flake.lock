@@ -851,11 +851,10 @@
     "tygo-van-den-hurk-dotfiles": {
       "flake": false,
       "locked": {
+        "dirtyRev": "fbe393b9e5dea6ef9149037c90f0d4d38ae8d9a8-dirty",
+        "dirtyShortRev": "fbe393b-dirty",
         "lastModified": 1725640360,
-        "narHash": "sha256-uI0kFKPu/IrK49WlWywwJi5BLXDxkip0eX7buYCK6Ns=",
-        "ref": "refs/heads/main",
-        "rev": "fbe393b9e5dea6ef9149037c90f0d4d38ae8d9a8",
-        "revCount": 95,
+        "narHash": "sha256-rlAAd9nXmPGhxs9gPSieyRuPdaDwGD6+Qjgp8YGg65s=",
         "type": "git",
         "url": "file:./modules/user-level/home-manager/tygo-van-den-hurk"
       },
@@ -867,11 +866,11 @@
     "tygo-van-den-hurk-secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1725632679,
-        "narHash": "sha256-ncyTqD0DKWvBRCgvczihdeHpyz6RHivG0ZMgGVubZ7c=",
+        "lastModified": 1725701712,
+        "narHash": "sha256-CDvW3pzXZsg98EA9sXKHMeGk6C+OZxRCJwJU6/3UNI8=",
         "ref": "refs/heads/main",
-        "rev": "2d286f5558714ec9f73da2889acd95a0e02c0e14",
-        "revCount": 2,
+        "rev": "b2d0724f3423d62e1dbf317e505a5598ad0f78cf",
+        "revCount": 3,
         "type": "git",
         "url": "file:./modules/common/sops/tygo-van-den-hurk"
       },
