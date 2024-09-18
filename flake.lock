@@ -688,6 +688,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_7": {
+      "locked": {
+        "lastModified": 1727348695,
+        "narHash": "sha256-J+PeFKSDV+pHL7ukkfpVzCOO7mBSrrpJ3svwBFABbhI=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "1925c603f17fc89f4c8f6bf6f631a802ad85d784",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nur": {
       "locked": {
         "lastModified": 1725629112,
@@ -714,7 +730,8 @@
         "stylix": "stylix",
         "tygo-van-den-hurk-dotfiles": "tygo-van-den-hurk-dotfiles",
         "tygo-van-den-hurk-secrets": "tygo-van-den-hurk-secrets",
-        "xremap": "xremap"
+        "xremap": "xremap",
+        "zen-browser": "zen-browser"
       }
     },
     "sops-nix": {
@@ -851,10 +868,10 @@
     "tygo-van-den-hurk-dotfiles": {
       "flake": false,
       "locked": {
-        "dirtyRev": "fbe393b9e5dea6ef9149037c90f0d4d38ae8d9a8-dirty",
-        "dirtyShortRev": "fbe393b-dirty",
-        "lastModified": 1725640360,
-        "narHash": "sha256-rlAAd9nXmPGhxs9gPSieyRuPdaDwGD6+Qjgp8YGg65s=",
+        "dirtyRev": "5a9714b9347100b759a9bce11eb4fb34700c4140-dirty",
+        "dirtyShortRev": "5a9714b-dirty",
+        "lastModified": 1726505093,
+        "narHash": "sha256-7zUDsJgO6kkpbYmC9Ocm11OVR956mHJk4HKs8O/z2HM=",
         "type": "git",
         "url": "file:./modules/user-level/home-manager/tygo-van-den-hurk"
       },
@@ -866,11 +883,10 @@
     "tygo-van-den-hurk-secrets": {
       "flake": false,
       "locked": {
+        "dirtyRev": "b2d0724f3423d62e1dbf317e505a5598ad0f78cf-dirty",
+        "dirtyShortRev": "b2d0724-dirty",
         "lastModified": 1725701712,
-        "narHash": "sha256-CDvW3pzXZsg98EA9sXKHMeGk6C+OZxRCJwJU6/3UNI8=",
-        "ref": "refs/heads/main",
-        "rev": "b2d0724f3423d62e1dbf317e505a5598ad0f78cf",
-        "revCount": 3,
+        "narHash": "sha256-A6tc/97sZR6xGGTs3+hvSc8zcoqaUmz3nY2uX4XAte0=",
         "type": "git",
         "url": "file:./modules/common/sops/tygo-van-den-hurk"
       },
@@ -951,6 +967,24 @@
         "owner": "k0kubun",
         "ref": "v0.10.0",
         "repo": "xremap",
+        "type": "github"
+      }
+    },
+    "zen-browser": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_7"
+      },
+      "locked": {
+        "lastModified": 1727721329,
+        "narHash": "sha256-QYlWZwUSwrM7BuO+dXclZIwoPvBIuJr6GpFKv9XKFPI=",
+        "owner": "MarceColl",
+        "repo": "zen-browser-flake",
+        "rev": "e6ab73f405e9a2896cce5956c549a9cc359e5fcc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MarceColl",
+        "repo": "zen-browser-flake",
         "type": "github"
       }
     }

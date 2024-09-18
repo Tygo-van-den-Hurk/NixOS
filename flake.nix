@@ -50,6 +50,9 @@
     #| Nix Index Database (Replaces the program not found message)
     # nix-index-database.url = "github:Mic92/nix-index-database";
     # nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+
+    #| Zen Browser (a Arc inspired FireFox)
+    zen-browser.url = "github:MarceColl/zen-browser-flake";
   };
 
   #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OUTPUTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
