@@ -1,6 +1,6 @@
 ## Defines the system settings.
 
-arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "Loading: ${toString ./.}..." { 
+arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(System) Loading: ${toString ./.}..." { 
 
     system = {
         # This value determines the NixOS release from which the default

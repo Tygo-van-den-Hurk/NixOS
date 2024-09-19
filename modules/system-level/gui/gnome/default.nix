@@ -4,7 +4,7 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : let
     
     this-module-is-enabled = machine-settings.system.modules.gui.gnome.enable;
 
-in ( if ( this-module-is-enabled == true ) then (builtins.trace "Loading: ${toString ./.}..." {
+in ( if ( this-module-is-enabled == true ) then (builtins.trace "(System) Loading: ${toString ./.}..." {
       
     #| required settings
     services.xserver.enable                      = lib.mkDefault true;

@@ -27,7 +27,7 @@ arguments @ { config, pkgs, lib, machine-settings, programs, input, ... } : let
     # the username of the person who is going to use it.
     userName = "tygo"; # TODO : make dynamic
 
-# in ( if machine-settings.modules.keyre then ( builtins.trace "Loading: ${toString ./.}..." { 
+# in ( if machine-settings.modules.keyre then ( builtins.trace "(System) Loading: ${toString ./.}..." { 
 in {
 
     imports = [ input.xremap.nixosModules.default ];

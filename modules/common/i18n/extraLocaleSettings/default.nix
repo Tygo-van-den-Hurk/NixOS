@@ -1,6 +1,6 @@
 ## Defines all the settings for boot.
 
-arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "Loading: ${toString ./.}..." { 
+arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(System) Loading: ${toString ./.}..." { 
 
     i18n.extraLocaleSettings = let dutch = "nl_NL.UTF-8"; in {
         LC_ADDRESS        = (lib.mkDefault dutch);

@@ -4,7 +4,7 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : let
  
     module-settings = machine-settings.system.modules.nvidia; 
 
-in ( if module-settings.enable then builtins.trace "Loading: ${toString ./.}... " {
+in ( if module-settings.enable then builtins.trace "(System) Loading: ${toString ./.}... " {
 
     hardware.nvidia.prime = {
 		

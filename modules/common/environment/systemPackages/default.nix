@@ -1,6 +1,6 @@
 ## Defines the packages to use on the system.
 
-arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "Loading: ${toString ./.}..." { 
+arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(System) Loading: ${toString ./.}..." { 
 
   environment.systemPackages = with pkgs; [
 

@@ -27,7 +27,7 @@ in ( if ( amount-of-GUIs-enabled > 1 ) then (
         list-enabled-GUIs-string = ("Enabled GUIs:${enabled-GUIs-string}\nYou can only pick one GUI.");
     in abort ( "More then 1 GUI was selected." + list-enabled-GUIs-string)
     
-) else if ( amount-of-GUIs-enabled > 0 ) then ( builtins.trace "Loading: ${toString ./.}..." { 
+) else if ( amount-of-GUIs-enabled > 0 ) then ( builtins.trace "(System) Loading: ${toString ./.}..." { 
     
     imports = [
         ./i3wm

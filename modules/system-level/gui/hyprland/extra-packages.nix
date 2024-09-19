@@ -12,7 +12,7 @@ arguments @ { config, pkgs, lib, ... } : let
     notifications-providers = with pkgs; [ dunst libnotify                                           ];
     hyprland-extentions     = with pkgs; [ eww updated-waybar                                        ];
     
-in ( builtins.trace "Loading: ${toString ./.} (extra packages)..." {
+in ( builtins.trace "(System) Loading: ${toString ./.} (extra packages)..." {
     
     environment.systemPackages = ( 
         hyprland-basis 

@@ -4,7 +4,7 @@ arguments @ { config, pkgs, lib, machine-settings, programs, input, ... } : let
     
     module-settings = machine-settings.system.modules.wsl; 
 
-in ( if module-settings.enable == true then builtins.trace "Loading: ${toString ./.}..." {
+in ( if module-settings.enable == true then builtins.trace "(System) Loading: ${toString ./.}..." {
 
     imports = [ 
        input.nixos-wsl.nixosModules.default

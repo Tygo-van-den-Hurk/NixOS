@@ -6,7 +6,7 @@ arguments @ { config, pkgs, lib, machine-settings, programs, input, ... } : let
         if user-settings.init.modules.docker.enable then { "${user-name}" = user-settings; } else { }
     ) machine-settings.users ));
 
-in ( if (builtins.length users-with-this-module-enabled) > 0 then ( builtins.trace "Loading: ${toString ./.}..." { 
+in ( if (builtins.length users-with-this-module-enabled) > 0 then ( builtins.trace "(System) Loading: ${toString ./.}..." { 
 
     users.extraGroups.docker.members = users-with-this-module-enabled;
 

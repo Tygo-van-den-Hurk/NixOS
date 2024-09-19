@@ -5,7 +5,7 @@ arguments @ { config, pkgs, lib, machine-settings, programs, input, ... } : let
     module-settings = machine-settings.system.modules.local-ai; 
     open-webui-path = "/var/lib/private/open-webui/";
         
-in ( if module-settings.enable == true then builtins.trace "Loading: ${toString ./.}..." {
+in ( if module-settings.enable == true then builtins.trace "(System) Loading: ${toString ./.}..." {
 
     services.ollama = {
         package = pkgs.ollama;

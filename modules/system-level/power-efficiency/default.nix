@@ -4,7 +4,7 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : let
 
     module-settings = machine-settings.system.modules.power-efficiency;
 
-in ( if module-settings.enable == true then builtins.trace "Loading: ${toString ./.}..." {
+in ( if module-settings.enable == true then builtins.trace "(System) Loading: ${toString ./.}..." {
 
     services.tlp = {
         enable = true;

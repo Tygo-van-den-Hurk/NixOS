@@ -4,7 +4,7 @@ arguments @ { config, pkgs, lib, machine-settings, programs, ... } : let
 
     module-settings = machine-settings.system.modules.gui.hyprland;
 
-in ( if ( module-settings.enable == true ) then ( builtins.trace "Loading: ${toString ./.}..." {
+in ( if ( module-settings.enable == true ) then ( builtins.trace "(System) Loading: ${toString ./.}..." {
 
     imports = [ ./nvidia-patches.nix ./extra-packages.nix ];
 

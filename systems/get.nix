@@ -2,11 +2,11 @@ arguments @ { input, root-directory-repository, ... } :
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 let
             
-    __pkgs_ = builtins.trace ( "Loading: Nix Packages (stable) from the input..." ) ( import input.nixpkgs { } );
-    __pkgs_unstable_ = builtins.trace ( "Loading: Nix Packages (unstable) from the input..." ) ( import input.nixpkgs-unstable { } );
+    __pkgs_ = builtins.trace ( "(System) Loading: Nix Packages (stable) from the input..." ) ( import input.nixpkgs { } );
+    __pkgs_unstable_ = builtins.trace ( "(System) Loading: Nix Packages (unstable) from the input..." ) ( import input.nixpkgs-unstable { } );
     pkgs = (__pkgs_ // { unstable = __pkgs_unstable_; });
 
-    lib = (builtins.trace "Loading: Library from Nix Packages..." input.nixpkgs.lib );
+    lib = (builtins.trace "(System) Loading: Library from Nix Packages..." input.nixpkgs.lib );
 
 in 
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -37,20 +37,20 @@ let
             settings = {
                 
                 global   = (builtins.trace 
-                    "Loading global settings:\n\t${builtins.toJSON __settings_.global}"
+                    "(System) Loading global settings:\n\t${builtins.toJSON __settings_.global}"
                     __settings_.global   
                 );
                 
                 category = let 
                     categoryType = __settings_.category.system.type;
                 in (builtins.trace 
-                    "Loading category (${categoryType}) settings:\n\t${builtins.toJSON __settings_.category}"
+                    "(System) Loading category (${categoryType}) settings:\n\t${builtins.toJSON __settings_.category}"
                     __settings_.category
                 );
                 machine  = let 
                     machineName = __settings_.machine.system.hostname;
                 in (builtins.trace 
-                    "Loading machine (${machineName}) settings:\n\t${builtins.toJSON __settings_.machine}"
+                    "(System) Loading machine (${machineName}) settings:\n\t${builtins.toJSON __settings_.machine}"
                     __settings_.machine  
                 );
             };
