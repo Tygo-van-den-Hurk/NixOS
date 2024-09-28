@@ -12,20 +12,22 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(Sy
     alacritty               # A terminal emulator
 
     #| Command Line Tools
-    wget                    # get files
-    curl                    # Make HTTP requests
+    wget                    # get files.
+    curl                    # Make HTTP requests.
     git-filter-repo         # Quickly rewrite git repository history.
-    git gh glab             # for Git
-    fzf                     # find a file or folder very quickly
-    tailscale               # A private network of all my devices
-    lshw                    # For seeing connected devices
-    yt-dlp                  # Downloading Youtube video's
+    git gh glab             # for version control (Git).
+    fzf                     # find a file or folder very quickly.
+    tailscale               # A private network of all my devices.
+    lshw                    # For seeing connected devices.
+    yt-dlp                  # Downloading Youtube video's.
     zoxide                  # A beter way of doing `cd`.
     bat                     # A beter way of doing `cat`.
     eza                     # A beter way of doing `ls`.
     zip unzip               # For Working with ZIP archives.
     tiv                     # a program that gives a preview of image files, right in the terminal.
-    imagemagick             # A software suite to create, edit, compose, or convert bitmap images
+    imagemagick             # A software suite to create, edit, compose, or convert bitmap images.
+    dig                     # For doing DNS queries.
+    busybox                 # a bunch of CLI tools that come in handy.
 
     #| Terminal user interfaces
     lazygit                 # A TUI for interacting with git
