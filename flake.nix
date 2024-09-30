@@ -10,36 +10,47 @@
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Home Manager ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
     #| Home Manager (Declaratively create dot files)
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     #| Stylix (Manage theming for home manager)
-    stylix.url = "github:danth/stylix";
-    stylix.inputs.nixpkgs.follows = "nixpkgs";
+    stylix = { #! url updated from "github:danth/stylix", see `https://github.com/danth/stylix/issues/577`:
+      url = "github:danth/stylix/cf8b6e2d4e8aca8ef14b839a906ab5eb98b08561"; #
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     #` Tygo van den Hurk's Dotfiles
-    tygo-van-den-hurk-dotfiles.url = "git+file:./modules/user-level/home-manager/tygo-van-den-hurk";
-    tygo-van-den-hurk-dotfiles.flake = false;
+    tygo-van-den-hurk-dotfiles= {
+      url = "git+file:./modules/user-level/home-manager/tygo-van-den-hurk";
+      flake = false;
+    };
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Secret Management ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
     
     #| SOPS (Secret management)
-    sops-nix.url = "github:Mic92/sops-nix";
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     #` Tygo van den Hurk's Secrets
-    tygo-van-den-hurk-secrets.url = "git+file:./modules/common/sops/tygo-van-den-hurk";
-    tygo-van-den-hurk-secrets.flake = false;
+    tygo-van-den-hurk-secrets = {
+      url = "git+file:./modules/common/sops/tygo-van-den-hurk";
+      flake = false;
+    };
     
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Miscellaneous ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
     #| WSL (Window SubSystem for Linux)
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
-    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    #| Disko (Declarative disk partitioning & disk wiping)
-    # disko.url = "github:nix-community/disko";
-    # disko.inputs.nixpkgs.follows = "nixpkgs";
+    #| Zen Browser (a Arc inspired FireFox)
+    zen-browser.url = "github:MarceColl/zen-browser-flake";
 
     #| NUR (NixOS User Repository)
     nur.url = "github:nix-community/NUR";
@@ -47,12 +58,17 @@
     #| Xremap (Easy keyremapping)
     xremap.url = "github:xremap/nix-flake";
 
-    #| Nix Index Database (Replaces the program not found message)
-    # nix-index-database.url = "github:Mic92/nix-index-database";
-    # nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    #| Disko (Declarative disk partitioning & disk wiping)
+    # disko = {
+    #   url = "github:nix-community/disko";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
-    #| Zen Browser (a Arc inspired FireFox)
-    zen-browser.url = "github:MarceColl/zen-browser-flake";
+    #| Nix Index Database (Replaces the program not found message)
+    # nix-index-database = {
+    #   url = "github:Mic92/nix-index-database";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OUTPUTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
