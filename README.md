@@ -1,12 +1,14 @@
 > This repository contains the the configuration files for the NixOS.
 
 <center>
-    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/graphs/contributors" alt="Contributors">
-        <img src="https://img.shields.io/github/contributors/Tygo-van-den-Hurk/NixOS" />
+    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/graphs/contributors">
+        <img src="https://img.shields.io/github/contributors/Tygo-van-den-Hurk/NixOS" alt="Contributors"/>
     </a>
-    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22"
-        alt="Good first issues">
-        <img src="https://img.shields.io/github/issues/Tygo-van-den-Hurk/NixOS/good%20first%20issue" />
+    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22">
+        <img src="https://img.shields.io/github/issues/Tygo-van-den-Hurk/NixOS/good%20first%20issue" alt="Good first issues" />
+    </a>
+    <a href="https://opensource.org/licenses/MIT" alt="Good first issues">
+        <img src="https://img.shields.io/badge/License-Eclipse%20Public%20License%20v2.0-green.svg" alt="The MIT License badge" />
     </a>
 </center>
 
