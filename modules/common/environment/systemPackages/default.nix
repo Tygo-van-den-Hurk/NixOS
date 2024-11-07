@@ -35,6 +35,7 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(Sy
     vim                     # An advance TUI for editing text.
     neovim                  # A more extensible version of vim
     lf                      # A terminal file manager
+    pop                     # sent emails from the CLI
     (octave.withPackages (  # Open Source version of MathLab
       octavePackages:       # ( Adding some extentions to octave )
       with octavePackages; [ 
@@ -95,5 +96,7 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(Sy
     localsend               # A program that allows for sending files between devices regardless of OS
     stow                    # A symlink farmer I use for managing my dotfiles
     obs-studio              # For recording your screen or window
+  ] ++ [
+    
   ];
 })
