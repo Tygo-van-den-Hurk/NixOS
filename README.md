@@ -7,8 +7,8 @@
     <a href="https://github.com/Tygo-van-den-Hurk/NixOS/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22">
         <img src="https://img.shields.io/github/issues/Tygo-van-den-Hurk/NixOS/good%20first%20issue" alt="Good first issues" />
     </a>
-    <a href="https://opensource.org/licenses/MIT" alt="Good first issues">
-        <img src="https://img.shields.io/badge/License-Eclipse%20Public%20License%20v2.0-green.svg" alt="The MIT License badge" />
+    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/blob/main/LICENSE">
+        <img src="https://img.shields.io/badge/License-Eclipse%20Public%20License%20v2.0-green.svg" alt="The Eclipse Public License v2.0 badge" />
     </a>
 </center>
 
