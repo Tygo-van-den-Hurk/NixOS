@@ -50,7 +50,8 @@
     };
 
     #| Zen Browser (a Arc inspired FireFox)
-    zen-browser.url = "github:MarceColl/zen-browser-flake";
+    # zen-browser.url = "github:MarceColl/zen-browser-flake"; # Stuck at 1.0.1.a6
+    zen-browser.url = "github:ch4og/zen-browser-flake";
 
     #| NUR (NixOS User Repository)
     nur.url = "github:nix-community/NUR";

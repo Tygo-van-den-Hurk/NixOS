@@ -20,7 +20,7 @@
             gpg.enable = true;
 
             local-ai = {
-                enable       = true;
+                enable       = false;
                 acceleration = "cuda";
                 backend      = "docker";
                 devices = {
