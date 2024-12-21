@@ -66,7 +66,6 @@ in ( if module-settings.enable then builtins.trace "(System) Loading: ${toString
     # Enable OpenGL
     hardware.opengl = {
         enable = true;
-        driSupport = true;
         driSupport32Bit = true;
     };
 

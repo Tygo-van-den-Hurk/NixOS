@@ -14,7 +14,6 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(Sy
         ./security
         ./services
         ./sops
-        ./sound
         ./system
         ./time
         ./users
