@@ -28,6 +28,7 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(Sy
     imagemagick             # A software suite to create, edit, compose, or convert bitmap images.
     dig                     # For doing DNS queries.
     busybox                 # a bunch of CLI tools that come in handy.
+    jq                      # for dealing with JSON data in the command line.
 
     #| Terminal user interfaces
     lazygit                 # A TUI for interacting with git
