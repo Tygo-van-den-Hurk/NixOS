@@ -29,6 +29,7 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(Sy
     dig                     # For doing DNS queries.
     busybox                 # a bunch of CLI tools that come in handy.
     jq                      # for dealing with JSON data in the command line.
+    gnumake                 # for quick and easy scripting
 
     #| Terminal user interfaces
     lazygit                 # A TUI for interacting with git
