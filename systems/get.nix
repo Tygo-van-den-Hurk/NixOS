@@ -92,7 +92,7 @@ let
                         ( ../modules )
                         
                         #` Custom input modules
-                        input.nur.nixosModules.nur # Adding the NixOS User Repository
+                        input.nur.modules.nixos.default # Adding the NixOS User Repository
                     ];  
                 }  
             );
