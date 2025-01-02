@@ -98,6 +98,8 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(Sy
     localsend               # A program that allows for sending files between devices regardless of OS
     stow                    # A symlink farmer I use for managing my dotfiles
     obs-studio              # For recording your screen or window
+    eduvpn-client			# VPN client for school (TU/e)
+    
   ] ++ [
     
   ];
