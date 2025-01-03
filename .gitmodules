@@ -2,7 +2,9 @@
 [submodule "modules/user-level/home-manager/tygo-van-den-hurk"]
 	path = modules/user-level/home-manager/tygo-van-den-hurk
 	url = git@github.com:Tygo-van-den-Hurk/dotfiles.git
+	branch = main
 # This module my personal secrets
 [submodule "modules/common/sops/tygo-van-den-hurk"]
 	path = modules/common/sops/tygo-van-den-hurk
 	url = git@github.com:Tygo-van-den-Hurk/secrets-NixOS.git
+	branch = main
