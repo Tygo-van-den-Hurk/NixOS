@@ -2,6 +2,10 @@
 
 arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(System) Loading: ${toString ./.}..." { 
 
-    imports = [ ./espanso ./libinput ./logind ./pipewire ./printing ./tailscale ]; 
-    
+    environment.systemPackages = with pkgs; [ espanso ];
+
+    services.espanso = {
+        enable = true;
+    };
+
 })
