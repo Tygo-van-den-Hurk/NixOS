@@ -1,16 +1,42 @@
 > This repository contains the the configuration files for the NixOS.
 
+<br>
 <center>
     <a href="https://github.com/Tygo-van-den-Hurk/NixOS/graphs/contributors">
-        <img src="https://img.shields.io/github/contributors/Tygo-van-den-Hurk/NixOS" alt="Contributors"/>
-    </a>
-    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22">
-        <img src="https://img.shields.io/github/issues/Tygo-van-den-Hurk/NixOS/good%20first%20issue" alt="Good first issues" />
+        <img src="https://img.shields.io/github/contributors/Tygo-van-den-Hurk/NixOS?style=flat" alt="Contributors"/>
     </a>
     <a href="https://github.com/Tygo-van-den-Hurk/NixOS/blob/main/LICENSE">
-        <img src="https://img.shields.io/badge/License-Eclipse%20Public%20License%20v2.0-green.svg" alt="The Eclipse Public License v2.0 badge" />
+        <img src="https://img.shields.io/github/license/Tygo-van-den-Hurk/NixOS?style=flat" alt="The Eclipse Public License v2.0 badge" />
     </a>
+    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/commit">
+        <img src="https://badgen.net/github/commits/Tygo-van-den-Hurk/NixOS?style=flat" alt="GitHub commits" />
+    </a>
+     <a href="https://github.com/Tygo-van-den-Hurk/NixOS/commit">
+        <img src="https://badgen.net/github/last-commit/Tygo-van-den-Hurk/NixOS?style=flat" alt="GitHub latest commit" />
+    </a>
+    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/releases/">
+        <img src="https://img.shields.io/github/downloads/Tygo-van-den-Hurk/NixOS/total.svg?style=flat" alt="GitHub latest commit" />
+    </a>
+    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/network/">
+        <img src="https://badgen.net/github/forks/Tygo-van-den-Hurk/NixOS?style=flat" alt="GitHub forks" />
+    </a>
+    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/pulse">
+        <img src="https://img.shields.io/github/created-at/Tygo-van-den-Hurk/NixOS?style=flat" alt="created at badge" />
+    </a>
+    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/stargazers">
+        <img src="https://img.shields.io/github/stars/Tygo-van-den-Hurk/NixOS?style=flat" alt="amount of stars" />
+    </a>
+    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/release">
+        <img src="https://img.shields.io/github/release/Tygo-van-den-Hurk/NixOS?style=flat&display_name=release" alt="newest release" />
+    </a>
+    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/">
+        <img src="https://img.shields.io/github/languages/count/Tygo-van-den-Hurk/NixOS?style=flat" alt="amount of languages in the repository" />
+    </a>    
+    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/">
+        <img src="https://img.shields.io/github/repo-size/Tygo-van-den-Hurk/NixOS?style=flat" alt="the size of the repository" />
+    </a>   
 </center>
+<br>
 
 # NixOS
 
