@@ -1,4 +1,14 @@
+> This directory will store all the modules, so all common, system, and user type modules.
+
+[< Back to project root](../README.md)
+
 # Modules
+
+- [Modules](#modules)
+  - [Structure](#structure)
+  - [System Level Modules](#system-level-modules)
+  - [User Level Modules](#user-level-modules)
+
 In this directory I'll store all the configuration files that can be used to add or remove some feature from a system. Every module will add or remove one feature. So the gaming module will only enable gaming.
 
 The most important module is the [common/](./common/README.md) module, as this module has all the settings that each of the systems is going to use. This module will also be imported by every system. This is the only module that cannot be excluded from the loading process.
@@ -8,11 +18,16 @@ The modules directory is where all the modules get stored. Each module is suppos
 
 Which brings us to our next point, how are those modules being loaded and ignored?
 
-<!-- TODO update me! -->
 ```
 NixOS/
 ├── modules/
-│   ├── moduleName/
+│   ├── common/
+│   │   ├── ...
+│   │   └── default.nix
+│   ├── system-level/
+│   │   ├── ...
+│   │   └── default.nix
+│   ├── user-level/
 │   │   ├── ...
 │   │   └── default.nix
 │   │ ...

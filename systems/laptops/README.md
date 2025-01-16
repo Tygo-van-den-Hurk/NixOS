@@ -1,2 +1,12 @@
+> This directory will be used to store the configs of my laptops.
+ 
 # Laptops
-in this directory I'll store all the configuration files for my laptops.
+
+- [Laptops](#laptops)
+  - [Members](#members)
+
+## Members
+
+These are the hosts configuration files stored in this directory:
+
+- [Thinkpad](./thinkpad/README.md)

@@ -1,33 +1,54 @@
+> This directory will contain all common modules that every system uses.
+
+[< Back to module type overview](../README.md)
+
 # Common modules
+
+- [Common modules](#common-modules)
+  - [Structure](#structure)
+  - [Updating this module](#updating-this-module)
+    - [Adding a setting](#adding-a-setting)
+
 This directory contains all the settings that should be applied to all systems. If only one system needs to change a settings, that that should be written down inside that hosts configuration, or even better, a modules should be written for that so more machines can enable it in the future.
 
-## How to use
-Every modules should have a setting in [`/systems/common-settings.nix`](../../systems/common-settings.nix)
-
-By importing the module like this, you know for sure that all of the settings that change immediately get applied to all other systems. 
+Every machine loads this module, there is no turning this module off.
 
 ## Structure
+
 This module is structured in such a way that it follows the NixOS attribute flow. That means that if a setting is called: `some.setting.option` you can find it under: `./some/setting/default.nix` starting from this directory. So for example: `boot.loader.grub.enable` can be found in: `./boot/loader/grub/default.nix`. As can any other `boot.loader.grub` setting.
 
-## How it works
 if you import this directory, nix will look for a `default.nix` and that file will recursively import all the folders that are present so this is how to import spreads. So as a demonstration some configuration imports common, and common imports:
-```TXT
- -- common/
-    |                   
-    |-- boot/           
-    |-- environment/   
-    | ...
-    
+
 ```
-And all the subdirectories in this directory. However boot imports loader, which in turn imports efi, grub, and systemd-boot... etc. etc. 
-```TXT
- -- boot/
-    |-- loader/     
-    |       |-- efi/    
-    |       |-- grub/   
-    |       |-- systemd-boot/ 
-    |       |...
-    |...
+NixOS/
+├── modules/
+│   ├── common/
+│   │   ├── boot/
+│   │   ├── environment/
+│   │   │...
+│   │...
+│...
+```
+
+And all the subdirectories in this directory. However `boot` imports `loader`, which in turn imports `efi`, `grub`, `systemd-boot` and so on...
+
+```
+NixOS/
+├── modules/
+│   ├── common/
+│   │   ├── boot/
+│   │   │   ├── loader/
+│   │   │   │   ├── efi/
+│   │   │   │   ├── grub/
+│   │   │   │   ├── systemd-boot/
+│   │   │   │   │...
+│   │   │   │
+│   │   │   │...
+│   │   │   
+│   │   ├── environment/
+│   │   │...
+│   │...
+│...
 ```
 
 ## Updating this module
@@ -47,7 +68,7 @@ All settings should be written as if they are ment for this module:
         #                      You are currently here.
         #
         option = lib.mkDefault "the value";
-        #         ^^^^^^^^^^^^^
+        #        ^^^^^^^^^^^^^
         #    Every setting should be a 
         #    default so that they can be
         #          overwritten

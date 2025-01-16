@@ -1,5 +1,12 @@
+> This directory will store all the systems and their machine settings to use in the modules.
+
+[< Back to project root](../README.md)
+
 # Systems
-In this directory I'll store the systems I'm maintaining with NixOS. 
+
+- [Systems](#systems)
+  - [Structure](#structure)
+  - [Settings](#settings)
 
 ## Structure
 The systems directory is where all the systems are stored. They are divided by category. So an example for a system is a Thinkpad, this is a laptop. So it's configuration file is stored at `/systems/laptops/thinkpad/`. 
@@ -29,50 +36,12 @@ Lastly, `settings.nix` is where the settings can be overwritten for a particular
 
 ## Settings
 Settings are what loads and unloads modules. The settings have the following schema:
+
 ```NIX
-machine-settings = {
-    users  = { ... };
-    system = { ... };
-};
+{
+  users  = { ... };
+  system = { ... };
+}
 ```
 
-### Users
-The `users` settings is a set of `Users`. This is what a users attribute set looks like with one user:
-```NIX
-users = {
-
-    username = {
-        description     = string;  # Your full name
-        isNormalUser    = boolean; #
-        initialPassword = string   # the initial password for the user
-        isNormalUser    = boolean; # wether or not you're a human user
-        init = {
-            modules         = { ... };
-            packages        = { ... };
-        };
-    };
-};
-```
-
-#### Modules
-The user has a couple of modules that they can enable. You can read more about it [here](../modules/README.md).
-
-#### Packages
-This option stores information about the user packages. Meaning that any package listed here will be available system wide. Not that some modules can add packages by them selfs. For example, enabling docker will make docker available to the user.
-
-### System
-The `system` option is a set with a few options, here is an overview:
-```NIX
-system = {
-    hostname      = string;
-    architecture  = string;
-    packages      = { ... };
-    modules       = { ... }; 
-};
-```
-
-#### Modules
-There are a few system level modules that can be enabled. You can read more about it [here](../modules/README.md).
-
-#### Packages
-This option stores information about the system packages. Meaning that any package listed here will be available system wide. Not that some modules can add packages by them selfs. For example, enabling docker will make docker available to the user.
+To learn more see [system modules](../modules/system-level/README.md), or [user modules](../modules/user-level/README.md) for more information about the settings you can use and apply.

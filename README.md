@@ -1,94 +1,93 @@
 > This repository contains the the configuration files for the NixOS.
 
 <br>
-<center>
-    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/graphs/contributors">
-        <img src="https://img.shields.io/github/contributors/Tygo-van-den-Hurk/NixOS?style=flat" alt="Contributors"/>
-    </a>
-    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/blob/main/LICENSE">
-        <img src="https://img.shields.io/github/license/Tygo-van-den-Hurk/NixOS?style=flat" alt="The Eclipse Public License v2.0 badge" />
-    </a>
-    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/commit">
-        <img src="https://badgen.net/github/commits/Tygo-van-den-Hurk/NixOS?style=flat" alt="GitHub commits" />
-    </a>
-     <a href="https://github.com/Tygo-van-den-Hurk/NixOS/commit">
-        <img src="https://badgen.net/github/last-commit/Tygo-van-den-Hurk/NixOS?style=flat" alt="GitHub latest commit" />
-    </a>
-    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/releases/">
-        <img src="https://img.shields.io/github/downloads/Tygo-van-den-Hurk/NixOS/total.svg?style=flat" alt="GitHub latest commit" />
-    </a>
-    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/network/">
-        <img src="https://badgen.net/github/forks/Tygo-van-den-Hurk/NixOS?style=flat" alt="GitHub forks" />
-    </a>
-    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/pulse">
-        <img src="https://img.shields.io/github/created-at/Tygo-van-den-Hurk/NixOS?style=flat" alt="created at badge" />
-    </a>
-    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/stargazers">
-        <img src="https://img.shields.io/github/stars/Tygo-van-den-Hurk/NixOS?style=flat" alt="amount of stars" />
-    </a>
-    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/release">
-        <img src="https://img.shields.io/github/release/Tygo-van-den-Hurk/NixOS?style=flat&display_name=release" alt="newest release" />
-    </a>
-    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/">
-        <img src="https://img.shields.io/github/languages/count/Tygo-van-den-Hurk/NixOS?style=flat" alt="amount of languages in the repository" />
-    </a>    
-    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/">
-        <img src="https://img.shields.io/github/repo-size/Tygo-van-den-Hurk/NixOS?style=flat" alt="the size of the repository" />
-    </a>   
-</center>
-<br>
+<div align="center">
+  <a href="https://github.com/Tygo-van-den-Hurk/NixOS/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/Tygo-van-den-Hurk/NixOS?style=flat" alt="Contributors"/>
+  </a>
+  <a href="https://github.com/Tygo-van-den-Hurk/NixOS/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/Tygo-van-den-Hurk/NixOS?style=flat" alt="The Eclipse Public License v2.0 badge" />
+  </a>
+  <a href="https://github.com/Tygo-van-den-Hurk/NixOS/commit">
+    <img src="https://badgen.net/github/last-commit/Tygo-van-den-Hurk/NixOS?style=flat" alt="GitHub latest commit" />
+  </a>
+  <a href="https://github.com/Tygo-van-den-Hurk/NixOS/release">
+    <img src="https://img.shields.io/github/release/Tygo-van-den-Hurk/NixOS?style=flat&display_name=release" alt="newest release" />
+  </a>
+  <a href="https://github.com/Tygo-van-den-Hurk/NixOS/pulse">
+    <img src="https://img.shields.io/github/created-at/Tygo-van-den-Hurk/NixOS?style=flat" alt="created at badge" />
+  </a>
+  <a href="https://github.com/Tygo-van-den-Hurk/NixOS/">
+    <img src="https://img.shields.io/github/repo-size/Tygo-van-den-Hurk/NixOS?style=flat" alt="the size of the repository" />
+  </a> 
+  <a href="https://github.com/Tygo-van-den-Hurk/NixOS/commit">
+    <img src="https://badgen.net/github/commits/Tygo-van-den-Hurk/NixOS?style=flat" alt="GitHub commits" />
+  </a>
+  <a href="https://github.com/Tygo-van-den-Hurk/NixOS/network/">
+    <img src="https://badgen.net/github/forks/Tygo-van-den-Hurk/NixOS?style=flat" alt="GitHub forks" />
+  </a>
+  <a href="https://github.com/Tygo-van-den-Hurk/NixOS/stargazers">
+    <img src="https://img.shields.io/github/stars/Tygo-van-den-Hurk/NixOS?style=flat" alt="amount of stars" />
+  </a>
+  <a href="https://github.com/Tygo-van-den-Hurk/NixOS/">
+    <img src="https://img.shields.io/github/languages/count/Tygo-van-den-Hurk/NixOS?style=flat" alt="amount of languages in the repository" />
+  </a>      
+  <br><br>
+  <picture>
+    <source srcset="./assets/images/svg/nixos-logo-black.svg" media="(prefers-color-scheme: light)">
+    <source srcset="./assets/images/svg/nixos-logo-white.svg" media="(prefers-color-scheme: dark)">
+    <img src="./assets/images/svg/nixos-logo-black.svg" width="500px" alt="the NixOS logo">
+  </picture>
+</div>
 
 # NixOS
 
-<picture>
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/NixOS/nixos-homepage/main/public/logo/nixos-hires.png">
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nixos-white.png">
-  <img src="https://raw.githubusercontent.com/NixOS/nixos-homepage/main/public/logo/nixos-hires.png" width="500px" alt="NixOS logo">
-</picture>
+This repository contains my configuration files for my Linux distribution of choice: [NixOS](https://www.nixos.org/). NixOS is special in the sense that it allows to configure all services, users, files, mounts, all via configuration files. Making the exact state of the system reproducible.
 
-## What is NixOS?
-NixOS is a Declarative linux distribution that allows reproducibility, and focuses of reliability.
+## Pros of using NixOS
+
+Here are some of the reasons you might want to use NixOS:
 
 ### 1. Reproducible
+
 Nix builds packages in isolation from each other. This ensures that they are reproducible and don’t have undeclared dependencies, so if a package works on one machine, it will also work on another.
 Declarative
 
 ### 2. Declarative
+
 Nix makes it trivial to share development and build environments for your projects, regardless of what programming languages and tools you’re using.
-Reliable
 
 ### 3. Reliable
+
 Nix ensures that installing or upgrading one package cannot break other packages. It allows you to roll back to previous versions, and ensures that no package is in an inconsistent state during an upgrade.
 
 ## Structure of this Repository
-This repository has 3 main directories:
-- **Systems**: *the systems that I've configured. Load modules from* [`modules/`](./modules/README.md) *. You can learn more about that module [here](./systems/README.md).*
-- **Modules**: *is used to store a set of modules a [`system`](./systems/README.md) can load. You can learn more about that module [here](./modules/README.md).*
-- **Users**: *this is were the home-manager data will be stored. You can read more about that module [here](./users/README.md).*
+
+This repository has 2 main directories:
+- **Systems**: the systems that I've configured. Load modules from [`modules/`](./modules/README.md). You can learn more about the systems directory [in the systems README](./systems/README.md).
+- **Modules**: is used to store a set of modules a [`system`](./systems/README.md) can load. You can learn more about that [in the modules README](./modules/README.md).
 
 Here is an overview of the structure:
 
 ```
 NixOS/
-├── library/
 ├── systems/
 ├── modules/
-├── user/
 ├── flake.nix
 └── flake.lock
 ```
 
-There is also the [`flake.nix`](./flake.nix), and [`flake.lock`](./flake.lock) of course here at the root. The flow is as follows: 
+There is also the [`flake.nix`](./flake.nix), and [`flake.lock`](./flake.lock) of course here at the root to make the systems completely reproducible. 
+
+The flow is as follows: 
 - The flake takes the argument from the CLI and loads the *system* from [`./systems/`](./systems/README.md) somewhere.
 - That *system* loads the *module* loader at [`/modules/default.nix`](./modules/default.nix), which you can read more about [here](./modules/README.md).
 - The **module loader** loads the modules specified in the [**machines settings**](./systems/common-settings.nix).
 
 You can learn more about the structure of the [systems directory](./systems/README.md#structure), [modules directory](./modules/README.md#structure), or [user directory](./systems/README.md#structure) by clicking these links.
 
-## Todo List
-This is a todo-list of things we still need to do to get this system as I'd like. After all these are done, it will become a feature list! [Go to To Do list](./TODO-LIST.md)
-
 ## Learn NixOS
+
 These resources helped me with building my own configuration file:
 
 <table>

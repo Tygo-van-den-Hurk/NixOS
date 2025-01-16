@@ -1,13 +1,34 @@
-> Click [here](https://nixos.wiki/wiki/OneDrive) To the original page.
+> This module will load and configure the OneDrive service.
+
+[< Back to system modules](../README.md)
 
 # OneDrive
 
+- [OneDrive](#onedrive)
+  - [Overview](#overview)
+  - [Settings](#settings)
+  - [Setup](#setup)
+  - [External Resources](#external-resources)
+
+## Overview
+
 OneDrive is Microsoft's cloud file storage service. If you have a OneDrive account, for example from your organization or your Office 365 subscription, NixOS has software to let you sync it to a OneDrive directory your home directory.
 
-## Setup
-Toggle the module in  either a common setting, or a machine specific settings file, and rebuild your system.
+## Settings
 
-Then as the user, run the following:
+This is what the options look like you can add to your machine-settings:
+
+```Nix
+{
+  machine-settings.system.modules.onedrive = {
+    enable = boolean;
+  };
+}
+```
+
+## Setup
+
+Toggle the module in  either a common setting, or a machine specific settings file, and rebuild your system. Then as the user, run the following:
 
 ```BASH
 onedrive
@@ -36,7 +57,7 @@ To view the log, run the following:
 ```BASH
 journalctl --user -t onedrive | less
 ```
-## See Also
-- [Microsoft OneDrive](https://onedrive.live.com/)
-- [OneDrive client for Linux](https://github.com/abraunegg/onedrive)
-- [nixpkgs OneDrive client package definition](https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/sync/onedrive/default.nix)
+
+## External Resources
+There is a [NixOS wiki page](https://nixos.wiki/wiki/OneDrive) to learn how this module works internally.
+There is also [Microsofts official pages](https://onedrive.live.com/), [the OneDrive client for Linux](https://github.com/abraunegg/onedrive), and of course [the NixPkgs OneDrive client package definition](https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/sync/onedrive/default.nix).
