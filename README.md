@@ -14,7 +14,11 @@
 
 # NixOS
 
-![The NixOS logo](./nixos-logo.svg)
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/NixOS/nixos-homepage/main/public/logo/nixos-hires.png">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nixos-white.png">
+  <img src="https://raw.githubusercontent.com/NixOS/nixos-homepage/main/public/logo/nixos-hires.png" width="500px" alt="NixOS logo">
+</picture>
 
 ## What is NixOS?
 NixOS is a Declarative linux distribution that allows reproducibility, and focuses of reliability.
