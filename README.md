@@ -2,6 +2,14 @@
 
 <br>
 <div align="center">
+  <!--~ CI/CD ~-->
+  <a href="https://github.com/Tygo-van-den-Hurk/NixOS/actions/workflows/nix-github-actions.yml">
+    <img src="https://github.com/Tygo-van-den-Hurk/NixOS/workflows/Nix%20Flake%20Checks/badge.svg?style=flat" alt="GitHub tests status" />
+  </a>
+  <a href="https://github.com/Tygo-van-den-Hurk/NixOS/actions/workflows/deploy-github-pages.yml">
+    <img src="https://github.com/Tygo-van-den-Hurk/NixOS/workflows/Deploy%20GitHub%20Pages/badge.svg?style=flat" alt="GitHub deployment status" />
+  </a>
+  <!--~ Repository Statistics ~-->
   <a href="https://github.com/Tygo-van-den-Hurk/NixOS/graphs/contributors">
     <img src="https://img.shields.io/github/contributors/Tygo-van-den-Hurk/NixOS?style=flat" alt="Contributors"/>
   </a>
@@ -9,29 +17,23 @@
     <img src="https://img.shields.io/github/license/Tygo-van-den-Hurk/NixOS?style=flat" alt="The Eclipse Public License v2.0 badge" />
   </a>
   <a href="https://github.com/Tygo-van-den-Hurk/NixOS/commit">
-    <img src="https://badgen.net/github/last-commit/Tygo-van-den-Hurk/NixOS?style=flat" alt="GitHub latest commit" />
+    <img src="https://badgen.net/github/commits/Tygo-van-den-Hurk/NixOS?style=flat" alt="GitHub commits" />
   </a>
-  <a href="https://github.com/Tygo-van-den-Hurk/NixOS/release">
-    <img src="https://img.shields.io/github/release/Tygo-van-den-Hurk/NixOS?style=flat&display_name=release" alt="newest release" />
+  <a href="https://github.com/Tygo-van-den-Hurk/NixOS/commit">
+    <img src="https://badgen.net/github/last-commit/Tygo-van-den-Hurk/NixOS?style=flat" alt="GitHub latest commit" />
   </a>
   <a href="https://github.com/Tygo-van-den-Hurk/NixOS/pulse">
     <img src="https://img.shields.io/github/created-at/Tygo-van-den-Hurk/NixOS?style=flat" alt="created at badge" />
   </a>
-  <a href="https://github.com/Tygo-van-den-Hurk/NixOS/">
-    <img src="https://img.shields.io/github/repo-size/Tygo-van-den-Hurk/NixOS?style=flat" alt="the size of the repository" />
-  </a> 
-  <a href="https://github.com/Tygo-van-den-Hurk/NixOS/commit">
-    <img src="https://badgen.net/github/commits/Tygo-van-den-Hurk/NixOS?style=flat" alt="GitHub commits" />
-  </a>
-  <a href="https://github.com/Tygo-van-den-Hurk/NixOS/network/">
-    <img src="https://badgen.net/github/forks/Tygo-van-den-Hurk/NixOS?style=flat" alt="GitHub forks" />
-  </a>
-  <a href="https://github.com/Tygo-van-den-Hurk/NixOS/stargazers">
-    <img src="https://img.shields.io/github/stars/Tygo-van-den-Hurk/NixOS?style=flat" alt="amount of stars" />
+  <a href="https://github.com/Tygo-van-den-Hurk/NixOS/release">
+    <img src="https://img.shields.io/github/release/Tygo-van-den-Hurk/NixOS?style=flat&display_name=release" alt="newest release" />
   </a>
   <a href="https://github.com/Tygo-van-den-Hurk/NixOS/">
     <img src="https://img.shields.io/github/languages/count/Tygo-van-den-Hurk/NixOS?style=flat" alt="amount of languages in the repository" />
-  </a>      
+  </a>    
+  <a href="https://github.com/Tygo-van-den-Hurk/NixOS/">
+    <img src="https://img.shields.io/github/repo-size/Tygo-van-den-Hurk/NixOS?style=flat" alt="the size of the repository" />
+  </a>   
   <br><br>
   <picture>
     <source srcset="./assets/images/svg/nixos-logo-black.svg" media="(prefers-color-scheme: light)">
@@ -86,7 +88,7 @@ The flow is as follows:
 
 You can learn more about the structure of the [systems directory](./systems/README.md#structure), [modules directory](./modules/README.md#structure), or [user directory](./systems/README.md#structure) by clicking these links.
 
-## Learn NixOS
+## External Resources
 
 These resources helped me with building my own configuration file:
 

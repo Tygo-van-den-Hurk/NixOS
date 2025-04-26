@@ -27,4 +27,4 @@ This is what the options look like you can add to your machine-settings:
 ```
 
 ## External Resources
-Take a look at [this guide](https://nixos.wiki/wiki/Podman) for more information.
+Take a look at [the Podman NixOS wiki article](https://nixos.wiki/wiki/Podman) for more information.

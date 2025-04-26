@@ -1,7 +1,9 @@
-> This submodule is used to configure KDE a desktop environment.
-
+> This submodule is used to configure the [KDE desktop environment](https://kde.org/).
 
 [< Back to GUI module](../README.md)
+
+> [!WARNING]
+> This module is deprecated and will be removed at some point as I have no need for any GUI other then my main tiling window manager, and maintaining multiple modules I won't use is extra effort.
 
 # KDE
 

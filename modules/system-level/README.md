@@ -9,11 +9,9 @@
   - [Modules](#modules)
 
 ## Overview
-
 These modules are modules that are not enabled from the `machine-setting.users.${user}.init.modules` attribute set, but from the `machine-settings.system.modules` attribute set. These modules are modules that effect the entire system and cannot be activated by a user.
 
 ## Modules
-
 These are the modules created (in alphabetical order) so far:
 
 - [Gaming](./gaming/README.md)
@@ -25,4 +23,5 @@ These are the modules created (in alphabetical order) so far:
 - [OpenSSH](./openssh/README.md)
 - [PodMan](./podman/README.md)
 - [Power Efficiency](./power-efficiency/README.md)
+- [Via](./via/README.md)
 - [WSL](./wsl/README.md)

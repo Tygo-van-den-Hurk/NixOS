@@ -1,10 +1,25 @@
+> This module loads key remappers as a systemd service.
+
+[< Back to user modules](../README.md)
+
 # Key Remapping
 
-## Pieces of Software to look into
-The following pieces of software can do the trick:
-- xremap
-- kmonad
-- keyd
+- [Key Remapping](#key-remapping)
+  - [Overview](#overview)
+    - [Submodules](#submodules)
+
+## Overview 
+Key remappers are programs or tools that change what a key on your keyboard does. For example: you can make your Caps Lock key act like an extra Ctrl key. It allows you to customize the way keys work.
+
+
+### Submodules
+There are a couple submodules I've tried to get working:
+
+- [xremap](./xremap/README.md) (recommended)
+- [kmonad](./kmonad/README.md) (deprecated)
+
+
+<!-- 
 
 ## Key Remaps
 The following things need to remapped to have the following effect:
@@ -36,4 +51,6 @@ The following things need to remapped to have the following effect:
 The Keys are written down as Mac keys. So:
 - `CMD` would be the the key next to the space bar, so the primary modifier.
 - `ALT` is on the left of `CMD`, and the secondary modifier.
-- Lastly `CTRL` is to the left of that, and the tertiary modifier.
+- Lastly `CTRL` is to the left of that, and the tertiary modifier. 
+ 
+-->
