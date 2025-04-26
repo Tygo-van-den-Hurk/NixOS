@@ -1,9 +1,12 @@
 ## Defines the services that run on the system.
-
-arguments @ { config, pkgs, lib, machine-settings, ... } : {
-
+arguments @ {
+  config,
+  pkgs,
+  lib,
+  machine-settings,
+  ...
+}: {
   services.libinput = {
-    touchpad.naturalScrolling = lib.mkDefault true;
+    touchpad.naturalScrolling = true;
   };
-
 }

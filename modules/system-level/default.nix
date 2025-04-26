@@ -1,17 +1,23 @@
 ## imports all the system level modules in this directory as specified by the machine-settings.
 #! breaking this file could break multiple systems. Only remove modules if you are sure they are unused by all systems.
-arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(System) Loading: ${toString ./.}..." { 
+arguments @ {
+  config,
+  pkgs,
+  lib,
+  machine-settings,
+  ...
+}: (builtins.trace "(System) Loading: ${toString ./.}..." {
   imports = [
-    ./gaming 
+    ./gaming
     ./gpg
     ./gui
-    ./local-ai 
-    ./nvidia 
+    ./local-ai
+    ./nvidia
     ./onedrive
-    ./podman 
+    ./podman
     ./openssh
-    ./power-efficiency 
+    ./power-efficiency
     ./via
-    ./wsl 
-  ]; 
+    ./wsl
+  ];
 })

@@ -1,7 +1,12 @@
 ## impors all the modules in this directory.
-
-arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(System) Loading: ${toString ./.}..." { 
-  imports = [ 
+arguments @ {
+  config,
+  pkgs,
+  lib,
+  machine-settings,
+  ...
+}: (builtins.trace "(System) Loading: ${toString ./.}..." {
+  imports = [
     ./boot
     ./environment
     ./fonts
@@ -16,5 +21,5 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(Sy
     ./system
     ./time
     ./users
-  ]; 
+  ];
 })

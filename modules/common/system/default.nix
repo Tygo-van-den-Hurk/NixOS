@@ -1,9 +1,13 @@
 ## Defines the system settings.
-
-arguments @ { config, pkgs, lib, machine-settings, ... } : {
-  
+arguments @ {
+  config,
+  pkgs,
+  lib,
+  machine-settings,
+  ...
+}: {
   imports = [
-    ./autoUpgrade 
+    ./autoUpgrade
   ];
 
   system = {
@@ -15,5 +19,4 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : {
     #! (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
     stateVersion = lib.mkForce "23.11"; # Did you read the comment?
   };
-
 }

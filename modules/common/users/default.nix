@@ -1,7 +1,12 @@
 ## Defines the user options.
-
-arguments @ { config, pkgs, lib, machine-settings, ... } : {
-  imports = [ 
+arguments @ {
+  config,
+  pkgs,
+  lib,
+  machine-settings,
+  ...
+}: {
+  imports = [
     ./extraUsers
-  ]; 
+  ];
 }

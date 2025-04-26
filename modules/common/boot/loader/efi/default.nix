@@ -1,9 +1,12 @@
 ## Defines all the settings for the boot loader.
-
-arguments @ { config, pkgs, lib, machine-settings, ... } : {
-    
+arguments @ {
+  config,
+  pkgs,
+  lib,
+  machine-settings,
+  ...
+}: {
   boot.loader.efi = {
-    canTouchEfiVariables = (lib.mkDefault true);
+    canTouchEfiVariables = lib.mkDefault true;
   };
-  
 }

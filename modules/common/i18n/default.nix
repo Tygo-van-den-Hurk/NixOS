@@ -1,13 +1,16 @@
 ## Defines internationalisation settings.
-
-arguments @ { config, pkgs, lib, machine-settings, ... } : {
-
-  imports = [ 
-    ./extraLocaleSettings 
+arguments @ {
+  config,
+  pkgs,
+  lib,
+  machine-settings,
+  ...
+}: {
+  imports = [
+    ./extraLocaleSettings
   ];
 
   i18n = {
-    defaultLocale = (lib.mkDefault "en_US.UTF-8");
+    defaultLocale = lib.mkDefault "en_US.UTF-8";
   };
-
 }
