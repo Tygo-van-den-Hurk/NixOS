@@ -81,6 +81,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-unstable,
     nur,
     ...
   } @ inputs:
@@ -95,13 +96,22 @@
 
         # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Nix Flake Check ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
-        checks = {
+        checks = let
+          host-checks = builtins.listToAttrs (builtins.map (host: {
+            name = "check-${host}";
+            value = pkgs.runCommand "nixos-config-check-${host}" {} ''
+              ${pkgs.nixos-rebuild}/bin/nixos-rebuild dry-activate --flake .#${host}
+              touch $out
+            '';
+          }) (builtins.attrNames self.legacyPackages.${system}.nixosConfigurations));
+
           formatting = pkgs.runCommand "formatting-check" {} ''
             echo "Checking formatting of Nix files using $(${pkgs.alejandra}/bin/alejandra --version):"
             ${pkgs.alejandra}/bin/alejandra --check ${./.}
             touch $out
           '';
-        };
+        in
+          host-checks // {inherit formatting;};
 
         # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Nix Develop ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
