@@ -36,21 +36,24 @@ let
             
             settings = {
                 
-                global   = (builtins.trace 
-                    "(System) Loading global settings:\n\t${builtins.toJSON __settings_.global}"
+                global   = (
+                    # builtins.trace 
+                    # "(System) Loading global settings:\n\t${builtins.toJSON __settings_.global}"
                     __settings_.global   
                 );
                 
                 category = let 
                     categoryType = __settings_.category.system.type;
-                in (builtins.trace 
-                    "(System) Loading category (${categoryType}) settings:\n\t${builtins.toJSON __settings_.category}"
+                in (
+                    # builtins.trace 
+                    # "(System) Loading category (${categoryType}) settings:\n\t${builtins.toJSON __settings_.category}"
                     __settings_.category
                 );
                 machine  = let 
                     machineName = __settings_.machine.system.hostname;
-                in (builtins.trace 
-                    "(System) Loading machine (${machineName}) settings:\n\t${builtins.toJSON __settings_.machine}"
+                in (
+                    # builtins.trace 
+                    # "(System) Loading machine (${machineName}) settings:\n\t${builtins.toJSON __settings_.machine}"
                     __settings_.machine  
                 );
             };
@@ -76,7 +79,9 @@ let
                     "Creating blueprint for \"${machine-settings.system.hostname}\" with final settings:"
                     + "\n\t${builtins.toJSON machine-settings}"
                 );
-            in (builtins.trace message {
+            in (
+                # builtins.trace message 
+                {
                 
                     system = machine-settings.system.architecture;
                     specialArgs = { 
@@ -143,7 +148,7 @@ let
             result
     );
 
-in # PathsToSystems [ ./laptops/thinkpad ./laptops/temp ]
+in # PathsToSystems 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
     PathsToSystems (nixosConfigurationsFilePaths)

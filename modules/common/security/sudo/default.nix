@@ -1,9 +1,11 @@
 ## Defines display manager / window manager settings.
 
-arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(System) Loading: ${toString ./.}..." { 
+arguments @ { config, pkgs, lib, machine-settings, ... } : {
+  
   security.sudo = {
     wheelNeedsPassword = lib.mkDefault true;
-    extraConfig = "Defaults pwfeedback";
+    extraConfig = lib.mkDefault "Defaults pwfeedback";
   };
-})
+
+}
 

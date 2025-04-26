@@ -1,6 +1,6 @@
 ## configures SOBS which is a secret management tool
 
-arguments @ { config, pkgs, lib, machine-settings, input, ... } : ( builtins.trace "(System) Loading: ${toString ./.}..." { 
+arguments @ { config, pkgs, lib, machine-settings, input, ... } : {
     
   imports = [ 
     (import input."tygo-van-den-hurk-secrets" arguments)
@@ -9,4 +9,4 @@ arguments @ { config, pkgs, lib, machine-settings, input, ... } : ( builtins.tra
 
   environment.systemPackages = [ pkgs.sops ];
 
-})
+}

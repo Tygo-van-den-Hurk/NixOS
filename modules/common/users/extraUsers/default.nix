@@ -1,10 +1,15 @@
 ## Defines the user options.
-arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(System) Loading: ${toString ./.}..." { 
+arguments @ { config, pkgs, lib, machine-settings, ... } : let 
 
-    # TODO : make all the users get printed to the console
-    users.extraUsers = ( lib.attrsets.concatMapAttrs (__username_: __usersettings_:  
-        # remove attributes that Nix does not reconise
-        { "${__username_}" = builtins.removeAttrs __usersettings_ [ "init" ]; }
-    ) machine-settings.users);
-    
-})
+  users-from-machine-settings-to-NixOS-users = (username: user-settings:  
+      # remove attributes that Nix does not reconise
+      { "${username}" = builtins.removeAttrs user-settings [ "init" ]; }
+  );
+
+in {
+
+  users.extraUsers = ( lib.attrsets.concatMapAttrs 
+    users-from-machine-settings-to-NixOS-users machine-settings.users
+  );
+
+}

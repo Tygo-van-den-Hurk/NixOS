@@ -43,6 +43,10 @@
     
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Miscellaneous ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
+
+    #| Flake Utils
+    flake-utils.url = "github:numtide/flake-utils";
+
     #| WSL (Window SubSystem for Linux)
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL/main";
@@ -54,7 +58,10 @@
     zen-browser.url = "github:ch4og/zen-browser-flake";
 
     #| NUR (NixOS User Repository)
-    nur.url = "github:nix-community/NUR";
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     #| Xremap (Easy keyremapping)
     xremap.url = "github:xremap/nix-flake";
@@ -73,15 +80,22 @@
   };
 
   #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OUTPUTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-  outputs = input @ { self, nixpkgs, nur, home-manager, stylix, nixos-wsl, ...  } : let
+  outputs = input @ { self, nixpkgs, nur, ...  } : input.flake-utils.lib.eachDefaultSystem (system: 
+    let 
+    
+      pkgs = import nixpkgs { inherit system; };
+      lib = nixpkgs.lib;
       
-    #| Getting the NixOS hosts
-    nixosConfigurations = let 
-      __nixosConfigurations_ = ( import ./systems/get.nix { inherit input; root-directory-repository = ./.; } );
-      avalible-system-names = (nixpkgs.lib.attrNames __nixosConfigurations_);
-      sperator = ("\n\t - ");
-      avalible-systems-string = (builtins.concatStringsSep sperator avalible-system-names);
-    in (builtins.trace "Avalible systems:${sperator+avalible-systems-string}" __nixosConfigurations_ );
-      
-  in { inherit nixosConfigurations; };
+    in { 
+    
+      #| Getting the NixOS hosts
+      packages.nixosConfigurations = let 
+        __nixosConfigurations_ = ( import ./systems/get.nix { inherit input; root-directory-repository = ./.; } );
+        avalible-system-names = (nixpkgs.lib.attrNames __nixosConfigurations_);
+        sperator = ("\n\t - ");
+        avalible-systems-string = (builtins.concatStringsSep sperator avalible-system-names);
+      in (builtins.trace "Avalible systems:${sperator+avalible-systems-string}" __nixosConfigurations_ );
+    
+    }
+  );
 }

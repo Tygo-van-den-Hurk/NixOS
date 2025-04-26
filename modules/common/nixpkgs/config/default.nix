@@ -1,8 +1,8 @@
 ## Defines Nix packages configuration settings.
 
-arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(System) Loading: ${toString ./.}..." { 
+arguments @ { config, pkgs, lib, machine-settings, ... } : {
     
-    nixpkgs.config = {
-        allowUnfree = (lib.mkDefault machine-settings.system.packages.allowUnfree);
-    };
-})
+  nixpkgs.config = {
+    allowUnfree = (lib.mkDefault machine-settings.system.packages.allowUnfree);
+  };
+}

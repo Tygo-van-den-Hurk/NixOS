@@ -1,9 +1,9 @@
 ## Defines the networking options.
 
-arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(System) Loading: ${toString ./.}..." { 
+arguments @ { config, pkgs, lib, machine-settings, ... } : {
 
     networking.wireless = {
         #// enable = (lib.mkDefault true);
     };
 
-})
+}

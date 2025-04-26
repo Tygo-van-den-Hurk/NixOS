@@ -1,6 +1,11 @@
 ## Defines the packages to use on the system.
 
-arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(System) Loading: ${toString ./.}..." { 
+arguments @ { input, pkgs, ... } : let 
+
+  # As the zen browser is not avalible as a Nix Package yet we have to use a flake to import it.
+  zen-browser = input.zen-browser.packages.x86_64-linux.specific;
+
+in {
 
   environment.systemPackages = with pkgs; [
 
@@ -17,9 +22,8 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(Sy
     git-filter-repo         # Quickly rewrite git repository history.
     git gh glab             # for version control (Git).
     fzf                     # find a file or folder very quickly.
-    tailscale               # A private network of all my devices.
     lshw                    # For seeing connected devices.
-    yt-dlp                  # Downloading Youtube video's.
+    yt-dlp                  # Downloading YouTube video's.
     zoxide                  # A beter way of doing `cd`.
     bat                     # A beter way of doing `cat`.
     eza                     # A beter way of doing `ls`.
@@ -39,9 +43,9 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(Sy
     lf                      # A terminal file manager
     pop                     # sent emails from the CLI
     (octave.withPackages (  # Open Source version of MathLab
-      octavePackages:       # ( Adding some extentions to octave )
+      octavePackages:       # ( Adding some extensions to octave )
       with octavePackages; [ 
-        symbolic            # Adds the ability for symbolic variables and caclulations to Octave
+        symbolic            # Adds the ability for symbolic variables and calculations to Octave
         linear-algebra      # Adds more linear algebra functions to Octave
       ]
     ))
@@ -61,14 +65,15 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(Sy
     obsidian                # A markdown editor
 
     #| Programming languages
-    #! All programming dependancies should be in a shell.nix or flake.nix file to prevent version mismatches.
+    #! All programming dependances should be in a shell.nix or flake.nix file to prevent version mismatches.
+    #! Do not pollute the system with dependencies and do not make the repositories undeterministic as a result.
 
     #| Document editing
     onlyoffice-bin          # An open source document suite
     libreoffice-qt          # An open source document suite
 
     #| Spell Checkers
-    hunspell                # A free and opensource spell checker
+    hunspell                # A free and open source spell checker
     hunspellDicts.uk_UA     # English spell checker
     hunspellDicts.nl_NL     # Dutch spell checker
     
@@ -78,16 +83,16 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(Sy
     #` 3) Viewing reference material
 
     #| Viewing web pages
-    firefox                 # A non-chromium based broweser, and my browser of choice
-    brave                   # A chromium based broweser with build in add blocking
-
+    firefox                 # A non-chromium based browser, and my browser of choice
+    brave                   # A chromium based browser with build in add blocking
+    zen-browser             # A modern alternative to FireFox.
     #| viewing pdfs
     zathura                 # Allows for opening PDF documents without bloat
 
     #` 4) Communication
     telegram-desktop        # A popular private messaging platform
     signal-desktop          # A popular private messaging platform
-    thunderbird             # A popular opensource email client
+    thunderbird             # A popular open source email client
     discord                 # A messaging platform
     whatsapp-for-linux      # A messaging platform owned by facebook (meta)
 
@@ -99,9 +104,7 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(Sy
     localsend               # A program that allows for sending files between devices regardless of OS
     stow                    # A symlink farmer I use for managing my dotfiles
     obs-studio              # For recording your screen or window
-    eduvpn-client			# VPN client for school (TU/e)
-    
-  ] ++ [
+    eduvpn-client			      # VPN client for school (TU/e)
     
   ];
-})
+}

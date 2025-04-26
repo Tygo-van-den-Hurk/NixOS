@@ -2,18 +2,20 @@
 
 arguments @ { config, pkgs, lib, machine-settings, programs, input, ... } : let 
     
-    users-with-this-module-enabled = (lib.attrNames ( lib.attrsets.concatMapAttrs ( user-name: user-settings: 
-        if user-settings.init.modules.virtualbox.enable then { "${user-name}" = user-settings; } else { }
-    ) machine-settings.users ));
+  users-with-this-module-enabled = (lib.attrNames ( lib.attrsets.concatMapAttrs ( user-name: user-settings: 
+    if user-settings.init.modules.virtualbox.enable then { "${user-name}" = user-settings; } else { }
+  ) machine-settings.users ));
 
-in ( if (builtins.length users-with-this-module-enabled) > 0 then (lib.warn 
-  "(System) Loading virtualbox, this can slow down rebuilds. Consider disabling this module." 
-  ( builtins.trace "(System) Loading: ${toString ./.}..." { 
-    users.extraGroups.vboxusers.members = users-with-this-module-enabled;
-    environment.systemPackages = [ pkgs.virtualboxWithExtpack ];
-    virtualisation.virtualbox.host = {
-      enable = true;
-      enableExtensionPack = true;
-    };
-  })
-) else {} )
+in ( if (builtins.length users-with-this-module-enabled) > 0 then (builtins.trace "(System) Loading: ${toString ./.}..." 
+  lib.warn "(System) Loading virtualbox, this can slow down rebuilds. Consider disabling this module." { 
+    
+  users.extraGroups.vboxusers.members = users-with-this-module-enabled;
+  
+  environment.systemPackages = [ pkgs.virtualboxWithExtpack ];
+  
+  virtualisation.virtualbox.host = {
+    enable = true;
+    enableExtensionPack = true;
+  };
+
+}) else {} )

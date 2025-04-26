@@ -3,41 +3,43 @@
 { # add updates below:
 
     users = let username = "tygo"; in {
-        "${username}".init.modules = { 
-            docker.enable = true;
-            virtualbox.enable = false;
-        };
+      "${username}".init.modules = { 
+        docker.enable = true;
+        virtualbox.enable = false;
+      };
     };
 
     system = {
-        hostname = "tygos-thinkpad-nixos";
-        architecture = "86x_64-linux";
-        packages.allowUnfree = true;
-        modules = {
+      hostname = "tygos-thinkpad-nixos";
+      architecture = "86x_64-linux";
+      packages.allowUnfree = true;
+      modules = {
 
-            gaming.enable = true;
-            
-            gpg.enable = true;
+        gaming.enable = true;
+        
+        gpg.enable = true;
+        
+        via.enable = true;
 
-            local-ai = {
-                enable       = false;
-                acceleration = "cuda";
-                backend      = "docker";
-                devices = {
-                    cuda     = "0";
-                    hip      = "";
-                };
-            };
+        local-ai = {
+          enable       = false;
+          acceleration = "cuda";
+          backend      = "docker";
+          devices = {
+            cuda     = "0";
+            hip      = "";
+          };
+        };
 
-            nvidia = {  
-                enable = true;
-                hardwarePackage   = "stable";
-                prime = {  
-                    offload       = true;
-                    nvidia        = "PCI:1:0:0";
-                    intel         = "PCI:0:2:0";
-                };
-            };
+        nvidia = {  
+          enable = true;
+          hardwarePackage   = "stable";
+          prime = {  
+            offload       = true;
+            nvidia        = "PCI:1:0:0";
+            intel         = "PCI:0:2:0";
+          };
         };
     };
+  };
 }

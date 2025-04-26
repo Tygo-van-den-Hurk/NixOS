@@ -1,12 +1,12 @@
 ## Defines the pipewire service.
 
-arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(System) Loading: ${toString ./.}..." { 
+arguments @ { config, pkgs, lib, machine-settings, ... } : {
     
-    services.pipewire = {
-        enable            = true;
-        alsa.enable       = true;
-        alsa.support32Bit = true;
-        pulse.enable      = true;
-    };
+  services.pipewire = {
+    enable            = lib.mkDefault true;
+    alsa.enable       = lib.mkDefault true;
+    alsa.support32Bit = lib.mkDefault true;
+    pulse.enable      = lib.mkDefault true;
+  };
 
-})
+}

@@ -1,6 +1,6 @@
 ## Defines nix garbage collection settings.
 
-arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(System) Loading: ${toString ./.}..." { 
+arguments @ { config, pkgs, lib, machine-settings, ... } : {
 
     nix.gc = {
         automatic = (lib.mkDefault true);
@@ -8,4 +8,4 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(Sy
         options   = (lib.mkDefault "--delete-older-than 30d");
     };
 
-})
+}

@@ -46,35 +46,36 @@
     };  
 
     modules = { 
-        key-remapper        = "xremap";     # wether or not to load the 'xremap' module.
+      key-remapper        = "xremap";     # wether or not to load the 'xremap' module.
     };  
 
     system = {  
         
-        type                = null;         # The type of the system, example is "laptop".
-        hostname            = null;         # The hostname of the computer in lower caps.
-        architecture        = null;         # The architecture the system uses.
+      type                = null;         # The type of the system, example is "laptop".
+      hostname            = null;         # The hostname of the computer in lower caps.
+      architecture        = null;         # The architecture the system uses.
 
-        packages = {     
-            allowUnfree     = null;         # Wether or not to allow unfree packages.
-        };
+      packages = {     
+        allowUnfree     = null;         # Wether or not to allow unfree packages.
+      };
         
-        modules = {
-            gpg.enable              = false;
-            local-ai.enable         = false;
-            podman.enable           = false;
-            power-efficiency.enable = false;
-            openssh.enable          = false;
-            wsl.enable              = false;
-            nvidia.enable           = false;
-            gaming.enable           = false;
-            onedrive.enable         = false;
-            gui = {
-                hyprland .enable = false;
-                gnome    .enable = false;
-                kde      .enable = false;
-                i3wm     .enable = false;
-            };
+      modules = {
+        gpg.enable              = false;
+        local-ai.enable         = false;
+        podman.enable           = false;
+        power-efficiency.enable = false;
+        openssh.enable          = false;
+        wsl.enable              = false;
+        via.enable              = false;
+        nvidia.enable           = false;
+        gaming.enable           = false;
+        onedrive.enable         = false;
+        gui = {
+          hyprland .enable = false;
+          gnome    .enable = false;
+          kde      .enable = false;
+          i3wm     .enable = false;
         };
+      };
     };
 }

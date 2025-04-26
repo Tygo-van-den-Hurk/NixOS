@@ -1,10 +1,15 @@
 ## Defines all the settings for the boot loader.
 
-arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(System) Loading: ${toString ./.}..." { 
+arguments @ { config, pkgs, lib, machine-settings, ... } : {
 
-    imports = [ ./efi ./grub ./systemd-boot ];
+  imports = [ 
+    ./efi 
+    ./grub 
+    ./systemd-boot
+  ];
 
-    boot.loader = {
-        timeout = (lib.mkDefault 5);    
-    };
-})
+  boot.loader = {
+    timeout = (lib.mkDefault 5);    
+  };
+  
+}

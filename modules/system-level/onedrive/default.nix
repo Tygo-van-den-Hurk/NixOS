@@ -2,10 +2,10 @@
 
 arguments @ { config, pkgs, lib, machine-settings, ... } : let
  
-    module-settings = machine-settings.system.modules.onedrive; 
+  module-settings = machine-settings.system.modules.onedrive; 
 
 in ( if ( module-settings.enable == true ) then builtins.trace "(System) Loading: ${toString ./.}... " {
 
-    services.onedrive.enable = true;
+  services.onedrive.enable = true;
 
 } else {} )

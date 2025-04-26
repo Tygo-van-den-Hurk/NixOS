@@ -2,10 +2,6 @@
 #! You should not have to change this file, all changes should happen in either the modules, or the settings.
 arguments @ { config, pkgs, lib, programs, input, ... } : { 
 
-  environment.systemPackages = [
-    input.zen-browser.packages.x86_64-linux.specific
-  ];
-
   systemd.network.wait-online.enable = (lib.mkForce false);
   boot.initrd.systemd.network.wait-online.enable = (lib.mkForce false);
 

@@ -1,7 +1,9 @@
 ## Defines environment settings.
 
-arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(System) Loading: ${toString ./.}..." { 
+arguments @ { config, pkgs, lib, machine-settings, ... } : {
+  
+  imports = [ 
+    ./systemPackages 
+  ]; 
 
-    imports = [ ./systemPackages ]; 
-    
-})
+}

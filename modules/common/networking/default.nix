@@ -1,6 +1,6 @@
 ## Defines the networking options.
 
-arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(System) Loading: ${toString ./.}..." { 
+arguments @ { config, pkgs, lib, machine-settings, ... } : {
      
     imports = [ ./firewall ./networkmanager ./proxy ./wireless ]; 
     
@@ -8,4 +8,4 @@ arguments @ { config, pkgs, lib, machine-settings, ... } : ( builtins.trace "(Sy
         hostName = (lib.mkDefault machine-settings.system.hostname);
     };
 
-})
+}
