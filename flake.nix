@@ -2,81 +2,103 @@
   description = "The flake that is used to configure all my machines.";
 
   inputs = {
-    #| Nix Packages (Where all your packages come from)
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Packages ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
+    # Nix Packages (Where all your packages come from)
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Home Manager ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+    # NUR (NixOS User Repository)
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
 
-    #| Home Manager (Declaratively create dot files)
+    # Zen Browser (a Arc inspired FireFox based browser)
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
+
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Home Manager ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
+    # Home Manager (Declaratively create dot files)
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
     };
 
-    #| Stylix (Manage theming for home manager)
+    # Stylix (Manage theming for home manager)
     stylix = {
-      #! url updated from "github:danth/stylix", see `https://github.com/danth/stylix/issues/577`:
-      url = "github:danth/stylix/cf8b6e2d4e8aca8ef14b839a906ab5eb98b08561"; #
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:danth/stylix/release-24.11";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
     };
 
-    #` Tygo van den Hurk's Dotfiles
+    # Tygo van den Hurk's Dotfiles
     tygo-van-den-hurk-dotfiles = {
-      url = "git+file:./modules/user-level/home-manager/tygo-van-den-hurk";
+      url = "github:Tygo-van-den-Hurk/dotfiles?ref=main";
       flake = false;
     };
 
-    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Secret Management ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Secret Management ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
-    #| SOPS (Secret management)
+    # SOPS (Secret management)
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    #` Tygo van den Hurk's Secrets
+    # Tygo van den Hurk's Secrets
     tygo-van-den-hurk-secrets = {
-      url = "git+file:./modules/common/sops/tygo-van-den-hurk";
+      url = "git+ssh://git@github.com/Tygo-van-den-Hurk/Secrets-NixOS?ref=main";
       flake = false;
     };
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Miscellaneous ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
-    #| Flake Utils
+    # Flake Utils
     flake-utils.url = "github:numtide/flake-utils";
 
-    #| WSL (Window SubSystem for Linux)
+    # WSL (Window SubSystem for Linux)
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL/main";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
     };
 
-    #| Zen Browser (a Arc inspired FireFox)
-    # zen-browser.url = "github:MarceColl/zen-browser-flake"; # Stuck at 1.0.1.a6
-    zen-browser.url = "github:ch4og/zen-browser-flake";
-
-    #| NUR (NixOS User Repository)
-    nur = {
-      url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
+    # Xremap (Easy keyremapping)
+    xremap = {
+      url = "github:xremap/nix-flake";
     };
 
-    #| Xremap (Easy keyremapping)
-    xremap.url = "github:xremap/nix-flake";
+    # Disko (Declarative disk partitioning & disk wiping)
+    disko = {
+      url = "github:nix-community/disko";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
 
-    #| Disko (Declarative disk partitioning & disk wiping)
-    # disko = {
-    #   url = "github:nix-community/disko";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    #| Nix Index Database (Replaces the program not found message)
-    # nix-index-database = {
-    #   url = "github:Mic92/nix-index-database";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    # Nix Index Database (Replaces the program not found message)
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
   };
+
+  #| ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ |#
 
   outputs = {
     self,
@@ -132,15 +154,15 @@
 
         # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Nix Switch ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
-        legacyPackages.nixosConfigurations = let
-          __nixosConfigurations_ = import ./systems/get.nix {
+        legacyPackages = let
+          nixosConfigurations = import ./systems/get.nix {
             input = inputs;
             root-directory-repository = ./.;
           };
-          avalible-system-names = nixpkgs.lib.attrNames __nixosConfigurations_;
-          sperator = "\n\t - ";
+          avalible-system-names = nixpkgs.lib.attrNames nixosConfigurations;
+          sperator = "\n  - ";
           avalible-systems-string = builtins.concatStringsSep sperator avalible-system-names;
-        in (builtins.trace "Avalible systems:${sperator + avalible-systems-string}" __nixosConfigurations_);
+        in (builtins.trace "Avalible systems:${sperator + avalible-systems-string}" {inherit nixosConfigurations;});
 
         # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
       }
