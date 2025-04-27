@@ -4,9 +4,9 @@ on:
   pull_request:
     branches:
       - main
-    paths: 
-      - "**/*.nix"
-      - "**/*.yaml"
+    paths-ignore:
+      - "**/*.md"
+      - "**/*.MD"
   push:
     branches:
       - main 
