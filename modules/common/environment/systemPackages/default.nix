@@ -2,10 +2,13 @@
 arguments @ {
   input,
   pkgs,
+  system,
   ...
 }: let
+  
   # As the zen browser is not avalible as a Nix Package yet we have to use a flake to import it.
-  zen-browser = input.zen-browser.packages.x86_64-linux.specific;
+  zen-browser = input.zen-browser.packages.${system}.default; 
+
 in {
   environment.systemPackages = with pkgs; [
     #` 1) Terminals & Command Line Tools
@@ -69,7 +72,7 @@ in {
 
     #| Programming languages
     #! All programming dependances should be in a shell.nix or flake.nix file to prevent version mismatches.
-    #! Do not pollute the system with dependencies and do not make the repositories undeterministic as a result.
+    #! Do not pollute the system with dependencies and do not make the repositories not deterministic as a result.
 
     #| Document editing
     onlyoffice-bin # An open source document suite
