@@ -39,7 +39,8 @@ in {
     busybox # a bunch of CLI tools that come in handy.
     jq # for dealing with JSON data in the command line.
     gnumake # for quick and easy scripting
-
+	  direnv # automatically runs code when a entering a certain directory.
+	
     #| Terminal user interfaces
     lazygit # A TUI for interacting with git
     micro # The supirior option for editing text in the terminal over Nano
