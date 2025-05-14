@@ -1,0 +1,112 @@
+name-template: 'v$RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
+
+include-pre-releases: true
+
+sort-by: 'merged_at'
+sort-direction: 'descending'
+
+latest: 'true'
+
+replacers:
+  - search: '/CVE-(\d{4})-(\d+)/g'
+    replace: 'https://www.cve.org/CVERecord?id=CVE-$1-$2'
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Categorisation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
+exclude-labels:
+  - 'skip-changelog'
+
+categories:
+  - title: 'Features'
+    label: 'enhancement'
+  - title: 'Bug Fixes'
+    label: 'bug'
+  - title: 'Documentation'
+    label: 'documentation'
+  - title: 'Dependencies'
+    label: 'dependencies'
+
+version-resolver:
+  default: patch
+  major:
+    labels:
+      # Personally added labels
+      - 'major'
+      - 'type: breaking'
+  minor:
+    labels:
+      # Official GitHub labels
+      - 'enhancement'
+      # Personally added labels
+      - 'minor'
+      - 'type: feature'
+  patch:
+    labels:
+      # Official GitHub labels
+      - 'bug'
+      - 'dependencies'
+      - 'documentation'
+      # Personally added labels
+      - 'patch'
+      - 'type: bug'
+      - 'type: maintenance'
+      - 'type: documentation'
+      - 'type: dependencies'
+      - 'type: security'
+
+autolabeler:
+
+  - label: 'documentation'
+    files:
+      - '*.md'
+    branch:
+      - '/documentation\/.+/'
+      - '/docs\/.+/'
+    title:
+      - '/documentation/i'
+    body:
+      - '/documentation/i'
+
+  - label: 'bug'
+    branch:
+      - '/fix\/.+/'
+      - '/bug\/.+/'
+    title:
+      - '/fix/i'
+    body:
+      - '/fix/i'
+
+  - label: 'enhancement'
+    branch:
+      - '/feature\/.+/'
+      - '/feat\/.+/'
+      - '/enhancement\/.+/'
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Release body ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
+header: ''
+footer: ''
+
+change-title-escapes: '\<*_&'
+change-template: '- ([#$NUMBER]($URL)) $TITLE by [@$AUTHOR](https://github.com/$AUTHOR)'
+no-changes-template: '- No changes'
+category-template: |
+  ## $TITLE
+
+template: |
+  These are the release notes for v$RESOLVED_VERSION:
+
+  $CHANGES
+
+  ## Previous Release
+
+  You can see [the full changelog](https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION), [all releases](https://github.com/$OWNER/$REPOSITORY/releases/), or [the previous release ($PREVIOUS_TAG)](https://github.com/$OWNER/$REPOSITORY/releases/tag/$PREVIOUS_TAG) on GitHub.
+
+  ## Contributors
+
+  A big thanks to all contributors who helped with this release: $CONTRIBUTORS
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
+

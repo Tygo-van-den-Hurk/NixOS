@@ -1,0 +1,39 @@
+# Labels pull requests based on what files they change
+# see: https://github.com/marketplace/actions/labeler
+
+documentation:
+  - changed-files:
+    - any-glob-to-any-file:
+      - '**/*.md'
+      - '**/*.MD'
+      - 'docs/**'
+  - head-branch:
+    - '^documentation\/'
+    - '^docs\/'
+
+feature:
+  - head-branch:
+    - '^feature\/'
+    - '^feat\/'
+    - '^enhancement\/'
+
+dependencies:
+  - changed-files:
+    - any-glob-to-any-file:
+      - '**/*.lock'
+      - '**/package-lock.json'
+  - head-branch:
+    - '^deps\/'
+    - '^dependencies\/'
+    - '^dependabot\/'
+
+github_actions:
+  - changed-files:
+    - any-glob-to-any-file:
+      - '.github/workflows/**'
+
+bug:
+  - head-branch:
+    - '^fix\/'
+    - '^fixes\/'
+    - '^bug\/'
