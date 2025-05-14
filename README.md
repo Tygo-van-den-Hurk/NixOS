@@ -1,13 +1,16 @@
-> This repository contains the the configuration files for the NixOS.
+> This repository contains the the configuration files for my NixOS machines.
 
 <br>
 <div align="center">
-  <!--~ CI/CD ~-->
-  <a href="https://github.com/Tygo-van-den-Hurk/NixOS/actions/workflows/nix-github-actions.yml">
-    <img src="https://github.com/Tygo-van-den-Hurk/NixOS/workflows/Nix%20Flake%20Checks/badge.svg?style=flat" alt="GitHub tests status" />
+  <a href="https://nixos.org">
+    <img src="https://img.shields.io/badge/NixOS-Configuration-5277C3.svg?style=flat&logo=nixos&labelColor=73C3D5" alt="Built with Nix"/>
   </a>
+  <!--~ Repository CI/CD ~-->
   <a href="https://github.com/Tygo-van-den-Hurk/NixOS/actions/workflows/deploy-github-pages.yml">
     <img src="https://github.com/Tygo-van-den-Hurk/NixOS/workflows/Deploy%20GitHub%20Pages/badge.svg?style=flat" alt="GitHub deployment status" />
+  </a>
+  <a href="https://github.com/Tygo-van-den-Hurk/NixOS/actions/workflows/nix-flake-check.yml">
+    <img src="https://github.com/Tygo-van-den-Hurk/NixOS/workflows/Nix%20Flake%20Checks/badge.svg?style=flat" alt="GitHub tests status" />
   </a>
   <!--~ Repository Statistics ~-->
   <a href="https://github.com/Tygo-van-den-Hurk/NixOS/graphs/contributors">
@@ -22,6 +25,16 @@
   <a href="https://github.com/Tygo-van-den-Hurk/NixOS/commit">
     <img src="https://badgen.net/github/last-commit/Tygo-van-den-Hurk/NixOS?style=flat" alt="GitHub latest commit" />
   </a>
+  <a href="https://github.com/Tygo-van-den-Hurk/NixOS/network/">
+    <img src="https://badgen.net/github/forks/Tygo-van-den-Hurk/NixOS?style=flat" alt="GitHub forks" />
+  </a>
+  <a href="https://github.com/Tygo-van-den-Hurk/NixOS/">
+    <img src="https://img.shields.io/github/languages/count/Tygo-van-den-Hurk/NixOS?style=flat" alt="amount of languages in the repository" />
+  </a>   
+  <a href="https://github.com/Tygo-van-den-Hurk/NixOS/stargazers">
+    <img src="https://img.shields.io/github/stars/Tygo-van-den-Hurk/NixOS?style=flat" alt="amount of stars" />
+  </a>
+  <!--~ Repository Updates ~-->
   <a href="https://github.com/Tygo-van-den-Hurk/NixOS/pulse">
     <img src="https://img.shields.io/github/created-at/Tygo-van-den-Hurk/NixOS?style=flat" alt="created at badge" />
   </a>
@@ -29,15 +42,12 @@
     <img src="https://img.shields.io/github/release/Tygo-van-den-Hurk/NixOS?style=flat&display_name=release" alt="newest release" />
   </a>
   <a href="https://github.com/Tygo-van-den-Hurk/NixOS/">
-    <img src="https://img.shields.io/github/languages/count/Tygo-van-den-Hurk/NixOS?style=flat" alt="amount of languages in the repository" />
-  </a>    
-  <a href="https://github.com/Tygo-van-den-Hurk/NixOS/">
     <img src="https://img.shields.io/github/repo-size/Tygo-van-den-Hurk/NixOS?style=flat" alt="the size of the repository" />
-  </a>   
+  </a>  
   <br><br>
   <picture>
-    <source srcset="./assets/images/svg/nixos-logo-black.svg" media="(prefers-color-scheme: light)">
-    <source srcset="./assets/images/svg/nixos-logo-white.svg" media="(prefers-color-scheme: dark)">
+    <source srcset="https://raw.githubusercontent.com/Tygo-van-den-Hurk/NixOS/refs/tags/v0.0.0/assets/images/svg/nixos-logo-black.svg" media="(prefers-color-scheme: light)">
+    <source srcset="https://raw.githubusercontent.com/Tygo-van-den-Hurk/NixOS/refs/tags/v0.0.0/assets/images/svg/nixos-logo-white.svg" media="(prefers-color-scheme: dark)">
     <img src="./assets/images/svg/nixos-logo-black.svg" width="500px" alt="the NixOS logo">
   </picture>
 </div>
