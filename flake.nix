@@ -1,6 +1,7 @@
 {
   description = "The flake that is used to configure all my machines.";
 
+
   inputs = {
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Packages ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
@@ -40,6 +41,10 @@
       url = "github:danth/stylix/release-24.11";
       inputs = {
         nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+        home-manager.follows = "home-manager";
+        nur.follows = "nur";
+        flake-compat.follows = "flake-compat";
       };
     };
 
@@ -63,10 +68,32 @@
       flake = false;
     };
 
-    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Miscellaneous ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Utilities ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
-    # Flake Utils
+    # Flake Utils for not having to deal with architectures
     flake-utils.url = "github:numtide/flake-utils";
+
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
+
+    pre-commit-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs = {
+        flake-compat.follows = "flake-compat";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Miscellaneous ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
     # WSL (Window SubSystem for Linux)
     nixos-wsl = {
@@ -96,73 +123,80 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
   };
 
-  #| ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ |#
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      flake-utils,
+      treefmt-nix,
+      ...
+    }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
+      let
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-unstable,
-    nur,
-    ...
-  } @ inputs:
-    inputs.flake-utils.lib.eachDefaultSystem (
-      system: let
-        pkgs = import nixpkgs {inherit system;};
-        lib = nixpkgs.lib;
-      in {
-        # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Nix Fmt ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+        pkgs = import nixpkgs { inherit system; };
+        treefmtEval = treefmt-nix.lib.evalModule pkgs ./.config/treefmt.nix;
+        pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run (import ./.config/pre-commit.nix);
 
-        formatter = pkgs.alejandra;
-
-        # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Nix Flake Check ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
-
-        checks = let
-          host-checks = builtins.listToAttrs (builtins.map (host: {
-            name = "check-${host}";
-            value = pkgs.runCommand "nixos-config-check-${host}" {} ''
-              ${pkgs.nixos-rebuild}/bin/nixos-rebuild dry-activate --flake .#${host}
-              touch $out
-            '';
-          }) (builtins.attrNames self.legacyPackages.${system}.nixosConfigurations));
-
-          formatting = pkgs.runCommand "formatting-check" {} ''
-            echo "Checking formatting of Nix files using $(${pkgs.alejandra}/bin/alejandra --version):"
-            ${pkgs.alejandra}/bin/alejandra --check ${./.}
-            touch $out
-          '';
-        in
-          host-checks // {inherit formatting;};
-
+      in
+      rec {
         # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Nix Develop ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
         devShells.default = pkgs.mkShell {
-          buildInputs = with pkgs; [treefmt];
-          shellHook = ''
-            # if the terminal supports color.
-            if [[ -n "$(tput colors)" && "$(tput colors)" -gt 2 ]]; then
-              export PS1="(\033[1m\033[35mDev-Shell\033[0m) $PS1"
-            else
-              export PS1="(Dev-Shell) $PS1"
-            fi
-
-            unset shellHook
-            unset buildInputs
-          '';
+          inherit (pre-commit-check) shellHook;
+          buildInputs =
+            pre-commit-check.enabledPackages
+            ++ (with pkgs; [
+              act # Run / check GitHub Actions locally.
+              git # Pull, commit, and push changes.
+            ]);
         };
 
-        # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Nix Switch ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+        # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NixOS Rebuild ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
-        legacyPackages = let
-          nixosConfigurations = import ./systems/get.nix {
-            input = inputs;
-            root-directory-repository = ./.;
+        legacyPackages =
+          let
+            nixosConfigurations = import ./systems/get.nix {
+              input = inputs;
+              inherit system;
+              root-directory-repository = ./.;
+            };
+            avalible-system-names = nixpkgs.lib.attrNames nixosConfigurations;
+            sperator = "\n  - ";
+            avalible-systems-string = builtins.concatStringsSep sperator avalible-system-names;
+          in
+          builtins.trace "Avalible systems:${sperator + avalible-systems-string}" {
+            inherit nixosConfigurations;
           };
-          avalible-system-names = nixpkgs.lib.attrNames nixosConfigurations;
-          sperator = "\n  - ";
-          avalible-systems-string = builtins.concatStringsSep sperator avalible-system-names;
-        in (builtins.trace "Avalible systems:${sperator + avalible-systems-string}" {inherit nixosConfigurations;});
+
+
+        # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Nix Flake Check ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
+        checks =
+          let
+            host-checks = builtins.listToAttrs (
+              builtins.map (host: rec {
+                name = "nixos-rebuild-${host}";
+                value = pkgs.runCommand name { } ''
+                  ${pkgs.nixos-rebuild}/bin/nixos-rebuild test --fast --flake .#${host}
+                  touch $out
+                '';
+              }) (builtins.attrNames self.legacyPackages.${system}.nixosConfigurations)
+            );
+          in
+          host-checks
+          // {
+            formatting = treefmtEval.config.build.check self;
+          };
+
+        # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Nix Fmt ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
+        formatter = treefmtEval.config.build.wrapper;
 
         # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
       }
