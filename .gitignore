@@ -1,12 +1,12 @@
-# Add the the result directory to the list of things to ignore.
-result/
-**/result/
+### Git Ignore list
 
-# removing the tracking of all Nix files in the test directory
-test/**/*.nix
+# pre-commit hook config
+.pre-commit-config.yaml
 
-# removing tracking of all secret files
-# **/secrets.*
+# Dir env
+.direnv
 
-# untracking the VScode workspace settings folder.
-**/.vscode/
+# Nix results
+**/result
+**/result-*
+
