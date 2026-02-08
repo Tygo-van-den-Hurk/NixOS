@@ -76,6 +76,7 @@ Nix ensures that installing or upgrading one package cannot break other packages
 ## Structure of this Repository
 
 This repository has 2 main directories:
+
 - **Systems**: the systems that I've configured. Load modules from [`modules/`](./modules/README.md). You can learn more about the systems directory [in the systems README](./systems/README.md).
 - **Modules**: is used to store a set of modules a [`system`](./systems/README.md) can load. You can learn more about that [in the modules README](./modules/README.md).
 
@@ -89,9 +90,10 @@ NixOS/
 └── flake.lock
 ```
 
-There is also the [`flake.nix`](./flake.nix), and [`flake.lock`](./flake.lock) of course here at the root to make the systems completely reproducible. 
+There is also the [`flake.nix`](./flake.nix), and [`flake.lock`](./flake.lock) of course here at the root to make the systems completely reproducible.
 
-The flow is as follows: 
+The flow is as follows:
+
 - The flake takes the argument from the CLI and loads the *system* from [`./systems/`](./systems/README.md) somewhere.
 - That *system* loads the *module* loader at [`/modules/default.nix`](./modules/default.nix), which you can read more about [here](./modules/README.md).
 - The **module loader** loads the modules specified in the [**machines settings**](./systems/common-settings.nix).

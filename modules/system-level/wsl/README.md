@@ -1,6 +1,6 @@
-> This module imports and uses settings needed for running nix in WSL. 
+> This module imports and uses settings needed for running nix in WSL.
 
-[< Back to system modules](../README.md)
+[\< Back to system modules](../README.md)
 
 # WSL
 
@@ -27,4 +27,5 @@ This is what the options look like you can add to your machine-settings:
 ```
 
 ## External Resources
+
 Take a look at [this guide](https://nixos.wiki/wiki/WSL) for more information.

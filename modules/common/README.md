@@ -1,6 +1,6 @@
 > This directory will contain all common modules that every system uses.
 
-[< Back to module type overview](../README.md)
+[\< Back to module type overview](../README.md)
 
 # Common modules
 
@@ -52,6 +52,7 @@ NixOS/
 ```
 
 ## Updating this module
+
 All settings should be written as if they are ment for this module:
 
 ```NIX
@@ -87,6 +88,7 @@ All settings should be written as if they are ment for this module:
 ```
 
 That is because then this way, any other module can override this setting as is needed. This is how lib.mkDefault works:
+
 ```NIX
 mkOverride = priority: content:
 { _type = "override";
@@ -114,7 +116,8 @@ mkVMOverride = mkOverride 10; # used by ‘nixos-rebuild build-vm’
 More information can be found [here](https://nixos-and-flakes.thiscute.world/nixos-with-flakes/modularize-the-configuration).
 
 ### Adding a setting
-if you want to add some setting, for example `foo.bar.option` with value `"some value"`. The you must first navigate to `./foo/bar/default.nix` if this file does not exist in this path, you must created it. You can past this template in 
+
+if you want to add some setting, for example `foo.bar.option` with value `"some value"`. The you must first navigate to `./foo/bar/default.nix` if this file does not exist in this path, you must created it. You can past this template in
 
 ```NIX
 #` Description of what this attribute set configures

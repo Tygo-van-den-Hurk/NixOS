@@ -1,15 +1,17 @@
 ## Defines the packages to use on the system.
-arguments @ {
+{
   input,
   pkgs,
   system,
   ...
-}: let
-  
-  # As the zen browser is not avalible as a Nix Package yet we have to use a flake to import it.
-  zen-browser = input.zen-browser.packages.${system}.default; 
+}:
+let
 
-in {
+  # As the zen browser is not avalible as a Nix Package yet we have to use a flake to import it.
+  zen-browser = input.zen-browser.packages.${system}.default;
+
+in
+{
   environment.systemPackages = with pkgs; [
     #` 1) Terminals & Command Line Tools
 
@@ -39,8 +41,8 @@ in {
     busybox # a bunch of CLI tools that come in handy.
     jq # for dealing with JSON data in the command line.
     gnumake # for quick and easy scripting
-	  direnv # automatically runs code when a entering a certain directory.
-	
+    direnv # automatically runs code when a entering a certain directory.
+
     #| Terminal user interfaces
     lazygit # A TUI for interacting with git
     micro # The supirior option for editing text in the terminal over Nano
@@ -48,13 +50,14 @@ in {
     neovim # A more extensible version of vim
     lf # A terminal file manager
     pop # sent emails from the CLI
-    (octave.withPackages ( # Open Source version of MathLab
+    (octave.withPackages (
+      # Open Source version of MathLab
       octavePackages:
       # ( Adding some extensions to octave )
-        with octavePackages; [
-          symbolic # Adds the ability for symbolic variables and calculations to Octave
-          linear-algebra # Adds more linear algebra functions to Octave
-        ]
+      with octavePackages; [
+        symbolic # Adds the ability for symbolic variables and calculations to Octave
+        linear-algebra # Adds more linear algebra functions to Octave
+      ]
     ))
 
     #| Ricing

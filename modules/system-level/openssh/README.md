@@ -1,6 +1,6 @@
 > This module will load and configure the open shh service.
 
-[< Back to system modules](../README.md)
+[\< Back to system modules](../README.md)
 
 # open SSH
 
@@ -11,7 +11,7 @@
 
 ## Overview
 
-This module enables SSH and Fail2Ban a service that bans ips if they try to many times. Secure Shell (SSH) is a cryptographic protocol that allows remote access and operation of network services over an unsecured network. It uses public-key authentication, encryption, and tunneling to protect data and user identities. 
+This module enables SSH and Fail2Ban a service that bans ips if they try to many times. Secure Shell (SSH) is a cryptographic protocol that allows remote access and operation of network services over an unsecured network. It uses public-key authentication, encryption, and tunneling to protect data and user identities.
 
 ## Settings
 
@@ -26,4 +26,5 @@ This is what the options look like you can add to your machine-settings:
 ```
 
 ## External Resources
+
 Take a look at [this guide](https://nixos.wiki/wiki/SSH) for more information. Another highly important guide is the [Fail2ban guide](https://nixos.wiki/wiki/Fail2ban).

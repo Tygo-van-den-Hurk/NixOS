@@ -1,11 +1,9 @@
 ## Defines nix garbage collection settings.
-arguments @ {
-  config,
-  pkgs,
+{
   lib,
-  machine-settings,
   ...
-}: {
+}:
+{
   nix.gc = {
     automatic = lib.mkDefault true;
     dates = lib.mkDefault "weekly";

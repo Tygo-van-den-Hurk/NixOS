@@ -1,13 +1,11 @@
 ## Defines nix settings.
-arguments @ {
-  config,
-  pkgs,
+{
   lib,
-  machine-settings,
   ...
-}: {
+}:
+{
   nix.settings.experimental-features = lib.mkForce [
-    "nix-command" #? unknown
-    "flakes" # Used to add flake support
+    "nix-command" # Used to enable the use of the `nix` program.
+    "flakes" # Used to add flake support.
   ];
 }

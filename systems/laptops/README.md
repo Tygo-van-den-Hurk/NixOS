@@ -1,5 +1,5 @@
 > This directory will be used to store the configs of my laptops.
- 
+
 # Laptops
 
 - [Laptops](#laptops)

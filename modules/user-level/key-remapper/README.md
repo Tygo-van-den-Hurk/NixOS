@@ -1,6 +1,6 @@
 > This module loads key remappers as a systemd service.
 
-[< Back to user modules](../README.md)
+[\< Back to user modules](../README.md)
 
 # Key Remapping
 
@@ -8,16 +8,16 @@
   - [Overview](#overview)
     - [Submodules](#submodules)
 
-## Overview 
+## Overview
+
 Key remappers are programs or tools that change what a key on your keyboard does. For example: you can make your Caps Lock key act like an extra Ctrl key. It allows you to customize the way keys work.
 
-
 ### Submodules
+
 There are a couple submodules I've tried to get working:
 
 - [xremap](./xremap/README.md) (recommended)
 - [kmonad](./kmonad/README.md) (deprecated)
-
 
 <!-- 
 

@@ -1,27 +1,22 @@
 ## Enabled SSH as a service.
-arguments @ {
-  config,
-  pkgs,
-  lib,
+{
   machine-settings,
-  programs,
-  input,
   ...
-}: let
+}:
+let
   module-settings = machine-settings.system.modules.openssh;
-in (
-  if module-settings.enable == true
-  then
-    builtins.trace "(System) Loading: ${toString ./.}..." {
-      services.openssh = {
-        enable = true;
-        settings = {
-          # Enhance Security
-          PasswordAuthentication = false;
-          KbdInteractiveAuthentication = false;
-          openssh.settings.PermitRootLogin = "no";
-        };
+in
+if module-settings.enable then
+  builtins.trace "(System) Loading: ${toString ./.}..." {
+    services.openssh = {
+      enable = true;
+      settings = {
+        # Enhance Security
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+        openssh.settings.PermitRootLogin = "no";
       };
-    }
-  else {}
-)
+    };
+  }
+else
+  { }

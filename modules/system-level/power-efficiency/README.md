@@ -1,6 +1,6 @@
-> This module aims to import battery life, and lower power consumption. 
+> This module aims to import battery life, and lower power consumption.
 
-[< Back to system modules](../README.md)
+[\< Back to system modules](../README.md)
 
 # Power Efficiency
 
@@ -26,4 +26,5 @@ This is what the options look like you can add to your machine-settings:
 ```
 
 ## External Resources
+
 Take a look at [the NixOS article on laptops and power saving](https://nixos.wiki/wiki/Laptop) for more information.

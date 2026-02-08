@@ -1,6 +1,6 @@
 > This module will load and configure the OneDrive service.
 
-[< Back to system modules](../README.md)
+[\< Back to system modules](../README.md)
 
 # OneDrive
 
@@ -47,7 +47,6 @@ this will enable and start the systemd user service. Note: this makes a symlink 
 
 Check that the service started successfully and is running:
 
-
 ```BASH
 systemctl --user status onedrive@onedrive.service
 ```
@@ -59,5 +58,6 @@ journalctl --user -t onedrive | less
 ```
 
 ## External Resources
+
 There is a [NixOS wiki page](https://nixos.wiki/wiki/OneDrive) to learn how this module works internally.
 There is also [Microsofts official pages](https://onedrive.live.com/), [the OneDrive client for Linux](https://github.com/abraunegg/onedrive), and of course [the NixPkgs OneDrive client package definition](https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/sync/onedrive/default.nix).

@@ -1,6 +1,6 @@
-> This module imports and uses settings needed for running [via](https://www.caniusevia.com/) on NixOS. 
+> This module imports and uses settings needed for running [via](https://www.caniusevia.com/) on NixOS.
 
-[< Back to system modules](../README.md)
+[\< Back to system modules](../README.md)
 
 # Via
 
@@ -28,4 +28,5 @@ This is what the options look like you can add to your machine-settings:
 ```
 
 ## External Resources
+
 Take a look at [this guide](https://nixos.wiki/wiki/Qmk) for more information.

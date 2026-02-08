@@ -3,14 +3,16 @@
 {
   # add updates below:
 
-  users = let
-    username = "tygo";
-  in {
-    "${username}".init.modules = {
-      docker.enable = true;
-      virtualbox.enable = false;
+  users =
+    let
+      username = "tygo";
+    in
+    {
+      "${username}".init.modules = {
+        docker.enable = true;
+        virtualbox.enable = false;
+      };
     };
-  };
 
   system = {
     hostname = "tygos-thinkpad-nixos";

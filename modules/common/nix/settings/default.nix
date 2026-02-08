@@ -1,10 +1,12 @@
 ## Defines nix settings.
-arguments @ {
-  config,
-  pkgs,
-  lib,
-  machine-settings,
+{
   ...
-}: {
-  imports = [./experimental-features];
+}:
+{
+  imports = [ ./experimental-features ];
+
+  nix.settings = {
+    trusted-users = [ "@wheel" ];
+    auto-optimise-store = true;
+  };
 }

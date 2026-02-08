@@ -4,7 +4,7 @@
   users = {
     tygo = {
       # TODO : split settings to 'home-manager', and 'nixos'
-      initialPassword = "changeme"; #! Defines user accounts with a weak password.
+      initialPassword = "changeme"; # ! Defines user accounts with a weak password.
       isNormalUser = true; # wether or not you're a human user
       description = "Tygo van den Hurk"; # Your full name
       uid = 1000;
@@ -16,11 +16,13 @@
         "admin " # used for sudo
         "input" # used for xmonad
         "uinput" # used for xmonad
-        "video" #? unknown
-        "audio" #? unknown
-        "camera" #? unknown
-        "lp" #? unknown
-        "scanner" #? unknown
+        "dialout" # used for access to the ttyACM* devices
+        "disk" # mount / unmount drives
+        "video" # ? unknown
+        "audio" # ? unknown
+        "camera" # ? unknown
+        "lp" # ? unknown
+        "scanner" # ? unknown
       ];
 
       openssh.authorizedKeys.keys = [
@@ -57,7 +59,7 @@
     architecture = null; # The architecture the system uses.
 
     packages = {
-      allowUnfree = null; # Wether or not to allow unfree packages.
+      allowUnfree = true; # Wether or not to allow unfree packages.
     };
 
     modules = {
@@ -72,10 +74,10 @@
       gaming.enable = false;
       onedrive.enable = false;
       gui = {
-        hyprland .enable = false;
-        gnome    .enable = false;
-        kde      .enable = false;
-        i3wm     .enable = false;
+        hyprland.enable = false;
+        gnome.enable = false;
+        kde.enable = false;
+        i3wm.enable = false;
       };
     };
   };

@@ -1,6 +1,6 @@
 > This module will load and configure the Podman container engine.
 
-[< Back to system modules](../README.md)
+[\< Back to system modules](../README.md)
 
 # Podman
 
@@ -27,4 +27,5 @@ This is what the options look like you can add to your machine-settings:
 ```
 
 ## External Resources
+
 Take a look at [the Podman NixOS wiki article](https://nixos.wiki/wiki/Podman) for more information.

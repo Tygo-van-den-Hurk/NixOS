@@ -1,6 +1,6 @@
 > This directory will contain modules on a system level. These cannot be enabled by a user, but only globally.
 
-[< Back to module type overview](../README.md)
+[\< Back to module type overview](../README.md)
 
 # System Level Modules
 
@@ -9,9 +9,11 @@
   - [Modules](#modules)
 
 ## Overview
+
 These modules are modules that are not enabled from the `machine-setting.users.${user}.init.modules` attribute set, but from the `machine-settings.system.modules` attribute set. These modules are modules that effect the entire system and cannot be activated by a user.
 
 ## Modules
+
 These are the modules created (in alphabetical order) so far:
 
 - [Gaming](./gaming/README.md)

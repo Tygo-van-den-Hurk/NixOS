@@ -1,14 +1,17 @@
 [Original Page](https://nixos.wiki/wiki/Nvidia)
 
 # Installing Nvidia Drivers on NixOS
+
 NixOS uses a functional package management approach, which necessitates specific procedures for driver installation. When considering NVIDIA GPU drivers in a Linux environment, the installation process can be more complex compared to AMD and Intel. This complexity arises primarily because NVIDIA's official drivers are closed source and not typically bundled with many distributions. This document outlines the technical steps required to install NVIDIA GPU drivers on NixOS, factoring in both the unique nature of NixOS and the proprietary status of NVIDIA's drivers.
 
 ## Enable Unfree Software Repositories
+
 Make sure to allow Unfree Software. The unfree NVIDIA packages include `nvidia-x11`, `nvidia-settings`, and `nvidia-persistenced`.
 
-
 ## Determining the Correct Driver Version
+
 You will next need to determine the appropriate driver version for your card. The following options are available:
+
 ```NIX
 hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
@@ -21,15 +24,16 @@ hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_340;
 
 Out of the above, `stable` and `beta` will work for the latest RTX cards and some lower cards so long as they're not considered "legacy" by Nvidia. For "legacy" cards, you can consult the [Nvidia official legacy driver list](https://www.nvidia.com/en-us/drivers/unix/legacy-gpu/) and check whether your device is supported by the 470, 390 or 340 branches. If so, you can use the corresponding `legacy_470`, `legacy_390` or `legacy_340` driver. For a full list of options, consult the [nvidia-x11 module repository](https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/os-specific/linux/nvidia-x11/default.nix).
 
-> [!NOTE]
+> \[!NOTE\]
 > As of early March 2024 the `production` driver has been updated from `535` to `550`. This is a breaking change for some people, especially those on Wayland. To resolve this follow the steps under [Running the new RTX SUPER on nixos stable](https://nixos.wiki/wiki/Nvidia#Running_the_new_RTX_SUPER_on_nixos_stable).
 
 Once you've determined the correct driver version, note it down; you'll need it in the next step.
 
 ## Modifying NixOS Configuration
+
 Ensure that the following is in your NixOS configuration file (customizing as you prefer):
 
-> [!WARNING]
+> \[!WARNING\]
 > If you are using a laptop, the below configuration update is not sufficient to get your Nvidia card running! Once you've entered it, please continue reading, as there are important adjustments that must then be made to the configuration before your laptop graphics will work properly.
 
 ```NIX
@@ -81,19 +85,23 @@ Ensure that the following is in your NixOS configuration file (customizing as yo
 ```
 
 ## Laptop Configuration: Hybrid Graphics (Nvidia Optimus PRIME)
+
 In order to correctly finish configuring your Nvidia graphics driver, you must follow the below steps, which differ depending on whether or not you are using a hybrid graphics setup or not. A laptop with hybrid graphics possesses both an integrated GPU (often from the central processor) and a discrete, more powerful Nvidia GPU, typically for performance-intensive tasks. This dual-GPU setup allows for power-saving during basic tasks and higher graphics performance when needed.
 
 **Nvidia Optimus PRIME** is a technology developed by Nvidia to optimize the power consumption and performance of laptops equipped with their GPUs. It seamlessly switches between the integrated graphics, usually from Intel, for lightweight tasks to save power, and the discrete Nvidia GPU for performance-intensive tasks like gaming or video editing. By dynamically balancing graphics power and battery life, Optimus provides the best of both worlds, ensuring that users get longer battery life without sacrificing graphical performance.
 
 ### Configuring Optimus PRIME: Bus ID Values (Mandatory)
+
 Before we can continue, we must mandatorily first determine the Bus ID values for both your Nvidia and Intel GPUs. This step will be essential regardless of which configuration you later adopt.
 
 First, install the `lshw` package in order to be able to use the `lshw` command, then run:
+
 ```BASH
 sudo lshw -c display
 ```
 
 You will likely get something like this:
+
 ```
 *-display                 
 description: i915drmfb
@@ -133,11 +141,13 @@ Note the two values under "bus info" above, which may differ from laptop to lapt
 ```
 
 ### Optimus PRIME Option A: Offload Mode
+
 Offload Mode is available in NixOS 20.09 and higher, and requires an Nvidia card of the Turing generation or newer, and an Intel chipset from the Coffee Lake generation or newer.
 
 Offload mode puts your Nvidia GPU to sleep and lets the Intel GPU handle all tasks, except if you call the Nvidia GPU specifically by "offloading" an application to it. For example, you can run your laptop normally and it will use the energy-efficient Intel GPU all day, and then you can offload a game from Steam onto the Nvidia GPU to make the Nvidia GPU run that game only. For many, this is the most desirable option.
 
 Offload mode is enabled by running your programs with specific environment variables. Here's a sample script called `nvidia-offload` that you can run wrapped around your executable, for example `nvidia-offload glxgears`:
+
 ```
 export __NV_PRIME_RENDER_OFFLOAD=1
 export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
@@ -147,6 +157,7 @@ exec "$@"
 ```
 
 To enable offload mode, finish configuring your Nvidia driver by adding the following to your NixOS configuration file:
+
 ```NIX
 {
 	hardware.nvidia.prime = {
@@ -180,7 +191,9 @@ PRIME sync may also solve some issues with connecting a display in clamshell mod
 ```
 
 ### Optimus Option C: Reverse Sync Mode (Experimental)
+
 This feature is relatively new and may not work properly on all systems (see discussion). It is also only available on driver 460.39 or newer. Reverse sync also only works with services.xserver.displayManager.setupCommands compatible Display Managers (LightDM, GDM and SDDM).
+
 ```NIX
 {
   hardware.nvidia.prime = {
@@ -198,14 +211,17 @@ This feature is relatively new and may not work properly on all systems (see dis
 ## Useful Tips
 
 ### Check NixosHardware
+
 You should check the nixoshardware GitHub repository. It is possible that someone already wrote a hardware configuration for your device and that usually takes care of drivers. If so, follow the upstream documentation to enable the required modules.
 
 ### Multiple Boot Configurations
+
 Imagine you have a laptop that you mostly use in clamshell mode (docked, connected to an external display and plugged into a charger) but that you sometimes use on the go.
 
 In clamshell mode, using PRIME Sync is likely to lead to better performance, external display support, etc., at the cost of potentially (but not always) lower battery life. However, when using the laptop on the go, you may prefer to use offload mode.
 
 NixOS supports "specialisations", which allow you to automatically generate different boot profiles when rebuilding your system. We can, for example, enable PRIME sync by default, but also create a "on-the-go" specialization that disables PRIME sync and instead enables offload mode:
+
 ```NIX
 {
     specialisation = {
@@ -221,7 +237,6 @@ NixOS supports "specialisations", which allow you to automatically generate diff
 }
 ```
 
-
 (You can also add other settings here totally unrelated to Nvidia, such as power profiles, etc.)
 
 After rebuilding and rebooting, you'll see in your boot menu under each Generation an "on-the-go" option, which will let you boot into the on-to-go specialisation for that generation.
@@ -233,9 +248,11 @@ If you're using Nix-packaged software on a non-NixOS system, you'll need a worka
 Note that nixGL is not specific to Nvidia GPUs, and should work with just about any GPU.
 
 ### CUDA and using your GPU for compute
+
 See the [CUDA](https://nixos.wiki/wiki/CUDA) wiki page.
 
 ### Using Steam in Offload Mode
+
 In order to automatically launch Steam in offload mode, you need to add the following to your `~/.bashrc`:
 
 ```BASH
@@ -255,9 +272,11 @@ For Flatpak Steam, run:
 mkdir -p ~/.local/share/applications
 sed 's/^Exec=/&nvidia-offload /' /var/lib/flatpak/exports/share/applications/com.valvesoftware.Steam.desktop > ~/.local/share/applications/com.valvesoftware.steam.desktop
 ```
+
 Then restart your graphical environment session (or simply reboot).
 
 ### Running the new RTX SUPER on nixos stable
+
 The new RTX Super are not supported by the 545 driver. On Nixos stable, you want to use the 535 driver that come from unstable branch or the 550 (beta). To do that you need to manually call the driver you want in your config. Check on this link to choose the driver you want and change your config accordingly : [https://github.com/NixOS/nixpkgs/blob/979a311fbd179b86200e412a3ed266b64808df4e/pkgs/os-specific/linux/nvidia-x11/default.nix#L36](https://github.com/NixOS/nixpkgs/blob/979a311fbd179b86200e412a3ed266b64808df4e/pkgs/os-specific/linux/nvidia-x11/default.nix#L36)
 
 ```NIX
@@ -312,13 +331,14 @@ The new RTX Super are not supported by the 545 driver. On Nixos stable, you want
 
 If you encounter the problem of booting to text mode you might try adding the Nvidia kernel module manually with:
 
-boot.initrd.kernelModules = [ "nvidia" ];
-boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
+boot.initrd.kernelModules = \[ "nvidia" \];
+boot.extraModulePackages = \[ config.boot.kernelPackages.nvidia_x11 \];
 
 ### Screen Tearing Issues
+
 First, try to switch to PRIME Sync Mode, as described above. If that doesn't work, try forcing a composition pipeline.
 
-> [!NOTE]
+> \[!NOTE\]
 > Forcing a full composition pipeline has been reported to reduce the performance of some OpenGL applications and may produce issues in WebGL. It also drastically increases the time the driver needs to clock down after load.
 
 ```NIX
@@ -326,6 +346,7 @@ hardware.nvidia.forceFullCompositionPipeline = true;
 ```
 
 ### Flickering Issues with Picom
+
 ```conf
 unredir-if-possible = false;
 backend = "xrender"; # try "glx" if xrender doesn't help
@@ -333,13 +354,17 @@ vsync = true;
 ```
 
 ### Graphical Corruption and System Crashes on Suspend/Resume
+
 ```NIX
 powerManagement.enable = true # can sometimes fix this, but is itself unstable and is known to cause suspend issues.
 ```
-If you have a modern Nvidia GPU ([Turing or late](https://en.wikipedia.org/wiki/Turing_(microarchitecture)#Products_using_Turing)r), you may also want to investigate the hardware.nvidia.powerManagement.finegrained option: [2]
+
+If you have a modern Nvidia GPU ([Turing or late](<https://en.wikipedia.org/wiki/Turing_(microarchitecture)#Products_using_Turing>)r), you may also want to investigate the hardware.nvidia.powerManagement.finegrained option: \[2\]
 
 ### Black Screen or Nothing Works on Laptops
-The kernel module i915 for intel or amdgpu for AMD may interfere with the Nvidia driver. This may result in a black screen when switching to the virtual terminal, or when exiting the X session. A possible workaround is to disable the integrated GPU by blacklisting the module, using the following configuration option (see also [3]):
+
+The kernel module i915 for intel or amdgpu for AMD may interfere with the Nvidia driver. This may result in a black screen when switching to the virtual terminal, or when exiting the X session. A possible workaround is to disable the integrated GPU by blacklisting the module, using the following configuration option (see also \[3\]):
+
 ```NIX
 # intel
 boot.kernelParams = [ "module_blacklist=i915" ];
@@ -348,7 +373,9 @@ boot.kernelParams = [ "module_blacklist=amdgpu" ];
 ```
 
 ## Disable Nvidia dGPU completely
+
 completely disable dGPU, saving battery. Probably not all configurations and module blacklists are required but this worked successfully
+
 ```NIX
 boot.extraModprobeConfig = ''
   blacklist nouveau

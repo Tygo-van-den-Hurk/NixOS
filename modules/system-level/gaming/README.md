@@ -1,6 +1,6 @@
 > This module is used to make a NixOS system capable of gaming.
 
-[< Back to system modules](../README.md)
+[\< Back to system modules](../README.md)
 
 # Gaming module
 
@@ -10,6 +10,7 @@
   - [External Resources](#external-resources)
 
 ## Overview
+
 This module when loaded changes the settings in such a way that the system should be capable of gaming. It also installs Steam.
 
 ## Settings
@@ -25,4 +26,5 @@ This is what the options look like you can add to your machine-settings:
 ```
 
 ## External Resources
+
 Take a look at [this article on the NixOS wiki about Steam](https://nixos.wiki/wiki/Steam) for more information.
