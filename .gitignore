@@ -1,0 +1,11 @@
+### Git Ignore list
+
+# pre-commit hook config
+.pre-commit-config.yaml
+
+# Dir env
+.direnv
+
+# Nix results
+**/result
+**/result-*
