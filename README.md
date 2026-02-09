@@ -4,7 +4,7 @@
 <div align="center">
   <a href="https://www.nixos.org/">
     <picture>
-      <source srcset="./assets/images/svg/nixos-logo-light.svg" media="(prefers-color-scheme: light)">
+      <source srcset="./assets/images/svg/nixos-logo.light.svg" media="(prefers-color-scheme: light)">
       <img src="./assets/images/svg/nixos-logo.dark.svg" width="500px" alt="The NixOS logo">
     </picture>
   </a>
