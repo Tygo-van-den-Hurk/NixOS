@@ -1,0 +1,57 @@
+name: Nix Flake Checks
+# Runs `nix flake check` in matrix form on any push or pull request to the main
+# branches. This is also the workflow that we will put on the readme. Since you
+# shouldn't merge any PR that fails a workflow, this workflow should never fail
+# on the main branches. Meaning you'll always have a pretty "CI: passing" badge
+# on your README showing the quality of your work.
+
+on:
+  pull_request:
+    branches: [main, master, release, development]
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main, master, release, development]
+
+jobs:
+
+  build-nix-flake-check-matrix:
+    name: Build the Nix flake Matrix
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4.3.0
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31.7.0
+      - name: Generate Nix Matrix
+        id: set-matrix
+        run: |
+          set -Eeu
+          matrix="$(nix eval --json '.#githubActions.matrix')"
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+
+  nix-flake-check:
+    name: ${{ matrix.name }} for ${{ matrix.system }}
+    timeout-minutes: 10
+    needs: build-nix-flake-check-matrix
+    runs-on: ${{ matrix.os }}
+    permissions: { actions: write }
+    environment: ${{ github.event_name == 'push' && 'production' || 'staging' }}
+    strategy:
+      fail-fast: false
+      matrix: ${{fromJSON(needs.build-nix-flake-check-matrix.outputs.matrix)}}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4.3.0
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31.7.0
+      - name: Add nix cache
+        uses: nix-community/cache-nix-action@v7.0.2
+        with:
+          primary-key: nix-${{ matrix.os }}-${{ hashFiles('**/*.nix', 'flake.lock') }}
+          restore-prefixes-first-match: nix-${{ matrix.os }}-
+          gc-max-store-size-linux: 1073741824
+          purge: true
+      - name: Build derivation ${{ matrix.attr }} using Nix
+        run: nix build --print-build-logs '.#${{ matrix.attr }}'
