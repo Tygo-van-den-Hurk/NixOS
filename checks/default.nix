@@ -1,0 +1,7 @@
+{ ... }:
+{
+  imports = [ ];
+  perSystem = _: {
+    checks = { };
+  };
+}
