@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    about: Read the NixOS Documentation
+    url: https://wiki.nixos.org/
+  - name: Ask Questions
+    about: Ask questions to the community.
+    url: https://github.com/Tygo-van-den-Hurk/NixOS/discussions/new?category=q-a

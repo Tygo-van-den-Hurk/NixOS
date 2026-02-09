@@ -1,0 +1,77 @@
+name: Test coverage issues / improvements
+description: >
+  Point out issues, or suggest areas for improvement for the test coverage.
+title: "test: "
+labels: ["test"]
+body:
+  - type: markdown
+    attributes:
+      value: >
+        Thank you for taking the time to submit a issue related to test
+        coverage.
+        Please provide clear and concise details to help us address it
+        efficiently.
+  - type: textarea
+    id: request
+    attributes:
+      label: Test coverage issues / improvements
+      description: >
+        Describe what is not being tested, but should be. Include any suggested
+        changes if relevant like perhaps a failing custom test case.
+      placeholder: Explain the reason you're creating this issue...
+    validations:
+      required: true
+  - type: textarea
+    id: version
+    attributes:
+      label: Version
+      description: What version are you running?
+      placeholder: '0.0.0'
+    validations:
+      required: true
+  - type: checkboxes
+    id: sanity-check
+    attributes:
+      label: I assert this issue is relevant
+      description: |
+        By submitting this issue you assert that:
+        (1) you agree to follow our Code of Conduct, see CODE_OF_CONDUCT.md for
+        more details.
+        (2) that you've searched for similar issues and found no issues that
+        described the same issues as this one
+        (3) This is an actual issue and not a request for support.
+      options:
+        - label: >
+           I assert that I have read the [Code of
+           Conduct](https://github.com/Tygo-van-den-Hurk/NixOS/blob/main/CODE_OF_CONDUCT.md)
+           and agree to abide by it.
+          required: true
+        - label: > 
+            I assert that this is not a [duplicate of an existing
+            issue](https://github.com/Tygo-van-den-Hurk/NixOS/issues?q=label%3A%22test%22).
+          required: true
+        - label: >
+            I assert that this is a bug and not a support request.
+          required: true
+  - type: "markdown"
+    attributes:
+      value: |
+        ### Thank you for filling out this issue!
+
+        ---
+  - type: "textarea"
+    id: "prioritisation"
+    attributes:
+      label: "Is this issue important to you?"
+      description: |
+        **Please do not modify this text area!**
+        This template helps developers know which issues should be prioritised
+        by allowing users to vote with a :+1: reaction. This is not a guarantee
+        that highly-requested issues will be fixed first, but it helps us to
+        figure out what's important to users. Please react on other users'
+        issues if you find them important.
+      value: |
+        Add a :+1: [reaction] to [issues you find important].
+
+        [reaction]: https://github.blog/2016-03-10-add-reactions-to-pull-requests-issues-and-comments/
+        [issues you find important]: https://github.com/Tygo-van-den-Hurk/NixOS/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc
