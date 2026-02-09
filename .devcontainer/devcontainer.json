@@ -1,0 +1,24 @@
+{
+  "name": "devcontainer",
+  "image": "mcr.microsoft.com/devcontainers/universal:2-linux",
+  "features": {
+    "ghcr.io/devcontainers/features/nix:1": {
+      "multiUser": false,
+      "packages": "nixd,nixfmt-unstable",
+      "extraNixConfig": "experimental-features = nix-command flakes,sandbox = true"
+    }
+  },
+  "remoteUser": "codespace",
+  "postCreateCommand": "${WORKSPACE_FOLDER}/.devcontainer/post-create.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "jnoortheen.nix-ide"
+      ],
+      "settings": {
+        "nix.enableLanguageServer": true,
+        "nix.serverPath": "nixd"
+      }
+    }
+  }
+}
