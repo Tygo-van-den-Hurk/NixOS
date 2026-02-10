@@ -14,7 +14,7 @@ while [[ $# -gt 0 ]]; do
     new_args+=("$key" "$val")
     shift
     ;;
-  -[!-]?*) 
+  -[!-]?*)
     # Handle compact short options (e.g. -abc)
     flags="${1#-}"
     for ((i = 0; i < ${#flags}; i++)); do
@@ -45,7 +45,7 @@ function print_help() {
   echo "  -v, --verbose         Print all information. Cannot be combined with the      "
   echo "                        '--quiet' flag. Will exit with failure if combined.     "
   echo "      --                Stop parsing arguments and pass all further arguments   "
-  echo "                        to the respective rebuild function instead.             " 
+  echo "                        to the respective rebuild function instead.             "
   echo "      --update          Update the flake.lock file before rebuilding. Be aware: "
   echo "                        this tool does not commit those changes. Also only works"
   echo "                        if flake path is not provided as we assume to update the"
@@ -152,7 +152,7 @@ function rebuild_home-manager_config() {
 
 # update the flake if no invalid arguments were provided.
 if [ $update -eq 1 ]; then
-  if [ "$flake_path" == `pwd` ]; then
+  if [ "$flake_path" == "$(pwd)" ]; then
     nix flake update
   else
     echo "Incorrect usage: cannot combine '--flake-path' or '-P' with the '--update' flag."
@@ -162,6 +162,6 @@ fi
 
 if [ -e /etc/NIXOS ]; then
   rebuild_nixos_config "$@"
-else 
+else
   rebuild_home-manager_config "$@"
 fi

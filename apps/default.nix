@@ -4,7 +4,9 @@
     ./apply
   ];
 
-  perSystem = { self', ... }: {
-    apps.default = self'.apps.apply;
-  };
+  perSystem =
+    { self', ... }:
+    {
+      apps.default = self'.apps.apply;
+    };
 }
