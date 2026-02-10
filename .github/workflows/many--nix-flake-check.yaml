@@ -39,7 +39,7 @@ jobs:
     permissions: { actions: write }
     environment: ${{ github.event_name == 'push' && 'production' || 'staging' }}
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix: ${{fromJSON(needs.build-nix-flake-check-matrix.outputs.matrix)}}
     steps:
       - name: Checkout repository
@@ -53,5 +53,7 @@ jobs:
           restore-prefixes-first-match: nix-${{ matrix.os }}-
           gc-max-store-size-linux: 1073741824
           purge: true
-      - name: Build derivation ${{ matrix.attr }} using Nix
-        run: nix build --print-build-logs '.#${{ matrix.attr }}'
+      - name: Build derivation ${{ matrix.attr }} using Nix using fake secrets
+        run: > 
+          nix build '.#${{ matrix.attr }}' --print-build-logs
+          --override-input tygo-van-den-hurk-secrets "path:$(pwd)/secrets"

@@ -9,6 +9,7 @@ _: {
       packages = with pkgs; [
         act # Run your GitHub Actions locally
         git # Distributed version control system
+        sops # encrypt and decrypt secrets conveniently.
       ];
 
       buildInputs = packages ++ formatters ++ hooks;
