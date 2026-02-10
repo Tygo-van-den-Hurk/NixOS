@@ -132,6 +132,8 @@
         ./ci
         ./formatting
         ./git-hooks
+        ./hosts
+        ./modules
         ./overlays
         ./packages
         ./shells

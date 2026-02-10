@@ -660,11 +660,11 @@
     "tygo-van-den-hurk-secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1745744484,
-        "narHash": "sha256-8kDA+i3FmCtTXNqRBGMx3jZYOJyQfnaLNxb1mTD1weE=",
+        "lastModified": 1770718097,
+        "narHash": "sha256-adCbk91CYSszsMYIra6og3A86LyqpjqxISrrAiD3oyc=",
         "ref": "main",
-        "rev": "cfa8fdd6b742d38b30cd95e68aedbde252ccb940",
-        "revCount": 5,
+        "rev": "b2b23e5384559990253c813bfae1cc60f8abdf0c",
+        "revCount": 7,
         "type": "git",
         "url": "ssh://git@github.com/Tygo-van-den-Hurk/Secrets-NixOS"
       },
