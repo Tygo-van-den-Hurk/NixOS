@@ -1,6 +1,3 @@
-> This repository contains the the configuration files for my NixOS machines.
-
-<br>
 <div align="center">
   <a href="https://www.nixos.org/">
     <picture>
@@ -61,8 +58,8 @@
     </a>
     <a href="https://github.com/Tygo-van-den-Hurk/NixOS/actions/workflows/push--deploy-github-pages.yaml">
       <picture>
-        <source srcset="https://img.shields.io/github/actions/workflow/status/Tygo-van-den-Hurk/NixOS/push--deploy-github-pages.yaml?style=flat&labelColor=FFFFFF&color=5277c3&logo=GitHub%20Actions&logoColor=000000&branch=main&event=push&label=Build" media="(prefers-color-scheme: light)" />
-        <img src="https://img.shields.io/github/actions/workflow/status/Tygo-van-den-Hurk/NixOS/push--deploy-github-pages.yaml?style=flat&labelColor=2F363D&color=415e9a&logo=GitHub%20Actions&logoColor=FFFFFF&branch=main&event=push&label=Build" alt="Documentation build status" />
+        <source srcset="https://img.shields.io/github/actions/workflow/status/Tygo-van-den-Hurk/NixOS/push--deploy-github-pages.yaml?style=flat&labelColor=FFFFFF&color=5277c3&logo=GitHub%20Actions&logoColor=000000&branch=main&event=push&label=Docs" media="(prefers-color-scheme: light)" />
+        <img src="https://img.shields.io/github/actions/workflow/status/Tygo-van-den-Hurk/NixOS/push--deploy-github-pages.yaml?style=flat&labelColor=2F363D&color=415e9a&logo=GitHub%20Actions&logoColor=FFFFFF&branch=main&event=push&label=Docs" alt="Documentation build status" />
       </picture>
     </a>
   </badges-section>
