@@ -4,24 +4,22 @@
   pkgs,
   ...
 }:
+with lib;
 let
-  inherit (lib) mkOption;
-  inherit (lib) mkIf;
-  inherit (lib) types;
-
-  inherit (types) bool;
-
   module = "defaults";
   submodule = "fonts";
+  cfg = config.${module}.${submodule};
 in
 {
-  options.${module}.${submodule}.enable = mkOption {
-    description = "Whether to install common fonts like open-dyslexic.";
-    default = config.${module}.enable;
-    type = bool;
+  options.${module}.${submodule} = with types; {
+    enable = mkOption {
+      description = "Whether to install common fonts like open-dyslexic.";
+      default = config.${module}.enable;
+      type = bool;
+    };
   };
 
-  config.fonts = mkIf config.${module}.${submodule}.enable {
+  config.fonts = mkIf cfg.enable {
     packages = with pkgs; [
       nerd-fonts.open-dyslexic # objectively the best font for reading
       aurulent-sans # sans serif

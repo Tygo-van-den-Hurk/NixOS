@@ -4,25 +4,22 @@
   pkgs,
   ...
 }:
+with lib;
 let
-  inherit (lib) mkDefault;
-  inherit (lib) mkOption;
-  inherit (lib) mkIf;
-  inherit (lib) types;
-
-  inherit (types) bool;
-
   module = "defaults";
   submodule = "boot";
+  cfg = config.${module}.${submodule};
 in
 {
-  options.${module}.${submodule}.enable = mkOption {
-    description = "Whether to this module.";
-    default = config.${module}.enable;
-    type = bool;
+  options.${module}.${submodule} = with types; {
+    enable = mkOption {
+      description = "Whether to this module.";
+      default = config.${module}.enable;
+      type = bool;
+    };
   };
 
-  config.boot = mkIf config.${module}.${submodule}.enable {
+  config.boot = mkIf cfg.enable {
     loader.timeout = mkDefault 5; # seconds
 
     loader.grub = {

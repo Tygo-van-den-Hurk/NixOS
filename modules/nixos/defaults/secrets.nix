@@ -1,35 +1,47 @@
-arguments@{
+{
   inputs,
   config,
   lib,
   pkgs,
   ...
 }:
+with lib;
 let
-  inherit (lib) mkOption;
-  inherit (lib) mkIf;
-  inherit (lib) types;
-
-  inherit (types) bool;
-
   module = "defaults";
-  submodule = "console";
+  submodule = "secrets";
+  cfg = config.${module}.${submodule};
 in
 {
-  options.${module}.${submodule}.enable = mkOption {
-    description = "Whether to load defaults for the console.";
-    default = config.${module}.enable;
-    type = bool;
+  options.${module}.${submodule} = with types; {
+    enable = mkOption {
+      description = "Whether to load the defaults secrets.";
+      default = config.${module}.enable;
+      type = bool;
+    };
   };
 
-  config = mkIf config.${module}.${submodule}.enable (
-    (import inputs.tygo-van-den-hurk-secrets arguments)
-    // {
-      environment.systemPackages = [ pkgs.sops ];
-    }
-  );
+  config = mkIf cfg.enable {
+    environment.systemPackages = [ pkgs.sops ];
+
+    sops = {
+      defaultSopsFile = mkDefault "${inputs.tygo-van-den-hurk-secret}/secrets.yaml";
+      defaultSopsFormat = mkDefault "yaml";
+    };
+
+    sops.secrets."hosts/${config.networking.hostName}/password" = {
+      owner = config.users.users.nobody.name;
+      inherit (config.users.users.nobody) group;
+      neededForUsers = true;
+    };
+
+    sops.secrets."nas/credentials" = {
+      owner = config.users.users.nobody.name;
+      inherit (config.users.users.nobody) group;
+    };
+  };
 
   imports = [
     inputs.sops-nix.nixosModules.sops
+    "${inputs.tygo-van-den-hurk-secrets}"
   ];
 }

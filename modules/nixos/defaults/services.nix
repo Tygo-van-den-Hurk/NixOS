@@ -3,19 +3,14 @@
   lib,
   ...
 }:
+with lib;
 let
-  inherit (lib) mkOption;
-  inherit (lib) mkIf;
-  inherit (lib) mkDefault;
-  inherit (lib) types;
-
-  inherit (types) bool;
-
   module = "defaults";
   submodule = "services";
+  cfg = config.${module}.${submodule};
 in
 {
-  options.${module}.${submodule} = {
+  options.${module}.${submodule} = with types; {
     enable = mkOption {
       description = "Whether to load the default services.";
       default = config.${module}.enable;
@@ -23,7 +18,7 @@ in
     };
   };
 
-  config = mkIf config.${module}.${submodule}.enable {
+  config = mkIf cfg.enable {
     services.espanso.enable = mkDefault true;
     services.tailscale.enable = mkDefault true;
     services.printing.enable = mkDefault true;

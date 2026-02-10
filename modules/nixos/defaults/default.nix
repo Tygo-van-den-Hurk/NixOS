@@ -1,24 +1,22 @@
 _:
-
+let
+  module = "defaults";
+in
 {
-  flake.nixosModules.defaults =
+  flake.nixosModules.${module} =
     {
       lib,
       ...
     }:
-    let
-      inherit (lib) mkOption;
-      inherit (lib) types;
-      inherit (types) bool;
-
-      module = "defaults";
-    in
+    with lib;
     {
-      options.${module}.enable = mkOption {
-        description = "Whether to this module.";
-        default = true;
-        readOnly = true;
-        type = bool;
+      options.${module} = with types; {
+        enable = mkOption {
+          description = "Whether to load the defaults for all systems.";
+          default = true;
+          readOnly = true;
+          type = bool;
+        };
       };
 
       imports = [

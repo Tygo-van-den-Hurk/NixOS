@@ -3,22 +3,14 @@
   lib,
   ...
 }:
+with lib;
 let
-  inherit (lib) mkDefault;
-  inherit (lib) mkOption;
-  inherit (lib) mkIf;
-  inherit (lib) types;
-
-  inherit (types) bool;
-  inherit (types) str;
-
   module = "defaults";
   submodule = "main-user";
-
-  name = config.${module}.${submodule}.username;
+  cfg = config.${module}.${submodule};
 in
 {
-  options.${module}.${submodule} = {
+  options.${module}.${submodule} = with types; {
     enable = mkOption {
       description = "Whether to enable the main user (me).";
       default = config.${module}.enable;
@@ -43,15 +35,19 @@ in
 
   config.users.mutableUsers = mkDefault false;
 
-  config.users.users.${name} = mkIf config.${module}.${submodule}.enable {
+  config.users.users.${cfg.username} = mkIf cfg.enable {
     uid = mkDefault 1000;
-    description = mkDefault config.${module}.${submodule}.description;
-    home = mkDefault "/home/${name}";
+    description = mkDefault cfg.description;
+    home = mkDefault "/home/${cfg.username}";
 
     enable = mkDefault true;
     isNormalUser = mkDefault true;
     createHome = mkDefault true;
     linger = mkDefault true;
+
+    hashedPasswordFile =
+      mkDefault
+        config.sops.secrets."hosts/${config.networking.hostName}/password".path;
 
     extraGroups = [
       "wheel" # sudo

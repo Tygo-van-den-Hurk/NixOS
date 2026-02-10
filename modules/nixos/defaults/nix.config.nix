@@ -4,50 +4,40 @@
   lib,
   ...
 }:
+with lib;
 let
-  inherit (lib) mkDefault;
-  inherit (lib) mkOption;
-  inherit (lib) mkIf;
-  inherit (lib) types;
-
-  inherit (types) bool;
-
   module = "defaults";
   submodule = "nix";
-
-  nixPath = [
-    "nixpkgs=${inputs.nixpkgs}"
-    "nixos-config=${inputs.self}"
-  ];
-
-  trusted-users = [
-    "@wheel"
-    "@nix"
-  ];
+  cfg = config.${module}.${submodule};
 in
 {
-  options.${module}.${submodule}.enable = mkOption {
-    description = "Whether to fill in a bunch of defaults regarding nix and nixpkgs.";
-    default = config.${module}.enable;
-    readOnly = true;
-    type = bool;
+  options.${module}.${submodule} = with types; {
+    enable = mkOption {
+      description = "Whether to fill in a bunch of defaults regarding nix and nixpkgs.";
+      default = config.${module}.enable;
+      readOnly = true;
+      type = bool;
+    };
   };
 
-  config = mkIf config.${module}.${submodule}.enable {
-    users.users.${config.${module}."main-user".username}.extraGroups = [ "nix" ];
+  config = mkIf cfg.enable {
+    nix.nixPath = [
+      "nixpkgs=${inputs.nixpkgs}"
+      "nixos-config=${inputs.self}"
+    ];
+
+    nix.settings.trusted-users = [
+      "@wheel"
+    ];
 
     nix = {
-      inherit nixPath;
       checkConfig = mkDefault true;
       checkAllErrors = mkDefault true;
       channel.enable = mkDefault false;
-      settings = {
-        inherit trusted-users;
-        experimental-features = [
-          "nix-command" # Used to enable the use of the `nix` program.
-          "flakes" # Used to add flake support like for example this one.
-        ];
-      };
+      settings.experimental-features = [
+        "nix-command" # Used to enable the use of the `nix` program.
+        "flakes" # Used to add flake support like for example this one.
+      ];
     };
 
     nixpkgs = {
