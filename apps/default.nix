@@ -1,7 +1,10 @@
 { ... }:
 {
-  imports = [ ];
-  perSystem = _: {
-    apps = { };
+  imports = [
+    ./apply
+  ];
+
+  perSystem = { self', ... }: {
+    apps.default = self'.apps.apply;
   };
 }
