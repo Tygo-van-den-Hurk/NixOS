@@ -1,0 +1,96 @@
+# This file contains all the labels that the repository should have, what
+# color, and their descriptions.
+
+# ~ Standard GitHub labels ~ #
+
+- name: "duplicate"
+  color: "cfd3d7"
+  description: "This issue or pull request already exists"
+  type: false
+
+- name: "not planned"
+  color: "ffffff"
+  description: "This will not be worked on"
+  type: false
+
+- name: "invalid"
+  color: "e4e669"
+  description: "This doesn't seem right."
+  type: false
+
+- name: "stale"
+  color: "ff1616"
+  description: "No progress or activity."
+  type: false
+
+- name: "ai spam"
+  color: "ffFFff"
+  description: "Maybe just don't do that."
+  type: false
+
+# ~ Conventional commits ~ #
+
+- name: "BREAKING CHANGE"
+  color: "FF0000"
+  description: "A breaking change"
+  type: false
+
+- name: "build"
+  color: "264603"
+  description: "Changes that affect the build system or dependencies"
+  type: true
+
+- name: "chore"
+  color: "D4C5F9"
+  description: "A change that does not change functionality"
+  type: true
+
+- name: "ci"
+  color: "7057FF"
+  description: "Changes to CI configuration or scripts"
+  type: true
+
+- name: "deps"
+  color: "0366D6"
+  description: "Dependency updates or changes"
+  type: true
+
+- name: "docs"
+  color: "a27b59"
+  description: "Documentation-only changes"
+  type: true
+
+- name: "feat"
+  color: "A2EEEF"
+  description: "New feature or request for one"
+  type: true
+
+- name: "fix"
+  color: "D73A4A"
+  description: "A fix or report for something that isn't working"
+  type: true
+
+- name: "perf"
+  color: "0E8A16"
+  description: "Performance improvements"
+  type: true
+
+- name: "refactor"
+  color: "C5DEF5"
+  description: "Code change that neither fixes a bug nor adds a feature"
+  type: true
+
+- name: "revert"
+  color: "E99695"
+  description: "Reverts a previous change"
+  type: true
+
+- name: "style"
+  color: "FEF2C0"
+  description: "Code style or formatting changes"
+  type: true
+
+- name: "test"
+  color: "FBCA04"
+  description: "Adding or updating tests"
+  type: true

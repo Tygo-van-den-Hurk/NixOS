@@ -1,0 +1,71 @@
+name: Sync Labels
+# Syncs all repository labels with '.github/labels.yaml' when changes are
+# pushed to that file, this workflow will be run updating, creating and
+# deleting all labels according to '.github/labels.yaml'.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, master, release, development]
+    paths: [.github/labels.yaml]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  sync-labels:
+    name: Sync labels with '.github/labels.yaml'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4.3.0
+      - name: list dependency versions
+        run: |
+          echo "$(gh --version | head -1)"
+          echo "$(yq --version | head -1)"
+          echo "$(jq --version | head -1)"
+          echo "$("$SHELL" --version | head -1)"
+      - name: Sync labels with '.github/labels.yaml'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Started deletion phase:"
+
+          desired_labels=$(yq '.' .github/labels.yaml --output-format json)
+          current_labels=$(gh label list --json name,color,description)
+          jq -r '.[].name' <<<"$current_labels" | while read -r label; do
+            echo "  Considering to delete label: '$label'"
+            if ! jq -e --arg name "$label" 'map(select(.name == $name)) | length > 0' <<<"$desired_labels" >/dev/null; then
+              echo "    The label '$label' is not in labels.yaml, deleting label."
+              gh label delete "$label" --yes || true
+            else
+              echo "    Label '$label' is in labels.yaml"
+            fi
+          done
+
+          echo "Finished deletion phase, proceeding to updating phase:"
+
+          # Create or update labels from desired_labels
+          jq -c '.[]' <<<"$desired_labels" | while read -r label; do
+            name=$(jq -r '.name' <<<"$label")
+            color=$(jq -r '.color' <<<"$label")
+            description=$(jq -r '.description' <<<"$label")
+
+            echo "  Considering to update label: '$name'"
+
+            # Check if the label exists
+            existing=$(jq -c --arg name "$name" '.[] | select(.name == $name)' <<<"$current_labels" || true)
+            if [[ -n "$existing" ]]; then
+              existing_color=$(jq -r '.color' <<<"$existing")
+              existing_description=$(jq -r '.description' <<<"$existing")
+              if [[ "$existing_color" == "$color" && "$existing_description" == "$description" ]]; then
+                echo "    Label $name is already up to date, skipping"
+                continue
+              fi
+            fi
+
+            echo "    Syncing label: $name"
+            gh label create "$name" --color "$color" --description "$description" --force || true
+          done
