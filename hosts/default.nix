@@ -27,6 +27,7 @@ let
         "${curDir}/${directory}/configuration.nix"
         "${curDir}/${directory}/hardware-configuration.nix"
         self.nixosModules.defaults
+        self.nixosModules.nas
       ];
 
       specialArgs = {
