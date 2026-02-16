@@ -22,6 +22,12 @@
     inputs.home-manager.follows = "home-manager";
   };
 
+  # A wrapper tool for nix OpenGL applications
+  inputs.nixGL = {
+    url = "github:nix-community/nixGL";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Home Manager ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
   # Home Manager (Declaratively create dot files)
@@ -157,5 +163,5 @@
       # };
     };
 
-  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 }
