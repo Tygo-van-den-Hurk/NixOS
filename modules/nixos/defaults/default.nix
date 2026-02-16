@@ -25,6 +25,7 @@ in
         ./locale.nix
         ./networking.nix
         ./nix.config.nix
+        ./programs.nix
         ./secrets.nix
         ./security.nix
         ./services.nix
