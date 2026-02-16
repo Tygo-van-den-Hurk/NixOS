@@ -23,6 +23,7 @@
         <img src="https://img.shields.io/github/issues/Tygo-van-den-Hurk/NixOS/feat?style=flat&labelColor=2F363D&color=415e9a&logoColor=8F5C86&label=Feature%20Requests" alt="open feature requests" />
       </picture>
     </a>
+    <br>
     <!--~###################################~-->
     <!--~####     Repository Stats      ####~-->
     <!--~###################################~-->
@@ -38,14 +39,12 @@
         <img src="https://img.shields.io/github/stars/Tygo-van-den-Hurk/NixOS?style=flat&labelColor=2F363D&color=415e9a&label=Stars" alt="amount of stars on GitHub" />
       </picture>
     </a>
-    <!-- ENABLE AFTER FIRST RELEASE:
-      <a href="https://github.com/Tygo-van-den-Hurk/NixOS/releases">
-      <picture>
-          <source srcset="https://img.shields.io/github/release/Tygo-van-den-Hurk/NixOS?style=flat&display_name=release&label=Release&labelColor=FFFFFF&color=5277c3" media="(prefers-color-scheme: light)" />
-          <img src="https://img.shields.io/github/release/Tygo-van-den-Hurk/NixOS?style=flat&display_name=release&label=Release&labelColor=2F363D&color=415e9a" alt="newest release" />
-      </picture>
-      </a>
-    -->
+    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/releases">
+    <picture>
+        <source srcset="https://img.shields.io/github/release/Tygo-van-den-Hurk/NixOS?style=flat&display_name=release&label=Release&labelColor=FFFFFF&color=5277c3" media="(prefers-color-scheme: light)" />
+        <img src="https://img.shields.io/github/release/Tygo-van-den-Hurk/NixOS?style=flat&display_name=release&label=Release&labelColor=2F363D&color=415e9a" alt="newest release" />
+    </picture>
+    </a>
     <br>
     <!--~###################################~-->
     <!--~####      Repository CI/CD     ####~-->
