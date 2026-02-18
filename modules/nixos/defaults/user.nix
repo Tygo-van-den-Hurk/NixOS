@@ -88,6 +88,8 @@ in
       {
         imports = [
           inputs.self.homeModules.cli
+          inputs.self.homeModules.gui
+          inputs.self.homeModules.styling
           (CONFIG_PATH + "/home.nix")
         ];
       };
