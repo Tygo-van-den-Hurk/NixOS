@@ -93,6 +93,13 @@
 
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Miscellaneous ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
+  # Hyprland is a dynamic tiling Wayland compositor that doesn't sacrifice on its looks
+  inputs.hyprland = {
+    url = "github:hyprwm/Hyprland" ;
+    inputs.nixpkgs.follows = "nixpkgs";
+    inputs.pre-commit-hooks.follows = "git-hooks-nix";
+  };
+
   # Makes the whole file system ephemeral by default.
   inputs.impermanence = {
     url = "github:nix-community/impermanence";
