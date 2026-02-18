@@ -18,7 +18,7 @@ in
       options.${module} = with types; {
         enable = mkOption {
           description = "Whether to enable CLI applications and terminal based tools.";
-          default = true;
+          default = false;
           type = bool;
         };
       };
