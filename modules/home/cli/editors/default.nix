@@ -16,9 +16,4 @@ in
       type = bool;
     };
   };
-
-  imports = [
-    ./glow.nix
-    ./micro.nix
-  ];
 }

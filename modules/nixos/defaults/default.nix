@@ -1,4 +1,4 @@
-_:
+{ inputs, ... }:
 let
   module = "defaults";
 in
@@ -19,17 +19,9 @@ in
         };
       };
 
-      imports = [
-        ./boot.nix
-        ./fonts.nix
-        ./locale.nix
-        ./networking.nix
-        ./nix.config.nix
-        ./programs.nix
-        ./secrets.nix
-        ./security.nix
-        ./services.nix
-        ./user.nix
-      ];
+      imports = inputs.self.lib.import-recursively {
+        base = ./.;
+        exclude = ./default.nix;
+      };
     };
 }

@@ -24,11 +24,4 @@ in
     ckear = clear;
     ear = ":";
   };
-
-  imports = [
-    ./bash
-    ./fish.nix
-    ./nushell.nix
-    ./zsh.nix
-  ];
 }

@@ -35,25 +35,4 @@ in
       add_newline = false;
     };
   };
-
-  imports = [
-    ./c.nix
-    ./character.nix
-    ./cpp.nix
-    ./directory.nix
-    ./git_branch.nix
-    ./git_commit.nix
-    ./git_metrics.nix
-    ./git_state.nix
-    ./git_status.nix
-    ./hostname.nix
-    ./nix_shell.nix
-    ./nodejs.nix
-    ./os.nix
-    ./python.nix
-    ./rust.nix
-    ./time.nix
-    ./typst.nix
-    ./username.nix
-  ];
 }

@@ -98,8 +98,4 @@ in
   config.home.shellAliases = mkIf cfg.enable {
     "g" = mkDefault (getExe pkgs.${program});
   };
-
-  imports = [
-    ./delta.nix
-  ];
 }

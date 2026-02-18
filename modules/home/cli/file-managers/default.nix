@@ -16,9 +16,4 @@ in
       type = bool;
     };
   };
-
-  imports = [
-    ./yazi
-    ./ranger.nix
-  ];
 }

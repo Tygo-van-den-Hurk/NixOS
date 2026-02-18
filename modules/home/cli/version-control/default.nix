@@ -16,11 +16,4 @@ in
       type = bool;
     };
   };
-
-  imports = [
-    ./git
-    ./gh.nix
-    ./gh-dash.nix
-    ./lazygit.nix
-  ];
 }

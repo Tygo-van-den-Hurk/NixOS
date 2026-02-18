@@ -27,18 +27,4 @@ in
     enableZshIntegration = mkDefault true;
     shellWrapperName = mkDefault program;
   };
-
-  imports = [
-    ./flavors.nix
-    ./keymap.nix
-    ./settings.nix
-    ./theme.nix
-    # plugins:
-    ./plugins/git
-    ./plugins/lazygit
-    ./plugins/ouch
-    ./plugins/restore
-    ./plugins/starship
-    ./plugins/sudo
-  ];
 }

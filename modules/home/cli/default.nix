@@ -1,4 +1,4 @@
-_:
+{ inputs, ... }:
 let
   module = "cli";
 in
@@ -37,13 +37,9 @@ in
         ];
       };
 
-      imports = [
-        ./editors
-        ./file-managers
-        ./miscellaneous
-        ./processors
-        ./shells
-        ./version-control
-      ];
+      imports = inputs.self.lib.import-recursively {
+        base = ./.;
+        exclude = ./default.nix;
+      };
     };
 }

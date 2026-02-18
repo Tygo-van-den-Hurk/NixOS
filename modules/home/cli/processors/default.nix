@@ -16,11 +16,4 @@ in
       type = bool;
     };
   };
-
-  imports = [
-    ./jq.nix
-    ./jqp.nix
-    ./octave.nix
-    ./qalc.nix
-  ];
 }

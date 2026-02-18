@@ -16,16 +16,4 @@ in
       type = bool;
     };
   };
-
-  imports = [
-    ./starship
-    ./bat.nix
-    ./direnv.nix
-    ./eza.nix
-    ./fzf.nix
-    ./onefetch.nix
-    ./slack-term.nix
-    ./zellij.nix
-    ./zoxide.nix
-  ];
 }
