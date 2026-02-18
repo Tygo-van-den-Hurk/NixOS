@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   config,
   ...
@@ -28,8 +29,6 @@ in
 
   config.programs.${program} = mkIf cfg.enable {
     enable = mkDefault true;
-    enableGnomeExtensions = mkDefault true;
-    bookmarks.configFile = mkDefault null;
   };
 
   config.xdg.mimeApps = mkIf cfg.mkDefault rec {

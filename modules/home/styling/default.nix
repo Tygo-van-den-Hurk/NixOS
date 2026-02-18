@@ -26,6 +26,12 @@ in
       imports = inputs.self.lib.import-recursively {
         base = ./.;
         exclude = ./default.nix;
+        extra = [ inputs.stylix.homeModules.stylix ];
+      };
+
+      config = mkIf (cfg.enable == false) {
+        stylix.enable = mkForce false;
+        stylix.base16Scheme = {};
       };
     };
 }

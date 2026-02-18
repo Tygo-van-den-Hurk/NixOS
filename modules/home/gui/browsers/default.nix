@@ -6,7 +6,7 @@
 with lib;
 let
   type = "gui";
-  category = "file-viewers";
+  category = "browsers";
 in
 {
   options.${type}.${category} = with types; {
