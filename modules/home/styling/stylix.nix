@@ -25,8 +25,8 @@ in
     polarity = mkDefault "dark";
     image = mkDefault (
       pkgs.fetchurl {
-        url = "https://www.pixelstalk.net/wp-content/uploads/2025/06/Add-personality-to-your-desktop-by-showcasing-pink-cow-spots-design-layered-with-delicate-pastel-details.webp";
-        hash = "sha256-HjY7zlLrK5PVIU2yEfB64IuMYHANQPjnvSuBE13M5m0=";
+        url = "https://raw.githubusercontent.com/Tygo-van-den-Hurk/dotfiles/e45e03c74a5628975021b85997473a01c0b96b8f/.config/assets/images/wallpapers/default.jpg";
+        hash = "sha256-uXGebVUKcMNcBRduDUdwdYE3wzQSJRXXiWWM91Aavgc=";
       }
     );
 
