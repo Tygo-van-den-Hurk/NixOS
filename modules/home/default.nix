@@ -6,5 +6,6 @@
     ./cli
     ./gui
     ./styling
+    ./wm
   ];
 }
