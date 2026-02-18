@@ -10,6 +10,7 @@ with inputs.nixpkgs.lib;
       base,
       exclude ? null, # no file to exclude
       extension ? ".nix", # the file extension
+      extra ? [ ], # extra imports to include outside of this directory.
     }:
 
     assert isPath base;
@@ -18,11 +19,14 @@ with inputs.nixpkgs.lib;
 
     assert isString extension;
 
+    assert isList extra;
+
     let
       files = fileset.toList base;
       isNotExclude = file: file != exclude;
       hasExtension = file: hasSuffix extension file;
       filterFn = file: (isNotExclude file) && (hasExtension file);
+      result = filter filterFn files;
     in
-    filter filterFn files;
+    result ++ extra;
 }
