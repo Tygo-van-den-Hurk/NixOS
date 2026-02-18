@@ -1,5 +1,4 @@
 {
-  inputs,
   config,
   lib,
   ...
@@ -12,9 +11,9 @@ let
   cfg = config.${type}.${category}.${program};
 in
 {
-  config= mkIf (cfg.enable && config ? stylix) {
+  config = mkIf (cfg.enable && config ? stylix) {
     stylix.targets.firefox.profileNames = [
       "main"
     ];
-  }; 
+  };
 }

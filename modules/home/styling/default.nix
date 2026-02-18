@@ -7,7 +7,6 @@ in
     {
       lib,
       config,
-      pkgs,
       ...
     }:
     with lib;
@@ -29,9 +28,9 @@ in
         extra = [ inputs.stylix.homeModules.stylix ];
       };
 
-      config = mkIf (cfg.enable == false) {
+      config = mkIf (!cfg.enable) {
         stylix.enable = mkForce false;
-        stylix.base16Scheme = {};
+        stylix.base16Scheme = { };
       };
     };
 }

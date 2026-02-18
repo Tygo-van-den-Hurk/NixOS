@@ -15,7 +15,7 @@ in
   config.programs.${program}.profiles.${profile} = mkIf cfg.enable {
     containersForce = mkDefault true;
     containers = rec {
-        
+
       personal = {
         name = "Personal";
         color = "purple";

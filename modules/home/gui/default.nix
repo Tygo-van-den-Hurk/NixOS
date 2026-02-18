@@ -6,14 +6,9 @@ in
   flake.homeModules.${module} =
     {
       lib,
-      config,
-      pkgs,
       ...
     }:
     with lib;
-    let
-      cfg = config.${module};
-    in
     {
       options.${module} = with types; {
         enable = mkOption {
