@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   config,
   ...
 }:
@@ -35,6 +34,6 @@ in
 
   config.home.shellAliases = mkIf cfg.enable {
     #! Currently broken because the `preview` package has not been copied over:
-    # ${program} = "${program} --preview '${pkgs.preview}/bin/preview {}'"; 
+    # ${program} = "${program} --preview '${pkgs.preview}/bin/preview {}'";
   };
 }
