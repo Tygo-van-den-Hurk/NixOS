@@ -95,7 +95,7 @@
 
   # Hyprland is a dynamic tiling Wayland compositor that doesn't sacrifice on its looks
   inputs.hyprland = {
-    url = "github:hyprwm/Hyprland" ;
+    url = "github:hyprwm/Hyprland";
     inputs.nixpkgs.follows = "nixpkgs";
     inputs.pre-commit-hooks.follows = "git-hooks-nix";
   };
@@ -146,6 +146,7 @@
         ./formatting
         ./git-hooks
         ./hosts
+        ./lib
         ./modules
         ./overlays
         ./packages
