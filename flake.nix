@@ -143,6 +143,7 @@
         ./apps
         ./checks
         ./ci
+        ./homes
         ./formatting
         ./git-hooks
         ./hosts
