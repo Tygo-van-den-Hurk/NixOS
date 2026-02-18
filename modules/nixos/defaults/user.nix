@@ -1,4 +1,8 @@
 {
+  CONFIG_PATH,
+  inputs,
+  hostName,
+  system,
   config,
   lib,
   ...
@@ -10,6 +14,9 @@ let
   cfg = config.${module}.${submodule};
 in
 {
+
+  imports = [ inputs.home-manager.nixosModules.home-manager ];
+
   options.${module}.${submodule} = with types; {
     enable = mkOption {
       description = "Whether to enable the main user (me).";
@@ -66,5 +73,23 @@ in
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHvSu8xkYJQX2br3EHxNADY7byEzRAXlc+Z8X+vbwuRd tygo@thinkpad"
     ];
+  };
+
+  config.home-manager = mkIf cfg.enable {
+    extraSpecialArgs = {
+      inherit CONFIG_PATH;
+      inherit inputs;
+      inherit hostName;
+      inherit system;
+    };
+
+    users.${cfg.username} =
+      { ... }:
+      {
+        imports = [
+          inputs.self.homeModules.cli
+          (CONFIG_PATH + "/home.nix")
+        ];
+      };
   };
 }

@@ -22,15 +22,16 @@ let
       info = import "${curDir}/${directory}/info.nix";
       inherit (info) hostName;
       inherit (info) system;
+      CONFIG_PATH = curDir + "/${directory}";
 
       modules = [
-        "${curDir}/${directory}/configuration.nix"
-        "${curDir}/${directory}/hardware-configuration.nix"
+        (CONFIG_PATH + "/configuration.nix")
         self.nixosModules.defaults
         self.nixosModules.nas
       ];
 
       specialArgs = {
+        inherit CONFIG_PATH;
         inherit hostName;
         inherit inputs;
         inherit system;
