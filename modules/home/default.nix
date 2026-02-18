@@ -1,0 +1,8 @@
+{ ... }:
+{
+  imports = [
+    ./cli
+    # ./gui
+    # ./styling
+  ];
+}

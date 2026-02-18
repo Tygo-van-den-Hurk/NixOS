@@ -1,0 +1,1 @@
+-- LazyGit Plugin
