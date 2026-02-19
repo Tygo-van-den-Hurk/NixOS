@@ -107,6 +107,27 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+# Colors text in a certain color
+color() {
+  local code
+  case "$1" in
+  black) code=30 ;;
+  red) code=31 ;;
+  green) code=32 ;;
+  yellow) code=33 ;;
+  blue) code=34 ;;
+  magenta) code=35 ;;
+  cyan) code=36 ;;
+  white) code=37 ;;
+  *)
+    echo "unknown color '$1', exiting"
+    exit 2
+    ;;
+  esac
+  shift
+  printf "\033[${code}m%s\033[0m" "$*"
+}
+
 # if `--verbose` and `--quiet`:
 if [ $verbose -eq 1 ]; then
   if [ $quiet -eq 1 ]; then
@@ -115,11 +136,11 @@ if [ $verbose -eq 1 ]; then
   fi
 
   echo "verbose debug information:"
-  echo "  username='$username'"
-  echo "  hostname='$hostname'"
-  echo "  flake_path='$flake_path'"
-  echo "  verbose='$verbose'"
-  echo "  quiet='$quiet'"
+  echo "  $(color cyan username)=$(color yellow "'$username'")"
+  echo "  $(color cyan hostname)=$(color yellow "'$hostname'")"
+  echo "  $(color cyan flake_path)=$(color yellow "'$flake_path'")"
+  echo "  $(color cyan verbose)=$(color yellow "'$verbose'")"
+  echo "  $(color cyan quiet)=$(color yellow "'$quiet'")"
 fi
 
 # prints output, unless quiet.
@@ -143,11 +164,15 @@ function rebuild_nixos_config() {
     local extra_args+=(--quiet)
   fi
 
-  exec sudo nixos-rebuild "${extra_args[@]}" switch --flake "$flake_path#\"$hostname\"" "$@"
+  local configuration="$flake_path#\"$hostname\""
+  echo "Switching to NixOS configuration: $(color blue "$configuration")"
+  exec sudo nixos-rebuild "${extra_args[@]}" switch --flake "$configuration" "$@"
 }
 
 function rebuild_home-manager_config() {
-  exec home-manager switch --flake "$flake_path#\"$username@$hostname\"" "$@"
+  local configuration="$flake_path#\"$username@$hostname\""
+  echo "Switching to Home Manager configuration: $(color blue "$configuration")"
+  exec home-manager switch --flake "$configuration" "$@"
 }
 
 # update the flake if no invalid arguments were provided.
