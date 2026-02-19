@@ -30,10 +30,6 @@ in
       default = pkgs.writeShellScriptBin "${program}-wrapped" ''
         set -e
 
-        local CONFIG
-        local TOKEN_FILE
-        local TOKEN
-
         if [ -n "$XDG_CONFIG_HOME" ]; then
           CONFIG="$XDG_CONFIG_HOME/${program}/config.json"
           TOKEN_FILE="$XDG_CONFIG_HOME/${program}/token"
@@ -48,10 +44,10 @@ in
           TOKEN=""
         fi
 
-        local args=()
-        local has_token=false
-        local has_config=false
-        local has_debug=false
+        args=()
+        has_token=false
+        has_config=false
+        has_debug=false
 
         for arg in "$@"; do
           [[ "$arg" == "-token" ]] && has_token=true
