@@ -1,5 +1,7 @@
-_:
-
+{ inputs, system, ... }:
+let 
+  inherit (inputs.tygo-van-den-hurk-dotfiles.packages.${system}) preview;
+in
 {
   cli.enable = true;
   gui.enable = true;
@@ -9,6 +11,7 @@ _:
   home.username = "tygo";
   home.homeDirectory = "/home/tygo";
   home.stateVersion = "25.05";
+  home.packages = [ preview ];
 
   wm.monitors."builtin display" = {
     primary = true;

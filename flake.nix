@@ -46,8 +46,15 @@
 
   # My personal dotfiles
   inputs.tygo-van-den-hurk-dotfiles = {
-    url = "github:Tygo-van-den-Hurk/dotfiles?ref=main";
-    flake = false;
+    url = "github:Tygo-van-den-Hurk/dotfiles?ref=feat/use-home-manager";
+    inputs.nixpkgs.follows = "nixpkgs";
+    inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
+    inputs.pre-commit-hooks.follows = "git-hooks-nix";
+    inputs.nix-github-actions.follows = "nix-github-actions";
+    inputs.flake-compat .follows = "flake-compat";
+    inputs.treefmt-nix.follows = "treefmt-nix";
+    inputs.home-manager.follows = "home-manager";
+    inputs.stylix.follows = "stylix";
   };
 
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Secret Management ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #

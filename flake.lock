@@ -225,6 +225,24 @@
         "type": "github"
       }
     },
+    "flake-utils_2": {
+      "inputs": {
+        "systems": "systems_4"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "fromYaml": {
       "flake": false,
       "locked": {
@@ -966,6 +984,36 @@
         "type": "github"
       }
     },
+    "systems_4": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_5": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
     "tinted-foot": {
       "flake": false,
       "locked": {
@@ -1068,18 +1116,45 @@
       }
     },
     "tygo-van-den-hurk-dotfiles": {
-      "flake": false,
+      "inputs": {
+        "flake-compat": [
+          "flake-compat"
+        ],
+        "flake-utils": "flake-utils_2",
+        "home-manager": [
+          "home-manager"
+        ],
+        "nix-github-actions": [
+          "nix-github-actions"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nixpkgs-unstable": [
+          "nixpkgs-unstable"
+        ],
+        "pre-commit-hooks": [
+          "git-hooks-nix"
+        ],
+        "stylix": [
+          "stylix"
+        ],
+        "systems": "systems_5",
+        "treefmt-nix": [
+          "treefmt-nix"
+        ]
+      },
       "locked": {
-        "lastModified": 1742822292,
-        "narHash": "sha256-jvtRSiC7KWZmT0r7SSrBOCWInbBH8LzvUUAhd3XLu0o=",
+        "lastModified": 1771329622,
+        "narHash": "sha256-nlJLd0UtOSO4upbL4ZFY+hCfCmI0SU8Jqg9BCqSyET4=",
         "owner": "Tygo-van-den-Hurk",
         "repo": "dotfiles",
-        "rev": "c20a9d9e18f7c456b54710efd6552ffd9574b24a",
+        "rev": "76f8eb31e5ac2ea80b7c211e451867db35928054",
         "type": "github"
       },
       "original": {
         "owner": "Tygo-van-den-Hurk",
-        "ref": "main",
+        "ref": "feat/use-home-manager",
         "repo": "dotfiles",
         "type": "github"
       }
