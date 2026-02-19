@@ -1,5 +1,5 @@
 { inputs, system, ... }:
-let 
+let
   inherit (inputs.tygo-van-den-hurk-dotfiles.packages.${system}) preview;
 in
 {
