@@ -40,6 +40,12 @@ function print_help() {
   echo "                        defaults to the machines hostname.                      "
   echo "  -P, --flake-path      The path to the flake, if not provided falls back to    "
   echo "                        the current directory instead. Can also be a flake URL. "
+  echo "  -N, --nixos           Switch to a new NixOS configuration with the resulting  "
+  echo "                        hostname, regardless of whether the programs believes   "
+  echo "                        you are on NixOS. Only use if you know what you're doing"
+  echo "  -M, --home-manager    Switch to a new Home Manager configuration even if the  "
+  echo "                        program believes you are on NixOS. Nice for when using  "
+  echo "                        Home Manager in standalone modus.                       "
   echo "  -q, --quiet           Print no information. Cannot be combined with the       "
   echo "                        '--verbose' flag. Will exit with failure if combined.   "
   echo "  -v, --verbose         Print all information. Cannot be combined with the      "
@@ -51,14 +57,17 @@ function print_help() {
   echo "                        if flake path is not provided as we assume to update the"
   echo "                        flake in the current directory.                         "
   echo "  -h, --help            print this help message and then exit.                  "
+  echo "                                                                                "
 }
 
-update="0"
 username="$(whoami)"
 hostname="$(hostname)"
 flake_path="$(pwd)"
+nixos="0"
+home_manager="0"
 verbose="0"
 quiet="0"
+update="0"
 
 # Loop through arguments
 while [[ $# -gt 0 ]]; do
@@ -76,6 +85,14 @@ while [[ $# -gt 0 ]]; do
   -P | --flake-path)
     shift
     flake_path="$1"
+    shift
+    ;;
+  -N | --nixos)
+    nixos="1"
+    shift
+    ;;
+  -M | --home-manager)
+    home_manager="1"
     shift
     ;;
   -q | --quiet)
@@ -131,7 +148,7 @@ color() {
 # if `--verbose` and `--quiet`:
 if [ $verbose -eq 1 ]; then
   if [ $quiet -eq 1 ]; then
-    echo "Incorrect usage: cannot combine '--verbose' and '--quiet' flag."
+    echo "$(color red Incorrect usage): cannot combine '--verbose' and '--quiet' flag."
     exit 2
   fi
 
@@ -139,6 +156,8 @@ if [ $verbose -eq 1 ]; then
   echo "  $(color cyan username)=$(color yellow "'$username'")"
   echo "  $(color cyan hostname)=$(color yellow "'$hostname'")"
   echo "  $(color cyan flake_path)=$(color yellow "'$flake_path'")"
+  echo "  $(color cyan nixos)=$(color yellow "'$nixos'")"
+  echo "  $(color cyan home_manager)=$(color yellow "'$home_manager'")"
   echo "  $(color cyan verbose)=$(color yellow "'$verbose'")"
   echo "  $(color cyan quiet)=$(color yellow "'$quiet'")"
 fi
@@ -180,13 +199,24 @@ if [ $update -eq 1 ]; then
   if [ "$flake_path" == "$(pwd)" ]; then
     nix flake update
   else
-    echo "Incorrect usage: cannot combine '--flake-path' or '-P' with the '--update' flag."
+    echo "$(color red Incorrect usage): cannot combine '--flake-path' or '-P' with the '--update' flag."
     exit 2
   fi
 fi
 
-if [ -e /etc/NIXOS ]; then
+# figure out what command to run.
+if [ $nixos -eq 1 ]; then
+  if [ $home_manager -eq 1 ]; then
+    echo "$(color red Incorrect usage): cannot combine '--nixos' and '--home-manager' flags."
+    exit 2
+  fi
   rebuild_nixos_config "$@"
-else
+elif [ $home_manager -eq 1 ]; then
   rebuild_home-manager_config "$@"
+else
+  if [ -e /etc/NIXOS ]; then
+    rebuild_nixos_config "$@"
+  else
+    rebuild_home-manager_config "$@"
+  fi
 fi

@@ -8,7 +8,16 @@ _x_apply_script_completions() {
   prev="${COMP_WORDS[COMP_CWORD - 1]}"
 
   # suggest flags if current word starts with -
-  local opts="-h --help -v --verbose -q --quiet -H --hostname -U --username -P --flake-path -- --update"
+  local help="-h --help"
+  local verbose="-v --verbose"
+  local quiet="-q --quiet"
+  local hostname="-H --hostname"
+  local username="-U --username"
+  local flake_path="-P --flake-path"
+  local home_manager="-M --home-manager"
+  local nixos="-N --nixos"
+  local update="-u --update"
+  local opts="$help $verbose $quiet $hostname $username $flake_path $home_manager $nixos $update --"
   mapfile -t COMPREPLY < <(compgen -W "$opts" -- "$cur")
   return 0
 }
