@@ -23,5 +23,12 @@ in
     services.tailscale.enable = mkDefault true;
     services.printing.enable = mkDefault true;
     networking.firewall.checkReversePath = mkDefault "loose"; # Fix for TailScale
+
+    services.pipewire = {
+      enable = mkDefault true;
+      alsa.enable = mkDefault true;
+      alsa.support32Bit = mkDefault true;
+      pulse.enable = mkDefault true;
+    };
   };
 }
