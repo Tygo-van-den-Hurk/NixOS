@@ -197,6 +197,7 @@ function rebuild_home-manager_config() {
 # update the flake if no invalid arguments were provided.
 if [ $update -eq 1 ]; then
   if [ "$flake_path" == "$(pwd)" ]; then
+    git pull --rebase
     nix flake update
   else
     echo "$(color red Incorrect usage): cannot combine '--flake-path' or '-P' with the '--update' flag."
