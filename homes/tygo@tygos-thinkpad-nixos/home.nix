@@ -9,6 +9,7 @@ let
 in
 {
   cli.enable = true;
+  cli.miscellaneous.zellij.enable = false;
   gui.enable = true;
   styling.enable = true;
   wm.enable = true;
