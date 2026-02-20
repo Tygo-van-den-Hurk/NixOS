@@ -90,6 +90,7 @@ in
           inputs.self.homeModules.cli
           inputs.self.homeModules.gui
           inputs.self.homeModules.styling
+          inputs.self.homeModules.wm
           (CONFIG_PATH + "/home.nix")
         ];
       };
