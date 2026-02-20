@@ -1,4 +1,9 @@
-{ inputs, system, ... }:
+{
+  inputs,
+  system,
+  pkgs,
+  ...
+}:
 let
   inherit (inputs.tygo-van-den-hurk-dotfiles.packages.${system}) preview;
 in
@@ -11,7 +16,10 @@ in
   home.username = "tygo";
   home.homeDirectory = "/home/tygo";
   home.stateVersion = "25.05";
-  home.packages = [ preview ];
+  home.packages = [
+    preview
+    pkgs.signal-desktop
+  ];
 
   wm.monitors."builtin display" = {
     primary = true;
