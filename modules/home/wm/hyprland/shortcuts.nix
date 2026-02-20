@@ -19,11 +19,16 @@ in
             null
           else
             let
-              control = if instance.control then  "CTRL" else null;
-              option = if instance.option then  "ALT" else null;
-              shift = if instance.shift then  "SHIFT" else null;
-              super = if instance.super then  "SUPER" else null;
-              mods = filter (mod: mod != null) [control option shift super];
+              control = if instance.control then "CTRL" else null;
+              option = if instance.option then "ALT" else null;
+              shift = if instance.shift then "SHIFT" else null;
+              super = if instance.super then "SUPER" else null;
+              mods = filter (mod: mod != null) [
+                control
+                option
+                shift
+                super
+              ];
               modifier = concatStringsSep "_" mods;
             in
             "${modifier}, ${instance.key}, ${instance.action.hyprland} # ${description}";
