@@ -1,7 +1,6 @@
 {
   inputs,
   system,
-  pkgs,
   ...
 }:
 let
@@ -19,7 +18,6 @@ in
   home.stateVersion = "25.05";
   home.packages = [
     preview
-    pkgs.signal-desktop
   ];
 
   wm.monitors."builtin display" = {
