@@ -8,7 +8,7 @@ _: {
     with pkgs;
     let
       name = "apply";
-      runtimeDependencies = [];
+      runtimeDependencies = [ ];
       package = stdenv.mkDerivation rec {
         inherit name;
         src = ./.;

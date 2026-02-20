@@ -51,7 +51,7 @@
     inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
     inputs.pre-commit-hooks.follows = "git-hooks-nix";
     inputs.nix-github-actions.follows = "nix-github-actions";
-    inputs.flake-compat .follows = "flake-compat";
+    inputs.flake-compat.follows = "flake-compat";
     inputs.treefmt-nix.follows = "treefmt-nix";
     inputs.home-manager.follows = "home-manager";
     inputs.stylix.follows = "stylix";
