@@ -4,5 +4,6 @@
   imports = [
     ./defaults
     ./nas
+    ./qmk
   ];
 }

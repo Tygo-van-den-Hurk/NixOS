@@ -28,6 +28,7 @@ let
         (CONFIG_PATH + "/configuration.nix")
         self.nixosModules.defaults
         self.nixosModules.nas
+        self.nixosModules.qmk
       ];
 
       specialArgs = {
