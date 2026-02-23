@@ -70,6 +70,7 @@ quiet="0"
 update="0"
 
 # Loop through arguments
+pass_through_arguments=()
 while [[ $# -gt 0 ]]; do
   case $1 in
   -U | --username)
@@ -113,6 +114,10 @@ while [[ $# -gt 0 ]]; do
     ;;
   --)
     shift
+    while [[ $# -gt 0 ]]; do
+      pass_through_arguments+=("$1")
+      shift
+    done
     break
     ;;
   *)
@@ -171,27 +176,34 @@ function print() {
   fi
 }
 
-function rebuild_nixos_config() {
-  local extra_args=()
+extra_args=()
+if [ $verbose -eq 1 ]; then
+  extra_args+=(--print-build-logs)
+  extra_args+=(--show-trace)
+fi
 
+function rebuild_nixos_config() {
   if [ $verbose -eq 1 ]; then
-    local extra_args+=(--print-build-logs)
-    local extra_args+=(--verbose)
+    extra_args+=(--verbose)
   fi
 
   if [ $quiet -eq 1 ]; then
-    local extra_args+=(--quiet)
+    extra_args+=(--quiet)
   fi
 
   local configuration="$flake_path#\"$hostname\""
   echo "Switching to NixOS configuration: $(color blue "$configuration")"
-  exec sudo nixos-rebuild "${extra_args[@]}" switch --flake "$configuration" "$@"
+  exec sudo nixos-rebuild "${extra_args[@]}" switch --flake "$configuration" "${pass_through_arguments[@]}"
 }
 
 function rebuild_home-manager_config() {
+  if [ $verbose -eq 1 ]; then
+    extra_args+=(-v)
+  fi
+
   local configuration="$flake_path#\"$username@$hostname\""
   echo "Switching to Home Manager configuration: $(color blue "$configuration")"
-  exec home-manager switch --flake "$configuration" "$@"
+  exec home-manager switch --flake "$configuration" "${pass_through_arguments[@]}"
 }
 
 # update the flake if no invalid arguments were provided.
@@ -211,13 +223,13 @@ if [ $nixos -eq 1 ]; then
     echo "$(color red Incorrect usage): cannot combine '--nixos' and '--home-manager' flags."
     exit 2
   fi
-  rebuild_nixos_config "$@"
+  rebuild_nixos_config
 elif [ $home_manager -eq 1 ]; then
-  rebuild_home-manager_config "$@"
+  rebuild_home-manager_config
 else
   if [ -e /etc/NIXOS ]; then
-    rebuild_nixos_config "$@"
+    rebuild_nixos_config
   else
-    rebuild_home-manager_config "$@"
+    rebuild_home-manager_config
   fi
 fi
