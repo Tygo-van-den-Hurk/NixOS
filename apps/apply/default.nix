@@ -1,6 +1,7 @@
 _: {
   perSystem =
     {
+      inputs',
       pkgs,
       lib,
       ...
@@ -8,12 +9,11 @@ _: {
     with pkgs;
     let
       name = "apply";
-      runtimeDependencies = [ ];
       package = stdenv.mkDerivation rec {
         inherit name;
         src = ./.;
 
-        nativeBuildInputs = runtimeDependencies ++ [ makeWrapper ];
+        nativeBuildInputs = [ makeWrapper ];
 
         installPhase = ''
           runHook preInstall
@@ -23,10 +23,22 @@ _: {
 
           mkdir --parents $out/bin
           cp ${src}/script.bash $out/bin/${name}
-          patchShebangs $out/bin/${name}
-          wrapProgram $out/bin/${name} --prefix PATH : ${lib.makeBinPath runtimeDependencies}
 
           runHook postInstall
+        '';
+        
+        fixupPhase = ''
+          runHook preFixup
+
+          patchShebangs $out/bin/${name}
+          wrapProgram $out/bin/${name} --set PATH ${lib.makeBinPath [
+            inputs'.home-manager.packages.home-manager
+            nixos-rebuild
+            busybox
+            nix
+          ]}
+
+          runHook postFixup
         '';
 
         meta = with lib; {
