@@ -5,9 +5,10 @@
 }:
 with lib;
 let
+  namespace = "self";
   category = "wm";
   program = "hyprland";
-  cfg = config.${category}.${program};
+  cfg = config.${namespace}.${category}.${program};
 in
 {
   config.wayland.windowManager.${program}.settings = mkIf cfg.enable {
@@ -33,6 +34,6 @@ in
             in
             "${modifier}, ${instance.key}, ${instance.action.hyprland} # ${description}";
       in
-      mapAttrsToList shortcutToString config.${category}.shortcuts;
+      mapAttrsToList shortcutToString config.${namespace}.${category}.shortcuts;
   };
 }

@@ -5,15 +5,16 @@
 }:
 with lib;
 let
+  namespace = "self";
   type = "wm";
   category = "shortcuts";
 in
 {
-  config.${type}.${category} =
+  config.${namespace}.${type}.${category} =
     with builtins;
     let
-      workspaceNames = attrNames config.${type}.workspaces;
-      filterWorkspaces = filter (name: config.${type}.workspaces.${name}.enable);
+      workspaceNames = attrNames config.${namespace}.${type}.workspaces;
+      filterWorkspaces = filter (name: config.${namespace}.${type}.workspaces.${name}.enable);
       enabledWorkspaces = filterWorkspaces workspaceNames;
       amountOfWorkspaces = length enabledWorkspaces;
 

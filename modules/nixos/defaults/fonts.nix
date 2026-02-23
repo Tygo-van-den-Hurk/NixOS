@@ -6,15 +6,16 @@
 }:
 with lib;
 let
+  namespace = "self";
   module = "defaults";
   submodule = "fonts";
-  cfg = config.${module}.${submodule};
+  cfg = config.${namespace}.${module}.${submodule};
 in
 {
-  options.${module}.${submodule} = with types; {
+  options.${namespace}.${module}.${submodule} = with types; {
     enable = mkOption {
       description = "Whether to install common fonts like open-dyslexic.";
-      default = config.${module}.enable;
+      default = config.${namespace}.${module}.enable;
       type = bool;
     };
   };

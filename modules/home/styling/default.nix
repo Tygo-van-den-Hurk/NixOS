@@ -1,5 +1,6 @@
 { inputs, ... }:
 let
+  namespace = "self";
   module = "styling";
 in
 {
@@ -11,10 +12,10 @@ in
     }:
     with lib;
     let
-      cfg = config.${module};
+      cfg = config.${namespace}.${module};
     in
     {
-      options.${module} = with types; {
+      options.${namespace}.${module} = with types; {
         enable = mkOption {
           description = "Whether to enable styling of all tools.";
           default = false;

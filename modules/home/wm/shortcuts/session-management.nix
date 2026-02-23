@@ -5,11 +5,12 @@
 }:
 with lib;
 let
+  namespace = "self";
   type = "wm";
   category = "shortcuts";
 in
 {
-  config.${type}.${category} = with pkgs; {
+  config.${namespace}.${type}.${category} = with pkgs; {
     #
     #  This is for key bindings that do session management. Things such as:
     #
@@ -22,7 +23,7 @@ in
       super = true;
       shift = true;
       key = "c";
-      action.hyprland = " exec, hyprctl reload";
+      action.hyprland = "exec, hyprctl reload";
       action.i3 = "reload";
     };
 

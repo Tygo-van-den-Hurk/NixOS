@@ -5,12 +5,13 @@
 }:
 with lib;
 let
+  namespace = "self";
   type = "wm";
   category = "shortcuts";
-  cfg = config.${type}.${category};
+  cfg = config.${namespace}.${type}.${category};
 in
 {
-  options.${type} = with types; {
+  options.${namespace}.${type} = with types; {
     ${category} = mkOption {
       description = "Set of shortcuts each window manager has.";
 

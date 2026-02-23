@@ -5,10 +5,11 @@
 }:
 with lib;
 let
+  namespace = "self";
   type = "gui";
   category = "browsers";
   program = "firefox";
-  cfg = config.${type}.${category}.${program};
+  cfg = config.${namespace}.${type}.${category}.${program};
 in
 {
   config = mkIf (cfg.enable && config ? stylix) {

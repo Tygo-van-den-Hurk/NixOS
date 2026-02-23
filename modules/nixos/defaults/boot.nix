@@ -6,15 +6,16 @@
 }:
 with lib;
 let
+  namespace = "self";
   module = "defaults";
   submodule = "boot";
-  cfg = config.${module}.${submodule};
+  cfg = config.${namespace}.${module}.${submodule};
 in
 {
-  options.${module}.${submodule} = with types; {
+  options.${namespace}.${module}.${submodule} = with types; {
     enable = mkOption {
       description = "Whether to this module.";
-      default = config.${module}.enable;
+      default = config.${namespace}.${module}.enable;
       type = bool;
     };
   };

@@ -1,5 +1,6 @@
 { inputs, ... }:
 let
+  namespace = "self";
   module = "defaults";
 in
 {
@@ -10,11 +11,10 @@ in
     }:
     with lib;
     {
-      options.${module} = with types; {
+      options.${namespace}.${module} = with types; {
         enable = mkOption {
           description = "Whether to load the defaults for all systems.";
-          default = true;
-          readOnly = true;
+          default = false;
           type = bool;
         };
       };

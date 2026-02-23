@@ -5,9 +5,10 @@
 }:
 with lib;
 let
+  namespace = "self";
   category = "wm";
   program = "hyprland";
-  cfg = config.${category}.${program};
+  cfg = config.${namespace}.${category}.${program};
 in
 {
   config.wayland.windowManager.${program}.settings = mkIf cfg.enable {
@@ -42,7 +43,7 @@ in
             in
             "${adapter}, ${resolution}, ${position}, ${scale} # ${name}";
       in
-      (mapAttrsToList monitorToString config.${category}.monitors)
+      (mapAttrsToList monitorToString config.${namespace}.${category}.monitors)
       ++ [ ", preferred, auto, 1 # Catch all" ];
   };
 }

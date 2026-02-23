@@ -7,16 +7,17 @@
 }:
 with lib;
 let
+  namespace = "self";
   type = "gui";
   category = "messengers";
   program = "whatsapp";
-  cfg = config.${type}.${category}.${program};
+  cfg = config.${namespace}.${type}.${category}.${program};
 in
 {
-  options.${type}.${category}.${program} = with types; {
+  options.${namespace}.${type}.${category}.${program} = with types; {
     enable = mkOption {
       description = "Whether to enable ${program}'s default config.";
-      default = config.${type}.${category}.enable;
+      default = config.${namespace}.${type}.${category}.enable;
       type = bool;
     };
   };

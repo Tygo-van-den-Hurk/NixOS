@@ -5,10 +5,11 @@
 }:
 with lib;
 let
+  namespace = "self";
   type = "gui";
   category = "browsers";
   program = "firefox";
-  cfg = config.${type}.${category}.${program};
+  cfg = config.${namespace}.${type}.${category}.${program};
 in
 {
   # [See list of policies](https://mozilla.github.io/policy-templates/). Attribute set of (JSON value)

@@ -30,10 +30,7 @@ let
           programs.home-manager.enable = true;
         }
         (CONFIG_PATH + "/home.nix")
-        self.homeModules.cli
-        self.homeModules.gui
-        self.homeModules.styling
-        self.homeModules.wm
+        self.homeModules.all
       ];
 
       extraSpecialArgs = {
@@ -54,7 +51,7 @@ let
     in
     {
       flake.homeConfigurations."${username}@${hostName}" = homeConfiguration;
-      # flake.checks.${system}.${hostName} = homeConfigurations.config.system.build.toplevel;
+      # flake.checks.${system}.${hostName} = homeConfigurations.activationPackage;
     };
 in
 {

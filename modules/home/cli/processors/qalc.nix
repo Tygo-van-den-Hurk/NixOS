@@ -6,16 +6,17 @@
 }:
 with lib;
 let
+  namespace = "self";
   type = "cli";
   category = "processors";
   program = "qalc";
-  cfg = config.${type}.${category}.${program};
+  cfg = config.${namespace}.${type}.${category}.${program};
 in
 {
-  options.${type}.${category}.${program} = with types; {
+  options.${namespace}.${type}.${category}.${program} = with types; {
     enable = mkOption {
       description = "Whether to enable ${program}'s default config.";
-      default = config.${type}.${category}.enable;
+      default = config.${namespace}.${type}.${category}.enable;
       type = bool;
     };
   };
@@ -25,7 +26,7 @@ in
       ${program}_function() {
         ${pkgs.libqalculate}/bin/${program} "$@"
         local status="$?"
-        set +f # enable globing
+        set +f # reenable globing
         return "$status"
       }
     '';
@@ -36,7 +37,7 @@ in
       ${program}_function() {
         ${pkgs.libqalculate}/bin/${program} "$@"
         local status="$?"
-        set +f # enable globing
+        set +f # reenable globing
         return "$status"
       }
     '';
@@ -47,7 +48,7 @@ in
       function ${program}_function
         ${pkgs.libqalculate}/bin/${program} "$@"
         set exit_code $status
-        set +f # enable globing
+        set +f # reenable globing
         return "$exit_code"
       end
     '';

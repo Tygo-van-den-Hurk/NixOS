@@ -6,15 +6,16 @@
 }:
 with lib;
 let
+  namespace = "self";
   module = "defaults";
   submodule = "networking";
-  cfg = config.${module}.${submodule};
+  cfg = config.${namespace}.${module}.${submodule};
 in
 {
-  options.${module}.${submodule} = with types; {
+  options.${namespace}.${module}.${submodule} = with types; {
     enable = mkOption {
       description = "Whether to use the default networking settings.";
-      default = config.${module}.enable;
+      default = config.${namespace}.${module}.enable;
       readOnly = true;
       type = bool;
     };

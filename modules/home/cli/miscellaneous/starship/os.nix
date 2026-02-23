@@ -5,10 +5,11 @@
 }:
 with lib;
 let
+  namespace = "self";
   type = "cli";
   category = "miscellaneous";
   program = "starship";
-  cfg = config.${type}.${category}.${program};
+  cfg = config.${namespace}.${type}.${category}.${program};
 in
 {
   config.programs.${program}.settings."os" = mkIf cfg.enable {
