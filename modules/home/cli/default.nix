@@ -1,5 +1,6 @@
 { inputs, ... }:
 let
+  namespace = "self";
   module = "cli";
 in
 {
@@ -12,10 +13,10 @@ in
     }:
     with lib;
     let
-      cfg = config.${module};
+      cfg = config.${namespace}.${module};
     in
     {
-      options.${module} = with types; {
+      options.${namespace}.${module} = with types; {
         enable = mkOption {
           description = "Whether to enable CLI applications and terminal based tools.";
           default = false;

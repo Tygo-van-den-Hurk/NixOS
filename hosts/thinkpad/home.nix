@@ -7,12 +7,6 @@ let
   inherit (inputs.tygo-van-den-hurk-dotfiles.packages.${system}) preview;
 in
 {
-  cli.enable = true;
-  cli.miscellaneous.zellij.enable = false;
-  gui.enable = true;
-  styling.enable = true;
-  wm.enable = true;
-
   home.username = "tygo";
   home.homeDirectory = "/home/tygo";
   home.stateVersion = "25.05";
@@ -20,7 +14,10 @@ in
     preview
   ];
 
-  wm.monitors."builtin display" = {
+  self.all.enable = true;
+  self.cli.miscellaneous.zellij.enable = false;
+
+  self.wm.monitors."builtin display" = {
     primary = true;
     adapter = "eDP-1";
     refresh-rate = 60;
@@ -30,7 +27,7 @@ in
     position.horizontal = 0;
   };
 
-  wm.monitors."HDMI port" = {
+  self.wm.monitors."HDMI port" = {
     primary = true;
     adapter = "HDMI-1";
     refresh-rate = 60;
@@ -40,7 +37,7 @@ in
     position.horizontal = 0;
   };
 
-  wm.monitors."USB-C" = {
+  self.wm.monitors."USB-C" = {
     primary = true;
     adapter = "DP-1";
     refresh-rate = 60;
@@ -50,6 +47,6 @@ in
 
   # TEMP:
 
-  gui.messengers.thunderbird.enable = false;
+  self.gui.messengers.thunderbird.enable = false;
   programs.rofi.enable = true;
 }

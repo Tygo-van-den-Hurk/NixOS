@@ -1,5 +1,6 @@
 _:
 let
+  namespace = "self";
   module = "nas";
 in
 {
@@ -11,13 +12,13 @@ in
     }:
     with lib;
     let
-      cfg = config.${module};
+      cfg = config.${namespace}.${module};
     in
     {
-      options.${module} = with types; {
+      options.${namespace}.${module} = with types; {
         enable = mkOption {
           description = "Whether to mount my NAS to your system.";
-          default = true;
+          default = false;
           type = bool;
         };
       };
@@ -40,9 +41,14 @@ in
               "noauto"
               "users"
               "user"
-              "uid=${toString config.users.users.${config.defaults.main-user.username}.uid}"
               "gid=0"
-            ];
+            ]
+            ++ (
+              if (config.self.defaults.main-user.enable or false) then
+                [ "uid=${toString config.users.users.${config.self.defaults.main-user.username}.uid}" ]
+              else
+                warn "The setting config.self.defaults.main-user is not enabled." [ ]
+            );
           };
         in
         mkIf cfg.enable {

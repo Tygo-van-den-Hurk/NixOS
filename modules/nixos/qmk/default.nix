@@ -1,5 +1,6 @@
 _:
 let
+  namespace = "self";
   module = "qmk";
 in
 {
@@ -7,14 +8,15 @@ in
     {
       config,
       lib,
+      pkgs,
       ...
     }:
     with lib;
     let
-      cfg = config.${module};
+      cfg = config.${namespace}.${module};
     in
     {
-      options.${module} = with types; {
+      options.${namespace}.${module} = with types; {
         enable = mkOption {
           description = "Whether to make the system capable of flashing QMK firmware.";
           default = false;

@@ -5,17 +5,18 @@
 }:
 with lib;
 let
+  namespace = "self";
   type = "cli";
   category = "version-control";
   program = "git";
   helper = "delta";
-  cfg = config.${type}.${category}.${program}.${helper};
+  cfg = config.${namespace}.${type}.${category}.${program}.${helper};
 in
 {
-  options.${type}.${category}.${program}.${helper} = with types; {
+  options.${namespace}.${type}.${category}.${program}.${helper} = with types; {
     enable = mkOption {
       description = "Whether to enable ${program}'s default config.";
-      default = config.${type}.${category}.enable;
+      default = config.${namespace}.${type}.${category}.enable;
       type = bool;
     };
   };

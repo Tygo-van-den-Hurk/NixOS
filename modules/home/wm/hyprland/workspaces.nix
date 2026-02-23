@@ -5,9 +5,10 @@
 }:
 with lib;
 let
+  namespace = "self";
   category = "wm";
   program = "hyprland";
-  cfg = config.${category}.${program};
+  cfg = config.${namespace}.${category}.${program};
 in
 {
   config.wayland.windowManager.${program}.settings = mkIf cfg.enable {
@@ -27,6 +28,6 @@ in
             in
             "${order}, ${name}, ${primary}, ${persistent}, ${monitor} # ${description}";
       in
-      mapAttrsToList workspaceToString config.${category}.workspaces;
+      mapAttrsToList workspaceToString config.${namespace}.${category}.workspaces;
   };
 }

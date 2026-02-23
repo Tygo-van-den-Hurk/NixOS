@@ -6,11 +6,12 @@
 }:
 with lib;
 let
+  namespace = "self";
   type = "wm";
   category = "shortcuts";
 in
 {
-  config.${type}.${category} = with pkgs; {
+  config.${namespace}.${type}.${category} = with pkgs; {
 
     # open applications
 

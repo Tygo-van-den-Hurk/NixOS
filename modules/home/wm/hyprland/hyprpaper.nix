@@ -5,15 +5,16 @@
 }:
 with lib;
 let
+  namespace = "self";
   type = "wm";
   program = "hyprpaper";
-  cfg = config.${type}.${program};
+  cfg = config.${namespace}.${type}.${program};
 in
 {
-  options.${type}.${program} = with types; {
+  options.${namespace}.${type}.${program} = with types; {
     enable = mkOption {
       description = "Whether to enable ${program}'s default config.";
-      default = config.${type}.hyprland.enable;
+      default = config.${namespace}.${type}.hyprland.enable;
       type = bool;
     };
   };

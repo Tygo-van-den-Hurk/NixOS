@@ -6,17 +6,18 @@
 }:
 with lib;
 let
+  namespace = "self";
   type = "cli";
   category = "file-managers";
   program = "yazi";
   plugin = "git";
-  cfg = config.${type}.${category}.${program}.plugins.${plugin};
+  cfg = config.${namespace}.${type}.${category}.${program}.plugins.${plugin};
 in
 {
-  options.${type}.${category}.${program}.plugins.${plugin} = with types; {
+  options.${namespace}.${type}.${category}.${program}.plugins.${plugin} = with types; {
     enable = mkOption {
       description = "Whether to enable ${program}'s ${plugin} plugin.";
-      default = config.${type}.${category}.${program}.enable && config.programs.git.enable;
+      default = config.${namespace}.${type}.${category}.${program}.enable && config.programs.git.enable;
       type = bool;
     };
   };

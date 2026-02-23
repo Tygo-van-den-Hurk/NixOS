@@ -5,14 +5,15 @@
 }:
 with lib;
 let
+  namespace = "self";
   category = "version-control";
   type = "cli";
 in
 {
-  options.${type}.${category} = with types; {
+  options.${namespace}.${type}.${category} = with types; {
     enable = mkOption {
       description = "Whether to enable ${program}'s default config.";
-      default = config.${type}.enable;
+      default = config.${namespace}.${type}.enable;
       type = bool;
     };
   };

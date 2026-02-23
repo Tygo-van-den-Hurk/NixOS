@@ -1,5 +1,6 @@
 { inputs, ... }:
 let
+  namespace = "self";
   module = "wm";
 in
 {
@@ -10,7 +11,7 @@ in
     }:
     with lib;
     {
-      options.${module} = with types; {
+      options.${namespace}.${module} = with types; {
         enable = mkOption {
           description = "Whether to enabled window managers and their configs";
           default = false;

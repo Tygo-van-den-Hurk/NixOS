@@ -6,19 +6,20 @@
 }:
 with lib;
 let
+  namespace = "self";
   category = "stylix";
   type = "styling";
 in
 {
-  options.${type}.${category} = with types; {
+  options.${namespace}.${type}.${category} = with types; {
     enable = mkOption {
       description = "Whether to enable styling using the ${category} category.";
-      default = config.${type}.enable;
+      default = config.${namespace}.${type}.enable;
       type = bool;
     };
   };
 
-  config.${category} = mkIf config.${type}.${category}.enable {
+  config.${category} = mkIf config.${namespace}.${type}.${category}.enable {
 
     enable = mkDefault true;
     autoEnable = mkDefault true;

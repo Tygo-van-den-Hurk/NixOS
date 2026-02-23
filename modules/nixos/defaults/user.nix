@@ -9,18 +9,19 @@
 }:
 with lib;
 let
+  namespace = "self";
   module = "defaults";
   submodule = "main-user";
-  cfg = config.${module}.${submodule};
+  cfg = config.${namespace}.${module}.${submodule};
 in
 {
 
   imports = [ inputs.home-manager.nixosModules.home-manager ];
 
-  options.${module}.${submodule} = with types; {
+  options.${namespace}.${module}.${submodule} = with types; {
     enable = mkOption {
       description = "Whether to enable the main user (me).";
-      default = config.${module}.enable;
+      default = config.${namespace}.${module}.enable;
       readOnly = true;
       type = bool;
     };
@@ -40,39 +41,41 @@ in
     };
   };
 
-  config.users.mutableUsers = mkDefault false;
+  config.users = mkIf cfg.enable {
+    mutableUsers = mkDefault false;
 
-  config.users.users.${cfg.username} = mkIf cfg.enable {
-    uid = mkDefault 1000;
-    description = mkDefault cfg.description;
-    home = mkDefault "/home/${cfg.username}";
+    users.${cfg.username} = {
+      uid = mkDefault 1000;
+      description = mkDefault cfg.description;
+      home = mkDefault "/home/${cfg.username}";
 
-    enable = mkDefault true;
-    isNormalUser = mkDefault true;
-    createHome = mkDefault true;
-    linger = mkDefault true;
+      enable = mkDefault true;
+      isNormalUser = mkDefault true;
+      createHome = mkDefault true;
+      linger = mkDefault true;
 
-    hashedPasswordFile =
-      mkDefault
-        config.sops.secrets."hosts/${config.networking.hostName}/password".path;
+      hashedPasswordFile =
+        mkDefault
+          config.sops.secrets."hosts/${config.networking.hostName}/password".path;
 
-    extraGroups = [
-      "wheel" # sudo
-      "networkmanager" # NetworkManager control
-      "adm" # read system logs
-      "input" # raw input devices
-      "uinput" # virtual input devices
-      "dialout" # serial devices (USB, Arduino, etc.)
-      "video" # GPU / video devices
-      "audio" # sound devices
-      "camera" # webcam access (if present on your system)
-      "lp" # printers
-      "scanner" # scanners
-    ];
+      extraGroups = [
+        "wheel" # sudo
+        "networkmanager" # NetworkManager control
+        "adm" # read system logs
+        "input" # raw input devices
+        "uinput" # virtual input devices
+        "dialout" # serial devices (USB, Arduino, etc.)
+        "video" # GPU / video devices
+        "audio" # sound devices
+        "camera" # webcam access (if present on your system)
+        "lp" # printers
+        "scanner" # scanners
+      ];
 
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHvSu8xkYJQX2br3EHxNADY7byEzRAXlc+Z8X+vbwuRd tygo@thinkpad"
-    ];
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHvSu8xkYJQX2br3EHxNADY7byEzRAXlc+Z8X+vbwuRd tygo@thinkpad"
+      ];
+    };
   };
 
   config.home-manager = mkIf cfg.enable {
@@ -87,10 +90,7 @@ in
       { ... }:
       {
         imports = [
-          inputs.self.homeModules.cli
-          inputs.self.homeModules.gui
-          inputs.self.homeModules.styling
-          inputs.self.homeModules.wm
+          inputs.self.homeModules.all
           (CONFIG_PATH + "/home.nix")
         ];
       };

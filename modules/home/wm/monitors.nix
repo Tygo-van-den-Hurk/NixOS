@@ -5,12 +5,13 @@
 }:
 with lib;
 let
+  namespace = "self";
   type = "wm";
   category = "monitors";
-  cfg = config.${type}.${category};
+  cfg = config.${namespace}.${type}.${category};
 in
 {
-  options.${type} = with types; {
+  options.${namespace}.${type} = with types; {
     ${category} = mkOption {
       description = "Set of monitors this system has.";
       default = { };

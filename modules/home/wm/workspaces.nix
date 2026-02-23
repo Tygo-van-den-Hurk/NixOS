@@ -5,12 +5,13 @@
 }:
 with lib;
 let
+  namespace = "self";
   type = "wm";
   category = "workspaces";
-  cfg = config.${type}.${category};
+  cfg = config.${namespace}.${type}.${category};
 in
 {
-  options.${type} = with types; {
+  options.${namespace}.${type} = with types; {
     ${category} = mkOption {
       description = "The workspaces a window-manager should have";
 
@@ -29,34 +30,35 @@ in
         submodule (
           { name, ... }:
           {
+            options = {
 
-            options.enable = mkOption {
-              description = "Adapter name to place this monitor relative to.";
-              default = true;
-              example = false;
-              type = bool;
+              enable = mkOption {
+                description = "Adapter name to place this monitor relative to.";
+                default = true;
+                example = false;
+                type = bool;
+              };
+
+              name = mkOption {
+                description = "The name this workspace will have when displayed some where.";
+                example = "Terminal";
+                default = name;
+                type = str;
+              };
+
+              order = mkOption {
+                description = "The order in which they should appear in respect to each other.";
+                example = 1;
+                type = int;
+              };
+
+              display = mkOption {
+                description = "The name of the adapter this workspace will be displayed onto.";
+                example = "eDP-1";
+                default = null;
+                type = nullOr str;
+              };
             };
-
-            options.name = mkOption {
-              description = "The name this workspace will have when displayed some where.";
-              example = "Terminal";
-              default = name;
-              type = str;
-            };
-
-            options.order = mkOption {
-              description = "The order in which they should appear in respect to each other.";
-              example = 1;
-              type = int;
-            };
-
-            options.display = mkOption {
-              description = "The name of the adapter this workspace will be displayed onto.";
-              example = "eDP-1";
-              default = null;
-              type = nullOr str;
-            };
-
           }
         )
       );
