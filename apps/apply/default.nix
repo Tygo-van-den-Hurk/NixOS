@@ -26,17 +26,19 @@ _: {
 
           runHook postInstall
         '';
-        
+
         fixupPhase = ''
           runHook preFixup
 
           patchShebangs $out/bin/${name}
-          wrapProgram $out/bin/${name} --set PATH ${lib.makeBinPath [
-            inputs'.home-manager.packages.home-manager
-            nixos-rebuild
-            busybox
-            nix
-          ]}
+          wrapProgram $out/bin/${name} --set PATH ${
+            lib.makeBinPath [
+              inputs'.home-manager.packages.home-manager
+              nixos-rebuild
+              busybox
+              nix
+            ]
+          }
 
           runHook postFixup
         '';
