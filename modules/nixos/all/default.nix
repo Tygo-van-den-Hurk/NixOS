@@ -25,12 +25,14 @@ in
 
       config.${namespace} = mkIf cfg.enable {
         defaults.enable = mkDefault true;
+        gaming.enable = mkDefault true;
         nas.enable = mkDefault true;
         qmk.enable = mkDefault true;
       };
 
       imports = with inputs.self.nixosModules; [
         defaults
+        gaming
         nas
         qmk
       ];
