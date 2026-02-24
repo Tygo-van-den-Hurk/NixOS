@@ -9,6 +9,7 @@ with lib;
   ];
 
   self.all.enable = true;
+  self.impermanence.bootDeviceID = "3AF8-8F1E";
 
   #! This value determines the NixOS release from which the default
   #! settings for stateful data, like file locations and database versions
