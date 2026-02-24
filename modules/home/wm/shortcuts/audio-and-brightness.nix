@@ -106,7 +106,7 @@ in
       key = "XF86MonBrightnessUp";
 
       action.hyprland = "exec, ${getExe (
-        writeShellScriptBin "decrease-brightness-hyprland" ''
+        writeShellScriptBin "increase-brightness-hyprland" ''
           brightnessctl set +5%
         ''
       )}";
