@@ -29,7 +29,7 @@ in
     "screenshot-entire-screen" = {
       key = "3";
       shift = true;
-      super = true;
+      control = true;
 
       action.hyprland = "exec, ${
         getExe (
@@ -52,7 +52,7 @@ in
     "screenshot-select-section" = {
       key = "4";
       shift = true;
-      super = true;
+      control = true;
 
       action.hyprland = "exec, ${
         getExe (
@@ -76,7 +76,6 @@ in
       key = "5";
       shift = true;
       control = true;
-      super = true;
 
       action.hyprland = "exec, ${
         getExe (
