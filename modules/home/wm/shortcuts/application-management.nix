@@ -79,14 +79,6 @@ in
       control = true;
       key = "q";
       action.i3 = "[class=__focused__] kill";
-      action.hyprland = "killactive";
-    };
-
-    "closing a window of an application" = {
-      control = true;
-      shift = true;
-      key = "q";
-      action.i3 = "kill";
       action.hyprland = "exec, ${
         getExe (
           writeShellScriptBin "close-all-windows" /* SHELL */ ''
@@ -98,6 +90,14 @@ in
           ''
         )
       }";
+    };
+
+    "closing a window of an application" = {
+      control = true;
+      shift = true;
+      key = "q";
+      action.i3 = "kill";
+      action.hyprland = "killactive";
     };
 
     "toggle full screen" = {
