@@ -26,6 +26,7 @@ in
       config.${namespace} = mkIf cfg.enable {
         defaults.enable = mkDefault true;
         gaming.enable = mkDefault true;
+        gui.enable = mkDefault true;
         impermanence.enable = mkDefault true;
         nas.enable = mkDefault true;
         qmk.enable = mkDefault true;
@@ -34,6 +35,7 @@ in
       imports = with inputs.self.nixosModules; [
         defaults
         gaming
+        gui
         impermanence
         nas
         qmk
