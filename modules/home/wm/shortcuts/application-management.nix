@@ -87,7 +87,17 @@ in
       shift = true;
       key = "q";
       action.i3 = "kill";
-      action.hyprland = "killactive";
+      action.hyprland = "exec, ${
+        getExe (
+          writeShellScriptBin "close-all-windows" /* SHELL */ ''
+            class=$(hyprctl activewindow -j | jq -r .class)
+            hyprctl clients -j | jq -r ".[] | select(.class==\"$class\") | .address" | \
+            while read addr; do
+              hyprctl dispatch closewindow address:$addr
+            done
+          ''
+        )
+      }";
     };
 
     "toggle full screen" = {
