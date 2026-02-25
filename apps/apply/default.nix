@@ -31,7 +31,7 @@ _: {
           runHook preFixup
 
           patchShebangs $out/bin/${name}
-          wrapProgram $out/bin/${name} --set PATH ${
+          wrapProgram $out/bin/${name} --prefix PATH : ${
             lib.makeBinPath [
               inputs'.home-manager.packages.home-manager
               nixos-rebuild
