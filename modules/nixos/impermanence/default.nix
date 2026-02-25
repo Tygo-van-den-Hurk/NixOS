@@ -105,7 +105,7 @@ in
             btrfs subvolume delete "$1"
           }
 
-          for i in $(find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +${cfg.deleteAfterDays}); do
+          for i in $(find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +${toString cfg.deleteAfterDays}); do
             delete_subvolume_recursively "$i"
           done
 
