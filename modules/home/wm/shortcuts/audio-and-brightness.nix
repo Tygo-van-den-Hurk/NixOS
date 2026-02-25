@@ -25,6 +25,8 @@ in
 
       action.hyprland = "exec, ${getExe (
         writeShellScriptBin "increase-volume-hyprland" ''
+          exec > >(systemd-cat -t increase-volume-hyprland) 2>&1
+
           current_volume="$(pactl get-sink-volume "@DEFAULT_SINK@" | grep -oP '\d+%' | head -1 | tr -d '%')"
 
           new_volume=$((current_volume + 5))
@@ -39,6 +41,8 @@ in
 
       action.i3 = "exec --no-startup-id ${getExe (
         writeShellScriptBin "increase-volume-i3" ''
+          exec > >(systemd-cat -t increase-volume-i3) 2>&1
+
           current_volume="$(pactl get-sink-volume "@DEFAULT_SINK@" | grep -oP '\d+%' | head -1 | tr -d '%')"
 
           new_volume=$((current_volume + 5))
@@ -57,12 +61,14 @@ in
 
       action.hyprland = "exec, ${getExe (
         writeShellScriptBin "decrease-volume-hyprland" ''
+          exec > >(systemd-cat -t decrease-volume-hyprland) 2>&1
           pactl set-sink-volume "@DEFAULT_SINK@" -5%
         ''
       )}";
 
       action.i3 = "exec --no-startup-id ${getExe (
         writeShellScriptBin "decrease-volume-i3" ''
+          exec > >(systemd-cat -t decrease-volume-i3) 2>&1
           pactl set-sink-volume "@DEFAULT_SINK@" -5%
         ''
       )}";
@@ -72,13 +78,15 @@ in
       key = "XF86AudioMute";
 
       action.hyprland = "exec, ${getExe (
-        writeShellScriptBin "toggle-mute-volume-i3" ''
+        writeShellScriptBin "toggle-mute-volume-hyprland" ''
+          exec > >(systemd-cat -t toggle-mute-volume-hyprland) 2>&1
           pactl set-sink-mute "@DEFAULT_SINK@" toggle
         ''
       )}";
 
       action.i3 = "exec --no-startup-id ${getExe (
         writeShellScriptBin "toggle-mute-volume-i3" ''
+          exec > >(systemd-cat -t toggle-mute-volume-i3) 2>&1
           pactl set-sink-mute "@DEFAULT_SINK@" toggle
         ''
       )}";
@@ -88,13 +96,15 @@ in
       key = "XF86AudioMicMute";
 
       action.hyprland = "exec, ${getExe (
-        writeShellScriptBin "toggle-mute-volume-i3" ''
+        writeShellScriptBin "toggle-mute-microphone-hyprland" ''
+          exec > >(systemd-cat -t toggle-mute-microphone-hyprland) 2>&1
           pactl set-sink-mute "@DEFAULT_SINK@" toggle
         ''
       )}";
 
       action.i3 = "exec --no-startup-id ${getExe (
         writeShellScriptBin "toggle-mute-microphone-i3" ''
+          exec > >(systemd-cat -t toggle-mute-microphone-i3) 2>&1
           pactl set-sink-mute "@DEFAULT_SOURCE@" toggle
         ''
       )}";
@@ -107,12 +117,14 @@ in
 
       action.hyprland = "exec, ${getExe (
         writeShellScriptBin "increase-brightness-hyprland" ''
+          exec > >(systemd-cat -t increase-brightness-hyprland) 2>&1
           brightnessctl set +5%
         ''
       )}";
 
       action.i3 = "exec --no-startup-id ${getExe (
         writeShellScriptBin "increase-brightness-i3" ''
+          exec > >(systemd-cat -t increase-brightness-i3) 2>&1
           brightnessctl set +5%
         ''
       )}";
@@ -123,12 +135,14 @@ in
 
       action.hyprland = "exec, ${getExe (
         writeShellScriptBin "decrease-brightness-hyprland" ''
+          exec > >(systemd-cat -t decrease-brightness-hyprland) 2>&1
           brightnessctl set 5%-
         ''
       )}";
 
       action.i3 = "exec --no-startup-id ${getExe (
         writeShellScriptBin "decrease-brightness-i3" ''
+          exec > >(systemd-cat -t decrease-brightness-i3) 2>&1
           brightnessctl set 5%-
         ''
       )}";

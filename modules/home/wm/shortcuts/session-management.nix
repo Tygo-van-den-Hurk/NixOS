@@ -50,6 +50,7 @@ in
       action.hyprland = "exit"; # TODO: add confirmation box
       action.i3 = "exec ${getExe (
         writeShellScriptBin "log-out-confirm-i3" ''
+            exec > >(systemd-cat -t log-out-confirm-i3) 2>&1
           ${i3}/bin/i3-nagbar -t warning \
             -m 'Are you sure you want to log out?' \
             -B 'confirm' '${i3}/bin/i3-msg exit'
