@@ -22,6 +22,9 @@ in
       # TODO: fill in for hyprland. Find equivalent program.
       action.hyprland = "exec, ${getExe (
         writeShellScriptBin "spotlight-hyprland" ''
+          exec > >(systemd-cat -t spotlight-hyprland) 2>&1
+
+          echo "ERROR: no such program installed yet.."
           exit 1
         ''
       )}";
@@ -29,6 +32,8 @@ in
       # TODO: grab font size from i3 config: `--font '$fontFamily-$fontSize'`
       action.i3 = "exec ${getExe (
         writeShellScriptBin "spotlight-i3" ''
+          exec > >(systemd-cat -t spotlight-i3) 2>&1
+
           ${dmenu-rs-enable-plugins}/bin/dmenu_run --fast \
             --fn '-${config.stylix.fonts.serif.name or "OpenDyslexicM Nerd Font Mono"}-9' \
             -nf '#${config.stylix.base16Scheme.base05 or "8f8f8f"}' \
@@ -49,11 +54,13 @@ in
       action.hyprland = "exec, ${
         getExe (
           writeShellScriptBin "open-new-terminal-hyprland" /* SHELL */ ''
+            exec > >(systemd-cat -t open-new-terminal-hyprland) 2>&1
+
             if [ -z "$TERMINAL" ]; then
-              exec "$TERMINAL"
-            else
-              echo "the TERMINAL env var is not defined."
+              echo "ERROR: the TERMINAL env var is not defined."
               exit 1
+            else
+              exec "$TERMINAL"
             fi
           ''
         )
@@ -62,11 +69,13 @@ in
       action.i3 = "exec ${
         getExe (
           writeShellScriptBin "open-new-terminal-i3" /* SHELL */ ''
+            exec > >(systemd-cat -t open-new-terminal-i3) 2>&1
+
             if [ -z "$TERMINAL" ]; then
-              exec "$TERMINAL"
-            else
-              echo "the TERMINAL env var is not defined."
+              echo "ERROR: the TERMINAL env var is not defined."
               exit 1
+            else
+              exec "$TERMINAL"
             fi
           ''
         )
@@ -81,7 +90,9 @@ in
       action.i3 = "[class=__focused__] kill";
       action.hyprland = "exec, ${
         getExe (
-          writeShellScriptBin "close-all-windows" /* SHELL */ ''
+          writeShellScriptBin "close-all-windows-hyprland" /* SHELL */ ''
+            exec > >(systemd-cat -t close-all-windows-hyprland) 2>&1
+
             class=$(hyprctl activewindow -j | jq -r .class)
             hyprctl clients -j | jq -r ".[] | select(.class==\"$class\") | .address" | \
             while read addr; do
