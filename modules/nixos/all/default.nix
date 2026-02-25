@@ -30,6 +30,7 @@ in
         impermanence.enable = mkDefault true;
         nas.enable = mkDefault true;
         qmk.enable = mkDefault true;
+        ssh.enable = mkDefault true;
       };
 
       imports = with inputs.self.nixosModules; [
@@ -39,6 +40,7 @@ in
         impermanence
         nas
         qmk
+        ssh
       ];
     };
 }

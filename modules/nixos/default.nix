@@ -9,5 +9,6 @@
     ./impermanence
     ./nas
     ./qmk
+    ./ssh
   ];
 }

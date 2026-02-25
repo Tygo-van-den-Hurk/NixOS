@@ -31,7 +31,7 @@ in
           wayland.enable = mkDefault true;
           autoNumlock = mkDefault true;
           theme = mkDefault "sddm-astronaut-theme";
-          extraPackages= [
+          extraPackages = [
             (pkgs.fetchFromGitHub {
               owner = "Keyitdev";
               repo = "sddm-astronaut-theme";
