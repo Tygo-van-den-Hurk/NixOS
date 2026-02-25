@@ -11,6 +11,7 @@ with inputs.nixpkgs.lib;
       exclude ? null, # no file to exclude
       extension ? ".nix", # the file extension
       extra ? [ ], # extra imports to include outside of this directory.
+      transform ? (value: value), # transforms a file using this function
     }:
 
     assert isPath base;
@@ -28,5 +29,5 @@ with inputs.nixpkgs.lib;
       filterFn = file: (isNotExclude file) && (hasExtension file);
       result = filter filterFn files;
     in
-    result ++ extra;
+    builtins.map transform (result ++ extra);
 }
