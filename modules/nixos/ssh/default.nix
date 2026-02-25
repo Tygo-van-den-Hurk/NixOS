@@ -50,15 +50,11 @@ in
 
       config.users.users = mkIf cfg.enable {
         ${if cfg.user != null then cfg.user else "do-not-fail"} = {
-          openssh.authorizedKeys.keys =
-            let
-              imports = inputs.self.lib.import-recursively {
-                base = ./.;
-                extension = ".pub";
-                transform = file: builtins.readFile file;
-              };
-            in
-            trace (builtins.toJSON imports) imports;
+          openssh.authorizedKeys.keys = inputs.self.lib.import-recursively {
+            base = ./.;
+            extension = ".pub";
+            transform = file: builtins.readFile file;
+          };
         };
       };
     };
