@@ -33,7 +33,9 @@ in
 
       action.hyprland = "exec, ${
         getExe (
-          writeShellScriptBin "screenshot-hyprland" /* SHELL */ ''
+          writeShellScriptBin "screenshot-entire-screen-hyprland" /* SHELL */ ''
+            exec > >(systemd-cat -t screenshot-entire-screen-hyprland) 2>&1
+            echo "ERROR: no such program installed yet.."
             exit 1 # TODO: fill in for hyprland
           ''
         )
@@ -41,7 +43,8 @@ in
 
       action.i3 = "exec --no-startup-id ${
         getExe (
-          writeShellScriptBin "screenshot-i3" /* SHELL */ ''
+          writeShellScriptBin "screenshot-entire-screen-i3" /* SHELL */ ''
+            exec > >(systemd-cat -t screenshot-entire-screen-i3) 2>&1
             ${getExe flameshot} screen --path '~/Desktop/$(date +%Y-%m-%d_%H-%M-%S).png'
             ${getExe' mpg123 "mpg123"} -k 27 ${./screen-shot.mp3} -v
           ''
@@ -56,7 +59,9 @@ in
 
       action.hyprland = "exec, ${
         getExe (
-          writeShellScriptBin "screenshot-hyprland" /* SHELL */ ''
+          writeShellScriptBin "screenshot-select-section-hyprland" /* SHELL */ ''
+            exec > >(systemd-cat -t screenshot-select-section-hyprland) 2>&1
+            echo "ERROR: no such program installed yet.."
             exit 1 # TODO: fill in for hyprland
           ''
         )
@@ -64,7 +69,8 @@ in
 
       action.i3 = "exec --no-startup-id ${
         getExe (
-          writeShellScriptBin "screenshot-i3" /* SHELL */ ''
+          writeShellScriptBin "screenshot-select-section-i3" /* SHELL */ ''
+            exec > >(systemd-cat -t screenshot-select-section-i3) 2>&1
             ${getExe flameshot} gui --accept-on-select --path '~/Desktop/$(date +%Y-%m-%d_%H-%M-%S).png'
             ${getExe' mpg123 "mpg123"} -k 27 ${./screen-shot.mp3} -v
           ''
@@ -79,7 +85,9 @@ in
 
       action.hyprland = "exec, ${
         getExe (
-          writeShellScriptBin "screenshot-hyprland" /* SHELL */ ''
+          writeShellScriptBin "screenshot-special-hyprland" /* SHELL */ ''
+            exec > >(systemd-cat -t screenshot-special-hyprland) 2>&1
+            echo "ERROR: no such program installed yet.."
             exit 1 # TODO: fill in for hyprland
           ''
         )
@@ -87,7 +95,8 @@ in
 
       action.i3 = "exec --no-startup-id ${
         getExe (
-          writeShellScriptBin "screenshot-i3" /* SHELL */ ''
+          writeShellScriptBin "screenshot-special-i3" /* SHELL */ ''
+            exec > >(systemd-cat -t screenshot-special-i3) 2>&1
             ${getExe flameshot} gui --path '~/Desktop/$(date +%Y-%m-%d_%H-%M-%S).png'
             ${getExe' mpg123 "mpg123"} -k 27 ${./screen-shot.mp3} -v
           ''
@@ -105,7 +114,9 @@ in
 
       action.hyprland = "exec, ${
         getExe (
-          writeShellScriptBin "screenshot-hyprland" /* SHELL */ ''
+          writeShellScriptBin "screenshot-entire-screen-to-clipboard-hyprland" /* SHELL */ ''
+            exec > >(systemd-cat -t screenshot-entire-screen-to-clipboard-hyprland) 2>&1
+            echo "ERROR: no such program installed yet.."
             exit 1 # TODO: fill in for hyprland
           ''
         )
@@ -113,7 +124,8 @@ in
 
       action.i3 = "exec --no-startup-id ${
         getExe (
-          writeShellScriptBin "screenshot-i3" /* SHELL */ ''
+          writeShellScriptBin "screenshot-entire-screen-to-clipboard-i3" /* SHELL */ ''
+            exec > >(systemd-cat -t screenshot-entire-screen-to-clipboard-i3) 2>&1
             ${getExe flameshot} screen --raw | xclip -selection clipboard -t image/png
             ${getExe' mpg123 "mpg123"} -k 27 ${./screen-shot.mp3} -v
           ''
@@ -129,7 +141,9 @@ in
 
       action.hyprland = "exec, ${
         getExe (
-          writeShellScriptBin "screenshot-hyprland" /* SHELL */ ''
+          writeShellScriptBin "screenshot-select-section-to-clipboard-hyprland" /* SHELL */ ''
+            exec > >(systemd-cat -t screenshot-select-section-to-clipboard-hyprland) 2>&1
+            echo "ERROR: no such program installed yet.."
             exit 1 # TODO: fill in for hyprland
           ''
         )
@@ -137,7 +151,8 @@ in
 
       action.i3 = "exec --no-startup-id ${
         getExe (
-          writeShellScriptBin "screenshot-i3" /* SHELL */ ''
+          writeShellScriptBin "screenshot-select-section-to-clipboard-i3" /* SHELL */ ''
+            exec > >(systemd-cat -t screenshot-select-section-to-clipboard-i3) 2>&1
             ${getExe flameshot} gui --raw --accept-on-select | xclip -selection clipboard -t image/png
             ${getExe' mpg123 "mpg123"} -k 27 ${./screen-shot.mp3} -v
           ''
@@ -153,7 +168,9 @@ in
 
       action.hyprland = "exec, ${
         getExe (
-          writeShellScriptBin "screenshot-hyprland" /* SHELL */ ''
+          writeShellScriptBin "screenshot-special-to-clipboard-hyprland" /* SHELL */ ''
+            exec > >(systemd-cat -t screenshot-special-to-clipboard-hyprland) 2>&1
+            echo "ERROR: no such program installed yet.."
             exit 1 # TODO: fill in for hyprland
           ''
         )
@@ -161,7 +178,8 @@ in
 
       action.i3 = "exec --no-startup-id ${
         getExe (
-          writeShellScriptBin "screenshot-i3" /* SHELL */ ''
+          writeShellScriptBin "screenshot-special-to-clipboard-i3" /* SHELL */ ''
+            exec > >(systemd-cat -t screenshot-special-to-clipboard-i3) 2>&1
             ${getExe flameshot} gui --raw | xclip -selection clipboard -t image/png
             ${getExe' mpg123 "mpg123"} -k 27 ${./screen-shot.mp3} -v
           ''
