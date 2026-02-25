@@ -75,6 +75,8 @@ in
   };
 
   config.home-manager = mkIf cfg.enable {
+    backupFileExtension = "backup";
+
     extraSpecialArgs = {
       inherit CONFIG_PATH;
       inherit inputs;
