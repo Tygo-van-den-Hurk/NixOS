@@ -26,6 +26,7 @@ in
 
       config = mkIf cfg.enable {
         programs.hyprland.enable = mkDefault true;
+        security.pam.services.hyprlock.enable = mkDefault true;
         services.displayManager.sddm = {
           enable = mkDefault true;
           wayland.enable = mkDefault true;
