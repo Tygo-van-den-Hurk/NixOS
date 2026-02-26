@@ -52,6 +52,8 @@ function print_help() {
   echo "                        '--quiet' flag. Will exit with failure if combined.     "
   echo "      --                Stop parsing arguments and pass all further arguments   "
   echo "                        to the respective rebuild function instead.             "
+  echo "  -c, --command         The subcommand to run. Defaults to 'switch' allows you  "
+  echo "                        instead of switch for example only 'test' the new one.  "
   echo "      --update          Update the flake.lock file before rebuilding. Be aware: "
   echo "                        this tool does not commit those changes. Also only works"
   echo "                        if flake path is not provided as we assume to update the"
@@ -63,6 +65,7 @@ function print_help() {
 username="$(whoami)"
 hostname="$(hostname)"
 flake_path="$(pwd)"
+command="switch"
 nixos="0"
 home_manager="0"
 verbose="0"
@@ -102,6 +105,11 @@ while [[ $# -gt 0 ]]; do
     ;;
   -v | --verbose)
     verbose=1
+    shift
+    ;;
+  -c | --command)
+    shift
+    command="$1"
     shift
     ;;
   --update)
@@ -193,7 +201,7 @@ function rebuild_nixos_config() {
 
   local configuration="$flake_path#\"$hostname\""
   echo "Switching to NixOS configuration: $(color blue "$configuration")"
-  exec sudo nixos-rebuild "${extra_args[@]}" switch --flake "$configuration" "${pass_through_arguments[@]}"
+  exec sudo nixos-rebuild "${extra_args[@]}" "$command" --flake "$configuration" "${pass_through_arguments[@]}"
 }
 
 function rebuild_home-manager_config() {
@@ -203,7 +211,7 @@ function rebuild_home-manager_config() {
 
   local configuration="$flake_path#\"$username@$hostname\""
   echo "Switching to Home Manager configuration: $(color blue "$configuration")"
-  exec home-manager switch --flake "$configuration" "${pass_through_arguments[@]}"
+  exec home-manager "$command" --flake "$configuration" "${pass_through_arguments[@]}"
 }
 
 # update the flake if no invalid arguments were provided.
