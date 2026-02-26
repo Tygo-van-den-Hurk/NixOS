@@ -21,8 +21,16 @@ in
 
   config.wayland.windowManager.${program} = mkIf cfg.enable {
     enable = mkDefault true;
-    settings = {
-
+    settings.env = [ "XCURSOR_SIZE, 24" ];
+    settings.gesture = [ "4, horizontal, workspace" ];
+    settings.input = {
+      follow_mouse = mkDefault 1;
+      sensitivity = mkDefault 0;
+      touchpad = {
+        natural_scroll = mkDefault true;
+        clickfinger_behavior = mkDefault false;
+        tap-to-click = mkDefault true;
+      };
     };
   };
 }
