@@ -17,7 +17,8 @@ _x_apply_script_completions() {
   local home_manager="-M --home-manager"
   local nixos="-N --nixos"
   local update="-u --update"
-  local opts="$help $verbose $quiet $hostname $username $flake_path $home_manager $nixos $update --"
+  local command="-c --command"
+  local opts="$help $verbose $quiet $hostname $username $flake_path $home_manager $nixos $update $command --"
   mapfile -t COMPREPLY < <(compgen -W "$opts" -- "$cur")
   return 0
 }
