@@ -1,6 +1,11 @@
 _: {
   perSystem =
-    { pkgs, config, ... }:
+    {
+      pkgs,
+      config,
+      self',
+      ...
+    }:
     let
       pure = true;
 
@@ -10,6 +15,9 @@ _: {
         act # Run your GitHub Actions locally
         git # Distributed version control system
         sops # encrypt and decrypt secrets conveniently.
+        (writeShellScriptBin "apply" /* SHELL */ ''
+          ${self'.apps.apply.program} # change configuration conveniently
+        '')
       ];
 
       buildInputs = packages ++ formatters ++ hooks;
