@@ -50,7 +50,7 @@ in
 
     "open a new terminal" = {
       super = true;
-      key = "Enter";
+      key = "Return";
       action.hyprland = "exec, ${
         getExe (
           writeShellScriptBin "open-new-terminal-hyprland" /* SHELL */ ''
