@@ -48,7 +48,7 @@ in
                     in
                     "${audio}|${brightness}";
 
-                  misc = "Escape|Enter|Tab|Space";
+                  misc = "Escape|Return|Tab|Space";
                 in
                 strMatching "^(${functionKeys}|${letters}|${numbers}|${movement}|${special}|${misc})$";
             };
