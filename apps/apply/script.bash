@@ -199,7 +199,7 @@ function rebuild_nixos_config() {
     extra_args+=(--quiet)
   fi
 
-  local configuration="$flake_path#\"$hostname\""
+  local configuration="$flake_path#$hostname"
   echo "Switching to NixOS configuration: $(color blue "$configuration")"
   exec sudo nixos-rebuild "${extra_args[@]}" "$command" --flake "$configuration" "${pass_through_arguments[@]}"
 }
