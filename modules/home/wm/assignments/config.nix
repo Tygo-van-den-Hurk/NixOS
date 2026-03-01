@@ -23,6 +23,7 @@ in
     # Code/File editors
     FileEditor.workspace = "Code";
     code = FileEditor;
+    VSCodium = FileEditor;
     obsidian = FileEditor;
     kate = FileEditor;
     gimp = FileEditor;
