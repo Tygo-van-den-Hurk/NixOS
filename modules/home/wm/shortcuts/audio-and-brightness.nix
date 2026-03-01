@@ -27,7 +27,7 @@ in
         writeShellScriptBin "increase-volume-hyprland" ''
           exec > >(systemd-cat -t increase-volume-hyprland) 2>&1
 
-          current_volume="$(pactl get-sink-volume "@DEFAULT_SINK@" | grep -oP '\d+%' | head -1 | tr -d '%')"
+          current_volume="$(${pulseaudioFull}/bin/pactl get-sink-volume "@DEFAULT_SINK@" | grep -oP '\d+%' | head -1 | tr -d '%')"
 
           new_volume=$((current_volume + 5))
 
@@ -35,7 +35,7 @@ in
             new_volume=100
           fi
 
-          pactl set-sink-volume "@DEFAULT_SINK@" "''${new_volume}%"
+          ${pulseaudioFull}/bin/pactl set-sink-volume "@DEFAULT_SINK@" "''${new_volume}%"
         ''
       )}";
 
@@ -43,7 +43,7 @@ in
         writeShellScriptBin "increase-volume-i3" ''
           exec > >(systemd-cat -t increase-volume-i3) 2>&1
 
-          current_volume="$(pactl get-sink-volume "@DEFAULT_SINK@" | grep -oP '\d+%' | head -1 | tr -d '%')"
+          current_volume="$(${pulseaudioFull}/bin/pactl get-sink-volume "@DEFAULT_SINK@" | grep -oP '\d+%' | head -1 | tr -d '%')"
 
           new_volume=$((current_volume + 5))
 
@@ -51,7 +51,7 @@ in
             new_volume=100
           fi
 
-          pactl set-sink-volume "@DEFAULT_SINK@" "''${new_volume}%"
+          ${pulseaudioFull}/bin/pactl set-sink-volume "@DEFAULT_SINK@" "''${new_volume}%"
         ''
       )}";
     };
@@ -62,14 +62,14 @@ in
       action.hyprland = "exec, ${getExe (
         writeShellScriptBin "decrease-volume-hyprland" ''
           exec > >(systemd-cat -t decrease-volume-hyprland) 2>&1
-          pactl set-sink-volume "@DEFAULT_SINK@" -5%
+          ${pulseaudioFull}/bin/pactl set-sink-volume "@DEFAULT_SINK@" -5%
         ''
       )}";
 
       action.i3 = "exec --no-startup-id ${getExe (
         writeShellScriptBin "decrease-volume-i3" ''
           exec > >(systemd-cat -t decrease-volume-i3) 2>&1
-          pactl set-sink-volume "@DEFAULT_SINK@" -5%
+          ${pulseaudioFull}/bin/pactl set-sink-volume "@DEFAULT_SINK@" -5%
         ''
       )}";
     };
@@ -80,14 +80,14 @@ in
       action.hyprland = "exec, ${getExe (
         writeShellScriptBin "toggle-mute-volume-hyprland" ''
           exec > >(systemd-cat -t toggle-mute-volume-hyprland) 2>&1
-          pactl set-sink-mute "@DEFAULT_SINK@" toggle
+          ${pulseaudioFull}/bin/pactl set-sink-mute "@DEFAULT_SINK@" toggle
         ''
       )}";
 
       action.i3 = "exec --no-startup-id ${getExe (
         writeShellScriptBin "toggle-mute-volume-i3" ''
           exec > >(systemd-cat -t toggle-mute-volume-i3) 2>&1
-          pactl set-sink-mute "@DEFAULT_SINK@" toggle
+          ${pulseaudioFull}/bin/pactl set-sink-mute "@DEFAULT_SINK@" toggle
         ''
       )}";
     };
@@ -98,14 +98,14 @@ in
       action.hyprland = "exec, ${getExe (
         writeShellScriptBin "toggle-mute-microphone-hyprland" ''
           exec > >(systemd-cat -t toggle-mute-microphone-hyprland) 2>&1
-          pactl set-sink-mute "@DEFAULT_SINK@" toggle
+          ${pulseaudioFull}/bin/pactl set-sink-mute "@DEFAULT_SINK@" toggle
         ''
       )}";
 
       action.i3 = "exec --no-startup-id ${getExe (
         writeShellScriptBin "toggle-mute-microphone-i3" ''
           exec > >(systemd-cat -t toggle-mute-microphone-i3) 2>&1
-          pactl set-sink-mute "@DEFAULT_SOURCE@" toggle
+          ${pulseaudioFull}/bin/pactl set-sink-mute "@DEFAULT_SOURCE@" toggle
         ''
       )}";
     };
