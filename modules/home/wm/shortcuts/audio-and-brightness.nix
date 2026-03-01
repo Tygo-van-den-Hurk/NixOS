@@ -118,14 +118,14 @@ in
       action.hyprland = "exec, ${getExe (
         writeShellScriptBin "increase-brightness-hyprland" ''
           exec > >(systemd-cat -t increase-brightness-hyprland) 2>&1
-          brightnessctl set +5%
+          ${getExe pkgs.brightnessctl} set +5%
         ''
       )}";
 
       action.i3 = "exec --no-startup-id ${getExe (
         writeShellScriptBin "increase-brightness-i3" ''
           exec > >(systemd-cat -t increase-brightness-i3) 2>&1
-          brightnessctl set +5%
+          ${getExe pkgs.brightnessctl} set +5%
         ''
       )}";
     };
@@ -136,14 +136,14 @@ in
       action.hyprland = "exec, ${getExe (
         writeShellScriptBin "decrease-brightness-hyprland" ''
           exec > >(systemd-cat -t decrease-brightness-hyprland) 2>&1
-          brightnessctl set 5%-
+          ${getExe pkgs.brightnessctl} set 5%-
         ''
       )}";
 
       action.i3 = "exec --no-startup-id ${getExe (
         writeShellScriptBin "decrease-brightness-i3" ''
           exec > >(systemd-cat -t decrease-brightness-i3) 2>&1
-          brightnessctl set 5%-
+          ${getExe pkgs.brightnessctl} set 5%-
         ''
       )}";
     };
