@@ -84,14 +84,12 @@ in
         }) amountOfWorkspaces
       );
 
-      result = moveWindowToWorkspace
+      result =
+        moveWindowToWorkspace
         // moveFocusToWorkspace
         // moveFocusToWorkspaceUsingSnowflake
         // moveWindowToWorkspaceUsingSnowflake;
 
     in
-      if amountOfWorkspaces > 10 then
-        throw "Snowflake can only handle up to 10 workspaces."
-      else 
-        result;
+    if amountOfWorkspaces > 10 then throw "Snowflake can only handle up to 10 workspaces." else result;
 }
