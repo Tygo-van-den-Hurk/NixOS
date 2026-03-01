@@ -7,6 +7,7 @@ in
   flake.nixosModules.${module} =
     {
       config,
+      META,
       lib,
       ...
     }:
@@ -41,14 +42,9 @@ in
               "noauto"
               "users"
               "user"
+              "uid=${toString config.users.users.${META.user.username}.uid}"
               "gid=0"
-            ]
-            ++ (
-              if (config.self.defaults.main-user.enable or false) then
-                [ "uid=${toString config.users.users.${config.self.defaults.main-user.username}.uid}" ]
-              else
-                warn "The setting config.self.defaults.main-user is not enabled." [ ]
-            );
+            ];
           };
         in
         mkIf cfg.enable {

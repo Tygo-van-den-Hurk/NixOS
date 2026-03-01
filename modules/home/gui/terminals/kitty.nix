@@ -2,7 +2,7 @@
   pkgs,
   lib,
   config,
-  system,
+  META,
   ...
 }:
 with lib;
@@ -40,7 +40,7 @@ in
     };
 
     keybindings =
-      if (hasSuffix "linux" system) then
+      if (hasSuffix "linux" META.system) then
         {
           "ctrl+c" = mkDefault "copy_or_interrupt";
           "super+c" = mkDefault "signal_child SIGINT";

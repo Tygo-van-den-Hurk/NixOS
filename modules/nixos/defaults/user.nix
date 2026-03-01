@@ -1,9 +1,8 @@
 {
   CONFIG_PATH,
   inputs,
-  hostName,
-  system,
   config,
+  META,
   lib,
   ...
 }:
@@ -25,29 +24,15 @@ in
       readOnly = true;
       type = bool;
     };
-
-    username = mkOption {
-      description = "The username of the main user (me).";
-      default = "tygo";
-      readOnly = true;
-      type = str;
-    };
-
-    description = mkOption {
-      description = "The description of the main user (me).";
-      default = "Tygo van den Hurk";
-      readOnly = true;
-      type = str;
-    };
   };
 
   config.users = mkIf cfg.enable {
     mutableUsers = mkDefault false;
 
-    users.${cfg.username} = {
+    users.${META.user.username} = {
       uid = mkDefault 1000;
-      description = mkDefault cfg.description;
-      home = mkDefault "/home/${cfg.username}";
+      description = mkDefault META.user.description;
+      home = mkDefault "/home/${META.user.username}";
 
       enable = mkDefault true;
       isNormalUser = mkDefault true;
@@ -80,11 +65,10 @@ in
     extraSpecialArgs = {
       inherit CONFIG_PATH;
       inherit inputs;
-      inherit hostName;
-      inherit system;
+      inherit META;
     };
 
-    users.${cfg.username} =
+    users.${META.user.username} =
       { ... }:
       {
         imports = [

@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  hostName,
+  META,
   ...
 }:
 with lib;
@@ -22,7 +22,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    networking.hostName = mkDefault hostName;
+    networking.hostName = mkDefault META.hostName;
     networking.networkmanager.enable = mkDefault true;
     networking.firewall.enable = mkDefault true; # do not change as it is for all machines.
     networking.firewall.allowedTCPPorts = mkDefault [ ]; # do not change as it is for all machines.

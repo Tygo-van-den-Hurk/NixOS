@@ -19,9 +19,7 @@ let
   mkSystem =
     directory:
     let
-      info = import "${curDir}/${directory}/info.nix";
-      inherit (info) hostName;
-      inherit (info) system;
+      META = import "${curDir}/${directory}/meta.nix";
       CONFIG_PATH = curDir + "/${directory}";
 
       modules = [
@@ -31,20 +29,19 @@ let
 
       specialArgs = {
         inherit CONFIG_PATH;
-        inherit hostName;
         inherit inputs;
-        inherit system;
+        inherit META;
       };
 
       nixosSystem = lib.nixosSystem {
+        inherit (META) system;
         inherit specialArgs;
         inherit modules;
-        inherit system;
       };
     in
     {
-      flake.nixosConfigurations.${hostName} = nixosSystem;
-      flake.checks.${system}.${hostName} = nixosSystem.config.system.build.toplevel;
+      flake.nixosConfigurations.${META.hostName} = nixosSystem;
+      flake.checks.${META.system}.${META.hostName} = nixosSystem.config.system.build.toplevel;
     };
 in
 {

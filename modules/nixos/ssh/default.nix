@@ -8,6 +8,7 @@ in
     {
       inputs,
       config,
+      META,
       lib,
       ...
     }:
@@ -22,18 +23,6 @@ in
           default = false;
           type = bool;
         };
-
-        user = mkOption {
-          description = "The user you're allowed to log in as";
-          default = config.${namespace}.defaults.main-user.username or null;
-          type = nullOr str;
-          apply =
-            value:
-            if value == null && cfg.enable then
-              throw "Please set the '${namespace}.${module}.user' option, or enable the default user module."
-            else
-              value;
-        };
       };
 
       config.services.openssh = mkIf cfg.enable {
@@ -44,12 +33,12 @@ in
           PasswordAuthentication = mkDefault false;
           StrictModes = mkDefault true;
           UsePAM = mkDefault true;
-          AllowUsers = [ cfg.user ];
+          AllowUsers = [ META.user.username ];
         };
       };
 
       config.users.users = mkIf cfg.enable {
-        ${if cfg.user != null then cfg.user else "do-not-fail"} = {
+        ${META.user.username} = {
           openssh.authorizedKeys.keys = inputs.self.lib.import-recursively {
             base = ./.;
             extension = ".pub";

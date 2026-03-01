@@ -2,7 +2,7 @@
   pkgs,
   lib,
   config,
-  system,
+  META,
   ...
 }:
 with lib;
@@ -25,7 +25,7 @@ in
   config.home = mkIf cfg.enable {
     packages = with pkgs; [
       (
-        if hasSuffix "linux" system then
+        if hasSuffix "linux" META.system then
           wasistlos # used to be: whatsapp-for-linux
         else
           whatsapp-for-mac # might have moved?

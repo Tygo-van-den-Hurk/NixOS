@@ -18,30 +18,32 @@ let
   mkConfig =
     directory:
     let
-      info = import "${curDir}/${directory}/info.nix";
-      inherit (info) hostName;
-      inherit (info) system;
-      inherit (info) username;
-
+      META = import "${curDir}/${directory}/meta.nix";
       CONFIG_PATH = curDir + "/${directory}";
 
       modules = [
-        {
-          programs.home-manager.enable = true;
-        }
         (CONFIG_PATH + "/home.nix")
         self.homeModules.all
+        (
+          { lib, ... }:
+          with lib;
+          {
+            config = {
+              programs.home-manager.enable = mkDefault true;
+              home.username = mkDefault META.user.username;
+              home.homeDirectory = mkDefault "/home/${META.user.username}";
+            };
+          }
+        )
       ];
 
       extraSpecialArgs = {
         inherit CONFIG_PATH;
-        inherit hostName;
-        inherit username;
         inherit inputs;
-        inherit system;
+        inherit META;
       };
 
-      pkgs = import inputs.nixpkgs { inherit system; };
+      pkgs = import inputs.nixpkgs { inherit (META) system; };
 
       homeConfiguration = inputs.home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
@@ -50,7 +52,7 @@ let
       };
     in
     {
-      flake.homeConfigurations."${username}@${hostName}" = homeConfiguration;
+      flake.homeConfigurations."${META.user.username}@${META.hostName}" = homeConfiguration;
       # flake.checks.${system}.${hostName} = homeConfigurations.activationPackage;
     };
 in

@@ -1,14 +1,12 @@
 {
   inputs,
-  system,
+  META,
   ...
 }:
 let
-  inherit (inputs.tygo-van-den-hurk-dotfiles.packages.${system}) preview;
+  inherit (inputs.tygo-van-den-hurk-dotfiles.packages.${META.system}) preview;
 in
 {
-  home.username = "tygo";
-  home.homeDirectory = "/home/tygo";
   home.stateVersion = "25.05";
   home.packages = [
     preview
