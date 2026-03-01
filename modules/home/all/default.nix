@@ -28,6 +28,7 @@ in
         gui.enable = mkDefault true;
         styling.enable = mkDefault true;
         wm.enable = mkDefault true;
+        xremap.enable = mkDefault true;
       };
 
       imports = with inputs.self.homeModules; [
@@ -35,6 +36,7 @@ in
         gui
         styling
         wm
+        xremap
       ];
     };
 }

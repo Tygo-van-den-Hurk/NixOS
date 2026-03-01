@@ -1,0 +1,152 @@
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ BEGIN xREMAP CONFIGURATION FILE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# Generated from: '.../NixOS/modules/home/xremap/config.yml' at 'services.xremap.yamlConfig'.
+# Do not edit this YAML file, it is read only, edit the configuration mentioned above. 
+# Read https://github.com/xremap/xremap/blob/master/README.md for more information.
+#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Remapping modifiers ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#
+# this part will remap windows/linux modifiers to function like mac modifiers. 
+# This is what the keys and their function are on respective platforms:
+#
+#   +---------+---------------+------------------------+------------+-----------------------+-------+--------+
+#   : OS      : Left most Key : Left most key function : Middle Key : Middle key function   : R_Key : R_func :
+#   +---------+---------------+------------------------+------------+-----------------------+-------+--------+
+#   : Windows : CTRL          : MAIN modifier          :  WINDOWS   : THIRD level modifier  :  ALT  :  SEC   :
+#   +---------+---------------+------------------------+------------+-----------------------+-------+--------+
+#   : Linux   : CTRL          : MAIN modifier          :  SUPER     : THIRD level modifier  :  ALT  :  SEC   :
+#   +---------+---------------+------------------------+------------+-----------------------+-------+--------+
+#   : MacOS   : CTRL          : THIRD level modifier   :  ALT       : SECOND level modifier :  CMD  :  MAIN  :
+#   +---------+---------------+------------------------+------------+-----------------------+-------+--------+
+#
+# This means that the following conclusion can be made:
+#   - LINUX/WIN CTRL  needs to be swapped with LINUX/WIN ALT respectively.   ( Primary   goes to right  key )
+#   - LINUX/WIN SUPER needs to be swapped with LINUX/WIN CTRL respectively.  ( Tertiary  goes to left   key )
+#   - LINUX/WIN ALT   needs to be swapped with LINUX/WIN SUPER respectively. ( secondary goes to middle key )
+#
+modmap:
+  - name: Global 
+    remap:
+      #| WIN_ALT gets assigned MAC_CMD  (WIN_CTRL) --> ( Primary goes to right most key )
+      ALT_L: 
+        skip_key_event: true
+        held: CONTROL_L
+        alone: [] 
+      ALT_R: 
+        skip_key_event: true
+        held: CONTROL_R
+        alone: []     
+      # WIN_SUPER gets assigned MAC_ALT (WIN_ALT) --> ( Secondary goes to middle key )
+      SUPER_L:            
+        skip_key_event: true
+        held: ALT_L
+        alone: []
+      SUPER_R:            
+        skip_key_event: true
+        held: ALT_R
+        alone: []
+      # WIN_CTRL gets assigned MAC_CTRL (WIN_SUPER) --> ( Thirdairy  goes to left most key )
+      CONTROL_L:    
+        skip_key_event: true
+        held: SUPER_L
+        alone: []   
+      CONTROL_R:
+        skip_key_event: true
+        held: SUPER_R
+        alone: []   
+keymap:
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Default settings, may get overwritten by the settings above ~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#
+#| NAVIGATION
+# There is a hierarchy to this. CMD is the primary modifier, and is therefor at the top of the list. It moves the most.
+# Then there is ALT, secondary on the list, so moves less then CMD. Lets go over them:
+#
+# - MAC_CMD + [ LEFT | RIGHT ] --> Move to the BEGINNING, or END of the LINE respectively. 
+# - MAC_CMD + [ UP   | DOWN  ] --> Move to the BEGINNING, or END of the FILE respectively. 
+#
+# - MAC_ALT + [ LEFT | RIGHT ] --> Move one word LEFT, or RIGHT respectively. 
+# - MAC_ALT + [ UP   | DOWN  ] --> Move to the BEGINNING, or END of the current alinea respectively. 
+#
+# So what are these commands on windows and linux? Well, this is what they map to:
+# 
+# -            [ HOME | END   ] --> Move to the BEGINNING, or END of the LINE respectively. 
+# - WIN_CTRL + [ HOME | END   ] --> Move to the BEGINNING, or END of the FILE respectively. 
+#
+# - WIN_CTRL + [ LEFT | RIGHT ] --> Move one word LEFT, or RIGHT respectively. 
+# - WIN_CTRL + [ UP   | DOWN  ] --> Move to the BEGINNING, or END of the current alinea respectively. 
+#  
+# So that leaves us with this mapping:
+#
+# - MAC_CMD + [ LEFT | RIGHT ] -->            [ HOME | END   ]
+# - MAC_CMD + [ UP   | DOWN  ] --> WIN_CTRL + [ HOME | END   ]
+#
+# - MAC_ALT + [ LEFT | RIGHT ] --> WIN_CTRL + [ LEFT | RIGHT ]
+# - MAC_ALT + [ UP   | DOWN  ] --> WIN_CTRL + [ UP   | DOWN  ]
+#  
+# Resulting in the following remaps:
+#
+  - name: Navigation
+    mode: remapping
+    exact_match: true
+    remap:
+      # Navigation : Primary : MAC_CMD ( WIN_ALT )
+      Ctrl-Left:         [ Home       ]
+      Ctrl-Right:        [ End        ]
+      Ctrl-Up:           [ Ctrl-Home  ]
+      Ctrl-Down:         [ Ctrl-End   ]
+      # Navigation : Secondary : MAC_ALT ( WIN_SUPER )
+      Alt-Left:          [ Ctrl-Left  ]
+      Alt-Right:         [ Ctrl-Right ]
+      Alt-Up:            [ Ctrl-Up    ]
+      Alt-Down:          [ Ctrl-Down  ]
+#
+#| SELECTION
+# Selection is nothing more then the navigation, but you hold shift, selecting the distance you've travelled.
+# They are basically the same but with space added. The conclusion is then also no different:
+#
+  - name: Selection
+    mode: remapping
+    exact_match: true
+    remap:
+      # Selection : Primary   : MAC_CMD  ( WIN_ALT )
+      Ctrl-Shift-Left:   [ Shift-Home       ]
+      Ctrl-Shift-Right:  [ Shift-End        ]
+      Ctrl-Shift-Up:     [ Ctrl-Shift-Home  ]
+      Ctrl-Shift-Down:   [ Ctrl-Shift-End   ]
+      # Selection : Secondary : MAC_ALT  ( WIN_SUPER )
+      Alt-Shift-Left:    [ Ctrl-Shift-Left  ]
+      Alt-Shift-Right:   [ Ctrl-Shift-Right ]
+      Alt-Shift-Up:      [ Ctrl-Shift-Up    ]
+      Alt-Shift-Down:    [ Ctrl-Shift-Down  ]
+#
+#| DELETION
+# When you press the Primary, Secondary pulse backspace, or delete, it should remove the characters that were travel 
+# through. We can use our previously discovered results to to this. Where we add a tiny delay to make sure that it
+# gets deleted after it gets selected, as deleting it in one step is not supported.
+#
+  - name: Deletion
+    exact_match: true
+    mode: remapping
+    remap:
+      # Deletion : Primary : MAC_CMD ( WIN_ALT )
+      Ctrl-BackSpace:    [ Shift-Home, BackSpace ]
+      Ctrl-Delete:       [ Shift-End,  Delete    ]
+      # Deletion : Secondary : MAC_ALT ( WIN_SUPER )
+      Alt-BackSpace:     [ Ctrl-Shift-Left,  BackSpace ]
+      Alt-Delete:        [ Ctrl-Shift-Right, Delete    ]
+#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SWITCHING MODES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# pressing this key combo will disable, or enable the key remapping
+  - name: remapping
+    exact_match: true
+    mode: remapping
+    remap:
+      Ctrl-Alt-Shift-Super-Esc: { set_mode: not-remapping }
+  - name: not-remapping
+    exact_match: true
+    mode: not-remapping
+    remap:
+      Ctrl-Alt-Shift-Super-Esc: { set_mode: remapping }
+# 
+default_mode: remapping
+#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ END xREMAP CONFIGURATION FILE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#

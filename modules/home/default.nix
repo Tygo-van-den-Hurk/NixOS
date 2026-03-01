@@ -8,5 +8,6 @@
     ./gui
     ./styling
     ./wm
+    ./xremap
   ];
 }
