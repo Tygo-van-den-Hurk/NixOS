@@ -30,7 +30,7 @@ in
           apply =
             value:
             if value == null && cfg.enable then
-              throw "Please set the '${namespace}.${module}.user' option, or enable the default module."
+              throw "Please set the '${namespace}.${module}.user' option, or enable the default user module."
             else
               value;
         };
