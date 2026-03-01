@@ -53,6 +53,6 @@ in
   };
 
   config.wayland.windowManager.hyprland.settings = mkIf cfg.enable {
-    exec-once = [ "${config.programs.waybar.package.out} # waybar init" ];
+    exec-once = [ "${getExe config.programs.waybar.package} # waybar init" ];
   };
 }
