@@ -24,12 +24,135 @@ in
     enable = mkDefault true;
     autoEnable = mkDefault true;
     polarity = mkDefault "dark";
-    image = mkDefault (
-      pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/Tygo-van-den-Hurk/dotfiles/e45e03c74a5628975021b85997473a01c0b96b8f/.config/assets/images/wallpapers/default.jpg";
-        hash = "sha256-uXGebVUKcMNcBRduDUdwdYE3wzQSJRXXiWWM91Aavgc=";
-      }
-    );
+
+    image =
+      with pkgs;
+      stdenv.mkDerivation rec {
+        name = "wallpaper.png";
+
+        nativeBuildInputs = [ python312Packages.cairosvg ];
+
+        inherit (config.${category}.base16Scheme) base00;
+        inherit (config.${category}.base16Scheme) base01;
+        inherit (config.${category}.base16Scheme) base02;
+        inherit (config.${category}.base16Scheme) base03;
+        inherit (config.${category}.base16Scheme) base04;
+        inherit (config.${category}.base16Scheme) base05;
+        inherit (config.${category}.base16Scheme) base06;
+        inherit (config.${category}.base16Scheme) base07;
+        inherit (config.${category}.base16Scheme) base08;
+        inherit (config.${category}.base16Scheme) base09;
+        inherit (config.${category}.base16Scheme) base0A;
+        inherit (config.${category}.base16Scheme) base0B;
+        inherit (config.${category}.base16Scheme) base0C;
+        inherit (config.${category}.base16Scheme) base0D;
+        inherit (config.${category}.base16Scheme) base0E;
+        inherit (config.${category}.base16Scheme) base0F;
+
+        # resolution: 4K
+        height = toString (1080 * 2);
+        width = toString (1920 * 2);
+
+        inherit (config.${category}) polarity;
+
+        src = /* XML */ ''
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="-3147.3225303193467 -2992.9837954790196 11119.632365326193 5985.967590958039">
+              <defs>
+                  <linearGradient gradientUnits="userSpaceOnUse" id="linear-gradient-44584babfef90c4cb32c8ee42b1193ba" x1="-319.9999999999999" x2="127.99999999999996" y1="-554.2562584220408" y2="221.70250336881628">
+                    <stop offset="0%" stop-color="$base08" />
+                    <stop offset="25%" stop-color="$base08" />
+                    <stop offset="100%" stop-color="$base08" />
+                  </linearGradient>
+                  <linearGradient gradientUnits="userSpaceOnUse" id="linear-gradient-96af2d924a4fbf5b015c244addc578a8" x1="-319.9999999999999" x2="127.99999999999996" y1="-554.2562584220408" y2="221.70250336881628">
+                    <stop offset="0%" stop-color="$base09" />
+                    <stop offset="25%" stop-color="$base09" />
+                    <stop offset="100%" stop-color="$base09" />
+                  </linearGradient>
+                  <linearGradient gradientUnits="userSpaceOnUse" id="linear-gradient-33ff75d118a188d564af252422e7cc92" x1="-319.9999999999999" x2="127.99999999999996" y1="-554.2562584220408" y2="221.70250336881628">
+                    <stop offset="0%" stop-color="$base0A" />
+                    <stop offset="25%" stop-color="$base0A" />
+                    <stop offset="100%" stop-color="$base0A" />
+                  </linearGradient>
+                  <linearGradient gradientUnits="userSpaceOnUse" id="linear-gradient-2a0b6b52f041088f95dc76196e6b4d88" x1="-319.9999999999999" x2="127.99999999999996" y1="-554.2562584220408" y2="221.70250336881628">
+                    <stop offset="0%" stop-color="$base0B" />
+                    <stop offset="25%" stop-color="$base0B" />
+                    <stop offset="100%" stop-color="$base0B" />
+                  </linearGradient>
+                  <linearGradient gradientUnits="userSpaceOnUse" id="linear-gradient-c6751d2115edfa2506ed6789e247b928" x1="-319.9999999999999" x2="127.99999999999996" y1="-554.2562584220408" y2="221.70250336881628">
+                    <stop offset="0%" stop-color="$base0D" />
+                    <stop offset="25%" stop-color="$base0D" />
+                    <stop offset="100%" stop-color="$base0D" />
+                  </linearGradient>
+                  <linearGradient gradientUnits="userSpaceOnUse" id="linear-gradient-6b2d1737e4a2ebfe17f3769056568c22" x1="-319.9999999999999" x2="127.99999999999996" y1="-554.2562584220408" y2="221.70250336881628">
+                    <stop offset="0%" stop-color="$base0E" />
+                    <stop offset="25%" stop-color="$base0E" />
+                    <stop offset="100%" stop-color="$base0E" />
+                  </linearGradient>
+              </defs>
+              <rect x="-3147.32" y="-3500.98" fill="$background" width="11119.63" height="7085.97"/>
+              <g transform="translate(2403.49 0)">
+                <polygon fill="url(#linear-gradient-44584babfef90c4cb32c8ee42b1193ba)" points="-303.9999999999999 -304.8409421321224 -175.9999999999999 -526.5434455009388 384.00000000000006 443.40500673763256 128.00000000000006 443.40500673763256 -4.072608916703642e-14 221.70250336881628 -128.00000000000023 443.40500673763245 -256.0000000000002 443.40500673763245 -320.0000000000002 332.55375505322434 -128.0 0.0" transform="translate(-319.9999999999999 554.2562584220408) rotate(0 319.9999999999999 -554.2562584220408)"/>
+                <polygon fill="url(#linear-gradient-96af2d924a4fbf5b015c244addc578a8)" points="-303.9999999999999 -304.8409421321224 -175.9999999999999 -526.5434455009388 384.00000000000006 443.40500673763256 128.00000000000006 443.40500673763256 -4.072608916703642e-14 221.70250336881628 -128.00000000000023 443.40500673763245 -256.0000000000002 443.40500673763245 -320.0000000000002 332.55375505322434 -128.0 0.0" transform="translate(-319.9999999999999 554.2562584220408) rotate(60 319.9999999999999 -554.2562584220408)"/>
+                <polygon fill="url(#linear-gradient-33ff75d118a188d564af252422e7cc92)" points="-303.9999999999999 -304.8409421321224 -175.9999999999999 -526.5434455009388 384.00000000000006 443.40500673763256 128.00000000000006 443.40500673763256 -4.072608916703642e-14 221.70250336881628 -128.00000000000023 443.40500673763245 -256.0000000000002 443.40500673763245 -320.0000000000002 332.55375505322434 -128.0 0.0" transform="translate(-319.9999999999999 554.2562584220408) rotate(120 319.9999999999999 -554.2562584220408)"/>
+                <polygon fill="url(#linear-gradient-2a0b6b52f041088f95dc76196e6b4d88)" points="-303.9999999999999 -304.8409421321224 -175.9999999999999 -526.5434455009388 384.00000000000006 443.40500673763256 128.00000000000006 443.40500673763256 -4.072608916703642e-14 221.70250336881628 -128.00000000000023 443.40500673763245 -256.0000000000002 443.40500673763245 -320.0000000000002 332.55375505322434 -128.0 0.0" transform="translate(-319.9999999999999 554.2562584220408) rotate(180 319.9999999999999 -554.2562584220408)"/>
+                <polygon fill="url(#linear-gradient-c6751d2115edfa2506ed6789e247b928)" points="-303.9999999999999 -304.8409421321224 -175.9999999999999 -526.5434455009388 384.00000000000006 443.40500673763256 128.00000000000006 443.40500673763256 -4.072608916703642e-14 221.70250336881628 -128.00000000000023 443.40500673763245 -256.0000000000002 443.40500673763245 -320.0000000000002 332.55375505322434 -128.0 0.0" transform="translate(-319.9999999999999 554.2562584220408) rotate(240 319.9999999999999 -554.2562584220408)"/>
+                <polygon fill="url(#linear-gradient-6b2d1737e4a2ebfe17f3769056568c22)" points="-303.9999999999999 -304.8409421321224 -175.9999999999999 -526.5434455009388 384.00000000000006 443.40500673763256 128.00000000000006 443.40500673763256 -4.072608916703642e-14 221.70250336881628 -128.00000000000023 443.40500673763245 -256.0000000000002 443.40500673763245 -320.0000000000002 332.55375505322434 -128.0 0.0" transform="translate(-319.9999999999999 554.2562584220408) rotate(300 319.9999999999999 -554.2562584220408)"/>
+              </g>
+          </svg>
+        '';
+
+        unpackPhase = ''
+          runHook preUnpack
+          echo "$src" > "$name.svg"
+          runHook postUnpack
+        '';
+
+        patchPhase = ''
+          runHook preBuild
+
+          if [ "$polarity" = "dark" ]; then
+            export background="$base01"
+          elif [ "$polarity" = "light" ]; then
+            export background="$c6d0f5"
+          else
+            echo "expected polarity to be either 'light' or 'dark', but found '$polarity'."
+            exit 1
+          fi
+
+          sed "s/\\\$background/#$background/g" -i "$name.svg"
+
+          sed "s/\\\$base00/#$base00/g" -i "$name.svg"
+          sed "s/\\\$base01/#$base01/g" -i "$name.svg"
+          sed "s/\\\$base02/#$base02/g" -i "$name.svg"
+          sed "s/\\\$base03/#$base03/g" -i "$name.svg"
+          sed "s/\\\$base04/#$base04/g" -i "$name.svg"
+          sed "s/\\\$base05/#$base05/g" -i "$name.svg"
+          sed "s/\\\$base06/#$base06/g" -i "$name.svg"
+          sed "s/\\\$base07/#$base07/g" -i "$name.svg"
+          sed "s/\\\$base08/#$base08/g" -i "$name.svg"
+          sed "s/\\\$base09/#$base09/g" -i "$name.svg"
+          sed "s/\\\$base0A/#$base0A/g" -i "$name.svg"
+          sed "s/\\\$base0B/#$base0B/g" -i "$name.svg"
+          sed "s/\\\$base0C/#$base0C/g" -i "$name.svg"
+          sed "s/\\\$base0D/#$base0D/g" -i "$name.svg"
+          sed "s/\\\$base0E/#$base0E/g" -i "$name.svg"
+          sed "s/\\\$base0F/#$base0F/g" -i "$name.svg"
+
+          runHook postBuild
+        '';
+
+        buildPhase = ''
+          runHook preBuild
+          python3 -m cairosvg "$name.svg" --output "$name" --output-width "$width" --output-height "$height"
+          runHook postBuild
+        '';
+
+        installPhase = ''
+          runHook preInstall
+          cp "$name" "$out"
+          runHook postInstall
+        '';
+      };
 
     base16Scheme = mkDefault {
       base00 = "303446";
