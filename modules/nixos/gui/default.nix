@@ -6,9 +6,9 @@ in
 {
   flake.nixosModules.${module} =
     {
+      inputs,
       config,
       lib,
-      pkgs,
       ...
     }:
     with lib;
@@ -16,6 +16,11 @@ in
       cfg = config.${namespace}.${module};
     in
     {
+      imports = inputs.self.lib.import-recursively {
+        exclude = ./default.nix;
+        base = ./.;
+      };
+
       options.${namespace}.${module} = with types; {
         enable = mkOption {
           description = "Whether create a graphical user interface for the system.";
@@ -27,20 +32,6 @@ in
       config = mkIf cfg.enable {
         programs.hyprland.enable = mkDefault true;
         security.pam.services.hyprlock.enable = mkDefault true;
-        services.displayManager.sddm = {
-          enable = mkDefault true;
-          wayland.enable = mkDefault true;
-          autoNumlock = mkDefault true;
-          theme = mkDefault "sddm-astronaut-theme";
-          extraPackages = [
-            (pkgs.fetchFromGitHub {
-              owner = "Keyitdev";
-              repo = "sddm-astronaut-theme";
-              rev = "d73842c761f7d7859f3bdd80e4360f09180fad41";
-              hash = "sha256-+94WVxOWfVhIEiVNWwnNBRmN+d1kbZCIF10Gjorea9M=";
-            })
-          ];
-        };
       };
     };
 }
