@@ -31,6 +31,8 @@ in
   config.programs.${program} = mkIf cfg.enable {
     enable = mkDefault true;
     style = builtins.readFile ./style.css;
+    systemd.enable = mkDefault true;
+    systemd.target = mkDefault "graphical-session.target";
     settings.mainBar = {
       layer = "top";
       position = "top";
@@ -50,9 +52,5 @@ in
         "battery#bat2"
       ];
     };
-  };
-
-  config.wayland.windowManager.hyprland.settings = mkIf cfg.enable {
-    exec-once = [ "${getExe config.programs.waybar.package} # waybar init" ];
   };
 }
