@@ -1,0 +1,28 @@
+* {
+  color: var(--text-color-main);
+}
+
+window {
+  background-color: var(--background-main);
+  border: 1px solid var(--border-color-main);
+  padding-left: calc(var(--padding) * 2);
+  padding-right: calc(var(--padding) * 2);
+  padding-top: calc(var(--padding) * 2);
+}
+
+entry {
+  background-color: var(--background-secondary);
+}
+
+box.matches {
+  margin-top: calc(var(--padding) * 2);
+}
+
+list row {
+  padding: var(--padding);
+}
+
+list row:selected {
+  background-color: var(--background-selected);
+  color: var(--text-color-selected);
+}

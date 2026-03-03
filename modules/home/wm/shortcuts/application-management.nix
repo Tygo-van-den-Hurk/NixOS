@@ -23,9 +23,7 @@ in
       action.hyprland = "exec, ${getExe (
         writeShellScriptBin "spotlight-hyprland" ''
           exec > >(systemd-cat -t spotlight-hyprland) 2>&1
-
-          echo "ERROR: no such program installed yet.."
-          exit 1
+          ${getExe anyrun}
         ''
       )}";
 
