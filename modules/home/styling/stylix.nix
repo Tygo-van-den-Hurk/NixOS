@@ -32,28 +32,26 @@ in
 
         nativeBuildInputs = [ python312Packages.cairosvg ];
 
-        inherit (config.${category}.base16Scheme) base00;
-        inherit (config.${category}.base16Scheme) base01;
-        inherit (config.${category}.base16Scheme) base02;
-        inherit (config.${category}.base16Scheme) base03;
-        inherit (config.${category}.base16Scheme) base04;
-        inherit (config.${category}.base16Scheme) base05;
-        inherit (config.${category}.base16Scheme) base06;
-        inherit (config.${category}.base16Scheme) base07;
-        inherit (config.${category}.base16Scheme) base08;
-        inherit (config.${category}.base16Scheme) base09;
-        inherit (config.${category}.base16Scheme) base0A;
-        inherit (config.${category}.base16Scheme) base0B;
-        inherit (config.${category}.base16Scheme) base0C;
-        inherit (config.${category}.base16Scheme) base0D;
-        inherit (config.${category}.base16Scheme) base0E;
-        inherit (config.${category}.base16Scheme) base0F;
+        inherit (config.stylix.base16Scheme) base00;
+        inherit (config.stylix.base16Scheme) base01;
+        inherit (config.stylix.base16Scheme) base02;
+        inherit (config.stylix.base16Scheme) base03;
+        inherit (config.stylix.base16Scheme) base04;
+        inherit (config.stylix.base16Scheme) base05;
+        inherit (config.stylix.base16Scheme) base06;
+        inherit (config.stylix.base16Scheme) base07;
+        inherit (config.stylix.base16Scheme) base08;
+        inherit (config.stylix.base16Scheme) base09;
+        inherit (config.stylix.base16Scheme) base0A;
+        inherit (config.stylix.base16Scheme) base0B;
+        inherit (config.stylix.base16Scheme) base0C;
+        inherit (config.stylix.base16Scheme) base0D;
+        inherit (config.stylix.base16Scheme) base0E;
+        inherit (config.stylix.base16Scheme) base0F;
 
         # resolution: 4K
         height = toString (1080 * 2);
         width = toString (1920 * 2);
-
-        inherit (config.${category}) polarity;
 
         src = /* XML */ ''
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="-3147.3225303193467 -2992.9837954790196 11119.632365326193 5985.967590958039">
@@ -89,7 +87,7 @@ in
                     <stop offset="100%" stop-color="$base0E" />
                   </linearGradient>
               </defs>
-              <rect x="-3147.32" y="-3500.98" fill="$background" width="11119.63" height="7085.97"/>
+              <rect x="-3147.32" y="-3500.98" fill="$base01" width="11119.63" height="7085.97"/>
               <g transform="translate(2403.49 0)">
                 <polygon fill="url(#linear-gradient-44584babfef90c4cb32c8ee42b1193ba)" points="-303.9999999999999 -304.8409421321224 -175.9999999999999 -526.5434455009388 384.00000000000006 443.40500673763256 128.00000000000006 443.40500673763256 -4.072608916703642e-14 221.70250336881628 -128.00000000000023 443.40500673763245 -256.0000000000002 443.40500673763245 -320.0000000000002 332.55375505322434 -128.0 0.0" transform="translate(-319.9999999999999 554.2562584220408) rotate(0 319.9999999999999 -554.2562584220408)"/>
                 <polygon fill="url(#linear-gradient-96af2d924a4fbf5b015c244addc578a8)" points="-303.9999999999999 -304.8409421321224 -175.9999999999999 -526.5434455009388 384.00000000000006 443.40500673763256 128.00000000000006 443.40500673763256 -4.072608916703642e-14 221.70250336881628 -128.00000000000023 443.40500673763245 -256.0000000000002 443.40500673763245 -320.0000000000002 332.55375505322434 -128.0 0.0" transform="translate(-319.9999999999999 554.2562584220408) rotate(60 319.9999999999999 -554.2562584220408)"/>
@@ -109,17 +107,6 @@ in
 
         patchPhase = ''
           runHook preBuild
-
-          if [ "$polarity" = "dark" ]; then
-            export background="$base01"
-          elif [ "$polarity" = "light" ]; then
-            export background="$c6d0f5"
-          else
-            echo "expected polarity to be either 'light' or 'dark', but found '$polarity'."
-            exit 1
-          fi
-
-          sed "s/\\\$background/#$background/g" -i "$name.svg"
 
           sed "s/\\\$base00/#$base00/g" -i "$name.svg"
           sed "s/\\\$base01/#$base01/g" -i "$name.svg"
@@ -154,24 +141,45 @@ in
         '';
       };
 
-    base16Scheme = mkDefault {
-      base00 = "303446";
-      base01 = "292c3c";
-      base02 = "414559";
-      base03 = "51576d";
-      base04 = "626880";
-      base05 = "c6d0f5";
-      base06 = "f2d5cf";
-      base07 = "babbf1";
-      base08 = "e78284";
-      base09 = "ef9f76";
-      base0A = "e5c890";
-      base0B = "a6d189";
-      base0C = "81c8be";
-      base0D = "8caaee";
-      base0E = "ca9ee6";
-      base0F = "eebebe";
-    };
+    base16Scheme =
+      if config.stylix.polarity == "dark" then
+        {
+          base00 = "303446";
+          base01 = "292c3c";
+          base02 = "414559";
+          base03 = "51576d";
+          base04 = "626880";
+          base05 = "c6d0f5";
+          base06 = "f2d5cf";
+          base07 = "babbf1";
+          base08 = "e78284";
+          base09 = "ef9f76";
+          base0A = "e5c890";
+          base0B = "a6d189";
+          base0C = "81c8be";
+          base0D = "8caaee";
+          base0E = "ca9ee6";
+          base0F = "eebebe";
+        }
+      else
+        {
+          base00 = "eff1f5";
+          base01 = "e6e9ef";
+          base02 = "dce0e8";
+          base03 = "a5adce";
+          base04 = "bcc0cc";
+          base05 = "4c4f69";
+          base06 = "f2d5cf";
+          base07 = "babbf1";
+          base08 = "dc8a78";
+          base09 = "df8e1d";
+          base0A = "e5c890";
+          base0B = "a6d189";
+          base0C = "81c8be";
+          base0D = "8caaee";
+          base0E = "ca9ee6";
+          base0F = "eebebe";
+        };
 
     fonts =
       with pkgs;
