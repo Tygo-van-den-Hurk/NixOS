@@ -47,6 +47,7 @@ in
     thunderbird = Messenger;
     signal = Messenger;
     whatsapp-for-linux = Messenger;
+    wasistlos = Messenger;
 
     # File browsers
     FileBrowser.workspace = "Files";
