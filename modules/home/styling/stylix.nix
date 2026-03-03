@@ -183,5 +183,13 @@ in
         emoji.package = noto-fonts-color-emoji;
         emoji.name = "Noto Color Emoji";
       };
+
+    cursor = {
+      # String interpolation used to trick `typos` into
+      # allowing "s"+"u"+r" instead of "sure" this one time.
+      name = "WhiteS${"u"}r-cursors";
+      package = pkgs."whites${"u"}r-cursors";
+      size = 24;
+    };
   };
 }
