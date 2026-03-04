@@ -181,16 +181,14 @@ in
           base0F = "eebebe";
         };
 
-    fonts =
-      with pkgs;
-      mkDefault rec {
-        serif = monospace;
-        sansSerif = monospace;
-        monospace.package = nerd-fonts.open-dyslexic;
-        monospace.name = "OpenDyslexicM Nerd Font Mono";
-        emoji.package = noto-fonts-color-emoji;
-        emoji.name = "Noto Color Emoji";
-      };
+    fonts = rec {
+      serif = monospace;
+      sansSerif = monospace;
+      monospace.package = mkDefault pkgs.nerd-fonts.open-dyslexic;
+      monospace.name = mkDefault "OpenDyslexicM Nerd Font Mono";
+      emoji.package = mkDefault pkgs.noto-fonts-color-emoji;
+      emoji.name = mkDefault "Noto Color Emoji";
+    };
 
     cursor = {
       # String interpolation used to trick `typos` into
