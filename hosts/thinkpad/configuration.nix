@@ -41,4 +41,9 @@ with lib;
   system.stateVersion = "25.11"; # Did you read the comment?
 
   boot.loader.grub.devices = [ "nodev" ];
+
+  # Temp:
+
+  hardware.bluetooth.enable = true;
+  security.sudo.wheelNeedsPassword = false;
 }

@@ -1,0 +1,124 @@
+.module {
+  padding: 2px 5px;
+  margin: 0px 15px;
+}
+
+.modules-left > widget:first-child .module {
+  margin: 0px 15px 0px 0px;
+}
+
+/* I like the margin there actually
+.modules-right > widget:last-child .module {
+  margin: 0px 0px 0px 15px;
+}
+*/
+
+/* ~~~~~ Audio ~~~~~ */
+
+#pulseaudio.volume {
+  min-width: 65px;
+}
+
+#pulseaudio.bluetooth { color: var(--base0D); }
+
+#pulseaudio.volume.muted { color: var(--base0A); }
+
+@keyframes microphone-not-muted {
+  0% { color: var(--base0A); }
+  50% { color: inherit }
+  100% { color: var(--base0A); }
+}
+
+#pulseaudio.microphone { 
+  min-width: 15px;
+  animation: microphone-not-muted 2s infinite ease-in-out;
+}
+
+#pulseaudio.microphone.source-muted { 
+  color: inherit;
+  animation: none;
+}
+
+/* ~~~~~ Network ~~~~~ */
+
+#network.disconnected { color: var(--base08); }
+#network.linked { color: var(--base09); }
+#network.disabled { color: var(--base09); }
+
+@keyframes tailwind-connecting {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#custom-tailscale.connecting {
+  animation: tailwind-connecting 0.8s ease-in-out infinite;
+}
+
+/* ~~~~~ Battery ~~~~~ */
+
+@keyframes battery-full-blink {
+  0% { color: var(--base0B); }
+  50% { color: inherit }
+  100% { color: var(--base0B); }
+}
+
+#battery.full.charging {
+  animation: battery-full-blink 1s infinite ease-in-out;
+}
+
+#battery.warning { color: var(--base09); }
+
+@keyframes battery-critical-blink {
+  0% { color: var(--base08); }
+  50% { color: inherit }
+  100% { color: var(--base08); }
+}
+
+#battery.critical { 
+  animation: battery-critical-blink 1s infinite ease-in-out;
+}
+
+#battery.critical.charging,
+#battery.warning.charging { 
+  color: inherit;
+  animation: none;
+}
+
+/* ~~~~~ SystemD ~~~~~ */
+
+#systemd-failed-units, #systemd-failed-units.ok { 
+  color: inherit; 
+}
+
+#systemd-failed-units.degraded {
+  color: var(--base08);
+}
+
+/* ~~~~~ Bluetooth ~~~~~ */
+
+#bluetooth.no-controller,
+#bluetooth.disabled,
+#bluetooth.off {
+  color: var(--base04); 
+}
+
+#bluetooth.on {
+  color: inherit; 
+}
+
+@keyframes bluetooth-blink {
+  0% { color: var(--base0D); }
+  50% { color: inherit }
+  100% { color: var(--base0D); }
+}
+
+#bluetooth.connected {
+  animation: bluetooth-blink 3s infinite ease-in-out;
+}

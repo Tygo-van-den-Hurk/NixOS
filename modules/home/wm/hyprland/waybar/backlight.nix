@@ -11,9 +11,14 @@ let
   cfg = config.${namespace}.${type}.${program};
 in
 {
-  config.programs.${program}.settings.mainBar = mkIf cfg.enable {
-    backlight = {
-      format = "{percent}% {icon}";
+  config.programs.${program}.settings = mkIf cfg.enable {
+
+    mainBar.backlight = {
+      reverse-scrolling = true;
+    };
+
+    mainBar.backlight = {
+      format = "<span size='large'>{icon}</span> {percent}%";
       format-icons = [
         ""
         ""
@@ -25,6 +30,13 @@ in
         ""
         ""
       ];
+    };
+
+    mainBar.backlight = {
+      tooltip = true;
+      tooltip-format = strings.trim ''
+        <b>Brightness</b>: {percent}%
+      '';
     };
   };
 }

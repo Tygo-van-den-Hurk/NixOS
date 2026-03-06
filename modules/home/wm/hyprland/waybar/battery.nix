@@ -11,28 +11,45 @@ let
   cfg = config.${namespace}.${type}.${program};
 in
 {
-  config.programs.${program}.settings.mainBar = mkIf cfg.enable {
-    battery.states = {
-      good = 95;
-      warning = 30;
-      critical = 15;
+  config.programs.${program}.settings = mkIf cfg.enable rec {
+
+    mainBar.battery.states = {
+      full = 100;
+      good = 85;
+      warning = 15;
+      critical = 5;
     };
 
-    battery = {
+    mainBar.battery = {
       format = "{icon} {capacity}%";
       format-full = "{icon} {capacity}%";
-      format-charging = "{capacity}% ";
-      format-plugged = "{capacity}% ";
-      format-alt = "{time} {icon}";
+      format-charging = "󰂄 {capacity}%";
+      format-plugged = "󰂃 {capacity}%";
+      format-alt = "󰂑 {icon}";
       format-icons = [
-        ""
-        ""
-        ""
-        ""
-        ""
+        "󰂎"
+        "󰁺"
+        "󰁻"
+        "󰁼"
+        "󰁽"
+        "󰁾"
+        "󰁿"
+        "󰂀"
+        "󰂁"
+        "󰂂"
+        "󰁹"
       ];
     };
 
-    "battery#bat2".bat = "BAT2";
+    mainBar.battery = {
+      tooltip = true;
+      tooltip-format = strings.trim ''
+        <b>Capacity</b>: {capacity}
+        <b>Power</b>: {power}
+        <b>Time</b>: {timeTo}
+        <b>Cycles</b>: {cycles}
+        <b>Health</b>: {health}
+      '';
+    };
   };
 }
