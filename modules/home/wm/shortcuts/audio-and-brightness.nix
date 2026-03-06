@@ -98,14 +98,14 @@ in
       action.hyprland = "exec, ${getExe (
         writeShellScriptBin "toggle-mute-microphone-hyprland" ''
           exec > >(systemd-cat -t toggle-mute-microphone-hyprland) 2>&1
-          ${pulseaudioFull}/bin/pactl set-sink-mute "@DEFAULT_SINK@" toggle
+          ${pulseaudioFull}/bin/pactl set-source-mute "@DEFAULT_SOURCE@" toggle
         ''
       )}";
 
       action.i3 = "exec --no-startup-id ${getExe (
         writeShellScriptBin "toggle-mute-microphone-i3" ''
           exec > >(systemd-cat -t toggle-mute-microphone-i3) 2>&1
-          ${pulseaudioFull}/bin/pactl set-sink-mute "@DEFAULT_SOURCE@" toggle
+          ${pulseaudioFull}/bin/pactl set-source-mute "@DEFAULT_SOURCE@" toggle
         ''
       )}";
     };
