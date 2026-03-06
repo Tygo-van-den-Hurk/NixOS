@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   pkgs,
   lib,
@@ -57,6 +58,7 @@ in
     extraCss =
       with (config.stylix.base16Scheme or (throw "Stylix woopsy!"));
       let
+        template = builtins.readFile ./style.gtk.css;
         replacements = {
           "var(--background-main)" = "#${base01}";
           "var(--background-secondary)" = "#${base00}";
@@ -66,15 +68,7 @@ in
           "var(--text-color-selected)" = "#${base0D}";
           "var(--padding)" = "10px";
         };
-
-        template = builtins.readFile ./style.gtk.css;
-
-        replaceAttrs =
-          s: attrs:
-          builtins.foldl' (acc: key: builtins.replaceStrings [ "${key}" ] [ attrs.${key} ] acc) s (
-            builtins.attrNames attrs
-          );
       in
-      replaceAttrs template replacements;
+      inputs.self.lib.replaceAttrs template replacements;
   };
 }
