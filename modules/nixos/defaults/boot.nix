@@ -30,14 +30,16 @@ in
       efiSupport = mkDefault true;
       memtest86.enable = mkDefault true;
       devices = [ "nodev" ];
-      backgroundColor = "#${config.home-manager.users.${META.user.username}.stylix.base16Scheme.base01 or "000000"}";
-      
+      backgroundColor = "#${
+        config.home-manager.users.${META.user.username}.stylix.base16Scheme.base01 or "000000"
+      }";
+
       # TODO: make this theme instead a part of the styling module depending on stylix.
       theme = mkDefault (
         with pkgs;
         stdenv.mkDerivation rec {
           name = "elegant-grub2-themes";
-          
+
           image = config.home-manager.users.${META.user.username}.stylix.image or null;
           polarity = config.home-manager.users.${META.user.username}.stylix.polarity or "dark";
 
@@ -57,7 +59,7 @@ in
           base0D = config.home-manager.users.${META.user.username}.stylix.base16Scheme.base0D or "ffffff";
           base0E = config.home-manager.users.${META.user.username}.stylix.base16Scheme.base0E or "FF0000";
           base0F = config.home-manager.users.${META.user.username}.stylix.base16Scheme.base0F or "FF0000";
-                      
+
           screen = "1080p";
 
           src = fetchFromGitHub {
@@ -66,7 +68,7 @@ in
             tag = "2025-03-25";
             hash = "sha256-M9k6R/rUvEpBTSnZ2PMv5piV50rGTBrcmPU4gsS7Byg=";
           };
-          
+
           patchPhase = ''
             runHook prePatch
             patchShebangs .
@@ -94,7 +96,7 @@ in
               cp "$image" "$PWD/out/$image_name"
               sed -i "s|^desktop-image: \".*\"|desktop-image: \"$image_name\"|" "$PWD/out/theme.txt"
             fi
-            
+
             # injecting colors:
             sed -i "s|^color = \".*\"|color = \"#$base05\"|" "$PWD/out/theme.txt"
             sed -i "s|^item_color = \".*\"|item_color = \"#$base05\"|" "$PWD/out/theme.txt"
