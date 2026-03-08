@@ -93,6 +93,13 @@ I have switched to hyprland as my window manager of choice. This is what an empt
   <img src="./assets/images/png/empty-desktop.dark.png" alt="An empty desktop showing the NixOS logo as the wallpaper." width="100%">
 </picture>
 
+and of course with the usual rice:
+
+<picture>
+  <source srcset="./assets/images/png/multiple-windows.light.png" media="(prefers-color-scheme: light)" />
+  <img src="./assets/images/png/multiple-windows.dark.png" alt="The desktop showing with some open terminal windows. a" width="100%">
+</picture>
+
 ### VS Code
 
 I have not looked at Vim yet, so my editor of choice is VS Code, which obviously uses the same [beautiful color scheme](https://catppuccin.com/palette/):
