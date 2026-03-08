@@ -117,5 +117,12 @@ in
       action.i3 = "fullscreen toggle";
     };
 
+    "toggle floating" = {
+      control = true;
+      shift = true;
+      key = "Space";
+      action.hyprland = "togglefloating";
+      action.i3 = "floating toggle";
+    };
   };
 }

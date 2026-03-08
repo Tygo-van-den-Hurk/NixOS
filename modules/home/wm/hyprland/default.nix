@@ -21,8 +21,15 @@ in
 
   config.wayland.windowManager.${program} = mkIf cfg.enable {
     enable = mkDefault true;
+    
     settings.env = [ "XCURSOR_SIZE, 24" ];
     settings.gesture = [ "4, horizontal, workspace" ];
+    
+    settings.bindm = [
+      "SUPER, mouse:272, movewindow"
+      "SUPER, mouse:273, resizewindow"
+    ];
+    
     settings.input = {
       follow_mouse = mkDefault 1;
       sensitivity = mkDefault 0;
