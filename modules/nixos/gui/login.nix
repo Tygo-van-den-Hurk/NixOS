@@ -252,7 +252,7 @@ let
       '';
 
       patchPhase = ''
-        runHook preBuild
+        runHook prePatch
           
         # replace chosen theme into our custom theme.conf
         sed -i "s|^ConfigFile=Themes/.*\\.conf$|ConfigFile=theme.conf|" "$PWD/metadata.desktop"
@@ -280,7 +280,7 @@ let
         sed -i "s/\\\$base0E/#$base0E/g" "theme.conf"
         sed -i "s/\\\$base0F/#$base0F/g" "theme.conf"
 
-        runHook postBuild
+        runHook postPatch
       '';
 
       installPhase = ''
