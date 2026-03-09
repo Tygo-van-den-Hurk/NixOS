@@ -2,6 +2,7 @@
 {
   imports = [
     ./apply
+    ./search-firefox-addon
   ];
 
   perSystem =
