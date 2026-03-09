@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   lib,
   config,
@@ -26,6 +27,12 @@ in
       default = cfg.enable;
       type = bool;
     };
+
+    overlayNixPackages = mkOption {
+      description = "Whether to overlay NixPkgs using someones flake.";
+      default = cfg.enable;
+      type = bool;
+    };
   };
 
   config.programs.${program} = mkIf cfg.enable {
@@ -50,5 +57,9 @@ in
 
   config.home.sessionVariables = mkIf cfg.mkDefault {
     BROWSER = mkDefault (getExe pkgs.${program});
+  };
+
+  config.nixpkgs = mkIf cfg.overlayNixPackages {
+    overlays = [ inputs.nix-firefox-addons.overlays.default ];
   };
 }

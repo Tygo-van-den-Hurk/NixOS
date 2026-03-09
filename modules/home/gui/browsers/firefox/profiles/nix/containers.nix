@@ -9,7 +9,7 @@ let
   type = "gui";
   category = "browsers";
   program = "firefox";
-  profile = "main";
+  profile = "nix";
   cfg = config.${namespace}.${type}.${category}.${program};
 in
 {
@@ -17,39 +17,34 @@ in
     containersForce = mkDefault true;
     containers = rec {
 
-      personal = {
-        name = "Personal";
-        color = "purple";
+      Personal = {
+        color = "blue";
         icon = "circle";
         id = 0;
       };
 
-      school = {
-        name = "School";
+      School = {
         color = "purple";
         icon = "circle";
-        id = personal.id + 1;
+        id = Personal.id + 1;
       };
 
-      work = {
-        name = "Work";
+      Work = {
         color = "green";
         icon = "circle";
-        id = school.id + 1;
+        id = School.id + 1;
       };
 
-      sketchy = {
-        name = "Sketchy";
+      Sketchy = {
         color = "red";
         icon = "circle";
-        id = work.id + 1;
+        id = Work.id + 1;
       };
 
-      traceable = {
-        name = "Traceable";
+      Traceable = {
         color = "toolbar";
         icon = "circle";
-        id = sketchy.id + 1;
+        id = Sketchy.id + 1;
       };
     };
   };
