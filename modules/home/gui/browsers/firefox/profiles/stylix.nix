@@ -15,7 +15,7 @@ in
   config = mkIf (cfg.enable && config ? stylix && config.stylix.enable) {
     stylix.targets.firefox = {
       colorTheme.enable = mkDefault true;
-      profileNames = ["nix"];
+      profileNames = [ "nix" ];
     };
   };
 }

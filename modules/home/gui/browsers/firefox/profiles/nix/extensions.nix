@@ -20,10 +20,10 @@ in
     packages = with pkgs.firefoxAddons; [
       sponsorblock
       darkreader
-      ublock-origin # uBlock origin 
+      ublock-origin # uBlock origin
       decentraleyes # Decentraleyes
       privacy-badger17 # Privacy Badger
-      # youtube-recommended-videos # Unhook: Remove YouTube Recommended Videos Comments  
+      # youtube-recommended-videos # Unhook: Remove YouTube Recommended Videos Comments
       bitwarden-password-manager # Bitwarden
       tomato-clock # Tomato Clock - A Simple Pomodoro Timer
       chrome-mask # Chrome Mask - Makes Firefox wear a mask to look like Chrome to websites that block Firefox otherwise.
@@ -34,7 +34,7 @@ in
       # <name>.force	Forcibly override any existing configuration for this extension. 	boolean
       # <name>.settings	Json formatted options for the specified extensionID	attribute set of (JSON value)
 
-      # uBlock origin 
+      # uBlock origin
       "uBlock0@raymondhill.net" = {
         force = true;
         settings = {
@@ -60,7 +60,7 @@ in
         settings = { };
       };
 
-      # Unhook: Remove YouTube Recommended Videos Comments  
+      # Unhook: Remove YouTube Recommended Videos Comments
       "myallychou@gmail.com" = {
         force = true;
         settings = { };
