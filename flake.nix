@@ -28,6 +28,11 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
+  inputs.nix-firefox-addons = {
+    url = "github:osipog/nix-firefox-addons";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Home Manager ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
   # Home Manager (Declaratively create dot files)
