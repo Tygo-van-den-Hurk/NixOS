@@ -37,7 +37,7 @@ in
   config.programs.bash = mkIf cfg.enable {
     initExtra = ''
       function zathura() {
-        command zathura "$@" &
+        nohup ${config.programs.zathura.package} "$@" &> /dev/null &
       }
     '';
   };
@@ -45,7 +45,7 @@ in
   config.programs.zsh = mkIf cfg.enable {
     initExtra = ''
       zathura() {
-        command zathura "$@" &
+        nohup ${config.programs.zathura.package} "$@" &> /dev/null &
       }
     '';
   };
@@ -53,7 +53,7 @@ in
   config.programs.fish = mkIf cfg.enable {
     interactiveShellInit = ''
       function zathura
-        command zathura $argv &
+        nohup ${config.programs.zathura.package} $argv > /dev/null 2>&1 &
       end
     '';
   };
