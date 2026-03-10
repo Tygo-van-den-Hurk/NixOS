@@ -17,34 +17,39 @@ in
     containersForce = mkDefault true;
     containers = rec {
 
-      Personal = {
+      container-01 = {
+        name = "Personal";
         color = "blue";
         icon = "circle";
-        id = 0;
+        id = 1; # do not start at 0 or it will be invisible.
       };
 
-      School = {
+      container-02 = {
+        name = "School";
         color = "purple";
         icon = "circle";
-        id = Personal.id + 1;
+        id = container-01.id + 1;
       };
 
-      Work = {
+      container-03 = {
+        name = "Work";
         color = "green";
         icon = "circle";
-        id = School.id + 1;
+        id = container-02.id + 1;
       };
 
-      Sketchy = {
+      container-04 = {
+        name = "Sketchy";
         color = "red";
         icon = "circle";
-        id = Work.id + 1;
+        id = container-03.id + 1;
       };
 
-      Traceable = {
+      container-05 = {
+        name = "Traceable";
         color = "toolbar";
         icon = "circle";
-        id = Sketchy.id + 1;
+        id = container-04.id + 1;
       };
     };
   };
