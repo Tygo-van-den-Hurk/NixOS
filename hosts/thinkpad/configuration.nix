@@ -9,6 +9,7 @@ with lib;
   ];
 
   self.defaults.enable = true;
+  self.docker.enable = true;
   self.gaming.enable = true;
   self.nas.enable = true;
   self.qmk.enable = true;

@@ -25,6 +25,7 @@ in
 
       config.${namespace} = mkIf cfg.enable {
         defaults.enable = mkDefault true;
+        docker.enable = mkDefault true;
         gaming.enable = mkDefault true;
         gui.enable = mkDefault true;
         impermanence.enable = mkDefault true;
@@ -35,6 +36,7 @@ in
 
       imports = with inputs.self.nixosModules; [
         defaults
+        docker
         gaming
         gui
         impermanence
