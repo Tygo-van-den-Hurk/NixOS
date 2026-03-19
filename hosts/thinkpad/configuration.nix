@@ -16,16 +16,6 @@ with lib;
   self.ssh.enable = true;
   self.gui.enable = true;
 
-  # Extra code that was present at the generation of the config.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
   # services.fprintd = {
   #   enable = true;
   #   package = pkgs.fprintd-tod;

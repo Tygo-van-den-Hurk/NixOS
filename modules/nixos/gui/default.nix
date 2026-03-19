@@ -32,6 +32,13 @@ in
       config = mkIf cfg.enable {
         programs.hyprland.enable = mkDefault true;
         security.pam.services.hyprlock.enable = mkDefault true;
+        services.pulseaudio.enable = mkDefault false;
+        services.pipewire = {
+          enable = mkDefault true;
+          alsa.enable = mkDefault true;
+          alsa.support32Bit = mkDefault true;
+          pulse.enable = mkDefault true;
+        };
       };
     };
 }
