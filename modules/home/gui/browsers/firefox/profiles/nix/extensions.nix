@@ -36,6 +36,7 @@ in
       skip-netflix-intro # Skip Netflix Intro
       skip-prime-video-intro # Skip Amazon Prime Intro
       multi-account-containers # Firefox Multi-Account Containers
+      ruffle_rs # Ruffle.rs: Adobe Flash
     ];
 
     settings = {
@@ -143,6 +144,12 @@ in
       # Firefox Multi-Account Containers
       "@testpilot-containers" = {
         force = false; # FALSE!!!!
+        settings = { };
+      };
+
+      # Ruffle.rs: Adobe Flash
+      "{b5501fd1-7084-45c5-9aa6-567c2fcf5dc6}" = {
+        force = true;
         settings = { };
       };
     };
