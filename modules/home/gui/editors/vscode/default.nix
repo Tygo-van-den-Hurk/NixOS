@@ -42,8 +42,9 @@ in
   };
 
   config.programs.${program} = mkIf cfg.enable {
-    inherit (cfg) enable;
-    inherit (cfg) package;
+    enable = mkDefault true;
+    package = mkDefault cfg.package;
+    mutableExtensionsDir = mkDefault false;
   };
 
   config.home = mkIf cfg.mkDefault rec {
