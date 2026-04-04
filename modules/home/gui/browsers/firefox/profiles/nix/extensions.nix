@@ -23,7 +23,7 @@ in
       ublock-origin # uBlock origin
       decentraleyes # Decentraleyes
       privacy-badger17 # Privacy Badger
-      # youtube-recommended-videos # Unhook: Remove YouTube Recommended Videos Comments
+      youtube-recommended-videos # Unhook: Remove YouTube Recommended Videos Comments
       bitwarden-password-manager # Bitwarden
       tomato-clock # Tomato Clock - A Simple Pomodoro Timer
       chrome-mask # Chrome Mask - Makes Firefox wear a mask to look like Chrome to websites that block Firefox otherwise.
@@ -153,5 +153,11 @@ in
         settings = { };
       };
     };
+  };
+
+  config.self.unfree = mkIf cfg.enable {
+    packageAllowList = [
+      "youtube-recommended-videos"
+    ];
   };
 }

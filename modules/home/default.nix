@@ -7,6 +7,7 @@
     ./cli
     ./gui
     ./styling
+    ./unfree
     ./wm
     ./xremap
   ];

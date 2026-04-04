@@ -21,12 +21,10 @@ in
     };
   };
 
-  config.nixpkgs.config = mkIf cfg.enable {
-    allowUnfreePredicate =
-      pkg:
-      builtins.elem (lib.getName pkg) [
-        "discord"
-      ];
+  config.self.unfree = mkIf cfg.enable {
+    packageAllowList = [
+      "discord"
+    ];
   };
 
   config.home = mkIf cfg.enable {
