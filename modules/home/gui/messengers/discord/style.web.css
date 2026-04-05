@@ -1,0 +1,97 @@
+/**
+ * @name Stylix
+ * @description an automatically generated base16 theme based on the stylix specification.
+ * @author Tygo van den Hurk
+ * @version 1.0.0
+ * @website https://github.com/Tygo-van-den-Hurk/NixOS
+ * @authorLink https://tygo.van.den.hurk.dev/
+ */ 
+/*
+ * import theme modules from GitHub. Since discord updates all the time anyways, and does not allow
+ * sticking with a certain version, it seems like a better idea to not to freeze the style sheet.
+ * Otherwise it might slowly break over time.
+ */
+@import url('https://refact0r.github.io/midnight-discord/build/midnight.css');
+
+:root /* Theme Configuration */ {
+    --colors: on; /* off: discord default colors, on: midnight custom colors */
+
+    /* background and dark colors */
+    --bg-1: var(--base00) !important;
+    --bg-2: var(--base01) !important;
+    --bg-3: var(--base01) !important;
+    --bg-4: var(--base01) !important;
+
+    /* text colors */
+    --text-0: var(--bg-4); /* text on colored elements */
+    --text-1: color-mix(in srgb, var(--text-3) 40%, white) !important;
+    --text-2: color-mix(in srgb, var(--text-3) 70%, white) !important;
+    --text-3: var(--base05) !important;
+    --text-4: color-mix(in srgb, var(--text-3) 70%, black) !important;
+    --text-5: color-mix(in srgb, var(--text-3) 40%, black) !important;
+
+    /* base colors */
+    --red-1: color-mix(in srgb, var(--red-3) 40%, white) !important;
+    --red-2: color-mix(in srgb, var(--red-3) 70%, white) !important;
+    --red-3: var(--base08) !important;
+    --red-4: color-mix(in srgb, var(--red-3) 70%, black) !important;
+    --red-5: color-mix(in srgb, var(--red-3) 40%, black) !important;
+
+    --green-1: color-mix(in srgb, var(--green-3) 40%, white) !important;
+    --green-2: color-mix(in srgb, var(--green-3) 70%, white) !important;
+    --green-3: var(--base0B) !important;
+    --green-4: color-mix(in srgb, var(--green-3) 70%, black) !important;
+    --green-5: color-mix(in srgb, var(--green-3) 40%, black) !important;
+
+    --blue-1: color-mix(in srgb, var(--blue-3) 40%, white) !important;
+    --blue-2: color-mix(in srgb, var(--blue-3) 70%, white) !important;
+    --blue-3: var(--base0D) !important;
+    --blue-4: color-mix(in srgb, var(--blue-3) 70%, black) !important;
+    --blue-5: color-mix(in srgb, var(--blue-3) 40%, black) !important;
+
+    --yellow-1: color-mix(in srgb, var(--yellow-3) 40%, white) !important;
+    --yellow-2: color-mix(in srgb, var(--yellow-3) 70%, white) !important;
+    --yellow-3: var(--base0A) !important;
+    --yellow-4: color-mix(in srgb, var(--yellow-3) 70%, black) !important;
+    --yellow-5: color-mix(in srgb, var(--yellow-3) 40%, black) !important;
+
+    --purple-1: color-mix(in srgb, var(--purple-3) 40%, white) !important;
+    --purple-2: color-mix(in srgb, var(--purple-3) 70%, white) !important;
+    --purple-3: var(--base0E) !important;
+    --purple-4: color-mix(in srgb, var(--purple-3) 70%, black) !important;
+    --purple-5: color-mix(in srgb, var(--purple-3) 40%, black) !important;
+
+    /* accent colors */
+    --accent-1: var(--blue-1) !important; /* links and other accent text */
+    --accent-2: var(--blue-2) !important; /* small accent elements */
+    --accent-3: var(--blue-3) !important; /* accent buttons */
+    --accent-4: var(--blue-4) !important; /* accent buttons when hovered */
+    --accent-5: var(--blue-5) !important; /* accent buttons when clicked */
+    --accent-new: var(--accent-2) !important; /* stuff that's normally red like mute/deafen buttons */
+
+    /* status indicator colors */
+    --online: var(--green-3) !important;
+    --dnd: var(--red-3) !important;
+    --idle: var(--yellow-3) !important;
+    --streaming: var(--purple-3) !important;
+    --offline: var(--text-4) !important;
+
+    /* border colors */
+    --border-light: var(--base03); /* general light border color */
+    --border: var(--base03); /* general normal border color */
+    --border-hover: var(--base0D); /* border color of panels when hovered */
+    --button-border: var(--base03); /* neutral border color of buttons */
+
+    /* Misc */
+    --hover: var(--base0D); /* channels and buttons when hovered */
+    --active: var(--base0D); /* channels and buttons when clicked or selected */
+    --active-2: var(--base0D); /* extra state for transparent buttons */
+    --message-hover: var(--base03); /* messages when hovered */
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TODO ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+    --mention: var(--accent-2) !important; /* background of messages that mention you */
+    --mention-hover: var(--accent-3) !important; /* background of messages that mention you when hovered */
+    --reply: var(--accent-4) !important; /* background of messages that reply to you */
+    --reply-hover: var(--accent-3) !important; /* background of messages that reply to you when hovered */
+}
