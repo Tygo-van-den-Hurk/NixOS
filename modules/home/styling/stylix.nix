@@ -54,48 +54,49 @@ in
         width = toString (1920 * 2);
 
         src = /* XML */ ''
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="-3147.3225303193467 -2992.9837954790196 11119.632365326193 5985.967590958039">
-              <defs>
-                  <linearGradient gradientUnits="userSpaceOnUse" id="linear-gradient-44584babfef90c4cb32c8ee42b1193ba" x1="-319.9999999999999" x2="127.99999999999996" y1="-554.2562584220408" y2="221.70250336881628">
-                    <stop offset="0%" stop-color="$base08" />
-                    <stop offset="25%" stop-color="$base08" />
-                    <stop offset="100%" stop-color="$base08" />
-                  </linearGradient>
-                  <linearGradient gradientUnits="userSpaceOnUse" id="linear-gradient-96af2d924a4fbf5b015c244addc578a8" x1="-319.9999999999999" x2="127.99999999999996" y1="-554.2562584220408" y2="221.70250336881628">
-                    <stop offset="0%" stop-color="$base09" />
-                    <stop offset="25%" stop-color="$base09" />
-                    <stop offset="100%" stop-color="$base09" />
-                  </linearGradient>
-                  <linearGradient gradientUnits="userSpaceOnUse" id="linear-gradient-33ff75d118a188d564af252422e7cc92" x1="-319.9999999999999" x2="127.99999999999996" y1="-554.2562584220408" y2="221.70250336881628">
-                    <stop offset="0%" stop-color="$base0A" />
-                    <stop offset="25%" stop-color="$base0A" />
-                    <stop offset="100%" stop-color="$base0A" />
-                  </linearGradient>
-                  <linearGradient gradientUnits="userSpaceOnUse" id="linear-gradient-2a0b6b52f041088f95dc76196e6b4d88" x1="-319.9999999999999" x2="127.99999999999996" y1="-554.2562584220408" y2="221.70250336881628">
-                    <stop offset="0%" stop-color="$base0B" />
-                    <stop offset="25%" stop-color="$base0B" />
-                    <stop offset="100%" stop-color="$base0B" />
-                  </linearGradient>
-                  <linearGradient gradientUnits="userSpaceOnUse" id="linear-gradient-c6751d2115edfa2506ed6789e247b928" x1="-319.9999999999999" x2="127.99999999999996" y1="-554.2562584220408" y2="221.70250336881628">
-                    <stop offset="0%" stop-color="$base0D" />
-                    <stop offset="25%" stop-color="$base0D" />
-                    <stop offset="100%" stop-color="$base0D" />
-                  </linearGradient>
-                  <linearGradient gradientUnits="userSpaceOnUse" id="linear-gradient-6b2d1737e4a2ebfe17f3769056568c22" x1="-319.9999999999999" x2="127.99999999999996" y1="-554.2562584220408" y2="221.70250336881628">
-                    <stop offset="0%" stop-color="$base0E" />
-                    <stop offset="25%" stop-color="$base0E" />
-                    <stop offset="100%" stop-color="$base0E" />
-                  </linearGradient>
-              </defs>
-              <rect x="-3147.32" y="-3500.98" fill="$base01" width="11119.63" height="7085.97"/>
-              <g transform="translate(2403.49 0)">
-                <polygon fill="url(#linear-gradient-44584babfef90c4cb32c8ee42b1193ba)" points="-303.9999999999999 -304.8409421321224 -175.9999999999999 -526.5434455009388 384.00000000000006 443.40500673763256 128.00000000000006 443.40500673763256 -4.072608916703642e-14 221.70250336881628 -128.00000000000023 443.40500673763245 -256.0000000000002 443.40500673763245 -320.0000000000002 332.55375505322434 -128.0 0.0" transform="translate(-319.9999999999999 554.2562584220408) rotate(0 319.9999999999999 -554.2562584220408)"/>
-                <polygon fill="url(#linear-gradient-96af2d924a4fbf5b015c244addc578a8)" points="-303.9999999999999 -304.8409421321224 -175.9999999999999 -526.5434455009388 384.00000000000006 443.40500673763256 128.00000000000006 443.40500673763256 -4.072608916703642e-14 221.70250336881628 -128.00000000000023 443.40500673763245 -256.0000000000002 443.40500673763245 -320.0000000000002 332.55375505322434 -128.0 0.0" transform="translate(-319.9999999999999 554.2562584220408) rotate(60 319.9999999999999 -554.2562584220408)"/>
-                <polygon fill="url(#linear-gradient-33ff75d118a188d564af252422e7cc92)" points="-303.9999999999999 -304.8409421321224 -175.9999999999999 -526.5434455009388 384.00000000000006 443.40500673763256 128.00000000000006 443.40500673763256 -4.072608916703642e-14 221.70250336881628 -128.00000000000023 443.40500673763245 -256.0000000000002 443.40500673763245 -320.0000000000002 332.55375505322434 -128.0 0.0" transform="translate(-319.9999999999999 554.2562584220408) rotate(120 319.9999999999999 -554.2562584220408)"/>
-                <polygon fill="url(#linear-gradient-2a0b6b52f041088f95dc76196e6b4d88)" points="-303.9999999999999 -304.8409421321224 -175.9999999999999 -526.5434455009388 384.00000000000006 443.40500673763256 128.00000000000006 443.40500673763256 -4.072608916703642e-14 221.70250336881628 -128.00000000000023 443.40500673763245 -256.0000000000002 443.40500673763245 -320.0000000000002 332.55375505322434 -128.0 0.0" transform="translate(-319.9999999999999 554.2562584220408) rotate(180 319.9999999999999 -554.2562584220408)"/>
-                <polygon fill="url(#linear-gradient-c6751d2115edfa2506ed6789e247b928)" points="-303.9999999999999 -304.8409421321224 -175.9999999999999 -526.5434455009388 384.00000000000006 443.40500673763256 128.00000000000006 443.40500673763256 -4.072608916703642e-14 221.70250336881628 -128.00000000000023 443.40500673763245 -256.0000000000002 443.40500673763245 -320.0000000000002 332.55375505322434 -128.0 0.0" transform="translate(-319.9999999999999 554.2562584220408) rotate(240 319.9999999999999 -554.2562584220408)"/>
-                <polygon fill="url(#linear-gradient-6b2d1737e4a2ebfe17f3769056568c22)" points="-303.9999999999999 -304.8409421321224 -175.9999999999999 -526.5434455009388 384.00000000000006 443.40500673763256 128.00000000000006 443.40500673763256 -4.072608916703642e-14 221.70250336881628 -128.00000000000023 443.40500673763245 -256.0000000000002 443.40500673763245 -320.0000000000002 332.55375505322434 -128.0 0.0" transform="translate(-319.9999999999999 554.2562584220408) rotate(300 319.9999999999999 -554.2562584220408)"/>
-              </g>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="-3147.3225303193467 -2992.9837954790196 11119.632365326193 5985.967590958039"
+            x-adapted-from="https://brand.nixos.org/logos/nixos-logo-rainbow-gradient-black-regular-horizontal-recommended.svg">
+            <defs>
+              <linearGradient gradientUnits="userSpaceOnUse" id="linear-gradient-44584babfef90c4cb32c8ee42b1193ba" x1="-319.9999999999999" x2="127.99999999999996" y1="-554.2562584220408" y2="221.70250336881628">
+                <stop offset="0%"   stop-color="$base08" />
+                <stop offset="25%"  stop-color="$base08" />
+                <stop offset="100%" stop-color="$base08" />
+              </linearGradient>
+              <linearGradient gradientUnits="userSpaceOnUse" id="linear-gradient-96af2d924a4fbf5b015c244addc578a8" x1="-319.9999999999999" x2="127.99999999999996" y1="-554.2562584220408" y2="221.70250336881628">
+                <stop offset="0%"   stop-color="$base09" />
+                <stop offset="25%"  stop-color="$base09" />
+                <stop offset="100%" stop-color="$base09" />
+              </linearGradient>
+              <linearGradient gradientUnits="userSpaceOnUse" id="linear-gradient-33ff75d118a188d564af252422e7cc92" x1="-319.9999999999999" x2="127.99999999999996" y1="-554.2562584220408" y2="221.70250336881628">
+                <stop offset="0%"   stop-color="$base0A" />
+                <stop offset="25%"  stop-color="$base0A" />
+                <stop offset="100%" stop-color="$base0A" />
+              </linearGradient>
+              <linearGradient gradientUnits="userSpaceOnUse" id="linear-gradient-2a0b6b52f041088f95dc76196e6b4d88" x1="-319.9999999999999" x2="127.99999999999996" y1="-554.2562584220408" y2="221.70250336881628">
+                <stop offset="0%"   stop-color="$base0B" />
+                <stop offset="25%"  stop-color="$base0B" />
+                <stop offset="100%" stop-color="$base0B" />
+              </linearGradient>
+              <linearGradient gradientUnits="userSpaceOnUse" id="linear-gradient-c6751d2115edfa2506ed6789e247b928" x1="-319.9999999999999" x2="127.99999999999996" y1="-554.2562584220408" y2="221.70250336881628">
+                <stop offset="0%"   stop-color="$base0D" />
+                <stop offset="25%"  stop-color="$base0D" />
+                <stop offset="100%" stop-color="$base0D" />
+              </linearGradient>
+              <linearGradient gradientUnits="userSpaceOnUse" id="linear-gradient-6b2d1737e4a2ebfe17f3769056568c22" x1="-319.9999999999999" x2="127.99999999999996" y1="-554.2562584220408" y2="221.70250336881628">
+                <stop offset="0%"   stop-color="$base0E" />
+                <stop offset="25%"  stop-color="$base0E" />
+                <stop offset="100%" stop-color="$base0E" />
+              </linearGradient>
+            </defs>
+            <rect x="-3147.32" y="-3500.98" fill="$base01" width="11119.63" height="7085.97"/>
+            <g transform="translate(2403.49 0)">
+              <polygon fill="url(#linear-gradient-44584babfef90c4cb32c8ee42b1193ba)" points="-303.9999999999999 -304.8409421321224 -175.9999999999999 -526.5434455009388 384.00000000000006 443.40500673763256 128.00000000000006 443.40500673763256 -4.072608916703642e-14 221.70250336881628 -128.00000000000023 443.40500673763245 -256.0000000000002 443.40500673763245 -320.0000000000002 332.55375505322434 -128.0 0.0" transform="translate(-319.9999999999999 554.2562584220408) rotate(0 319.9999999999999 -554.2562584220408)"/>
+              <polygon fill="url(#linear-gradient-96af2d924a4fbf5b015c244addc578a8)" points="-303.9999999999999 -304.8409421321224 -175.9999999999999 -526.5434455009388 384.00000000000006 443.40500673763256 128.00000000000006 443.40500673763256 -4.072608916703642e-14 221.70250336881628 -128.00000000000023 443.40500673763245 -256.0000000000002 443.40500673763245 -320.0000000000002 332.55375505322434 -128.0 0.0" transform="translate(-319.9999999999999 554.2562584220408) rotate(60 319.9999999999999 -554.2562584220408)"/>
+              <polygon fill="url(#linear-gradient-33ff75d118a188d564af252422e7cc92)" points="-303.9999999999999 -304.8409421321224 -175.9999999999999 -526.5434455009388 384.00000000000006 443.40500673763256 128.00000000000006 443.40500673763256 -4.072608916703642e-14 221.70250336881628 -128.00000000000023 443.40500673763245 -256.0000000000002 443.40500673763245 -320.0000000000002 332.55375505322434 -128.0 0.0" transform="translate(-319.9999999999999 554.2562584220408) rotate(120 319.9999999999999 -554.2562584220408)"/>
+              <polygon fill="url(#linear-gradient-2a0b6b52f041088f95dc76196e6b4d88)" points="-303.9999999999999 -304.8409421321224 -175.9999999999999 -526.5434455009388 384.00000000000006 443.40500673763256 128.00000000000006 443.40500673763256 -4.072608916703642e-14 221.70250336881628 -128.00000000000023 443.40500673763245 -256.0000000000002 443.40500673763245 -320.0000000000002 332.55375505322434 -128.0 0.0" transform="translate(-319.9999999999999 554.2562584220408) rotate(180 319.9999999999999 -554.2562584220408)"/>
+              <polygon fill="url(#linear-gradient-c6751d2115edfa2506ed6789e247b928)" points="-303.9999999999999 -304.8409421321224 -175.9999999999999 -526.5434455009388 384.00000000000006 443.40500673763256 128.00000000000006 443.40500673763256 -4.072608916703642e-14 221.70250336881628 -128.00000000000023 443.40500673763245 -256.0000000000002 443.40500673763245 -320.0000000000002 332.55375505322434 -128.0 0.0" transform="translate(-319.9999999999999 554.2562584220408) rotate(240 319.9999999999999 -554.2562584220408)"/>
+              <polygon fill="url(#linear-gradient-6b2d1737e4a2ebfe17f3769056568c22)" points="-303.9999999999999 -304.8409421321224 -175.9999999999999 -526.5434455009388 384.00000000000006 443.40500673763256 128.00000000000006 443.40500673763256 -4.072608916703642e-14 221.70250336881628 -128.00000000000023 443.40500673763245 -256.0000000000002 443.40500673763245 -320.0000000000002 332.55375505322434 -128.0 0.0" transform="translate(-319.9999999999999 554.2562584220408) rotate(300 319.9999999999999 -554.2562584220408)"/>
+            </g>
           </svg>
         '';
 
@@ -107,24 +108,13 @@ in
 
         patchPhase = ''
           runHook preBuild
-
-          sed "s/\\\$base00/#$base00/g" -i "$name.svg"
-          sed "s/\\\$base01/#$base01/g" -i "$name.svg"
-          sed "s/\\\$base02/#$base02/g" -i "$name.svg"
-          sed "s/\\\$base03/#$base03/g" -i "$name.svg"
-          sed "s/\\\$base04/#$base04/g" -i "$name.svg"
-          sed "s/\\\$base05/#$base05/g" -i "$name.svg"
-          sed "s/\\\$base06/#$base06/g" -i "$name.svg"
-          sed "s/\\\$base07/#$base07/g" -i "$name.svg"
-          sed "s/\\\$base08/#$base08/g" -i "$name.svg"
-          sed "s/\\\$base09/#$base09/g" -i "$name.svg"
-          sed "s/\\\$base0A/#$base0A/g" -i "$name.svg"
-          sed "s/\\\$base0B/#$base0B/g" -i "$name.svg"
-          sed "s/\\\$base0C/#$base0C/g" -i "$name.svg"
-          sed "s/\\\$base0D/#$base0D/g" -i "$name.svg"
-          sed "s/\\\$base0E/#$base0E/g" -i "$name.svg"
-          sed "s/\\\$base0F/#$base0F/g" -i "$name.svg"
-
+          for environment_variable in \
+            base00 base01 base02 base03 base04 base05 base06 base07 \
+            base08 base09 base0A base0B base0C base0D base0E base0F
+          do # substitute the value of the env var into the svg:
+            value="$(eval echo \$$environment_variable)"
+            sed -i "s/\\\$$environment_variable/#$value/g" "$name.svg"
+          done
           runHook postBuild
         '';
 
