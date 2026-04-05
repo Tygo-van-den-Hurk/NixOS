@@ -88,10 +88,8 @@
     --active-2: var(--base0D); /* extra state for transparent buttons */
     --message-hover: var(--base03); /* messages when hovered */
 
-    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TODO ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
-    --mention: var(--accent-2) !important; /* background of messages that mention you */
-    --mention-hover: var(--accent-3) !important; /* background of messages that mention you when hovered */
-    --reply: var(--accent-4) !important; /* background of messages that reply to you */
-    --reply-hover: var(--accent-3) !important; /* background of messages that reply to you when hovered */
+    --mention: color-mix(in srgb, var(--accent-2) 10%, transparent) !important; /* background of messages that mention you */
+    --mention-hover:  color-mix(in srgb, var(--accent-3) 10%, transparent)  !important; /* background of messages that mention you when hovered */
+    --reply:  color-mix(in srgb, var(--accent-3) 10%, transparent)  !important; /* background of messages that reply to you */
+    --reply-hover:  color-mix(in srgb, var(--accent-4) 10%, transparent)  !important; /* background of messages that reply to you when hovered */
 }
