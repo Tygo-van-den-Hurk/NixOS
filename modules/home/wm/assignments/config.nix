@@ -41,6 +41,7 @@ in
     # Messengers
     Messenger.workspace = "Messenger";
     discord = Messenger;
+    vesktop = Messenger;
     telegram-desktop = Messenger;
     TelegramDesktop = Messenger;
     mail = Messenger;
