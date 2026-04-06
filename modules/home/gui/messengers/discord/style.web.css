@@ -19,16 +19,16 @@
     /* background and dark colors */
     --bg-1: var(--base00) !important;
     --bg-2: var(--base01) !important;
-    --bg-3: var(--base01) !important;
+    --bg-3: var(--base00) !important;
     --bg-4: var(--base01) !important;
 
     /* text colors */
     --text-0: var(--bg-4); /* text on colored elements */
-    --text-1: color-mix(in srgb, var(--text-3) 40%, white) !important;
-    --text-2: color-mix(in srgb, var(--text-3) 70%, white) !important;
+    --text-1: var(--base05) !important;
+    --text-2: var(--base05) !important;
     --text-3: var(--base05) !important;
-    --text-4: color-mix(in srgb, var(--text-3) 70%, black) !important;
-    --text-5: color-mix(in srgb, var(--text-3) 40%, black) !important;
+    --text-4: var(--base05) !important;
+    --text-5: var(--base05) !important;
 
     /* base colors */
     --red-1: color-mix(in srgb, var(--red-3) 40%, white) !important;
@@ -62,12 +62,12 @@
     --purple-5: color-mix(in srgb, var(--purple-3) 40%, black) !important;
 
     /* accent colors */
-    --accent-1: var(--blue-1) !important; /* links and other accent text */
-    --accent-2: var(--blue-2) !important; /* small accent elements */
+    --accent-1: var(--blue-3) !important; /* links and other accent text */
+    --accent-2: var(--blue-3) !important; /* small accent elements */
     --accent-3: var(--blue-3) !important; /* accent buttons */
     --accent-4: var(--blue-4) !important; /* accent buttons when hovered */
     --accent-5: var(--blue-5) !important; /* accent buttons when clicked */
-    --accent-new: var(--accent-2) !important; /* stuff that's normally red like mute/deafen buttons */
+    --accent-new: var(--blue-3) !important; /* stuff that's normally red like mute/deafen buttons */
 
     /* status indicator colors */
     --online: var(--green-3) !important;
@@ -83,13 +83,13 @@
     --button-border: var(--base03); /* neutral border color of buttons */
 
     /* Misc */
-    --hover: var(--base0D); /* channels and buttons when hovered */
-    --active: var(--base0D); /* channels and buttons when clicked or selected */
-    --active-2: var(--base0D); /* extra state for transparent buttons */
-    --message-hover: var(--base03); /* messages when hovered */
+    --hover: color-mix(in srgb, var(--accent-3) 5%, transparent); /* channels and buttons when hovered */
+    --active: color-mix(in srgb, var(--accent-3) 10%, transparent); /* channels and buttons when clicked or selected */
+    --active-2: color-mix(in srgb, var(--accent-3) 10%, transparent); /* extra state for transparent buttons */
+    --message-hover: var(--hover); /* messages when hovered */
 
     --mention: color-mix(in srgb, var(--accent-2) 10%, transparent) !important; /* background of messages that mention you */
-    --mention-hover:  color-mix(in srgb, var(--accent-3) 10%, transparent)  !important; /* background of messages that mention you when hovered */
-    --reply:  color-mix(in srgb, var(--accent-3) 10%, transparent)  !important; /* background of messages that reply to you */
-    --reply-hover:  color-mix(in srgb, var(--accent-4) 10%, transparent)  !important; /* background of messages that reply to you when hovered */
+    --mention-hover:  color-mix(in srgb, var(--accent-3) 10%, transparent) !important; /* background of messages that mention you when hovered */
+    --reply:  color-mix(in srgb, var(--accent-3) 10%, transparent) !important; /* background of messages that reply to you */
+    --reply-hover:  color-mix(in srgb, var(--accent-4) 10%, transparent) !important; /* background of messages that reply to you when hovered */
 }
