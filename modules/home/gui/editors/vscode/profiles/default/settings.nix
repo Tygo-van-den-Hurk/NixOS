@@ -16,6 +16,7 @@ in
   config.programs.${program}.profiles.${profile} = mkIf cfg.enable {
     userSettings = {
       "explorer.confirmDelete" = false;
+      "explorer.confirmDragAndDrop" = false;
       "files.autoSave" = "afterDelay";
       "[nix]"."editor.tabSize" = 2;
       "workbench.tree.indent" = 16;
