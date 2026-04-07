@@ -1,16 +1,5 @@
 {
-  inputs,
-  META,
-  ...
-}:
-let
-  inherit (inputs.tygo-van-den-hurk-dotfiles.packages.${META.system}) preview;
-in
-{
   home.stateVersion = "25.05";
-  home.packages = [
-    preview
-  ];
 
   self.all.enable = true;
   self.cli.miscellaneous.zellij.enable = false;
