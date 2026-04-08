@@ -42,6 +42,10 @@ let
     {
       flake.nixosConfigurations.${META.hostName} = nixosSystem;
       flake.checks.${META.system}.${META.hostName} = nixosSystem.config.system.build.toplevel;
+      self.ci.configurations.nixos.".auto--nixos--${META.hostName}.nix" = {
+        hostname = META.hostName;
+        inherit (META) system;
+      };
     };
 in
 {

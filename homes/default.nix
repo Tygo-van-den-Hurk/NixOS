@@ -50,10 +50,18 @@ let
         inherit extraSpecialArgs;
         inherit modules;
       };
+
+      target = "${META.user.username}@${META.hostName}";
     in
     {
-      flake.homeConfigurations."${META.user.username}@${META.hostName}" = homeConfiguration;
-      # flake.checks.${system}.${hostName} = homeConfigurations.activationPackage;
+      flake.homeConfigurations.${target} = homeConfiguration;
+      flake.checks.${META.system}.${target} = homeConfiguration.activationPackage;
+      self.ci.configurations.home-manager.".auto--home-manager--${target}.nix" = {
+        enable = META.hostName != "tygos-thinkpad-nixos"; # deprecated
+        inherit (META.user) username;
+        hostname = META.hostName;
+        inherit (META) system;
+      };
     };
 in
 {

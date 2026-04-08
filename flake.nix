@@ -55,7 +55,6 @@
     inputs.nixpkgs.follows = "nixpkgs";
     inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
     inputs.pre-commit-hooks.follows = "git-hooks-nix";
-    inputs.nix-github-actions.follows = "nix-github-actions";
     inputs.flake-compat.follows = "flake-compat";
     inputs.treefmt-nix.follows = "treefmt-nix";
     inputs.home-manager.follows = "home-manager";
@@ -78,8 +77,12 @@
 
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Utilities ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
-  # Generate Github Actions matrices from Nix Flakes
-  inputs.nix-github-actions.url = "github:nix-community/nix-github-actions";
+  # Generate Github Actions from nix code
+  inputs.github-actions-nix = {
+    url = "github:synapdeck/github-actions-nix";
+    inputs.nixpkgs.follows = "nixpkgs";
+    inputs.flake-parts.follows = "flake-parts";
+  };
 
   # Flake basics described using the module system
   inputs.flake-parts.url = "github:hercules-ci/flake-parts";

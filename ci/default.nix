@@ -1,16 +1,52 @@
-{ inputs, config, ... }:
+{
+  inputs,
+  config,
+  lib,
+  ...
+}:
+with lib;
 let
-  inherit (inputs) nix-github-actions;
+  namespace = "self";
+  module = "ci";
+  cfg = config.${namespace}.${module};
 in
 {
-  # Used by GitHub Actions to create a matrix out of this:
-  flake.githubActions = nix-github-actions.lib.mkGithubMatrix {
-    checks = inputs.nixpkgs.lib.getAttrs config.systems (
-      # check whether the packages can be build for every platform,
-      # but for Linux x86_64 also do the other checks. Prevents
-      # duplicated checks for non-package builds as formatting for
-      # example should be platform independent.
-      inputs.self.packages // { inherit (inputs.self.checks) x86_64-linux; }
-    );
+  imports = [
+    inputs.github-actions-nix.flakeModules.default
+    ./home-manager.nix
+    ./nixos.nix
+  ];
+
+  options.${namespace}.${module} = with types; {
+    enable = mkOption {
+      description = "Whether or not to enable the CI";
+      default = true;
+      type = bool;
+    };
+  };
+
+  config = mkIf cfg.enable {
+    perSystem =
+      { config, pkgs, ... }:
+      {
+        githubActions.enable = true;
+
+        packages.workflows = config.githubActions.workflowsDir;
+
+        apps.update-ci = with pkgs; rec {
+          inherit (program) meta;
+          type = "app";
+          program = writeShellApplication rec {
+            name = "update-ci";
+            runtimeInputs = [ git ];
+            text = builtins.readFile ./update-ci.sh;
+            meta = {
+              description = "Updates all the '.nix.yml' GitHub Action workflows.";
+              maintainers = with maintainers; [ Tygo-van-den-Hurk ];
+              mainProgram = name;
+            };
+          };
+        };
+      };
   };
 }
