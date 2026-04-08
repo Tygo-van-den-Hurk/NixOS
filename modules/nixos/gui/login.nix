@@ -13,7 +13,7 @@ let
   cfg = config.${namespace}.${module}.${program};
 
   theme = with pkgs; rec {
-    name = "personalised-sddm-theme";
+    name = "personalized-sddm-theme";
     package = stdenv.mkDerivation rec {
       inherit name;
 
@@ -94,7 +94,7 @@ let
         BackgroundSpeed=""
 
         # Default false.
-        # If set to true, stops playback of gifs. Works only with gifs.
+        # If set to true, stops playback of GIFs. Works only with GIFs.
         # Connected with: Background.
         PauseBackground=""
 
@@ -105,7 +105,7 @@ let
         # Default false.
         # Crop or fit background.
         # Connected with: BackgroundHorizontalAlignment and
-        # BackgroundVerticalAlignment dosn't work when set to true.
+        # BackgroundVerticalAlignment doesn't work when set to true.
         CropBackground="true"
 
         # Default: center, Options: left, center, right.

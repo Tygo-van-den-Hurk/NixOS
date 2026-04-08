@@ -1,4 +1,4 @@
-<!-- ^ Please summarise the changes you have made and explain why they are necessary above here ^ -->
+<!-- ^ Please summarize the changes you have made and explain why they are necessary above here ^ -->
 
 ## Checklist
 

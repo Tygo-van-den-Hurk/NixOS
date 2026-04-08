@@ -46,12 +46,12 @@ body:
 
         ---
   - type: "textarea"
-    id: "prioritisation"
+    id: "prioritization"
     attributes:
       label: "Is this issue important to you?"
       description: |
         **Please do not modify this text area!**
-        This template helps developers know which issues should be prioritised
+        This template helps developers know which issues should be prioritized
         by allowing users to vote with a :+1: reaction. This is not a guarantee
         that highly-requested issues will be fixed first, but it helps us to
         figure out what's important to users. Please react on other users'

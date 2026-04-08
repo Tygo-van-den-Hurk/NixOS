@@ -28,7 +28,7 @@ in
             };
 
             key = mkOption {
-              description = "The key that must be pressed to finalise the shortcut.";
+              description = "The key that must be pressed to finalize the shortcut.";
               default = false;
               type =
                 let

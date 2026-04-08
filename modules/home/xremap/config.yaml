@@ -44,7 +44,7 @@ modmap:
         skip_key_event: true
         held: ALT_R
         alone: []
-      # WIN_CTRL gets assigned MAC_CTRL (WIN_SUPER) --> ( Thirdairy  goes to left most key )
+      # WIN_CTRL gets assigned MAC_CTRL (WIN_SUPER) --> ( Tertiary  goes to left most key )
       CONTROL_L:    
         skip_key_event: true
         held: SUPER_L
@@ -64,7 +64,7 @@ keymap:
 # - MAC_CMD + [ UP   | DOWN  ] --> Move to the BEGINNING, or END of the FILE respectively. 
 #
 # - MAC_ALT + [ LEFT | RIGHT ] --> Move one word LEFT, or RIGHT respectively. 
-# - MAC_ALT + [ UP   | DOWN  ] --> Move to the BEGINNING, or END of the current alinea respectively. 
+# - MAC_ALT + [ UP   | DOWN  ] --> Move to the BEGINNING, or END of the current paragraph respectively. 
 #
 # So what are these commands on windows and linux? Well, this is what they map to:
 # 
@@ -72,7 +72,7 @@ keymap:
 # - WIN_CTRL + [ HOME | END   ] --> Move to the BEGINNING, or END of the FILE respectively. 
 #
 # - WIN_CTRL + [ LEFT | RIGHT ] --> Move one word LEFT, or RIGHT respectively. 
-# - WIN_CTRL + [ UP   | DOWN  ] --> Move to the BEGINNING, or END of the current alinea respectively. 
+# - WIN_CTRL + [ UP   | DOWN  ] --> Move to the BEGINNING, or END of the current paragraph respectively. 
 #  
 # So that leaves us with this mapping:
 #
