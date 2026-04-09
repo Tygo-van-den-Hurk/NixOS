@@ -49,10 +49,10 @@
     <!--~###################################~-->
     <!--~####      Repository CI/CD     ####~-->
     <!--~###################################~-->
-    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/actions/workflows/many--nix-flake-check.yaml">
+    <a href="https://github.com/Tygo-van-den-Hurk/NixOS/actions/workflows/many--check-generated-ci.yaml">
       <picture>
-        <source srcset="https://img.shields.io/github/actions/workflow/status/Tygo-van-den-Hurk/NixOS/many--nix-flake-check.yaml?style=flat&labelColor=FFFFFF&color=5277c3&logo=GitHub%20Actions&logoColor=000000&branch=main&event=push&label=Build" media="(prefers-color-scheme: light)" />
-        <img src="https://img.shields.io/github/actions/workflow/status/Tygo-van-den-Hurk/NixOS/many--nix-flake-check.yaml?style=flat&labelColor=2F363D&color=415e9a&logo=GitHub%20Actions&logoColor=FFFFFF&branch=main&event=push&label=Build" alt="Build status" />
+        <source srcset="https://img.shields.io/github/actions/workflow/status/Tygo-van-den-Hurk/NixOS/many--check-generated-ci.yaml?style=flat&labelColor=FFFFFF&color=5277c3&logo=GitHub%20Actions&logoColor=000000&branch=main&event=push&label=CI%20Matches" media="(prefers-color-scheme: light)" />
+        <img src="https://img.shields.io/github/actions/workflow/status/Tygo-van-den-Hurk/NixOS/many--check-generated-ci.yaml?style=flat&labelColor=2F363D&color=415e9a&logo=GitHub%20Actions&logoColor=FFFFFF&branch=main&event=push&label=CI%20Matches" alt="the status of checking if the generated CI matches up to the current CI" />
       </picture>
     </a>
     <a href="https://github.com/Tygo-van-den-Hurk/NixOS/actions/workflows/push--deploy-github-pages.yaml">
