@@ -27,14 +27,6 @@ in
       config.home = mkIf cfg.enable {
         packages = with pkgs; [
           undollar
-          # Ricing packages: might be moved into its own module at some point:
-          cava
-          cmatrix
-          figlet
-          lolcat
-          fastfetch
-          pipes
-          cowsay
         ];
       };
 

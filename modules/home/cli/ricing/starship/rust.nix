@@ -7,7 +7,7 @@ with lib;
 let
   namespace = "self";
   type = "cli";
-  category = "miscellaneous";
+  category = "ricing";
   program = "starship";
   cfg = config.${namespace}.${type}.${category}.${program};
 in

@@ -1,15 +1,15 @@
 {
-  lib,
-  pkgs,
   config,
+  pkgs,
+  lib,
   ...
 }:
 with lib;
 let
   namespace = "self";
   type = "cli";
-  category = "miscellaneous";
-  program = "onefetch";
+  category = "ricing";
+  program = "fastfetch";
   cfg = config.${namespace}.${type}.${category}.${program};
 in
 {
@@ -22,9 +22,8 @@ in
   };
 
   config.home = mkIf cfg.enable {
-    packages = [ pkgs.onefetch ];
-    shellAliases = {
-      "gitfetch" = program;
-    };
+    packages = with pkgs; [
+      fastfetch
+    ];
   };
 }

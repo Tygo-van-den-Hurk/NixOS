@@ -7,43 +7,31 @@ with lib;
 let
   namespace = "self";
   type = "cli";
-  category = "miscellaneous";
+  category = "ricing";
   program = "starship";
   cfg = config.${namespace}.${type}.${category}.${program};
 in
 {
-  config.programs.${program}.settings."cpp" = mkIf cfg.enable {
-    disabled = true;
+  config.programs.${program}.settings."c" = mkIf cfg.enable {
+    disabled = false;
     format = "using [$name]($style) \\([$symbol]($style)\\) on [$version]($style)";
     version_format = "v\${raw}";
     style = "149 bold";
-    symbol = "C++";
-
+    symbol = "C";
     detect_files = [ ];
     detect_folders = [ ];
-    detect_extensions = [
-      "cpp"
-      "cc"
-      "cxx"
-      "c++"
-      "hpp"
-      "hh"
-      "hxx"
-      "h++"
-      "tcc"
-    ];
-
+    detect_extensions = [ "c" ];
     commands = [
       [
-        "c++"
+        "cc"
         "--version"
       ]
       [
-        "g++"
+        "gcc"
         "--version"
       ]
       [
-        "clang++"
+        "clang"
         "--version"
       ]
     ];
