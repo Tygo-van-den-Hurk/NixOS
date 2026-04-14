@@ -15,6 +15,7 @@ in
 {
   config.programs.${program}.profiles.${profile} = mkIf cfg.enable {
     userSettings = {
+      "explorer.confirmPasteNative" = false;
       "explorer.confirmDelete" = false;
       "explorer.confirmDragAndDrop" = false;
       "files.autoSave" = "afterDelay";
