@@ -24,6 +24,7 @@ in
       bradlc.vscode-tailwindcss
       editorconfig.editorconfig
       yoavbls.pretty-ts-errors
+      astro-build.astro-vscode
       tamasfe.even-better-toml
       myriad-dreamin.tinymist
       mechatroner.rainbow-csv
