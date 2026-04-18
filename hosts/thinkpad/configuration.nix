@@ -1,10 +1,12 @@
 {
+  inputs,
   lib,
   ...
 }:
 with lib;
 {
-  imports = [
+  imports = with inputs; [
+    nixos-hardware.nixosModules.lenovo-thinkpad-p1-gen3
     ./hardware-configuration.nix
   ];
 
@@ -15,13 +17,6 @@ with lib;
   self.qmk.enable = true;
   self.ssh.enable = true;
   self.gui.enable = true;
-
-  # services.fprintd = {
-  #   enable = true;
-  #   package = pkgs.fprintd-tod;
-  #   tod.enable = true;
-  #   tod.driver = pkgs.libfprint-2-tod1-goodix;
-  # };
 
   #! This value determines the NixOS release from which the default
   #! settings for stateful data, like file locations and database versions
