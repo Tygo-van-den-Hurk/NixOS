@@ -108,6 +108,9 @@
 
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Miscellaneous ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
+  # NixOS profiles to optimize settings for different hardware.
+  inputs.nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
   # Hyprland is a dynamic tiling Wayland compositor that doesn't sacrifice on its looks
   inputs.hyprland = {
     url = "github:hyprwm/Hyprland";
