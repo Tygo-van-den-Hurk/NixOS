@@ -30,6 +30,7 @@ with lib;
 
   # Temp:
 
+  programs.nix-ld.enable = true;
   hardware.bluetooth.enable = true;
   security.sudo.wheelNeedsPassword = false;
 }
