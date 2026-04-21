@@ -40,7 +40,6 @@ in
         bierner.color-info
         # mhutchie.git-graph # Unfree :/
         dotjoshjohnson.xml
-        haskell.haskell
         eamodio.gitlens
         tomoki1207.pdf
         docker.docker

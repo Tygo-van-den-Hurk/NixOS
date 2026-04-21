@@ -1,4 +1,6 @@
 {
+  imports = [ ./haskell.nix ];
+
   home.stateVersion = "25.05";
 
   self.all.enable = true;
