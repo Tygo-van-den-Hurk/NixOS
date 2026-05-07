@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   config,
   ...
 }:
@@ -21,6 +22,15 @@ in
 
   config.wayland.windowManager.${program} = mkIf cfg.enable {
     enable = mkDefault true;
+
+    settings.exec-once = with pkgs; [
+      (getExe (
+        writeShellScriptBin "dex-xdg-autostart-hyprland" ''
+          exec > >(systemd-cat -t dex-xdg-autostart-hyprland) 2>&1
+          exec ${getExe dex} --autostart --verbose "$@"
+        ''
+      ))
+    ];
 
     settings.env = [ "XCURSOR_SIZE, 24" ];
     settings.gesture = [ "4, horizontal, workspace" ];
