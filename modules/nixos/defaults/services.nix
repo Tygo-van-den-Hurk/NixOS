@@ -20,7 +20,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    services.espanso.enable = mkDefault true;
     services.tailscale.enable = mkDefault true;
     services.printing.enable = mkDefault true;
     networking.firewall.checkReversePath = mkDefault "loose"; # Fix for TailScale

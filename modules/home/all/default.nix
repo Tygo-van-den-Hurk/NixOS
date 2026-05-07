@@ -25,6 +25,7 @@ in
 
       config.${namespace} = mkIf cfg.enable {
         cli.enable = mkDefault true;
+        espanso.enable = mkDefault true;
         gui.enable = mkDefault true;
         styling.enable = mkDefault true;
         wm.enable = mkDefault true;
@@ -33,6 +34,7 @@ in
 
       imports = with inputs.self.homeModules; [
         cli
+        espanso
         gui
         styling
         unfree

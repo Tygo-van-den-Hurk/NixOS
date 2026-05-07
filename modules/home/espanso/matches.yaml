@@ -1,0 +1,1206 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/espanso/espanso/dev/schemas/match.schema.json
+
+# For a complete introduction, visit the official docs at: https://espanso.org/docs/
+# You can use this file to define the base matches (aka snippets)
+# that will be available in every application when using espanso.
+# Matches are substitution rules: when you type the "trigger" string
+# it gets replaced by the "replace" string.
+
+matches:
+  
+  #| A
+
+  - trigger: "afh"
+    replace: "afhankelijk"
+    propagate_case: true
+    word: true
+
+  - trigger: "aint"
+    replace: "ain't"
+    propagate_case: true
+    word: true
+
+  - trigger: "ive"
+    replace: "I've"
+    propagate_case: true
+    word: true
+
+  - trigger: "aka"
+    replace: "also known as"
+    propagate_case: true
+    word: true
+
+  - trigger: "alh"
+    replace: "although"
+    propagate_case: true
+    word: true
+
+  - trigger: "amaz"
+    replace: "amazing"
+    propagate_case: true
+    word: true
+
+  - trigger: "asap"
+    replace: "as soon as possible"
+    propagate_case: true
+    word: true
+
+  - trigger: "atl"
+    replace: "all time low"
+    propagate_case: true
+    word: true
+
+  - trigger: "atm"
+    replace: "at the moment"
+    propagate_case: true
+    word: true
+
+  - trigger: "audi"
+    replace: "auditorium"
+    propagate_case: true
+    word: true
+
+  #| B
+
+  - trigger: "bc"
+    replace: "cause"
+    propagate_case: true
+    word: true
+
+  - trigger: "bday"
+    replace: "birthday"
+    propagate_case: true
+    word: true
+
+  - trigger: "bf"
+    replace: "boyfriend"
+    propagate_case: true
+    word: true
+
+  - trigger: "bff"
+    replace: "best friend"
+    propagate_case: true
+    word: true
+
+  - trigger: "bijv"
+    replace: "bijvoorbeeld"
+    propagate_case: true
+    word: true
+
+  - trigger: "blz"
+    replace: "bladzijde"
+    propagate_case: true
+    word: true
+
+  - trigger: "bout"
+    replace: "'bout"
+    propagate_case: true
+    word: true
+
+  - trigger: "brb"
+    replace: "be right back"
+    propagate_case: true
+    word: true
+
+  - trigger: "bs"
+    replace: "bullshit"
+    propagate_case: true
+    word: true
+
+  - trigger: "btw"
+    replace: "by the way"
+    propagate_case: true
+    word: true
+  
+  #| C
+
+  - trigger: "cant"
+    replace: "can't"
+    propagate_case: true
+    word: true
+  
+  - trigger: "cmon"
+    replace: "c'mon"
+    propagate_case: true
+    word: true
+  
+  - trigger: "convo"
+    replace: "conversation"
+    propagate_case: true
+    word: true
+  
+  - trigger: "couldnt"
+    replace: "couldn't"
+    propagate_case: true
+    word: true
+  
+  - trigger: "cs"
+    replace: "computer science"
+    propagate_case: true
+    word: true
+  
+  - trigger: "cya"
+    replace: "see ya"
+    propagate_case: true
+    word: true
+
+  #| D
+  
+  - trigger: "da"
+    replace: "dat"
+    propagate_case: true
+    word: true
+  
+  - trigger: "das"
+    replace: "dat is"
+    propagate_case: true
+    word: true
+
+  - trigger: "def"
+    replace: "definitely"
+    propagate_case: true
+    word: true
+
+  - trigger: "dev"
+    replace: "developer"
+    propagate_case: true
+    word: true
+
+  - trigger: "didnt"
+    replace: "didn't"
+    propagate_case: true
+    word: true
+  
+  - trigger: "dl"
+    replace: "down low"
+    propagate_case: true
+    word: true
+
+  - trigger: "dn"
+    replace: "d'n"
+    propagate_case: true
+    word: true
+
+  - trigger: "doesnt"
+    replace: "doesn't"
+    propagate_case: true
+    word: true
+
+  - trigger: "dont"
+    replace: "don't"
+    propagate_case: true
+    word: true
+
+  - trigger: "dr"
+    replace: "d'r"
+    propagate_case: true
+    word: true
+
+  - trigger: "drm"
+    replace: "daarom"
+    propagate_case: true
+    word: true
+
+  - trigger: "dw"
+    replace: "don't worry"
+    propagate_case: true
+    word: true
+
+  - trigger: "dym"
+    replace: "do you mean"
+    propagate_case: true
+    word: true
+
+  #| E
+
+  - trigger: "eig"
+    replace: "eigenlijk"
+    propagate_case: true
+    word: true
+
+  - trigger: "em"
+    replace: "'em"
+    propagate_case: true
+    word: true
+
+  - trigger: "excl"
+    replace: "exclusive"
+    propagate_case: true
+    word: true
+
+  #| F
+
+  - trigger: "fab"
+    replace: "fabulous"
+    propagate_case: true
+    word: true
+
+  - trigger: "ff"
+    replace: "effe"
+    propagate_case: true
+    word: true
+
+  - trigger: "fml"
+    replace: "fuck my life"
+    propagate_case: true
+    word: true
+
+  - trigger: "ft"
+    replace: "featuring"
+    propagate_case: true
+    word: true
+
+  - trigger: "fyi"
+    replace: "for your information"
+    propagate_case: true
+    word: true
+
+  #| G
+
+  - trigger: "gc"
+    replace: "group chat"
+    propagate_case: true
+    word: true
+
+  - regex: "g(e?)wn"
+    replace: "gewoon"
+    propagate_case: true
+    word: true
+
+  - trigger: "gezel"
+    replace: "gezellig"
+    propagate_case: true
+    word: true
+
+  - trigger: "gf"
+    replace: "girlfriend"
+    propagate_case: true
+    word: true
+
+  - trigger: "gj"
+    replace: "good job"
+    propagate_case: true
+    word: true
+
+  - trigger: "gl"
+    replace: "good luck"
+    propagate_case: true
+    word: true
+
+  - trigger: "glhf"
+    replace: "good luck have fun"
+    propagate_case: true
+    word: true
+
+  - trigger: "gm"
+    replace: "good morning"
+    propagate_case: true
+    word: true
+
+  - trigger: "gn"
+    replace: "good night"
+    propagate_case: true
+    word: true
+
+  - trigger: "gon"
+    replace: "gon'"
+    propagate_case: true
+    word: true
+
+  - trigger: "gr"
+    replace: "groetjes,"
+    propagate_case: true
+    word: true
+
+  - trigger: "gtg"
+    replace: "got to go"
+    propagate_case: true
+    word: true
+
+  - trigger: "gwe"
+    replace: "gwe gwe gwe"
+    propagate_case: true
+    word: true
+
+  #| H
+  
+  - trigger: "hbj"
+    replace: "hoe bedoel je"
+    propagate_case: true
+    word: true
+
+  - trigger: "hes"
+    replace: "he's"
+    propagate_case: true
+    word: true
+
+  - trigger: "hf"
+    replace: "have fun"
+    propagate_case: true
+    word: true
+
+  - trigger: "hft"
+    replace: "hoofdstuk"
+    propagate_case: true
+    word: true
+
+  - trigger: "hm"
+    replace: "how much"
+    propagate_case: true
+    word: true
+
+  - trigger: "howd"
+    replace: "how'd"
+    propagate_case: true
+    word: true
+
+  - trigger: "hows"
+    replace: "how's"
+    propagate_case: true
+    word: true
+
+  - trigger: "howve"
+    replace: "how've"
+    propagate_case: true
+    word: true
+
+  - trigger: "hw"
+    replace: "homework"
+    propagate_case: true
+    word: true
+
+  - trigger: "hz"
+    replace: "hoezo"
+    propagate_case: true
+    word: true
+
+  #| I
+
+  - trigger: "id"
+    replace: "I'd"
+    propagate_case: true
+    word: true
+
+  - trigger: "idc"
+    replace: "I don't care"
+    propagate_case: true
+    word: true
+
+  - trigger: "idd"
+    replace: "inderdaad"
+    propagate_case: true
+    word: true
+
+  - trigger: "idfc"
+    replace: "I don't fucking care"
+    propagate_case: true
+    word: true
+
+  - trigger: "idfk"
+    replace: "I don't fucking know"
+    propagate_case: true
+    word: true
+
+  - trigger: "idgaf"
+    replace: "I don't give a fuck"
+    propagate_case: true
+    word: true
+
+  - trigger: "idk"
+    replace: "I don't know"
+    propagate_case: true
+    word: true
+
+  - trigger: "iff"
+    replace: "if and only if"
+    propagate_case: true
+    word: true
+
+  - trigger: "ig"
+    replace: "I guess"
+    propagate_case: true
+    word: true
+
+  - trigger: "igg"
+    replace: "in ieder geval"
+    propagate_case: true
+    word: true
+
+  - trigger: "ikr"
+    replace: "I know right"
+    propagate_case: true
+    word: true
+
+  - trigger: "ily"
+    replace: "I love you"
+    propagate_case: true
+    word: true
+    
+  - trigger: "ily2"
+    replace: "I love you too"
+    propagate_case: true
+    word: true
+    
+  - trigger: "im"
+    replace: "I'm"
+    propagate_case: true
+    word: true
+        
+  - trigger: "imma"
+    replace: "I'mma"
+    propagate_case: true
+    word: true
+
+  - trigger: "imo"
+    replace: "in my opinion"
+    propagate_case: true
+    word: true
+
+  - trigger: "impt"
+    replace: "⚠️"
+    propagate_case: true
+    word: true
+        
+  - trigger: "incl"
+    replace: "inclusive"
+    propagate_case: true
+    word: true
+
+  - trigger: "info"
+    replace: "information"
+    propagate_case: true
+    word: true
+        
+  - trigger: "inh"
+    replace: "inhoud"
+    propagate_case: true
+    word: true
+
+  - trigger: "ipv"
+    replace: "in plaats van"
+    propagate_case: true
+    word: true
+ 
+  - trigger: "isg"
+    replace: ":)👍🏼"
+    propagate_case: true
+    word: true
+
+  - trigger: "isnt"
+    replace: "isn't"
+    propagate_case: true
+    word: true
+
+  - trigger: "its"
+    replace: "it's"
+    propagate_case: true
+    word: true
+
+  - trigger: "i've"
+    replace: "I've"
+    propagate_case: true
+    word: true
+
+  - trigger: "ivenot"
+    replace: "I've not"
+    propagate_case: true
+    word: true
+
+  - trigger: "ivent"
+    replace: "I've not"
+    propagate_case: true
+    word: true
+
+  - trigger: "izjz"
+    replace: "ik zie je zo"
+    propagate_case: true
+    word: true
+
+  #| K
+  
+  - trigger: "k"
+    replace: "ik"
+    propagate_case: true
+    word: true
+
+  - trigger: "kotk"
+    replace: "Knights of the Kitchen Table"
+    propagate_case: true
+    word: true
+
+  #| L
+
+  - trigger: "lets"
+    replace: "let's"
+    propagate_case: true
+    word: true
+
+  - trigger: "lm"
+    replace: "laat maar"
+    propagate_case: true
+    word: true
+
+  - trigger: "lmk"
+    replace: "let me know"
+    propagate_case: true
+    word: true
+
+  - trigger: "lyk"
+    replace: "let you know"
+    propagate_case: true
+    word: true
+
+  #| M
+
+  - trigger: "m"
+    replace: "'m"
+    propagate_case: true
+    word: true
+
+  - trigger: "meta"
+    replace: "metaform"
+    propagate_case: true
+    word: true
+
+  - trigger: "mf"
+    replace: "motherfucker"
+    propagate_case: true
+    word: true
+
+  - trigger: "mfer"
+    replace: "motherfucker"
+    propagate_case: true
+    word: true
+
+  - trigger: "mfers"
+    replace: "motherfuckers"
+    propagate_case: true
+    word: true
+
+  - trigger: "mfs"
+    replace: "motherfuckers"
+    propagate_case: true
+    word: true
+
+  - trigger: "miss"
+    replace: "misschien"
+    propagate_case: true
+    word: true
+
+  - trigger: "mn"
+    replace: "m'n"
+    propagate_case: true
+    word: true
+
+  - trigger: "mnu"
+    replace: "maakt niet uit"
+    propagate_case: true
+    word: true
+
+  - trigger: "muv"
+    replace: "met uitzondering van"
+    propagate_case: true
+    word: true
+
+  #| N
+
+  - trigger: "n"
+    replace: "'n"
+    propagate_case: true
+    word: true
+
+  - trigger: "ngl"
+    replace: "not gonna lie"
+    propagate_case: true
+    word: true
+
+  - trigger: "nie"
+    replace: "niet"
+    propagate_case: true
+    word: true
+
+  - trigger: "np"
+    replace: "no problem"
+    propagate_case: true
+    word: true
+
+  - trigger: "nub"
+    replace: "number"
+    propagate_case: true
+    word: true
+
+  - trigger: "num"
+    replace: "nummer"
+    propagate_case: true
+    word: true
+
+  - trigger: "nvm"
+    replace: "never mind"
+    propagate_case: true
+    word: true
+
+  - trigger: "nw"
+    replace: "no worries"
+    propagate_case: true
+    word: true
+
+
+  #| O
+
+  - trigger: "obv"
+    replace: "obviously"
+    propagate_case: true
+    word: true
+
+  - trigger: "ofc"
+    replace: "of course"
+    propagate_case: true
+    word: true
+
+  - trigger: "omw"
+    replace: "on my way"
+    propagate_case: true
+    word: true
+
+  - trigger: "ong"
+    replace: "ongeveer"
+    propagate_case: true
+    word: true
+
+  - trigger: "opdr"
+    replace: "opdracht"
+    propagate_case: true
+    word: true
+
+  - trigger: "opp"
+    replace: "oppervlakte"
+    propagate_case: true
+    word: true
+
+  #| P
+
+  - trigger: "par"
+    replace: "paragraaf"
+    propagate_case: true
+    word: true
+  
+  - trigger: "passoa"
+    replace: "passoã"
+    propagate_case: true
+    word: true
+
+  - trigger: "peeps"
+    replace: "people"
+    propagate_case: true
+    word: true
+
+  - trigger: "pfp"
+    replace: "profile picture"
+    propagate_case: true
+    word: true
+
+  - trigger: "pls"
+    replace: "please"
+    propagate_case: true
+    word: true
+
+  - trigger: "pp"
+    replace: "per person"
+    propagate_case: true
+    word: true
+
+  - trigger: "pp"
+    replace: "per person"
+    propagate_case: true
+    word: true
+
+  - trigger: "prob"
+    replace: "probably"
+    propagate_case: true
+    word: true
+
+  - trigger: "promille"
+    replace: "‰"
+    propagate_case: true
+    word: true
+
+  #| Q
+
+  # ...
+
+  #| R
+
+  - trigger: "r"
+    replace: "are"
+    propagate_case: true
+    word: true
+
+  - trigger: "rn"
+    replace: "right now"
+    propagate_case: true
+    word: true
+
+  - trigger: "ror"
+    replace: "Risk of Rain"
+    propagate_case: true
+    word: true
+
+  - trigger: "ror2"
+    replace: "Risk of Rain 2"
+    propagate_case: true
+    word: true
+
+  - trigger: "rp"
+    replace: "role play"
+    propagate_case: true
+    word: true
+
+  - trigger: "rtfm"
+    replace: "read the fucking manual"
+    propagate_case: true
+    word: true
+
+  #| S
+
+  - trigger: "sb"
+    replace: "somebody"
+    propagate_case: true
+    word: true
+
+  - trigger: "shes"
+    replace: "she's"
+    propagate_case: true
+    word: true
+
+  - trigger: "shouldnt"
+    replace: "shouldn't"
+    propagate_case: true
+    word: true
+
+  - trigger: "sm"
+    replace: "so much"
+    propagate_case: true
+    word: true
+ 
+  - trigger: "smth"
+    replace: "something"
+    propagate_case: true
+    word: true
+
+  - trigger: "smwh"
+    replace: "somewhere"
+    propagate_case: true
+    word: true
+
+  - trigger: "ss"
+    replace: "screenshot"
+    propagate_case: true
+    word: true
+
+  - trigger: "suc6"
+    replace: "success"
+    propagate_case: true
+    word: true
+
+  - trigger: "sws"
+    replace: "sowieso"
+    propagate_case: true
+    word: true
+
+  #| T
+
+  - trigger: "t"
+    replace: "'t"
+    propagate_case: true
+    word: true
+ 
+  - trigger: "tba"
+    replace: "to be announced"
+    propagate_case: true
+    word: true
+
+  - trigger: "tbd"
+    replace: "to be determined"
+    propagate_case: true
+    word: true
+
+  - trigger: "tbf"
+    replace: "to be fair"
+    propagate_case: true
+    word: true
+
+  - trigger: "tbh"
+    replace: "to be honest"
+    propagate_case: true
+    word: true
+
+  - trigger: "tele"
+    replace: "telephone"
+    propagate_case: true
+    word: true
+
+  - trigger: "tf"
+    replace: "the fuck"
+    propagate_case: true
+    word: true
+
+  - trigger: "thatd"
+    replace: "that'd"
+    propagate_case: true
+    word: true
+
+  - trigger: "thatll"
+    replace: "that'll"
+    propagate_case: true
+    word: true
+
+  - trigger: "thats"
+    replace: "that's"
+    propagate_case: true
+    word: true
+
+  - trigger: "thered"
+    replace: "there'd"
+    propagate_case: true
+    word: true
+
+  - trigger: "therell"
+    replace: "there'll"
+    propagate_case: true
+    word: true
+
+  - trigger: "therere"
+    replace: "there're"
+    propagate_case: true
+    word: true
+
+  - trigger: "theres"
+    replace: "there's"
+    propagate_case: true
+    word: true
+
+  - trigger: "theyd"
+    replace: "they'd"
+    propagate_case: true
+    word: true
+
+  - trigger: "theyll"
+    replace: "they'll"
+    propagate_case: true
+    word: true
+
+  - trigger: "theyre"
+    replace: "they're"
+    propagate_case: true
+    word: true
+
+  - trigger: "theyve"
+    replace: "they've"
+    propagate_case: true
+    word: true
+
+  - trigger: "tho"
+    replace: "though"
+    propagate_case: true
+    word: true
+
+  - trigger: "thx"
+    replace: "thanks"
+    propagate_case: true
+    word: true
+
+  - trigger: "tm"
+    replace: "too much"
+    propagate_case: true
+    word: true
+
+  - trigger: "tmi"
+    replace: "too much information"
+    propagate_case: true
+    word: true
+
+  - trigger: "tu"
+    replace: "TU/e"
+    propagate_case: true
+    word: true
+
+  - trigger: "tue"
+    replace: "TU/e"
+    propagate_case: true
+    word: true
+    
+  - trigger: "tvdh"
+    replace: "Tygo van den Hurk"
+    propagate_case: true
+    word: true
+
+  - trigger: "ty"
+    replace: "thank you"
+    propagate_case: true
+    word: true
+
+  #| U
+
+  - trigger: "ur"
+    replace: "your"
+    propagate_case: true
+    word: true
+
+  #| V
+
+  - trigger: "vaca"
+    replace: "vacation"
+    propagate_case: true
+    word: true
+
+  - trigger: "vaka"
+    replace: "vakantie"
+    propagate_case: true
+    word: true
+
+  - trigger: "vd"
+    replace: "van de"
+    propagate_case: true
+    word: true
+
+  - trigger: "vgm"
+    replace: "volgens mij"
+    propagate_case: true
+    word: true
+
+  - trigger: "vh"
+    replace: "van het"
+    propagate_case: true
+    word: true
+
+  - trigger: "vnd"
+    replace: "vanavond"
+    propagate_case: true
+    word: true
+
+  #| W
+
+  - trigger: "w8"
+    replace: "wacht"
+    propagate_case: true
+    word: true
+
+  - trigger: "wasnt"
+    replace: "wasn't"
+    propagate_case: true
+    word: true
+
+  - trigger: "wby"
+    replace: "what about you"
+    propagate_case: true
+    word: true
+
+  - trigger: "wdym"
+    replace: "what do you mean"
+    propagate_case: true
+    word: true
+
+  - trigger: "wed"
+    replace: "we'd"
+    propagate_case: true
+    word: true
+
+  - trigger: "weve"
+    replace: "we've"
+    propagate_case: true
+    word: true
+    
+  - trigger: "weve"
+    replace: "we've"
+    propagate_case: true
+    word: true
+    
+  - trigger: "whatd"
+    replace: "what'd"
+    propagate_case: true
+    word: true
+
+  - trigger: "whats"
+    replace: "what's"
+    propagate_case: true
+    word: true
+
+  - trigger: "whatve"
+    replace: "what've"
+    propagate_case: true
+    word: true
+
+  - trigger: "whered"
+    replace: "where'd"
+    propagate_case: true
+    word: true
+
+  - trigger: "wheres"
+    replace: "where's"
+    propagate_case: true
+    word: true
+
+  - trigger: "whereve"
+    replace: "where've"
+    propagate_case: true
+    word: true
+
+  - trigger: "wherell"
+    replace: "where'll"
+    propagate_case: true
+    word: true
+
+  - trigger: "whod"
+    replace: "who'd"
+    propagate_case: true
+    word: true
+
+  - trigger: "whos"
+    replace: "who's"
+    propagate_case: true
+    word: true
+
+  - trigger: "whove"
+    replace: "who've"
+    propagate_case: true
+    word: true
+
+  - trigger: "wholl"
+    replace: "who'll"
+    propagate_case: true
+    word: true
+
+  - trigger: "whyd"
+    replace: "why'd"
+    propagate_case: true
+    word: true
+
+  - trigger: "whys"
+    replace: "why's"
+    propagate_case: true
+    word: true
+
+  - trigger: "whyve"
+    replace: "why've"
+    propagate_case: true
+    word: true
+
+  - trigger: "whyll"
+    replace: "why'll"
+    propagate_case: true
+    word: true
+
+  - trigger: "wip"
+    replace: "work in progress"
+    propagate_case: true
+    word: true
+
+  - trigger: "wnr"
+    replace: "wanneer"
+    propagate_case: true
+    word: true
+
+  - trigger: "wont"
+    replace: "won't"
+    propagate_case: true
+    word: true
+
+  - trigger: "wouldnt"
+    replace: "wouldn't"
+    propagate_case: true
+    word: true
+
+  - trigger: "wrm"
+    replace: "waarom"
+    propagate_case: true
+    word: true
+
+  - trigger: "wrs"
+    replace: "waarschijnlijk"
+    propagate_case: true
+    word: true
+
+  - trigger: "wss"
+    replace: "waarschijnlijk"
+    propagate_case: true
+    word: true
+
+  - trigger: "wtf"
+    replace: "what the actual fuck"
+    propagate_case: true
+    word: true
+
+  - trigger: "wya"
+    replace: "where are you at"
+    propagate_case: true
+    word: true
+
+  #| X
+
+  # ...
+
+  #| Y
+
+  - trigger: "yall"
+    replace: "ya'll"
+    propagate_case: true
+    word: true
+
+  - trigger: "youd"
+    replace: "you'd"
+    propagate_case: true
+    word: true
+
+  - trigger: "youve"
+    replace: "you've"
+    propagate_case: true
+    word: true
+
+  - trigger: "youll"
+    replace: "you'll"
+    propagate_case: true
+    word: true
+
+  - trigger: "yt"
+    replace: "YouTube"
+    propagate_case: true
+    word: true
+
+  #| Z
+
+  - trigger: "zjz"
+    replace: "zie je zo"
+    propagate_case: true
+    word: true
+
+  - trigger: "zn"
+    replace: "z'n"
+    propagate_case: true
+    word: true
+
+  - trigger: "zoz"
+    replace: "zie om zeiden"
+    propagate_case: true
+    word: true
+
+  #| miscellaneous
+
+  - trigger: "cgrad"
+    replace: "℃"
+    word: true
+
+  - trigger: "fgrad"
+    replace: "℉"
+    word: true
+
+  - trigger: "grad"
+    replace: "°"
+    word: true
+
+  - trigger: "chk"
+    replace: "✅"
+    word: true
+
+  - trigger: "uchk"
+    replace: "❌"
+    word: true

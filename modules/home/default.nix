@@ -5,6 +5,7 @@
     inputs.home-manager.flakeModules.home-manager
     ./all
     ./cli
+    ./espanso
     ./gui
     ./styling
     ./unfree
