@@ -37,6 +37,19 @@ in
         };
       };
 
+      config.services.fail2ban = mkIf cfg.enable {
+        enable = mkDefault true;
+        maxretry = mkDefault 5;
+        bantime = mkDefault "24h";
+        ignoreIP = [ "100.64.0.0/10" ];
+      };
+
+      config.services.endlessh = mkIf cfg.enable {
+        enable = mkDefault true;
+        openFirewall = mkDefault true;
+        port = mkDefault 2222;
+      };
+
       config.users.users = mkIf cfg.enable {
         ${META.user.username} = {
           openssh.authorizedKeys.keys = inputs.self.lib.import-recursively {
