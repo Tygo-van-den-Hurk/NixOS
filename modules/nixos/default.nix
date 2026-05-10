@@ -5,6 +5,7 @@
     ./all
     ./defaults
     ./docker
+    ./eduvpn
     ./gaming
     ./gui
     ./impermanence
