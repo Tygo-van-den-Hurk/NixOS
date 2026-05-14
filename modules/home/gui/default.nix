@@ -23,10 +23,9 @@ in
         };
       };
 
-      config = mkIf cfg.enable {
+      config.home.sessionVariables = mkIf cfg.enable {
         # Bug fixes: https://github.com/alacritty/alacritty/issues/5101;
-        home.sessionVariables.WINIT_X11_SCALE_FACTOR = mkDefault 1;
-        xdg.mimeApps.enable = mkDefault true;
+        WINIT_X11_SCALE_FACTOR = mkDefault 1;
       };
 
       imports = inputs.self.lib.import-recursively {

@@ -28,6 +28,7 @@ in
         gui.enable = mkDefault true;
         styling.enable = mkDefault true;
         wm.enable = mkDefault true;
+        xdg.enable = mkDefault true;
         xremap.enable = mkDefault true;
       };
 
@@ -37,6 +38,7 @@ in
         styling
         unfree
         wm
+        xdg
         xremap
       ];
     };

@@ -9,6 +9,7 @@
     ./styling
     ./unfree
     ./wm
+    ./xdg
     ./xremap
   ];
 }
