@@ -10,7 +10,7 @@ in
       ...
     }:
     with lib;
-    let 
+    let
       cfg = config.${namespace}.${module};
     in
     {

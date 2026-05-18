@@ -21,21 +21,23 @@ in
     };
   };
 
-  config = mkIf cfg.enable {
-    programs.gnupg = {
-      dirmngr.enable = mkDefault true;
-      agent = {
-        enable = mkDefault true;
-        pinentryPackage = pkgs.pinentry-curses;
-        settings =
-          let
-            one-week = 604800;
-          in
-          {
-            default-cache-ttl = one-week;
-            max-cache-ttl = one-week;
-          };
-      };
+  config.programs.gnupg = mkIf cfg.enable {
+    dirmngr.enable = mkDefault true;
+    agent = {
+      enable = mkDefault true;
+      pinentryPackage = pkgs.pinentry-curses;
+      settings =
+        let
+          one-second = 1;
+          one-minute = 60 * one-second;
+          one-hour = 60 * one-minute;
+          one-day = 24 * one-hour;
+          one-week = 7 * one-day;
+        in
+        {
+          default-cache-ttl = one-week;
+          max-cache-ttl = one-week;
+        };
     };
   };
 }
