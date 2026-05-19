@@ -25,10 +25,8 @@ in
     enableDefaultConfig = mkDefault false;
 
     extraOptionOverrides = {
-      identityFile = mkDefault "~/.ssh/key.private.ssh";
-      identitiesOnly = mkDefault "yes";
       controlMaster = mkDefault "auto";
-      controlPath = mkDefault "~/.ssh/master-%r@%n:%p";
+      controlPath = mkDefault "~/.ssh/%r@%n:%p";
       controlPersist = mkDefault "30m";
       SetEnv = "TERM=xterm-256color";
       SendEnv = "TERM";
@@ -46,7 +44,6 @@ in
       hostname = mkDefault "tygos-nasserver.tail9fcea.ts.net";
       user = mkDefault "root";
       port = mkDefault 22;
-      identitiesOnly = mkDefault false;
     };
 
     matchBlocks."Cloud" = {
