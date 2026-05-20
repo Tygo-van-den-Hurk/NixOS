@@ -1,7 +1,10 @@
-{ ... }:
 {
-  imports = [ ];
-  perSystem = _: {
-    packages = { };
-  };
+  ...
+}:
+{
+  imports = [
+    ./hibernate
+    ./nbcat
+    ./preview
+  ];
 }

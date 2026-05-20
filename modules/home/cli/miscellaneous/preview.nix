@@ -23,6 +23,6 @@ in
   };
 
   config.home = mkIf cfg.enable {
-    packages = [ inputs.tygo-van-den-hurk-dotfiles.packages.${META.system}.preview ];
+    packages = [ inputs.self.packages.${META.system}.${program} ];
   };
 }
