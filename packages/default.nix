@@ -1,7 +1,4 @@
 {
-  ...
-}:
-{
   imports = [
     ./hibernate
     ./nbcat

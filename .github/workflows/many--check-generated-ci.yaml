@@ -7,10 +7,10 @@ on:
   pull_request:
     branches: [main, master, release, development]
     types: [opened, synchronize, reopened]
-    paths: [ ci/**, hosts/**, homes/** ]
+    paths: [ ci/**, hosts/**, homes/**, packages/**, ]
   push:
     branches: [main, master, release, development]
-    paths: [ ci/**, hosts/**, homes/** ]
+    paths: [ ci/**, hosts/**, homes/**, packages/**, ]
 
 jobs:
   check-generated-ci:

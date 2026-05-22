@@ -2,6 +2,11 @@ let
   name = "hibernate";
 in
 {
+  self.ci.packages.".auto--package--${name}.nix" = {
+    inherit name;
+    systems = [ "x86_64-linux" ];
+  };
+
   perSystem =
     {
       pkgs,
