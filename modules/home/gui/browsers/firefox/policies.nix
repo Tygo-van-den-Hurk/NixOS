@@ -17,6 +17,7 @@ in
     # Updates & Background Services
     AppAutoUpdate = false;
     BackgroundAppUpdate = false;
+    ExtensionUpdate = false;
 
     # Feature Disabling
     DisableBuiltinPDFViewer = false;
