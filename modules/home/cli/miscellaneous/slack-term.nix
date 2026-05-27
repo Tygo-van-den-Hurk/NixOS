@@ -76,7 +76,7 @@ in
   config.xdg.configFile = mkIf cfg.enable {
     "${program}/config.json".text =
       let
-        base16Scheme = if config ? stylix then config.stylix.base16Scheme else { };
+        base16Scheme = if config ? stylix then config.lib.stylix.colors.withHashtag else { };
       in
       builtins.toJSON (mkMerge [
         {

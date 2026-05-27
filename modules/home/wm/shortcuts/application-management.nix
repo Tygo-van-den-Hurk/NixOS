@@ -34,10 +34,10 @@ in
 
           ${dmenu-rs-enable-plugins}/bin/dmenu_run --fast \
             --fn '-${config.stylix.fonts.serif.name or "OpenDyslexicM Nerd Font Mono"}-9' \
-            -nf '#${config.stylix.base16Scheme.base05 or "8f8f8f"}' \
-            -sf '#${config.stylix.base16Scheme.base04 or "ffffff"}' \
-            -nb '#${config.stylix.base16Scheme.base00 or "000000"}' \
-            -sb '#${config.stylix.base16Scheme.base02 or "000000"}' \
+            -nf '${config.lib.stylix.colors.withHashtag.base05 or "#8f8f8f"}' \
+            -sf '${config.lib.stylix.colors.withHashtag.base04 or "#ffffff"}' \
+            -nb '${config.lib.stylix.colors.withHashtag.base00 or "#000000"}' \
+            -sb '${config.lib.stylix.colors.withHashtag.base02 or "#000000"}' \
             --lines 10 --insensitive --prompt 'search:' --autoselect \
             "$@"
         ''

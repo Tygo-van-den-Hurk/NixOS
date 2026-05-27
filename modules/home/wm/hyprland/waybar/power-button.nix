@@ -85,13 +85,13 @@ in
       }
 
       window {
-        background: alpha(#${config.stylix.base16Scheme.base00}, 0.8);
+        background: alpha(${config.lib.stylix.colors.withHashtag.base00}, 0.8);
       }
 
       button {
-        background: #${config.stylix.base16Scheme.base01};
-        text-decoration-color: #${config.stylix.base16Scheme.base05};
-        color: #${config.stylix.base16Scheme.base05};
+        background: ${config.lib.stylix.colors.withHashtag.base01};
+        text-decoration-color: ${config.lib.stylix.colors.withHashtag.base05};
+        color: ${config.lib.stylix.colors.withHashtag.base05};
         border-style: solid;
         border-width: 1px;
         background-repeat: no-repeat;
@@ -102,7 +102,7 @@ in
       }
 
       button:focus, button:active, button:hover {
-        border-color: #${config.stylix.base16Scheme.base0D};
+        border-color: ${config.lib.stylix.colors.withHashtag.base0D};
         outline-style: none;
       }
 

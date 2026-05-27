@@ -27,22 +27,22 @@ let
 
       fontName = config.home-manager.users.${META.user.username}.stylix.fonts.sansSerif.name;
 
-      inherit (config.home-manager.users.${META.user.username}.stylix.base16Scheme) base00;
-      inherit (config.home-manager.users.${META.user.username}.stylix.base16Scheme) base01;
-      inherit (config.home-manager.users.${META.user.username}.stylix.base16Scheme) base02;
-      inherit (config.home-manager.users.${META.user.username}.stylix.base16Scheme) base03;
-      inherit (config.home-manager.users.${META.user.username}.stylix.base16Scheme) base04;
-      inherit (config.home-manager.users.${META.user.username}.stylix.base16Scheme) base05;
-      inherit (config.home-manager.users.${META.user.username}.stylix.base16Scheme) base06;
-      inherit (config.home-manager.users.${META.user.username}.stylix.base16Scheme) base07;
-      inherit (config.home-manager.users.${META.user.username}.stylix.base16Scheme) base08;
-      inherit (config.home-manager.users.${META.user.username}.stylix.base16Scheme) base09;
-      inherit (config.home-manager.users.${META.user.username}.stylix.base16Scheme) base0A;
-      inherit (config.home-manager.users.${META.user.username}.stylix.base16Scheme) base0B;
-      inherit (config.home-manager.users.${META.user.username}.stylix.base16Scheme) base0C;
-      inherit (config.home-manager.users.${META.user.username}.stylix.base16Scheme) base0D;
-      inherit (config.home-manager.users.${META.user.username}.stylix.base16Scheme) base0E;
-      inherit (config.home-manager.users.${META.user.username}.stylix.base16Scheme) base0F;
+      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base00;
+      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base01;
+      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base02;
+      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base03;
+      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base04;
+      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base05;
+      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base06;
+      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base07;
+      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base08;
+      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base09;
+      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base0A;
+      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base0B;
+      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base0C;
+      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base0D;
+      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base0E;
+      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base0F;
 
       conf = ''
         [General]

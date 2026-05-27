@@ -75,8 +75,8 @@ in
       rec {
         settings = [
           {
-            options.background-color = "#${config.stylix.base16Scheme.base00 or "000000"}";
-            options.color = "#${config.stylix.base16Scheme.base05 or "FFFFFF"}";
+            options.background-color = config.lib.stylix.colors.withHashtag.base00 or "#000000";
+            options.color = config.lib.stylix.colors.withHashtag.base05 or "#FFFFFF";
           }
         ];
       };

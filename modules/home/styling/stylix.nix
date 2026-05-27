@@ -30,24 +30,27 @@ in
       stdenv.mkDerivation rec {
         name = "wallpaper.png";
 
-        nativeBuildInputs = [ python312Packages.cairosvg ];
+        nativeBuildInputs = [
+          python312Packages.cairosvg
+          pastel
+        ];
 
-        inherit (config.stylix.base16Scheme) base00;
-        inherit (config.stylix.base16Scheme) base01;
-        inherit (config.stylix.base16Scheme) base02;
-        inherit (config.stylix.base16Scheme) base03;
-        inherit (config.stylix.base16Scheme) base04;
-        inherit (config.stylix.base16Scheme) base05;
-        inherit (config.stylix.base16Scheme) base06;
-        inherit (config.stylix.base16Scheme) base07;
-        inherit (config.stylix.base16Scheme) base08;
-        inherit (config.stylix.base16Scheme) base09;
-        inherit (config.stylix.base16Scheme) base0A;
-        inherit (config.stylix.base16Scheme) base0B;
-        inherit (config.stylix.base16Scheme) base0C;
-        inherit (config.stylix.base16Scheme) base0D;
-        inherit (config.stylix.base16Scheme) base0E;
-        inherit (config.stylix.base16Scheme) base0F;
+        inherit (config.lib.stylix.colors) base00;
+        inherit (config.lib.stylix.colors) base01;
+        inherit (config.lib.stylix.colors) base02;
+        inherit (config.lib.stylix.colors) base03;
+        inherit (config.lib.stylix.colors) base04;
+        inherit (config.lib.stylix.colors) base05;
+        inherit (config.lib.stylix.colors) base06;
+        inherit (config.lib.stylix.colors) base07;
+        inherit (config.lib.stylix.colors) base08;
+        inherit (config.lib.stylix.colors) base09;
+        inherit (config.lib.stylix.colors) base0A;
+        inherit (config.lib.stylix.colors) base0B;
+        inherit (config.lib.stylix.colors) base0C;
+        inherit (config.lib.stylix.colors) base0D;
+        inherit (config.lib.stylix.colors) base0E;
+        inherit (config.lib.stylix.colors) base0F;
 
         # resolution: 4K
         height = toString (1080 * 2);
@@ -58,34 +61,40 @@ in
             x-adapted-from="https://brand.nixos.org/logos/nixos-logo-rainbow-gradient-black-regular-horizontal-recommended.svg">
             <defs>
               <linearGradient gradientUnits="userSpaceOnUse" id="linear-gradient-44584babfef90c4cb32c8ee42b1193ba" x1="-319.9999999999999" x2="127.99999999999996" y1="-554.2562584220408" y2="221.70250336881628">
-                <stop offset="0%"   stop-color="$base08" />
+                <stop offset="0%"   stop-color="$dark_base08" />
                 <stop offset="25%"  stop-color="$base08" />
-                <stop offset="100%" stop-color="$base08" />
+                <stop offset="85%"  stop-color="$base08" />
+                <stop offset="100%" stop-color="$light_base08" />
               </linearGradient>
               <linearGradient gradientUnits="userSpaceOnUse" id="linear-gradient-96af2d924a4fbf5b015c244addc578a8" x1="-319.9999999999999" x2="127.99999999999996" y1="-554.2562584220408" y2="221.70250336881628">
-                <stop offset="0%"   stop-color="$base09" />
+                <stop offset="0%"   stop-color="$dark_base09" />
                 <stop offset="25%"  stop-color="$base09" />
-                <stop offset="100%" stop-color="$base09" />
+                <stop offset="85%"  stop-color="$base09" />
+                <stop offset="100%" stop-color="$light_base09" />
               </linearGradient>
               <linearGradient gradientUnits="userSpaceOnUse" id="linear-gradient-33ff75d118a188d564af252422e7cc92" x1="-319.9999999999999" x2="127.99999999999996" y1="-554.2562584220408" y2="221.70250336881628">
-                <stop offset="0%"   stop-color="$base0A" />
+                <stop offset="0%"   stop-color="$dark_base0A" />
                 <stop offset="25%"  stop-color="$base0A" />
-                <stop offset="100%" stop-color="$base0A" />
+                <stop offset="85%"  stop-color="$base0A" />
+                <stop offset="100%" stop-color="$light_base0A" />
               </linearGradient>
               <linearGradient gradientUnits="userSpaceOnUse" id="linear-gradient-2a0b6b52f041088f95dc76196e6b4d88" x1="-319.9999999999999" x2="127.99999999999996" y1="-554.2562584220408" y2="221.70250336881628">
-                <stop offset="0%"   stop-color="$base0B" />
+                <stop offset="0%"   stop-color="$dark_base0B" />
                 <stop offset="25%"  stop-color="$base0B" />
-                <stop offset="100%" stop-color="$base0B" />
+                <stop offset="85%"  stop-color="$base0B" />
+                <stop offset="100%" stop-color="$light_base0B" />
               </linearGradient>
               <linearGradient gradientUnits="userSpaceOnUse" id="linear-gradient-c6751d2115edfa2506ed6789e247b928" x1="-319.9999999999999" x2="127.99999999999996" y1="-554.2562584220408" y2="221.70250336881628">
-                <stop offset="0%"   stop-color="$base0D" />
+                <stop offset="0%"   stop-color="$dark_base0D" />
                 <stop offset="25%"  stop-color="$base0D" />
-                <stop offset="100%" stop-color="$base0D" />
+                <stop offset="85%"  stop-color="$base0D" />
+                <stop offset="100%" stop-color="$light_base0D" />
               </linearGradient>
               <linearGradient gradientUnits="userSpaceOnUse" id="linear-gradient-6b2d1737e4a2ebfe17f3769056568c22" x1="-319.9999999999999" x2="127.99999999999996" y1="-554.2562584220408" y2="221.70250336881628">
-                <stop offset="0%"   stop-color="$base0E" />
+                <stop offset="0%"   stop-color="$dark_base0E" />
                 <stop offset="25%"  stop-color="$base0E" />
-                <stop offset="100%" stop-color="$base0E" />
+                <stop offset="85%"  stop-color="$base0E" />
+                <stop offset="100%" stop-color="$light_base0E" />
               </linearGradient>
             </defs>
             <rect x="-3147.32" y="-3500.98" fill="$base01" width="11119.63" height="7085.97"/>
@@ -108,18 +117,24 @@ in
 
         patchPhase = ''
           runHook preBuild
-          for environment_variable in \
+          for base in \
             base00 base01 base02 base03 base04 base05 base06 base07 \
             base08 base09 base0A base0B base0C base0D base0E base0F
           do # substitute the value of the env var into the svg:
-            value="$(eval echo \$$environment_variable)"
-            sed -i "s/\\\$$environment_variable/#$value/g" "$name.svg"
+            normal="$(eval echo \$$base | pastel format hex)"
+            light="$(pastel lighten 0.05 "$normal" | pastel format hex)"
+            dark="$(pastel darken 0.2 "$normal" | pastel format hex)"
+            sed -i "$name.svg" \
+              -e "s/\\\$''${base}/$normal/g" \
+              -e "s/\\\$light_''${base}/$light/g" \
+              -e "s/\\\$dark_''${base}/$dark/g"
           done
           runHook postBuild
         '';
 
         buildPhase = ''
           runHook preBuild
+          echo "result := $(< "$name.svg")"
           python3 -m cairosvg "$name.svg" --output "$name" --output-width "$width" --output-height "$height"
           runHook postBuild
         '';
@@ -133,43 +148,9 @@ in
 
     base16Scheme =
       if config.stylix.polarity == "dark" then
-        {
-          base00 = "303446";
-          base01 = "292c3c";
-          base02 = "414559";
-          base03 = "51576d";
-          base04 = "626880";
-          base05 = "c6d0f5";
-          base06 = "f2d5cf";
-          base07 = "babbf1";
-          base08 = "e78284";
-          base09 = "ef9f76";
-          base0A = "e5c890";
-          base0B = "a6d189";
-          base0C = "81c8be";
-          base0D = "8caaee";
-          base0E = "ca9ee6";
-          base0F = "eebebe";
-        }
+        "${pkgs.base16-schemes}/share/themes/catppuccin-frappe.yaml"
       else
-        {
-          base00 = "eff1f5";
-          base01 = "e6e9ef";
-          base02 = "dce0e8";
-          base03 = "a5adce";
-          base04 = "bcc0cc";
-          base05 = "4c4f69";
-          base06 = "f2d5cf";
-          base07 = "babbf1";
-          base08 = "dc8a78";
-          base09 = "df8e1d";
-          base0A = "e5c890";
-          base0B = "a6d189";
-          base0C = "81c8be";
-          base0D = "8caaee";
-          base0E = "ca9ee6";
-          base0F = "eebebe";
-        };
+        "${pkgs.base16-schemes}/share/themes/catppuccin-latte.yaml";
 
     fonts = rec {
       serif = monospace;

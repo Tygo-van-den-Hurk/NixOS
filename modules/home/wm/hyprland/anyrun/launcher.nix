@@ -56,16 +56,16 @@ in
     };
 
     extraCss =
-      with (config.stylix.base16Scheme or (throw "Stylix woopsy!"));
+      with (config.lib.stylix.colors.withHashtag or (throw "Stylix woopsy!"));
       let
         template = builtins.readFile ./style.gtk.css;
         replacements = {
-          "var(--background-main)" = "#${base01}";
-          "var(--background-secondary)" = "#${base00}";
-          "var(--background-selected)" = "#${base03}";
-          "var(--border-color-main)" = "#${base0D}";
-          "var(--text-color-main)" = "#${base05}";
-          "var(--text-color-selected)" = "#${base0D}";
+          "var(--background-main)" = base01;
+          "var(--background-secondary)" = base00;
+          "var(--background-selected)" = base03;
+          "var(--border-color-main)" = base0D;
+          "var(--text-color-main)" = base05;
+          "var(--text-color-selected)" = base0D;
           "var(--padding)" = "10px";
         };
       in
