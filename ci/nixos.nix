@@ -56,9 +56,9 @@ in
             push = {
               branches = [ "main" ];
               paths = [
-                "hosts/${value.hostname}"
-                "modules"
-                "lib"
+                "hosts/${value.hostname}/**"
+                "modules/**"
+                "lib/**"
                 "flake.*"
               ];
             };

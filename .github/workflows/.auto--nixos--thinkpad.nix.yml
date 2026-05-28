@@ -20,7 +20,7 @@ name: Validating NixOS configuration for 'thinkpad'
     branches:
       - main
     paths:
-      - hosts/thinkpad
-      - modules
-      - lib
+      - hosts/thinkpad/**
+      - modules/**
+      - lib/**
       - flake.*

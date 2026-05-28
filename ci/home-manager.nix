@@ -62,9 +62,9 @@ in
             push = {
               branches = [ "main" ];
               paths = [
-                "homes/${value.username}@${value.hostname}"
-                "modules"
-                "lib"
+                "homes/${value.username}@${value.hostname}/**"
+                "modules/home/**"
+                "lib/**"
                 "flake.*"
               ];
             };
