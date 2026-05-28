@@ -106,7 +106,7 @@ I have not looked at Vim yet, so my editor of choice is VS Code, which obviously
 
 <picture>
   <source srcset="./assets/images/png/vs-code.light.png" media="(prefers-color-scheme: light)" />
-  <image src="./assets/images/png/vs-code.dark.png" alt="VS Code using the same colors as the wallpaper, and login screen." width="100%">
+  <img src="./assets/images/png/vs-code.dark.png" alt="VS Code using the same colors as the wallpaper, and login screen." width="100%">
 </picture>
 
 ## Pros of using NixOS
