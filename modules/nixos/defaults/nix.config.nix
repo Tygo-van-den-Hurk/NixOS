@@ -43,7 +43,7 @@ in
 
     nixpkgs = {
       config.allowUnfree = mkDefault true;
-      config.allowBroken = mkDefault true;
+      config.allowBroken = mkDefault false;
       flake.setFlakeRegistry = mkDefault true;
       flake.setNixPath = mkDefault true;
     };
