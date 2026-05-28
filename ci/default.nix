@@ -15,7 +15,6 @@ in
     inputs.github-actions-nix.flakeModules.default
     ./home-manager.nix
     ./nixos.nix
-    ./packages.nix
   ];
 
   options.${namespace}.${module} = with types; {
