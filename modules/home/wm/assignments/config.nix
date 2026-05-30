@@ -13,14 +13,14 @@ in
 {
   config.${namespace}.${type}.${category} = mkIf cfg.enable rec {
 
-    # Terminal applications
+    # 1) Terminal applications
     Terminals.workspace = "Terminal";
     kitty = Terminals;
     gnome-terminal = Terminals;
     alacritty = Terminals;
     xterm = Terminals;
 
-    # Code/File editors
+    # 2) Code/File editors
     FileEditor.workspace = "Code";
     code = FileEditor;
     VSCodium = FileEditor;
@@ -30,7 +30,7 @@ in
     libreoffice = FileEditor;
     DesktopEditors = FileEditor;
 
-    # Browsers
+    # 3) Browsers
     Browser.workspace = "Browser";
     firefox = Browser;
     brave-browser = Browser;
@@ -38,7 +38,7 @@ in
     zen-beta = Browser;
     zen = Browser;
 
-    # Messengers
+    # 4) Messengers
     Messenger.workspace = "Messenger";
     discord = Messenger;
     vesktop = Messenger;
@@ -50,20 +50,21 @@ in
     whatsapp-for-linux = Messenger;
     wasistlos = Messenger;
 
-    # File browsers
+    # 5) File browsers
     FileBrowser.workspace = "Files";
     "org.gnome.Nautilus" = FileBrowser;
     thunar = FileBrowser;
 
-    # Docker
+    # 6) Docker
     Virtualisation.workspace = "Docker";
     "VirtualBox Manager" = Virtualisation;
     "VirtualBox Machine" = Virtualisation;
 
-    # Misc
+    # 7) Misc
     Scratch.workspace = "Scratch";
     steamwebhelper = Scratch;
     steam = Scratch;
     obs = Scratch;
+    Bitwarden = Scratch;
   };
 }
