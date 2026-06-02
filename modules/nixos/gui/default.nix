@@ -1,4 +1,3 @@
-_:
 let
   namespace = "self";
   module = "gui";
@@ -8,6 +7,7 @@ in
     {
       inputs,
       config,
+      pkgs,
       lib,
       ...
     }:
@@ -29,11 +29,22 @@ in
         };
       };
 
-      config = mkIf cfg.enable {
-        programs.hyprland.enable = mkDefault true;
-        security.pam.services.hyprlock.enable = mkDefault true;
-        services.pulseaudio.enable = mkDefault false;
-        services.pipewire = {
+      config.programs = mkIf cfg.enable {
+        hyprland.enable = mkDefault true;
+        hyprlock.enable = mkDefault true;
+      };
+
+      config.xdg.portal = mkIf cfg.enable {
+        enable = mkDefault true;
+        xdgOpenUsePortal = mkDefault true;
+        extraPortals = with pkgs; [
+          xdg-desktop-portal-gtk
+        ];
+      };
+
+      config.services = mkIf cfg.enable {
+        pulseaudio.enable = mkDefault false;
+        pipewire = {
           enable = mkDefault true;
           alsa.enable = mkDefault true;
           alsa.support32Bit = mkDefault true;
