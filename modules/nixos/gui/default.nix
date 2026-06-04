@@ -31,7 +31,13 @@ in
 
       config.programs = mkIf cfg.enable {
         hyprland.enable = mkDefault true;
-        hyprlock.enable = mkDefault true;
+        # hyprlock.enable = mkDefault true;
+        # Hyprlock starts HyprIdle, and since my laptop has problems
+        # starting now I'm thinking maybe this is the cause for it?
+      };
+
+      config.security.pam.services.hyprlock = {
+        enable = mkDefault true;
       };
 
       config.xdg.portal = mkIf cfg.enable {
