@@ -30,6 +30,7 @@ in
         tamasfe.even-better-toml
         myriad-dreamin.tinymist
         mechatroner.rainbow-csv
+        rust-lang.rust-analyzer
         oderwat.indent-rainbow
         dbaeumer.vscode-eslint
         ritwickdey.liveserver
