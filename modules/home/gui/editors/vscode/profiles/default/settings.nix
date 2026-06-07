@@ -20,10 +20,13 @@ in
       "explorer.confirmDragAndDrop" = false;
       "files.autoSave" = "afterDelay";
       "[nix]"."editor.tabSize" = 2;
-      "workbench.tree.indent" = 16;
+      "workbench.tree.indent" = 24;
+      "workbench.startupEditor" = "none";
       "files.associations" = {
+        ".envrc" = "shellscript";
         "flake.lock" = "json";
-        ".env*" = "dotenv";
+        "*.env" = "dotenv";
+        ".env.*" = "dotenv";
       };
     };
 
