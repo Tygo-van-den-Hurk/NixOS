@@ -27,18 +27,20 @@ in
       "nixos-config=${inputs.self}"
     ];
 
-    nix.settings.trusted-users = [
-      "@wheel"
-    ];
+    nix.settings = {
+      warn-dirty = false;
+      abort-on-warn = true;
+      trusted-users = [ "@wheel" ];
+      experimental-features = [
+        "nix-command" # Used to enable the use of the `nix` program.
+        "flakes" # Used to add flake support like for example this one.
+      ];
+    };
 
     nix = {
       checkConfig = mkDefault true;
       checkAllErrors = mkDefault true;
       channel.enable = mkDefault false;
-      settings.experimental-features = [
-        "nix-command" # Used to enable the use of the `nix` program.
-        "flakes" # Used to add flake support like for example this one.
-      ];
     };
 
     nixpkgs = {
