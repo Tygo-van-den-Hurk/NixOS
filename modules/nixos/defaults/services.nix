@@ -24,7 +24,7 @@ in
     services.tailscale.enable = mkDefault true;
     services.printing.enable = mkDefault true;
     networking.firewall.checkReversePath = mkDefault "loose"; # Fix for TailScale
-
+    services.fwupd.enable = mkDefault true;
     services.pipewire = {
       enable = mkDefault true;
       alsa.enable = mkDefault true;
