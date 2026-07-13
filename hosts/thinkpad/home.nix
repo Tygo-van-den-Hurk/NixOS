@@ -34,6 +34,11 @@
     resolution.horizontal = 1920 * 2;
   };
 
+  # Fixes:
+
+  # Blinking cursors
+  wayland.windowManager.hyprland.settings.cursor.no_hardware_cursors = true;
+
   # TEMP:
 
   self.gui.messengers.thunderbird.enable = false;
