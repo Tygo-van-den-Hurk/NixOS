@@ -22,6 +22,7 @@ in
       "[nix]"."editor.tabSize" = 2;
       "workbench.tree.indent" = 24;
       "workbench.startupEditor" = "none";
+      "rust-analyzer.inlayHints.typeHints.enable" = false;
       "files.associations" = {
         ".envrc" = "shellscript";
         "flake.lock" = "json";
