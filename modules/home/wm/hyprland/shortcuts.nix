@@ -14,12 +14,12 @@ in
   config.wayland.windowManager.${program}.settings = mkIf cfg.enable {
     bind =
       let
-        shortcutToString =
-          description: instance:
-          if !instance.enable then
-            null
-          else
+        inherit (config.${namespace}.${category}) shortcuts;
+        enabledShortcuts = filterAttrs (_description: instance: instance.enable) shortcuts;
+        shortcutToConfig = _description: instance: {
+          _args =
             let
+              inherit (instance) key;
               control = if instance.control then "CTRL" else null;
               option = if instance.option then "ALT" else null;
               shift = if instance.shift then "SHIFT" else null;
@@ -29,11 +29,16 @@ in
                 option
                 shift
                 super
+                key
               ];
-              modifier = concatStringsSep "_" mods;
+              modifiers = concatStringsSep " + " mods;
             in
-            "${modifier}, ${instance.key}, ${instance.action.hyprland} # ${description}";
+            [
+              modifiers
+              instance.action.hyprland
+            ];
+        };
       in
-      mapAttrsToList shortcutToString config.${namespace}.${category}.shortcuts;
+      mapAttrsToList shortcutToConfig enabledShortcuts;
   };
 }

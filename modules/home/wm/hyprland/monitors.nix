@@ -14,13 +14,15 @@ in
   config.wayland.windowManager.${program}.settings = mkIf cfg.enable {
     monitor =
       let
-        monitorToString =
-          name: instance:
-          if !instance.enable then
-            "${adapter}, disable"
-          else
-            let
-              resolution =
+        inherit (config.${namespace}.${category}) monitors;
+        monitorToConfig = _description: instance: {
+          _args = [
+            {
+              inherit (instance) scale;
+              output = instance.adapter;
+              disabled = if !instance.enable then true else false;
+
+              mode =
                 let
                   horizontal = toString instance.resolution.horizontal;
                   vertical = toString instance.resolution.vertical;
@@ -37,13 +39,22 @@ in
                     vertical = toString instance.position.vertical;
                   in
                   "${horizontal}x${vertical}";
-
-              scale = toString instance.scale;
-              adapter = toString instance.adapter;
-            in
-            "${adapter}, ${resolution}, ${position}, ${scale} # ${name}";
+            }
+          ];
+        };
       in
-      (mapAttrsToList monitorToString config.${namespace}.${category}.monitors)
-      ++ [ ", preferred, auto, 1 # Catch all" ];
+      (mapAttrsToList monitorToConfig monitors)
+      ++ [
+        {
+          _args = [
+            {
+              output = "";
+              mode = "preferred";
+              position = "auto";
+              scale = 1;
+            }
+          ];
+        }
+      ];
   };
 }

@@ -31,16 +31,18 @@ in
       shift = true;
       control = true;
 
-      action.hyprland = "exec, ${
-        getExe (
-          writeShellScriptBin "screenshot-entire-screen-hyprland" /* SHELL */ ''
-            exec > >(systemd-cat -t screenshot-entire-screen-hyprland) 2>&1
-            ${busybox}/bin/mkdir -p "''${HOME:-/home/$USER}/Desktop" && set -e
-            ${getExe grimblast} save output "''${HOME:-/home/$USER}/Desktop/$(date +%Y-%m-%d_%H-%M-%S).png"
-            ${getExe' mpg123 "mpg123"} -k 27 '${./screen-shot.mp3}' -v
-          ''
-        )
-      }";
+      action.hyprland = generators.mkLuaInline /* Lua */ ''
+        hl.dsp.exec_cmd("${
+          getExe (
+            writeShellScriptBin "screenshot-entire-screen-hyprland" /* SHELL */ ''
+              exec > >(systemd-cat -t screenshot-entire-screen-hyprland) 2>&1
+              ${busybox}/bin/mkdir -p "''${HOME:-/home/$USER}/Desktop" && set -e
+              ${getExe grimblast} save output "''${HOME:-/home/$USER}/Desktop/$(date +%Y-%m-%d_%H-%M-%S).png"
+              ${getExe' mpg123 "mpg123"} -k 27 '${./screen-shot.mp3}' -v
+            ''
+          )
+        }")
+      '';
 
       action.i3 = "exec --no-startup-id ${
         getExe (
@@ -59,16 +61,18 @@ in
       shift = true;
       control = true;
 
-      action.hyprland = "exec, ${
-        getExe (
-          writeShellScriptBin "screenshot-select-section-hyprland" /* SHELL */ ''
-            exec > >(systemd-cat -t screenshot-select-section-hyprland) 2>&1
-            ${busybox}/bin/mkdir -p "''${HOME:-/home/$USER}/Desktop" && set -e
-            ${getExe grimblast} save area "''${HOME:-/home/$USER}/Desktop/$(date +%Y-%m-%d_%H-%M-%S).png"
-            ${getExe' mpg123 "mpg123"} -k 27 '${./screen-shot.mp3}' -v
-          ''
-        )
-      }";
+      action.hyprland = generators.mkLuaInline /* Lua */ ''
+        hl.dsp.exec_cmd("${
+          getExe (
+            writeShellScriptBin "screenshot-select-section-hyprland" /* SHELL */ ''
+              exec > >(systemd-cat -t screenshot-select-section-hyprland) 2>&1
+              ${busybox}/bin/mkdir -p "''${HOME:-/home/$USER}/Desktop" && set -e
+              ${getExe grimblast} save area "''${HOME:-/home/$USER}/Desktop/$(date +%Y-%m-%d_%H-%M-%S).png"
+              ${getExe' mpg123 "mpg123"} -k 27 '${./screen-shot.mp3}' -v
+            ''
+          )
+        }")
+      '';
 
       action.i3 = "exec --no-startup-id ${
         getExe (
@@ -87,15 +91,17 @@ in
       shift = true;
       control = true;
 
-      action.hyprland = "exec, ${
-        getExe (
-          writeShellScriptBin "screenshot-special-hyprland" /* SHELL */ ''
-            exec > >(systemd-cat -t screenshot-special-hyprland) 2>&1
-            echo "ERROR: no such program installed yet.."
-            exit 1 # TODO: fill in for hyprland
-          ''
-        )
-      }";
+      action.hyprland = generators.mkLuaInline /* Lua */ ''
+        hl.dsp.exec_cmd("${
+          getExe (
+            writeShellScriptBin "screenshot-special-hyprland" /* SHELL */ ''
+              exec > >(systemd-cat -t screenshot-special-hyprland) 2>&1
+              echo "ERROR: no such program installed yet.."
+              exit 1 # TODO: fill in for hyprland
+            ''
+          )
+        }")
+      '';
 
       action.i3 = "exec --no-startup-id ${
         getExe (
@@ -117,16 +123,18 @@ in
       control = true;
       super = true;
 
-      action.hyprland = "exec, ${
-        getExe (
-          writeShellScriptBin "screenshot-entire-screen-to-clipboard-hyprland" /* SHELL */ ''
-            exec > >(systemd-cat -t screenshot-entire-screen-to-clipboard-hyprland) 2>&1
-            ${busybox}/bin/mkdir -p "''${HOME:-/home/$USER}/Desktop" && set -e
-            ${getExe grimblast} copy output
-            ${getExe' mpg123 "mpg123"} -k 27 '${./screen-shot.mp3}' -v
-          ''
-        )
-      }";
+      action.hyprland = generators.mkLuaInline /* Lua */ ''
+        hl.dsp.exec_cmd("${
+          getExe (
+            writeShellScriptBin "screenshot-entire-screen-to-clipboard-hyprland" /* SHELL */ ''
+              exec > >(systemd-cat -t screenshot-entire-screen-to-clipboard-hyprland) 2>&1
+              ${busybox}/bin/mkdir -p "''${HOME:-/home/$USER}/Desktop" && set -e
+              ${getExe grimblast} copy output
+              ${getExe' mpg123 "mpg123"} -k 27 '${./screen-shot.mp3}' -v
+            ''
+          )
+        }")
+      '';
 
       action.i3 = "exec --no-startup-id ${
         getExe (
@@ -146,16 +154,18 @@ in
       control = true;
       super = true;
 
-      action.hyprland = "exec, ${
-        getExe (
-          writeShellScriptBin "screenshot-select-section-to-clipboard-hyprland" /* SHELL */ ''
-            exec > >(systemd-cat -t screenshot-select-section-to-clipboard-hyprland) 2>&1
-            ${busybox}/bin/mkdir -p "''${HOME:-/home/$USER}/Desktop" && set -e
-            ${getExe grimblast} copy area
-            ${getExe' mpg123 "mpg123"} -k 27 '${./screen-shot.mp3}' -v
-          ''
-        )
-      }";
+      action.hyprland = generators.mkLuaInline /* Lua */ ''
+        hl.dsp.exec_cmd("${
+          getExe (
+            writeShellScriptBin "screenshot-select-section-to-clipboard-hyprland" /* SHELL */ ''
+              exec > >(systemd-cat -t screenshot-select-section-to-clipboard-hyprland) 2>&1
+              ${busybox}/bin/mkdir -p "''${HOME:-/home/$USER}/Desktop" && set -e
+              ${getExe grimblast} copy area
+              ${getExe' mpg123 "mpg123"} -k 27 '${./screen-shot.mp3}' -v
+            ''
+          )
+        }")
+      '';
 
       action.i3 = "exec --no-startup-id ${
         getExe (
@@ -175,15 +185,17 @@ in
       control = true;
       super = true;
 
-      action.hyprland = "exec, ${
-        getExe (
-          writeShellScriptBin "screenshot-special-to-clipboard-hyprland" /* SHELL */ ''
-            exec > >(systemd-cat -t screenshot-special-to-clipboard-hyprland) 2>&1
-            echo "ERROR: no such program installed yet.."
-            exit 1 # TODO: fill in for hyprland
-          ''
-        )
-      }";
+      action.hyprland = generators.mkLuaInline /* Lua */ ''
+        hl.dsp.exec_cmd("${
+          getExe (
+            writeShellScriptBin "screenshot-special-to-clipboard-hyprland" /* SHELL */ ''
+              exec > >(systemd-cat -t screenshot-special-to-clipboard-hyprland) 2>&1
+              echo "ERROR: no such program installed yet.."
+              exit 1 # TODO: fill in for hyprland
+            ''
+          )
+        }")
+      '';
 
       action.i3 = "exec --no-startup-id ${
         getExe (

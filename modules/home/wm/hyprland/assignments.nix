@@ -12,7 +12,7 @@ let
 in
 {
   config.wayland.windowManager.${program}.settings = mkIf cfg.enable {
-    windowrulev2 =
+    window_rule =
       let
         escapeRegex =
           str:
@@ -59,17 +59,18 @@ in
           cfg.${workspace}.order or (throw "The workspace named '${workspace}' does not exist.");
 
         assignmentToString =
-          name: instance:
+          _name: instance:
           if !instance.enable then
             null
 
           else if instance ? raw then
-            "${instance.raw.${program}} # ${name}"
+            instance.raw.${program}
 
           else if instance ? class then
-            "workspace ${toString (indexWorkspace instance.workspace)}, class:^${
-              if instance.case_insensitive then "(?i)" else ""
-            }${escapeRegex instance.class}$ # ${name}"
+            {
+              workspace = toString (indexWorkspace instance.workspace);
+              match.class = "^${if instance.case_insensitive then "(?i)" else ""}${escapeRegex instance.class}$";
+            }
 
           else
             throw "none implemented assignment rule: ${builtins.toJSON instance}";

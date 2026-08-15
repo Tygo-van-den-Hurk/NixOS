@@ -4,7 +4,7 @@
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Packages ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
   # A collection of packages for the Nix package manager
-  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
 
   # A collection of packages for the Nix package manager
   inputs.nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -12,6 +12,7 @@
   # NUR (NixOS User Repository)
   inputs.nur = {
     url = "github:nix-community/NUR";
+    inputs.flake-parts.follows = "flake-parts";
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -37,13 +38,13 @@
 
   # Home Manager (Declaratively create dot files)
   inputs.home-manager = {
-    url = "github:nix-community/home-manager/release-25.11";
+    url = "github:nix-community/home-manager/release-26.05";
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
   # Theming framework for NixOS, Home Manager, nix-darwin, and Nix-on-Droid
   inputs.stylix = {
-    url = "github:nix-community/stylix/release-25.11";
+    url = "github:nix-community/stylix/release-26.05";
     inputs.nixpkgs.follows = "nixpkgs";
     inputs.flake-parts.follows = "flake-parts";
     inputs.nur.follows = "nur";
@@ -73,7 +74,10 @@
   };
 
   # Flake basics described using the module system
-  inputs.flake-parts.url = "github:hercules-ci/flake-parts";
+  inputs.flake-parts = {
+    url = "github:hercules-ci/flake-parts";
+    inputs.nixpkgs-lib.follows = "nixpkgs";
+  };
 
   # Allow flakes to be used with Nix < 2.4
   inputs.flake-compat = {
@@ -97,7 +101,10 @@
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Miscellaneous ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
   # NixOS profiles to optimize settings for different hardware.
-  inputs.nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+  inputs.nixos-hardware = {
+    url = "github:NixOS/nixos-hardware/master";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
 
   # Hyprland is a dynamic tiling Wayland compositor that doesn't sacrifice on its looks
   inputs.hyprland = {

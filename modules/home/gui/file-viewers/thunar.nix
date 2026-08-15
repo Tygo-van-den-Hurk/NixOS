@@ -29,7 +29,7 @@ in
   };
 
   config.home = mkIf cfg.enable {
-    packages = [ pkgs.xfce.thunar ];
+    packages = [ pkgs.thunar ];
   };
 
   config.xdg.mimeApps = mkIf cfg.mkDefault rec {

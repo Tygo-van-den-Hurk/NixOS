@@ -28,36 +28,36 @@ in
       controlMaster = mkDefault "auto";
       controlPath = mkDefault "~/.ssh/%r@%n:%p";
       controlPersist = mkDefault "30m";
-      SetEnv = "TERM=xterm-256color";
+      SetEnv."TERM" = "xterm-256color";
       SendEnv = "TERM";
     };
 
-    matchBlocks."github" = {
+    settings."github" = {
       match = mkDefault "host github";
       hostname = mkDefault "github.com";
       user = mkDefault "git";
       port = mkDefault 22;
     };
 
-    matchBlocks."NAS" = {
+    settings."NAS" = {
       match = mkDefault "host nas";
       hostname = mkDefault "tygos-nasserver.tail9fcea.ts.net";
       user = mkDefault "root";
       port = mkDefault 22;
     };
 
-    matchBlocks."Cloud" = {
+    settings."Cloud" = {
       match = mkDefault "host cloud";
       hostname = mkDefault "cloud.tygo.van.den.hurk.dev";
       user = mkDefault "ubuntu";
       port = mkDefault 22;
-      localForwards = [
-        {
-          bind.port = mkDefault 81;
-          host.port = mkDefault 81;
-          host.address = mkDefault "localhost";
-        }
-      ];
+      # localForwards = [
+      #   {
+      #     bind.port = mkDefault 81;
+      #     host.port = mkDefault 81;
+      #     host.address = mkDefault "localhost";
+      #   }
+      # ];
     };
   };
 }

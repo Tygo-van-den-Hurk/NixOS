@@ -9,7 +9,7 @@ let
   namespace = "self";
   type = "gui";
   category = "editors";
-  program = "vscode";
+  program = "vscodium";
   cfg = config.${namespace}.${type}.${category}.${program};
 in
 {
@@ -47,7 +47,20 @@ in
     mutableExtensionsDir = mkDefault false;
   };
 
-  config.home = mkIf cfg.mkDefault rec {
-    shellAliases.code = cfg.packageName;
+  config.home.sessionVariables = mkIf cfg.mkDefault {
+    VISUAL = mkDefault (getExe cfg.package);
+  };
+
+  config.${namespace}.wm.shortcuts.visual = mkIf cfg.mkDefault {
+    key = "v";
+    super = true;
+    action.i3 = "exec ${getExe cfg.package}";
+    action.hyprland = generators.mkLuaInline /* Lua */ ''
+      hl.dsp.exec_cmd("${getExe cfg.package}")
+    '';
+  };
+
+  config.home.shellAliases = mkIf cfg.mkDefault rec {
+    code = cfg.packageName;
   };
 }

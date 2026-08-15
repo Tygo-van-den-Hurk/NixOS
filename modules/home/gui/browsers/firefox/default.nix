@@ -36,6 +36,7 @@ in
   };
 
   config.programs.${program} = mkIf cfg.enable {
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
     enable = mkDefault true;
   };
 

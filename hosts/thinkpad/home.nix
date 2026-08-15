@@ -1,6 +1,4 @@
 {
-  imports = [ ./haskell.nix ];
-
   home.stateVersion = "25.05";
 
   self.all.enable = true;
@@ -37,7 +35,7 @@
   # Fixes:
 
   # Blinking cursors
-  wayland.windowManager.hyprland.settings.cursor.no_hardware_cursors = true;
+  # wayland.windowManager.hyprland.settings.cursor.no_hardware_cursors = true;
 
   # TEMP:
 

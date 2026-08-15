@@ -23,31 +23,41 @@ in
       super = true;
       shift = true;
       key = "c";
-      action.hyprland = "exec, hyprctl reload";
       action.i3 = "reload";
+      action.hyprland = generators.mkLuaInline /* Lua */ ''
+        hl.dsp.exec_cmd("hyprctl reload")
+      '';
     };
 
     "restart session" = {
       super = true;
       shift = true;
       key = "r";
-      action.hyprland = "exec, hyprctl reload";
       action.i3 = "restart";
+      action.hyprland = generators.mkLuaInline /* Lua */ ''
+        hl.dsp.exec_cmd("hyprctl reload")
+      '';
     };
 
     "locking your screen" = {
       super = true;
       control = true;
       key = "q";
-      action.hyprland = "exec, ${getExe hyprlock}";
       action.i3 = "exec ${getExe i3lock}";
+      action.hyprland = generators.mkLuaInline /* Lua */ ''
+        hl.dsp.exec_cmd("${getExe hyprlock}")
+      '';
     };
 
     "logging you out" = {
       super = true;
       shift = true;
       key = "q";
-      action.hyprland = "exit"; # TODO: add confirmation box
+      # TODO: add confirmation box
+      action.hyprland = generators.mkLuaInline /* Lua */ ''
+        hl.dsp.exit()
+      '';
+
       action.i3 = "exec ${getExe (
         writeShellScriptBin "log-out-confirm-i3" ''
             exec > >(systemd-cat -t log-out-confirm-i3) 2>&1

@@ -8,7 +8,7 @@ let
   namespace = "self";
   type = "gui";
   category = "editors";
-  program = "vscode";
+  program = "vscodium";
   cfg = config.${namespace}.${type}.${category}.${program};
 in
 {

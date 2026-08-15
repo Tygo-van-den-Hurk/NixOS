@@ -89,7 +89,11 @@ in
                     # };
                     hyprland = mkOption {
                       description = "Command to execute on Hyprland";
-                      type = str;
+                      type = types.oneOf [
+                        luaInline
+                        # (throw "lib.types: ${builtins.toJSON (builtins.attrNames lib.types)}")
+                        str
+                      ];
                     };
                     i3 = mkOption {
                       description = "Command to execute on i3";

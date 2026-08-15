@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   pkgs,
   lib,
@@ -42,7 +43,8 @@ in
 
     package = mkOption {
       description = "The package to use for ${program}.";
-      default = pkgs.bitwarden-desktop;
+      # TODO: change back to:`pkgs.bitwarden-desktop`. (currently insecure?).
+      default = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.system}.bitwarden-desktop;
       type = package;
     };
   };

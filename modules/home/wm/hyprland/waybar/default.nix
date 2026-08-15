@@ -32,7 +32,7 @@ in
   config.programs.${program} = mkIf cfg.enable {
     enable = mkDefault true;
     systemd.enable = mkDefault true;
-    systemd.target = mkDefault "graphical-session.target";
+    systemd.targets = mkDefault [ "graphical-session.target" ];
 
     style = inputs.self.lib.replaceAttrs (builtins.readFile ./style.gtk.css) {
       "var(--base00)" = "${config.lib.stylix.colors.withHashtag.base00}";

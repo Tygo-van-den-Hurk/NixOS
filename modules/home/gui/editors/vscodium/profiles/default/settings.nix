@@ -8,7 +8,7 @@ let
   namespace = "self";
   type = "gui";
   category = "editors";
-  program = "vscode";
+  program = "vscodium";
   profile = "default";
   cfg = config.${namespace}.${type}.${category}.${program};
 in
@@ -23,6 +23,8 @@ in
       "workbench.tree.indent" = 24;
       "workbench.startupEditor" = "none";
       "rust-analyzer.inlayHints.typeHints.enable" = false;
+      "rust-analyzer.server.path" = "rust-analyzer";
+      "update.showReleaseNotes" = false;
       "files.associations" = {
         ".envrc" = "shellscript";
         "flake.lock" = "json";

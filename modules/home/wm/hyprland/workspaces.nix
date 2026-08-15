@@ -12,22 +12,22 @@ let
 in
 {
   config.wayland.windowManager.${program}.settings = mkIf cfg.enable {
-    workspace =
+    workspace_rule =
       let
-        workspaceToString =
-          description: instance:
-          if !instance.enable then
-            "${adapter}, disable"
-          else
-            let
-              order = toString instance.order;
-              name = "defaultName:${instance.name}";
-              persistent = "persistent:true";
-              primary = "default:${if instance.primary or false then "true" else "false"}";
-              monitor = "${if instance.display != null then "monitor:${toString instance.display}" else ""}";
-            in
-            "${order}, ${name}, ${primary}, ${persistent}, ${monitor} # ${description}";
+        inherit (config.${namespace}.${category}) workspaces;
+        enabledWorkspaces = filterAttrs (_description: instance: instance.enable) workspaces;
+        workspaceToConfig = _description: instance: {
+          _args = [
+            {
+              workspace = "${toString instance.order}";
+              default_name = "${instance.name}";
+              monitor = "${toString instance.display}";
+              persistent = true;
+              default = instance.primary or false;
+            }
+          ];
+        };
       in
-      mapAttrsToList workspaceToString config.${namespace}.${category}.workspaces;
+      mapAttrsToList workspaceToConfig enabledWorkspaces;
   };
 }

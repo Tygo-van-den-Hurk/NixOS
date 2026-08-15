@@ -21,32 +21,72 @@ in
   };
 
   config.wayland.windowManager.${program} = mkIf cfg.enable {
+    configType = mkDefault "lua";
     enable = mkDefault true;
 
-    settings.exec-once = with pkgs; [
-      (getExe (
-        writeShellScriptBin "dex-xdg-autostart-hyprland" ''
-          exec > >(systemd-cat -t dex-xdg-autostart-hyprland) 2>&1
-          exec ${getExe dex} --autostart --verbose "$@"
-        ''
-      ))
+    settings.on = [
+      {
+        _args = with pkgs; [
+          "hyprland.start"
+          (generators.mkLuaInline /* Lua */ ''
+            function()
+              hl.dsp.exec_cmd("${getExe (
+                writeShellScriptBin "dex-xdg-autostart-hyprland" ''
+                  exec > >(systemd-cat -t dex-xdg-autostart-hyprland) 2>&1
+                  exec ${getExe dex} --autostart --verbose "$@"
+                ''
+              )}")
+            end
+          '')
+        ];
+      }
     ];
 
-    settings.env = [ "XCURSOR_SIZE, 24" ];
-    settings.gesture = [ "4, horizontal, workspace" ];
-
-    settings.bindm = [
-      "SUPER, mouse:272, movewindow"
-      "SUPER, mouse:273, resizewindow"
+    settings.env = [
+      {
+        _args = [
+          "XCURSOR_SIZE"
+          "24"
+        ];
+      }
     ];
 
-    settings.input = {
+    settings.gesture = [
+      {
+        _args = [
+          {
+            fingers = 4;
+            direction = "horizontal";
+            action = "workspace";
+          }
+        ];
+      }
+    ];
+
+    settings.bind = [
+      {
+        _args = [
+          "SUPER + mouse:272"
+          (generators.mkLuaInline /* Lua */ "hl.dsp.window.drag()")
+          { mouse = true; }
+        ];
+      }
+      {
+        _args = [
+          "SUPER + mouse:273"
+          (generators.mkLuaInline /* Lua */ "hl.dsp.window.resize()")
+          { mouse = true; }
+        ];
+      }
+    ];
+
+    settings.config.input = {
       follow_mouse = mkDefault 1;
       sensitivity = mkDefault 0;
       touchpad = {
         natural_scroll = mkDefault true;
         clickfinger_behavior = mkDefault false;
-        tap-to-click = mkDefault true;
+        tap_to_click = mkDefault true;
       };
     };
   };

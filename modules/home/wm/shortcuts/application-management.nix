@@ -19,13 +19,15 @@ in
       control = true;
       key = "Space";
 
-      # TODO: fill in for hyprland. Find equivalent program.
-      action.hyprland = "exec, ${getExe (
-        writeShellScriptBin "spotlight-hyprland" ''
-          exec > >(systemd-cat -t spotlight-hyprland) 2>&1
-          ${getExe anyrun}
-        ''
-      )}";
+      # TODO: fill in for hyprland. Find equivalent program that is faster.
+      action.hyprland = generators.mkLuaInline /* Lua */ ''
+        hl.dsp.exec_cmd("${getExe (
+          writeShellScriptBin "spotlight-hyprland" ''
+            exec > >(systemd-cat -t spotlight-hyprland) 2>&1
+            ${getExe anyrun}
+          ''
+        )}")
+      '';
 
       # TODO: grab font size from i3 config: `--font '$fontFamily-$fontSize'`
       action.i3 = "exec ${getExe (
@@ -49,20 +51,22 @@ in
     "open a new terminal" = {
       super = true;
       key = "Return";
-      action.hyprland = "exec, ${
-        getExe (
-          writeShellScriptBin "open-new-terminal-hyprland" /* SHELL */ ''
-            exec > >(systemd-cat -t open-new-terminal-hyprland) 2>&1
+      action.hyprland = generators.mkLuaInline /* Lua */ ''
+        hl.dsp.exec_cmd("${
+          getExe (
+            writeShellScriptBin "open-new-terminal-hyprland" /* SHELL */ ''
+              exec > >(systemd-cat -t open-new-terminal-hyprland) 2>&1
 
-            if [ -z "$TERMINAL" ]; then
-              echo "ERROR: the TERMINAL env var is not defined."
-              exit 1
-            else
-              exec "$TERMINAL"
-            fi
-          ''
-        )
-      }";
+              if [ -z "$TERMINAL" ]; then
+                echo "ERROR: the TERMINAL env var is not defined."
+                exit 1
+              else
+                exec "$TERMINAL"
+              fi
+            ''
+          )
+        }")
+      '';
 
       action.i3 = "exec ${
         getExe (
@@ -86,19 +90,21 @@ in
       control = true;
       key = "q";
       action.i3 = "[class=__focused__] kill";
-      action.hyprland = "exec, ${
-        getExe (
-          writeShellScriptBin "close-all-windows-hyprland" /* SHELL */ ''
-            exec > >(systemd-cat -t close-all-windows-hyprland) 2>&1
+      action.hyprland = generators.mkLuaInline /* Lua */ ''
+        hl.dsp.exec_cmd("${
+          getExe (
+            writeShellScriptBin "close-all-windows-hyprland" /* SHELL */ ''
+              exec > >(systemd-cat -t close-all-windows-hyprland) 2>&1
 
-            class=$(hyprctl activewindow -j | jq -r .class)
-            hyprctl clients -j | jq -r ".[] | select(.class==\"$class\") | .address" | \
-            while read addr; do
-              hyprctl dispatch closewindow address:$addr
-            done
-          ''
-        )
-      }";
+              class=$(hyprctl activewindow -j | jq -r .class)
+              hyprctl clients -j | jq -r ".[] | select(.class==\"$class\") | .address" | \
+              while read addr; do
+                hyprctl dispatch closewindow address:$addr
+              done
+            ''
+          )
+        }")
+      '';
     };
 
     "closing a window of an application" = {
@@ -106,23 +112,34 @@ in
       shift = true;
       key = "q";
       action.i3 = "kill";
-      action.hyprland = "killactive";
+      action.hyprland = generators.mkLuaInline /* Lua */ ''
+        hl.dsp.window.close()
+      '';
     };
 
     "toggle full screen" = {
       super = true;
       control = true;
       key = "f";
-      action.hyprland = "fullscreen, 0";
       action.i3 = "fullscreen toggle";
+      action.hyprland = generators.mkLuaInline /* Lua */ ''
+        hl.dsp.window.fullscreen({
+          ["mode"] = "fullscreen",
+          ["action"] = "toggle"
+        })
+      '';
     };
 
     "toggle floating" = {
       control = true;
       shift = true;
       key = "Space";
-      action.hyprland = "togglefloating";
       action.i3 = "floating toggle";
+      action.hyprland = generators.mkLuaInline /* Lua */ ''
+        hl.dsp.window.float({ 
+          ["action"] = "toggle"
+        })
+      '';
     };
   };
 }

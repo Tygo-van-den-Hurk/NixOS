@@ -23,21 +23,23 @@ in
     "increase volume" = {
       key = "XF86AudioRaiseVolume";
 
-      action.hyprland = "exec, ${getExe (
-        writeShellScriptBin "increase-volume-hyprland" ''
-          exec > >(systemd-cat -t increase-volume-hyprland) 2>&1
+      action.hyprland = generators.mkLuaInline /* Lua */ ''
+        hl.dsp.exec_cmd("${getExe (
+          writeShellScriptBin "increase-volume-hyprland" ''
+            exec > >(systemd-cat -t increase-volume-hyprland) 2>&1
 
-          current_volume="$(${pulseaudioFull}/bin/pactl get-sink-volume "@DEFAULT_SINK@" | grep -oP '\d+%' | head -1 | tr -d '%')"
+            current_volume="$(${pulseaudioFull}/bin/pactl get-sink-volume "@DEFAULT_SINK@" | grep -oP '\d+%' | head -1 | tr -d '%')"
 
-          new_volume=$((current_volume + 5))
+            new_volume=$((current_volume + 5))
 
-          if [ "$new_volume" -gt 100 ]; then
-            new_volume=100
-          fi
+            if [ "$new_volume" -gt 100 ]; then
+              new_volume=100
+            fi
 
-          ${pulseaudioFull}/bin/pactl set-sink-volume "@DEFAULT_SINK@" "''${new_volume}%"
-        ''
-      )}";
+            ${pulseaudioFull}/bin/pactl set-sink-volume "@DEFAULT_SINK@" "''${new_volume}%"
+          ''
+        )}")
+      '';
 
       action.i3 = "exec --no-startup-id ${getExe (
         writeShellScriptBin "increase-volume-i3" ''
@@ -59,12 +61,14 @@ in
     "decrease volume" = {
       key = "XF86AudioLowerVolume";
 
-      action.hyprland = "exec, ${getExe (
-        writeShellScriptBin "decrease-volume-hyprland" ''
-          exec > >(systemd-cat -t decrease-volume-hyprland) 2>&1
-          ${pulseaudioFull}/bin/pactl set-sink-volume "@DEFAULT_SINK@" -5%
-        ''
-      )}";
+      action.hyprland = generators.mkLuaInline /* Lua */ ''
+        hl.dsp.exec_cmd("${getExe (
+          writeShellScriptBin "decrease-volume-hyprland" ''
+            exec > >(systemd-cat -t decrease-volume-hyprland) 2>&1
+            ${pulseaudioFull}/bin/pactl set-sink-volume "@DEFAULT_SINK@" -5%
+          ''
+        )}")
+      '';
 
       action.i3 = "exec --no-startup-id ${getExe (
         writeShellScriptBin "decrease-volume-i3" ''
@@ -77,12 +81,14 @@ in
     "toggle mute volume" = {
       key = "XF86AudioMute";
 
-      action.hyprland = "exec, ${getExe (
-        writeShellScriptBin "toggle-mute-volume-hyprland" ''
-          exec > >(systemd-cat -t toggle-mute-volume-hyprland) 2>&1
-          ${pulseaudioFull}/bin/pactl set-sink-mute "@DEFAULT_SINK@" toggle
-        ''
-      )}";
+      action.hyprland = generators.mkLuaInline /* Lua */ ''
+        hl.dsp.exec_cmd("${getExe (
+          writeShellScriptBin "toggle-mute-volume-hyprland" ''
+            exec > >(systemd-cat -t toggle-mute-volume-hyprland) 2>&1
+            ${pulseaudioFull}/bin/pactl set-sink-mute "@DEFAULT_SINK@" toggle
+          ''
+        )}")
+      '';
 
       action.i3 = "exec --no-startup-id ${getExe (
         writeShellScriptBin "toggle-mute-volume-i3" ''
@@ -95,12 +101,14 @@ in
     "toggle mute microphone" = {
       key = "XF86AudioMicMute";
 
-      action.hyprland = "exec, ${getExe (
-        writeShellScriptBin "toggle-mute-microphone-hyprland" ''
-          exec > >(systemd-cat -t toggle-mute-microphone-hyprland) 2>&1
-          ${pulseaudioFull}/bin/pactl set-source-mute "@DEFAULT_SOURCE@" toggle
-        ''
-      )}";
+      action.hyprland = generators.mkLuaInline /* Lua */ ''
+        hl.dsp.exec_cmd("${getExe (
+          writeShellScriptBin "toggle-mute-microphone-hyprland" ''
+            exec > >(systemd-cat -t toggle-mute-microphone-hyprland) 2>&1
+            ${pulseaudioFull}/bin/pactl set-source-mute "@DEFAULT_SOURCE@" toggle
+          ''
+        )}")
+      '';
 
       action.i3 = "exec --no-startup-id ${getExe (
         writeShellScriptBin "toggle-mute-microphone-i3" ''
@@ -115,12 +123,14 @@ in
     "increase brightness" = {
       key = "XF86MonBrightnessUp";
 
-      action.hyprland = "exec, ${getExe (
-        writeShellScriptBin "increase-brightness-hyprland" ''
-          exec > >(systemd-cat -t increase-brightness-hyprland) 2>&1
-          ${getExe pkgs.brightnessctl} set +5%
-        ''
-      )}";
+      action.hyprland = generators.mkLuaInline /* Lua */ ''
+        hl.dsp.exec_cmd("${getExe (
+          writeShellScriptBin "increase-brightness-hyprland" ''
+            exec > >(systemd-cat -t increase-brightness-hyprland) 2>&1
+            ${getExe pkgs.brightnessctl} set +5%
+          ''
+        )}")
+      '';
 
       action.i3 = "exec --no-startup-id ${getExe (
         writeShellScriptBin "increase-brightness-i3" ''
@@ -133,12 +143,14 @@ in
     "decrease brightness" = {
       key = "XF86MonBrightnessDown";
 
-      action.hyprland = "exec, ${getExe (
-        writeShellScriptBin "decrease-brightness-hyprland" ''
-          exec > >(systemd-cat -t decrease-brightness-hyprland) 2>&1
-          ${getExe pkgs.brightnessctl} set 5%-
-        ''
-      )}";
+      action.hyprland = generators.mkLuaInline /* Lua */ ''
+        hl.dsp.exec_cmd("${getExe (
+          writeShellScriptBin "decrease-brightness-hyprland" ''
+            exec > >(systemd-cat -t decrease-brightness-hyprland) 2>&1
+            ${getExe pkgs.brightnessctl} set 5%-
+          ''
+        )}")
+      '';
 
       action.i3 = "exec --no-startup-id ${getExe (
         writeShellScriptBin "decrease-brightness-i3" ''
@@ -147,6 +159,5 @@ in
         ''
       )}";
     };
-
   };
 }

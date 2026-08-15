@@ -24,8 +24,10 @@ in
           value = {
             super = true;
             key = toString (i + 1);
-            action.hyprland = "workspace, ${toString (i + 1)}";
             action.i3 = "workspace $ws${toString (i + 1)}";
+            action.hyprland = generators.mkLuaInline /* Lua */ ''
+              hl.dsp.focus({ workspace = "${toString (i + 1)}" })
+            '';
           };
         }) amountOfWorkspaces
       );
@@ -37,8 +39,10 @@ in
             super = true;
             shift = true;
             key = toString (i + 1);
-            action.hyprland = "moveToWorkspace, ${toString (i + 1)}";
             action.i3 = "move container to workspace number $ws${toString (i + 1)}; workspace $ws${toString (i + 1)}";
+            action.hyprland = generators.mkLuaInline /* Lua */ ''
+              hl.dsp.window.move({ workspace = "${toString (i + 1)}" })
+            '';
           };
         }) amountOfWorkspaces
       );
@@ -52,8 +56,10 @@ in
             super = true;
             shift = true;
             key = toString (i + 1);
-            action.hyprland = "workspace, ${toString (i + 1)}";
             action.i3 = "workspace $ws${toString (i + 1)}";
+            action.hyprland = generators.mkLuaInline /* Lua */ ''
+              hl.dsp.focus({ workspace = "${toString (i + 1)}" })
+            '';
           };
         }) amountOfWorkspaces
       );
@@ -78,8 +84,10 @@ in
             super = true;
             shift = true;
             key = chars.${toString (i + 1)};
-            action.hyprland = "moveToWorkspace, ${toString (i + 1)}";
             action.i3 = "move container to workspace number $ws${toString (i + 1)}; workspace $ws${toString (i + 1)}";
+            action.hyprland = generators.mkLuaInline /* Lua */ ''
+              hl.dsp.window.move({ workspace = "${toString (i + 1)}" })
+            '';
           };
         }) amountOfWorkspaces
       );
