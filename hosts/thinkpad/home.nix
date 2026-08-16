@@ -39,6 +39,6 @@
 
   # TEMP:
 
-  self.gui.messengers.thunderbird.enable = false;
-  programs.rofi.enable = true;
+  programs.atuin.enable = false; # atuin sometimes causes bash to hang forever
+  # self.gui.messengers.thunderbird.enable = false;
 }
