@@ -10,7 +10,7 @@ let
   type = "gui";
   category = "browsers";
   program = "firefox";
-  profile = "nix";
+  profile = "default";
   cfg = config.${namespace}.${type}.${category}.${program};
 in
 {

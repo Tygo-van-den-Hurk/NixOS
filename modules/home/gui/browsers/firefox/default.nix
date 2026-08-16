@@ -36,6 +36,9 @@ in
   };
 
   config.programs.${program} = mkIf cfg.enable {
+    # TODO: change to "${config.xdg.configHome}/mozilla/firefox" instead of
+    # ".mozilla/firefox" once firefox actually uses it...? Right now it does
+    # not seem work yet.
     configPath = "${config.xdg.configHome}/mozilla/firefox";
     enable = mkDefault true;
   };
