@@ -24,6 +24,7 @@ in
     FileEditor.workspace = "Code";
     code = FileEditor;
     VSCodium = FileEditor;
+    codium = FileEditor;
     obsidian = FileEditor;
     kate = FileEditor;
     gimp = FileEditor;
