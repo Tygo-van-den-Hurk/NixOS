@@ -29,11 +29,18 @@ in
         };
       };
 
-      config.programs = mkIf cfg.enable {
-        hyprland.enable = mkDefault true;
-        # hyprlock.enable = mkDefault true;
-        # Hyprlock starts HyprIdle, and since my laptop has problems
-        # starting now I'm thinking maybe this is the cause for it?
+      config.programs.hyprland = mkIf cfg.enable {
+        enable = mkDefault true;
+        withUWSM = mkDefault true;
+      };
+
+      config.programs.uwsm = mkIf cfg.enable {
+        enable = mkDefault true;
+        waylandCompositors.hyprland = {
+          prettyName = "Hyprland";
+          comment = "Hyprland compositor managed by UWSM";
+          binPath = "/run/current-system/sw/bin/start-hyprland";
+        };
       };
 
       config.security.pam.services.hyprlock = {
