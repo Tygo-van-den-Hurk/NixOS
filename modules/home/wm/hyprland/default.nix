@@ -80,6 +80,8 @@ in
       }
     ];
 
+    settings.config.misc.disable_xdg_env_checks = mkDefault true;
+
     settings.config.input = {
       follow_mouse = mkDefault 1;
       sensitivity = mkDefault 0;
