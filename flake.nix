@@ -29,8 +29,15 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
+  # A package collection for FireFox addons.
   inputs.nix-firefox-addons = {
     url = "github:osipog/nix-firefox-addons";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+
+  # A package collection for VS Code extensions.
+  inputs.nix-vscode-extensions = {
+    url = "github:nix-community/nix-vscode-extensions";
     inputs.nixpkgs.follows = "nixpkgs";
   };
 

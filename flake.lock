@@ -711,6 +711,26 @@
         "type": "github"
       }
     },
+    "nix-vscode-extensions": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1787103818,
+        "narHash": "sha256-ATm0WHSBL4ZiKAzCXNn3EDZPXISAxJBzQk3NQaqnT0o=",
+        "owner": "nix-community",
+        "repo": "nix-vscode-extensions",
+        "rev": "3180d2a35f4373f6931455cd5f49e6ae42977c90",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nix-vscode-extensions",
+        "type": "github"
+      }
+    },
     "nixGL": {
       "inputs": {
         "flake-utils": "flake-utils_2",
@@ -844,6 +864,7 @@
         "impermanence": "impermanence",
         "nix-firefox-addons": "nix-firefox-addons",
         "nix-index-database": "nix-index-database",
+        "nix-vscode-extensions": "nix-vscode-extensions",
         "nixGL": "nixGL",
         "nixos-hardware": "nixos-hardware",
         "nixos-wsl": "nixos-wsl",
