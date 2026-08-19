@@ -24,6 +24,7 @@ in
   config.programs.${program}.profiles.${profile} = mkIf cfg.enable {
     enableExtensionUpdateCheck = mkDefault false;
     extensions = with pkgs.nix-vscode-extensions.vscode-marketplace; [
+      streetsidesoftware.code-spell-checker-dutch
       streetsidesoftware.code-spell-checker
       catppuccin.catppuccin-vsc-icons
       formulahendry.auto-rename-tag
@@ -40,6 +41,7 @@ in
       dbaeumer.vscode-eslint
       ritwickdey.liveserver
       usernamehw.errorlens
+      pest.pest-ide-tools
       wmaurer.change-case
       jnoortheen.nix-ide
       bierner.color-info
