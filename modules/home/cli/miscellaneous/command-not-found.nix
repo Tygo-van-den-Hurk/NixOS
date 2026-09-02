@@ -1,4 +1,6 @@
 {
+  inputs,
+  META,
   config,
   lib,
   ...
@@ -20,12 +22,21 @@ in
     };
   };
 
+  imports = with inputs; [
+    nix-index-database.homeModules.default
+  ];
+
   config.programs.${program} = mkIf cfg.enable {
-    enable = mkDefault true;
+    enable = mkDefault false;
   };
 
   config.home.sessionVariables = mkIf cfg.enable {
     NIX_AUTO_RUN_INTERACTIVE = mkDefault "1";
     NIX_AUTO_RUN = mkDefault "1";
+  };
+
+  config.programs.nix-index = mkIf cfg.enable {
+    enable = mkDefault true;
+    package = mkForce inputs.nix-index-database.packages.${META.system}.nix-index-with-small-db;
   };
 }
