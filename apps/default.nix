@@ -1,13 +1,10 @@
-{ ... }:
 {
   imports = [
-    ./apply
     ./search-firefox-addon
+    ./apply.nix
   ];
 
-  perSystem =
-    { self', ... }:
-    {
-      apps.default = self'.apps.apply;
-    };
+  perSystem = { self', ... }: {
+    apps.default = self'.apps.apply;
+  };
 }

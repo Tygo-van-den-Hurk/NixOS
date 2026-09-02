@@ -1,4 +1,7 @@
-_: {
+let
+  name = "apply";
+in
+{
   perSystem =
     {
       inputs',
@@ -7,9 +10,8 @@ _: {
       ...
     }:
     with pkgs;
-    let
-      name = "apply";
-      package = stdenv.mkDerivation rec {
+    {
+      packages.${name} = stdenv.mkDerivation rec {
         inherit name;
         src = ./.;
 
@@ -18,11 +20,11 @@ _: {
         installPhase = ''
           runHook preInstall
 
-          mkdir --parents $out/share/bash-completion/completions
-          cp ${src}/completions.bash $out/share/bash-completion/completions/${name}.bash
+          mkdir --parents -- "$out/share/bash-completion/completions"
+          cp -- "$src/completions.bash" "$out/share/bash-completion/completions/$name.bash"
 
-          mkdir --parents $out/bin
-          cp ${src}/script.bash $out/bin/${name}
+          mkdir --parents -- "$out/bin"
+          cp -- "$src/script.bash" "$out/bin/$name"
 
           runHook postInstall
         '';
@@ -30,8 +32,8 @@ _: {
         fixupPhase = ''
           runHook preFixup
 
-          patchShebangs $out/bin/${name}
-          wrapProgram $out/bin/${name} --prefix PATH : ${
+          patchShebangs "$out/bin/$name"
+          wrapProgram "$out/bin/$name" --prefix PATH : ${
             lib.makeBinPath [
               inputs'.home-manager.packages.home-manager
               nixos-rebuild
@@ -50,12 +52,6 @@ _: {
           maintainers = with maintainers; [ Tygo-van-den-Hurk ];
           mainProgram = name;
         };
-      };
-    in
-    {
-      apps.${name} = {
-        program = lib.getExe package;
-        inherit (package) meta;
       };
     };
 }

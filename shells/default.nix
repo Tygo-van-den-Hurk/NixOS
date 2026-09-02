@@ -1,4 +1,4 @@
-_: {
+{
   perSystem =
     {
       pkgs,
@@ -15,12 +15,13 @@ _: {
         act # Run your GitHub Actions locally
         git # Distributed version control system
         sops # encrypt and decrypt secrets conveniently.
-        (writeShellScriptBin "apply" /* SHELL */ ''
-          ${self'.apps.apply.program} # change configuration conveniently
-        '')
       ];
 
-      buildInputs = packages ++ formatters ++ hooks;
+      scripts = with self'.packages; [
+        apply # switch nixos configurations
+      ];
+
+      buildInputs = packages ++ scripts ++ formatters ++ hooks;
 
       shellHook = ''
         ${config.pre-commit.shellHook}
