@@ -95,11 +95,10 @@ in
           getExe (
             writeShellScriptBin "close-all-windows-hyprland" /* SHELL */ ''
               exec > >(systemd-cat -t close-all-windows-hyprland) 2>&1
-
               class=$(hyprctl activewindow -j | jq -r .class)
               hyprctl clients -j | jq -r ".[] | select(.class==\"$class\") | .address" | \
-              while read addr; do
-                hyprctl dispatch closewindow address:$addr
+              while read address; do
+                hyprctl dispatch "hl.dsp.window.close({ [\"window\"] = \"address:$address\" })"
               done
             ''
           )
