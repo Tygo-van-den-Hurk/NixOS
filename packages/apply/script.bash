@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 # Separates --option=value into '--option' and 'value'.
 # Also splits compact short options like '-abc' into '-a' '-b' '-c'.
@@ -32,6 +32,10 @@ done
 set -- "${new_args[@]}"
 
 function print_help() {
+  echo "Usage:                                                                          "
+  echo "                                                                                "
+  echo "  apply [options...]                                                            "
+  echo "                                                                                "
   echo "Options:                                                                        "
   echo "                                                                                "
   echo "  -U, --username        The username to use when looking up a home-manager      "
@@ -50,14 +54,14 @@ function print_help() {
   echo "                        '--verbose' flag. Will exit with failure if combined.   "
   echo "  -v, --verbose         Print all information. Cannot be combined with the      "
   echo "                        '--quiet' flag. Will exit with failure if combined.     "
-  echo "      --                Stop parsing arguments and pass all further arguments   "
-  echo "                        to the respective rebuild function instead.             "
   echo "  -c, --command         The subcommand to run. Defaults to 'switch' allows you  "
   echo "                        instead of switch for example only 'test' the new one.  "
-  echo "      --update          Update the flake.lock file before rebuilding. Be aware: "
-  echo "                        this tool does not commit those changes. Also only works"
-  echo "                        if flake path is not provided as we assume to update the"
-  echo "                        flake in the current directory.                         "
+  echo "  -p, --pull            Pull the latest changes from the remote using git before"
+  echo "                        performing the build or switch action."
+  echo "  -u, --update          Update the flake.lock file before rebuilding. Be aware: "
+  echo "                        this tool does not commit or push those changes.        "
+  echo "  --                    Stop parsing arguments and pass all further arguments   "
+  echo "                        to the respective rebuild function instead.             "
   echo "  -h, --help            print this help message and then exit.                  "
   echo "                                                                                "
 }
@@ -70,6 +74,7 @@ nixos="0"
 home_manager="0"
 verbose="0"
 quiet="0"
+pull="0"
 update="0"
 
 # Loop through arguments
@@ -112,8 +117,12 @@ while [[ $# -gt 0 ]]; do
     command="$1"
     shift
     ;;
-  --update)
+  -u | --update)
     update="1"
+    shift
+    ;;
+  -p | --pull)
+    pull="1"
     shift
     ;;
   -h | --help)
@@ -173,10 +182,12 @@ if [ $verbose -eq 1 ]; then
   echo "  $(color cyan home_manager)=$(color yellow "'$home_manager'")"
   echo "  $(color cyan verbose)=$(color yellow "'$verbose'")"
   echo "  $(color cyan quiet)=$(color yellow "'$quiet'")"
+  echo "  $(color cyan update)=$(color yellow "'$update'")"
+  echo "  $(color cyan pull)=$(color yellow "'$pull'")"
 fi
 
 # prints output, unless quiet.
-function print() {
+print() {
   if [[ $quiet -eq 1 ]]; then
     return
   else
@@ -184,13 +195,31 @@ function print() {
   fi
 }
 
+# Runs git pull --rebase and then prints the output prefixed with `git`.
+if [ "$pull" -eq "1" ]; then
+  echo updating repository from remote
+  command="git -C '$flake_path' -c 'color.ui=always pull' --rebase"
+  eval "$command" 2>&1 | while IFS= read -r line; do
+    [ "$verbose" -eq "1" ] && echo "git: $line"
+  done
+fi
+
+# Runs nix flake update and then prints the output prefixed with `nix`.
+if [ "$update" -eq "1" ]; then
+  echo updating flake inputs
+  command="nix flake update --flake '$flake_path'"
+  eval "$command" 2>&1 | while IFS= read -r line; do
+    [ "$verbose" -eq "1" ] && echo "nix: $line"
+  done
+fi
+
 extra_args=()
 if [ $verbose -eq 1 ]; then
   extra_args+=(--print-build-logs)
   extra_args+=(--show-trace)
 fi
 
-function rebuild_nixos_config() {
+rebuild_nixos_config() {
   if [ $verbose -eq 1 ]; then
     extra_args+=(--verbose)
   fi
@@ -204,7 +233,7 @@ function rebuild_nixos_config() {
   exec sudo nixos-rebuild "${extra_args[@]}" "$command" --flake "$configuration" "${pass_through_arguments[@]}"
 }
 
-function rebuild_home-manager_config() {
+rebuild_home-manager_config() {
   if [ $verbose -eq 1 ]; then
     extra_args+=(-v)
   fi
@@ -213,17 +242,6 @@ function rebuild_home-manager_config() {
   echo "Switching to Home Manager configuration: $(color blue "$configuration")"
   exec home-manager "$command" --flake "$configuration" "${pass_through_arguments[@]}"
 }
-
-# update the flake if no invalid arguments were provided.
-if [ $update -eq 1 ]; then
-  if [ "$flake_path" == "$(pwd)" ]; then
-    git pull --rebase
-    nix flake update
-  else
-    echo "$(color red Incorrect usage): cannot combine '--flake-path' or '-P' with the '--update' flag."
-    exit 2
-  fi
-fi
 
 # figure out what command to run.
 if [ $nixos -eq 1 ]; then
