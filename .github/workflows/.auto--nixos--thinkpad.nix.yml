@@ -13,7 +13,7 @@ jobs:
         run: |
           nix build '.#checks.x86_64-linux.thinkpad' --print-build-logs \
             --override-input tygo-van-den-hurk-secrets "path:$(pwd)/secrets"
-    timeout-minutes: 10
+    timeout-minutes: 20
 name: Validating NixOS configuration for 'thinkpad'
 "on":
   push:

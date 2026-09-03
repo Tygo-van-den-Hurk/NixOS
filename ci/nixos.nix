@@ -67,7 +67,7 @@ in
           jobs.build = {
             name = "Validating NixOS configuration for '${value.hostname}'";
             runsOn = if value.system == "x86_64-linux" then "ubuntu-latest" else "ubuntu-arm-latest";
-            timeoutMinutes = 10;
+            timeoutMinutes = 20;
             steps = [
               steps.checkout-repository
               steps.install-nix
