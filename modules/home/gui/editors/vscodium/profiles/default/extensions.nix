@@ -37,6 +37,7 @@ in
       myriad-dreamin.tinymist
       mechatroner.rainbow-csv
       rust-lang.rust-analyzer
+      vafatarighi.mcrl2-tools
       oderwat.indent-rainbow
       dbaeumer.vscode-eslint
       ritwickdey.liveserver
@@ -46,7 +47,7 @@ in
       jnoortheen.nix-ide
       bierner.color-info
       dotjoshjohnson.xml
-      eamodio.gitlens
+      cptwesley.mcrl2
       tomoki1207.pdf
       docker.docker
       antfu.slidev
