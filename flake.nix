@@ -158,7 +158,7 @@
   outputs =
     inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-
+      systems = inputs.nixpkgs.lib.systems.flakeExposed;
       imports = [
         ./apps
         ./checks
@@ -173,23 +173,6 @@
         ./packages
         ./shells
       ];
-
-      systems = [
-        "aarch64-darwin"
-        "aarch64-linux"
-        "x86_64-darwin"
-        "x86_64-linux"
-      ];
-
-      # perSystem = { system, self', ... }: {
-      #   _module.args.pkgs = import inputs.nixpkgs {
-      #     inherit system;
-      #     overlays = [self'.overlays.unstable-packages];
-      #     config = {
-      #       allowUnfree = true;
-      #     };
-      #   };
-      # };
     };
 
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
