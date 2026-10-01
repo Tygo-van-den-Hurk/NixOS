@@ -21,8 +21,13 @@ in
     };
   };
 
-  config.programs.${program} = mkIf cfg.enable {
-    settings.merge.conflictstyle = mkDefault "zdiff3";
+  config.programs.${program}.settings = mkIf cfg.enable {
+    merge.conflictstyle = mkDefault "zdiff3";
+    interactive.diffFilter = "${helper} --color-only";
+    core.pager = helper;
+    ${helper} = {
+      pager = "never";
+    };
   };
 
   config.programs.${helper} = mkIf cfg.enable {
