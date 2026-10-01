@@ -1,6 +1,6 @@
 {
   imports = [
-    ./search-firefox-addon
+    ./search-firefox-addon.nix
     ./apply.nix
   ];
 
