@@ -3,7 +3,7 @@
 
 set -e
 
-version_of_the_program="v0.6.2"
+version_of_the_program="v0.6.3"
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Exit Codes ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
@@ -175,7 +175,7 @@ function display_image() {
     extra_arguments+=("--colors=2" "--format=symbols")
   fi
 
-  case "$extension" in
+  case "${extension}" in
   gif)
     chafa "$@" "${extra_arguments[@]}" --duration=5
     ;;
@@ -192,7 +192,7 @@ function display_text() {
   local extension
   extension=$(get_file_extension "$1")
 
-  case "$extension" in
+  case "${extension}" in
   md | markdown)
     glow --width "$(tput cols)" "$@"
     ;;
@@ -209,25 +209,25 @@ function display_text() {
 
 # Displays the ascii text provided.
 function display_binary() {
-  local extension
+  local extension argument format location
   extension=$(get_file_extension "$1")
 
   # trying to interpret binary files
-  case "$extension" in
-  gif)
-    display_image "$argument" --duration=5
+  case "${extension}" in
+  gif | png | jpeg | jpg)
+    display_image "$1"
     ;;
   pdf)
-    local format location
     format="png"
     location="/tmp/preview-pdf-to-image"
-    pdftoppm -singlefile "$argument" "-$format" "$location" -q
+    pdftoppm -singlefile "$1" "-$format" "$location" -q
     display_image "$location.$format"
     rm "$location.$format"
     ;;
   *)
-    echo "Unknown Binary file type: '$argument'."
-    echo "Attempted to match on extension '$extension' but found no result."
+    echo -n "Unknown Binary file type: '$1'." > /dev/stderr
+    echo -n "Attempted to match on extension '$extension'" > /dev/stderr
+    echo "but found no result." > /dev/stderr
     ;;
   esac
 
@@ -264,21 +264,19 @@ fi
 # looping over all directories and files
 for file_or_directory in "${files_and_dirs[@]}"; do
   result="$(file --dereference "$file_or_directory")"
-  case "${result#"$file_or_directory":' '}" in
+  output="${result#"$file_or_directory":' '}"
+  case "${output,,}" in
   *directory*)
     display_directory "$file_or_directory"
-    continue
     ;;
   *image*)
     display_image "$file_or_directory"
-    continue
     ;;
   *empty* | *short*)
     echo "The file '$file_or_directory' is empty..."
-    continue
     ;;
-  *data*)
-    echo "binary data: $file_or_directory"
+  *data* | *pdf*)
+    display_binary "$file_or_directory"
     ;;
   *text* | *)
     display_text "$file_or_directory"
