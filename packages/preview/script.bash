@@ -3,7 +3,7 @@
 
 set -e
 
-version_of_the_program="v0.6.1"
+version_of_the_program="v0.6.2"
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Exit Codes ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
@@ -263,7 +263,8 @@ fi
 
 # looping over all directories and files
 for file_or_directory in "${files_and_dirs[@]}"; do
-  case "$(file --dereference "$file_or_directory")" in
+  result="$(file --dereference "$file_or_directory")"
+  case "${result#"$file_or_directory":' '}" in
   *directory*)
     display_directory "$file_or_directory"
     continue
