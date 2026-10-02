@@ -50,6 +50,7 @@ in
     signal = Messenger;
     whatsapp-for-linux = Messenger;
     wasistlos = Messenger;
+    "com.ktechpit.whatsie" = Messenger;
 
     # 5) File browsers
     FileBrowser.workspace = "Files";

@@ -26,15 +26,7 @@ in
     packages = with pkgs; [
       (
         if hasSuffix "linux" META.system then
-          (karere.overrideAttrs (old: {
-            nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [
-              glib-networking
-            ];
-
-            propagatedBuildInputs = (old.propagatedBuildInputs or [ ]) ++ [
-              glib-networking
-            ];
-          }))
+          whatsie
         else
           whatsapp-for-mac # might have moved?
       )
