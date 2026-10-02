@@ -225,9 +225,9 @@ function display_binary() {
     rm "$location.$format"
     ;;
   *)
-    echo -n "Unknown Binary file type: '$1'." > /dev/stderr
-    echo -n "Attempted to match on extension '$extension'" > /dev/stderr
-    echo "but found no result." > /dev/stderr
+    echo -n "Unknown Binary file type: '$1'." >/dev/stderr
+    echo -n "Attempted to match on extension '$extension'" >/dev/stderr
+    echo "but found no result." >/dev/stderr
     ;;
   esac
 
