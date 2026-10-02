@@ -3,7 +3,7 @@
 
 set -e
 
-version_of_the_program="v0.6.0"
+version_of_the_program="v0.6.1"
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Exit Codes ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
@@ -127,14 +127,13 @@ while [[ $# -gt 0 ]]; do
     ;;
   *)
     path="$1"
-    if [[ -f $path || -d $path ]]; then
+    shift
+    if [ ! -e "$argument" ]; then
       files_and_dirs+=("$path")
     else
-      echo "The argument '$1' is not a path to a real file or directory." >&2
-      echo "It also is not a flag, I do not know what to do with this." >&2
+      echo "No such file or directory: $argument"
       exit $NO_SUCH_FILE_OR_DIRECTORY_EXIT_CODE
     fi
-    shift
     ;;
   esac
 done
@@ -251,7 +250,7 @@ function display_directory() {
 }
 
 if [[ $verbose == "true" ]]; then
-  echo "Functions initialised" >&2
+  echo "Functions initialized" >&2
 fi
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sorting and Calling Display Functions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
@@ -263,38 +262,27 @@ if [[ ${#files_and_dirs[@]} -eq 0 ]]; then
 fi
 
 # looping over all directories and files
-for argument in "${files_and_dirs[@]}"; do
-
-  if [ ! -e "$argument" ]; then
-    echo "No such file or directory: $argument"
+for file_or_directory in "${files_and_dirs[@]}"; do
+  case "$(file --dereference "$file_or_directory")" in
+  *directory*)
+    display_directory "$file_or_directory"
     continue
-  fi
-
-  if [ -d "$argument" ]; then
-    display_directory "$argument"
+    ;;
+  *image*)
+    display_image "$file_or_directory"
     continue
-  fi
-
-  if [[ "$(file --dereference "$argument" | grep --count --ignore-case 'image')" -eq "1" ]]; then
-    display_image "$argument"
+    ;;
+  *empty* | *short*)
+    echo "The file '$file_or_directory' is empty..."
     continue
-  fi
-
-  if [[ "$(file --dereference "$argument" | grep --count --ignore-case 'empty')" -eq "1" ]]; then
-    echo "The file '$argument' is empty..."
-    continue
-  fi
-
-  if [[ "$(file --dereference "$argument" | grep --count --ignore-case 'short')" -eq "1" ]]; then
-    echo "The file '$argument' is empty..."
-    continue
-  fi
-
-  if [[ "$(file --dereference "$argument" | grep --count --ignore-case 'text')" -eq "1" ]]; then
-    display_text "$argument"
-    continue
-  fi
-
+    ;;
+  *data*)
+    echo "binary data: $file_or_directory"
+    ;;
+  *text* | *)
+    display_text "$file_or_directory"
+    ;;
+  esac
 done
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
