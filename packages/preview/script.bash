@@ -3,7 +3,7 @@
 
 set -e
 
-version_of_the_program="v0.6.3"
+version_of_the_program="v0.6.4"
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Exit Codes ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
@@ -175,7 +175,7 @@ function display_image() {
     extra_arguments+=("--colors=2" "--format=symbols")
   fi
 
-  case "${extension}" in
+  case "${extension,,}" in
   gif)
     chafa "$@" "${extra_arguments[@]}" --duration=5
     ;;
@@ -192,7 +192,7 @@ function display_text() {
   local extension
   extension=$(get_file_extension "$1")
 
-  case "${extension}" in
+  case "${extension,,}" in
   md | markdown)
     glow --width "$(tput cols)" "$@"
     ;;
@@ -213,7 +213,7 @@ function display_binary() {
   extension=$(get_file_extension "$1")
 
   # trying to interpret binary files
-  case "${extension}" in
+  case "${extension,,}" in
   gif | png | jpeg | jpg)
     display_image "$1"
     ;;
