@@ -25,10 +25,7 @@ in
   config.home = mkIf cfg.enable {
     packages = with pkgs; [
       (
-        if hasSuffix "linux" META.system then
-          whatsie
-        else
-          whatsapp-for-mac # might have moved?
+        if hasSuffix "linux" META.system then whatsie else whatsapp-for-mac # might have moved?
       )
     ];
   };
