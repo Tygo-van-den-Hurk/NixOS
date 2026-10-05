@@ -1,0 +1,83 @@
+
+.box-wrapper {
+    background: var(--base00);
+    border: 1px solid var(--base03);
+    border-radius: 0px;
+    padding: 16px;
+}
+
+.box-wrapper:hover {
+    border-color: var(--base0D);
+}
+
+.box {
+    color: var(--base05);
+}
+
+/* ~~~ Search ~~~ */
+
+.search-container {
+    background: var(--base01);
+    border-radius: 2px;
+    border-color: none;
+    padding: 4px 12px;
+}
+
+.input {
+    background: transparent;
+    color: var(--base05);
+    border-radius: 2px;
+    border-color: none;
+    box-shadow: none;
+    caret-color: var(--base05);
+}
+
+.input:focus,
+.input:focus-within {
+    outline: none;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+} 
+
+.input placeholder {
+    color: var(--base03);
+}
+
+/* ~~~ Results ~~~ */
+
+.content-container,
+.scroll,
+.list {
+    background: transparent;
+    color: var(--base05);
+}
+
+.item-text {
+    font-weight: bold;
+}
+
+.item-subtext {
+    color: var(--base04);
+    font-weight: normal;
+}
+
+.list child:selected {
+    background: var(--base0D);
+    border-radius: 0px;
+}
+
+.list child:selected .item-text {
+    color: var(--base00);
+}
+
+.list child:selected .item-subtext {
+    color: var(--base01);
+}
+
+/* ~~~ Items below ~~~ */
+
+.global-keybinds,
+.item-keybinds {
+    color: var(--base04);
+}

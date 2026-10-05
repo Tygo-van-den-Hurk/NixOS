@@ -24,7 +24,7 @@ in
         hl.dsp.exec_cmd("${getExe (
           writeShellScriptBin "spotlight-hyprland" ''
             exec > >(systemd-cat -t spotlight-hyprland) 2>&1
-            ${getExe anyrun}
+            ${getExe walker}
           ''
         )}")
       '';
