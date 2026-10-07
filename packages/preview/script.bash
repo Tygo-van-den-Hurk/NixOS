@@ -2,8 +2,11 @@
 # Shebang will be overwritten by write shell script bin function, this is just for backwards compatibility.
 
 set -e
+set -o errexit
+set -o nounset
+set -o pipefail
 
-version_of_the_program="v0.6.4"
+version_of_the_program="v0.6.5"
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Exit Codes ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
@@ -128,12 +131,11 @@ while [[ $# -gt 0 ]]; do
   *)
     path="$1"
     shift
-    if [ ! -e "$argument" ]; then
-      files_and_dirs+=("$path")
-    else
-      echo "No such file or directory: $argument"
-      exit $NO_SUCH_FILE_OR_DIRECTORY_EXIT_CODE
+    if [ ! -e "$path" ]; then
+      echo "No such file or directory: $path"
+      exit $NO_SUCH_FILE_OR_DIRECTORY_EXIT_CODE      
     fi
+    files_and_dirs+=("$path")
     ;;
   esac
 done
