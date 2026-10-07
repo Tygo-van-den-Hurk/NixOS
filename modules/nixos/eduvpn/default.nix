@@ -1,4 +1,3 @@
-_:
 let
   namespace = "self";
   module = "eduvpn";

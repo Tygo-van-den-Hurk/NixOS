@@ -1,14 +1,18 @@
-{ inputs, ... }:
+{
+  inputs,
+  ...
+}:
 let
+  inherit (inputs.self.lib) find-files;
   namespace = "self";
   module = "cli";
 in
 {
   flake.homeModules.${module} =
     {
-      lib,
       config,
       pkgs,
+      lib,
       ...
     }:
     with lib;
@@ -30,9 +34,10 @@ in
         ];
       };
 
-      imports = inputs.self.lib.import-recursively {
+      imports = find-files {
         base = ./.;
         exclude = ./default.nix;
+        extension = ".nix";
       };
     };
 }

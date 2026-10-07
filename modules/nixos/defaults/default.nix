@@ -1,5 +1,9 @@
-{ inputs, ... }:
+{
+  inputs,
+  ...
+}:
 let
+  inherit (inputs.self.lib) find-files;
   namespace = "self";
   module = "defaults";
 in
@@ -19,9 +23,10 @@ in
         };
       };
 
-      imports = inputs.self.lib.import-recursively {
+      imports = find-files {
         base = ./.;
         exclude = ./default.nix;
+        extension = ".nix";
       };
     };
 }

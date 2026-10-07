@@ -1,4 +1,3 @@
-{ inputs, ... }:
 let
   namespace = "self";
   module = "all";
@@ -6,6 +5,7 @@ in
 {
   flake.nixosModules.${module} =
     {
+      inputs,
       config,
       lib,
       ...

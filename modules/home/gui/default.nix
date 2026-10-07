@@ -1,13 +1,17 @@
-{ inputs, ... }:
+{
+  inputs,
+  ...
+}:
 let
+  inherit (inputs.self.lib) find-files;
   namespace = "self";
   module = "gui";
 in
 {
   flake.homeModules.${module} =
     {
-      lib,
       config,
+      lib,
       ...
     }:
     with lib;
@@ -28,9 +32,10 @@ in
         WINIT_X11_SCALE_FACTOR = mkDefault 1;
       };
 
-      imports = inputs.self.lib.import-recursively {
+      imports = find-files {
         base = ./.;
         exclude = ./default.nix;
+        extension = ".nix";
       };
     };
 }

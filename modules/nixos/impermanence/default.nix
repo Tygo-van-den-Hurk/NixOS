@@ -1,4 +1,3 @@
-{ inputs, ... }:
 let
   namespace = "self";
   module = "impermanence";
@@ -6,6 +5,7 @@ in
 {
   flake.nixosModules.${module} =
     {
+      inputs,
       config,
       lib,
       ...
@@ -114,8 +114,8 @@ in
         '';
       };
 
-      imports = [
-        inputs.impermanence.nixosModules.impermanence
+      imports = with inputs.impermanence; [
+        nixosModules.impermanence
       ];
 
       config.assertions = [

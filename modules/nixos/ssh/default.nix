@@ -1,12 +1,15 @@
-_:
+{
+  inputs,
+  ...
+}:
 let
+  inherit (inputs.self.lib) find-files;
   namespace = "self";
   module = "ssh";
 in
 {
   flake.nixosModules.${module} =
     {
-      inputs,
       config,
       META,
       lib,
@@ -52,10 +55,10 @@ in
 
       config.users.users = mkIf cfg.enable {
         ${META.user.username} = {
-          openssh.authorizedKeys.keys = inputs.self.lib.import-recursively {
+          openssh.authorizedKeys.keys = find-files {
             base = ./.;
             extension = ".pub";
-            transform = file: builtins.readFile file;
+            transform = builtins.readFile;
           };
         };
       };

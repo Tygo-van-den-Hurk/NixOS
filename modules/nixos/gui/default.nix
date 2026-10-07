@@ -1,11 +1,15 @@
+{
+  inputs,
+  ...
+}:
 let
+  inherit (inputs.self.lib) find-files;
   namespace = "self";
   module = "gui";
 in
 {
   flake.nixosModules.${module} =
     {
-      inputs,
       config,
       pkgs,
       lib,
@@ -16,9 +20,10 @@ in
       cfg = config.${namespace}.${module};
     in
     {
-      imports = inputs.self.lib.import-recursively {
+      imports = find-files {
         exclude = ./default.nix;
         base = ./.;
+        extension = ".nix";
       };
 
       options.${namespace}.${module} = with types; {

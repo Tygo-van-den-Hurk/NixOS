@@ -1,13 +1,18 @@
-{ inputs, ... }:
+{
+  inputs,
+  ...
+}:
 let
+  inherit (inputs.self.lib) find-files;
   namespace = "self";
   module = "styling";
 in
 {
   flake.homeModules.${module} =
     {
-      lib,
+      inputs,
       config,
+      lib,
       ...
     }:
     with lib;
@@ -23,10 +28,13 @@ in
         };
       };
 
-      imports = inputs.self.lib.import-recursively {
+      imports = find-files {
         base = ./.;
         exclude = ./default.nix;
-        extra = [ inputs.stylix.homeModules.stylix ];
+        extension = ".nix";
+        extra = with inputs; [
+          stylix.homeModules.stylix
+        ];
       };
 
       config = mkIf (!cfg.enable) {

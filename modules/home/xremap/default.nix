@@ -1,4 +1,3 @@
-_:
 let
   namespace = "self";
   module = "xremap";
@@ -17,7 +16,9 @@ in
       cfg = config.${namespace}.${module};
     in
     {
-      imports = [ inputs.xremap.homeManagerModules.default ];
+      imports = with inputs; [
+        xremap.homeManagerModules.default
+      ];
 
       options.${namespace}.${module} = with types; {
         enable = mkOption {
