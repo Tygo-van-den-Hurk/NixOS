@@ -133,7 +133,7 @@ while [[ $# -gt 0 ]]; do
     shift
     if [ ! -e "$path" ]; then
       echo "No such file or directory: $path"
-      exit $NO_SUCH_FILE_OR_DIRECTORY_EXIT_CODE      
+      exit $NO_SUCH_FILE_OR_DIRECTORY_EXIT_CODE
     fi
     files_and_dirs+=("$path")
     ;;
@@ -211,7 +211,7 @@ function display_text() {
 
 # Displays the ascii text provided.
 function display_binary() {
-  local extension argument format location
+  local extension format location
   extension=$(get_file_extension "$1")
 
   # trying to interpret binary files
