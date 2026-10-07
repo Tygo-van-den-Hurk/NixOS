@@ -1,4 +1,5 @@
 let
+  server = "tygos-nasserver.tail9fcea.ts.net";
   namespace = "self";
   module = "nas";
 in
@@ -21,11 +22,21 @@ in
           default = false;
           type = bool;
         };
+
+        users = mkOption {
+          description = "The users who will have access to the NAS.";
+          default = [ META.user.username ];
+          type = listOf str;
+        };
       };
 
-      config =
+      config.users.groups.${server} = mkIf cfg.enable {
+        name = removeSuffix ".ts.net" server;
+        members = cfg.users;
+      };
+
+      config.fileSystems =
         let
-          server = "tygos-nasserver.tail9fcea.ts.net";
           mkMount = shareName: {
             enable = mkDefault true;
             mountPoint = mkDefault "/mnt/${server}/${shareName}";
@@ -41,18 +52,18 @@ in
               "noauto"
               "users"
               "user"
-              "uid=${toString config.users.users.${META.user.username}.uid}"
-              "gid=0"
+              "uid=0"
+              "gid=${toString config.users.groups.${server}.gid}"
             ];
           };
         in
         mkIf cfg.enable {
-          fileSystems."/mnt/${server}/documents" = mkMount "documents";
-          fileSystems."/mnt/${server}/media" = mkMount "media";
-          fileSystems."/mnt/${server}/pictures" = mkMount "pictures";
-          fileSystems."/mnt/${server}/projects" = mkMount "projects";
-          fileSystems."/mnt/${server}/school" = mkMount "school";
-          fileSystems."/mnt/${server}/work" = mkMount "work";
+          "/mnt/${server}/documents" = mkMount "documents";
+          "/mnt/${server}/media" = mkMount "media";
+          "/mnt/${server}/pictures" = mkMount "pictures";
+          "/mnt/${server}/projects" = mkMount "projects";
+          "/mnt/${server}/school" = mkMount "school";
+          "/mnt/${server}/work" = mkMount "work";
         };
     };
 }
