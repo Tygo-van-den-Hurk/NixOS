@@ -6,37 +6,43 @@ let
   inherit (inputs.nixpkgs) lib;
 in
 {
-  flake.lib = {
+  flake.lib = rec {
+
+    find-files = import ./find-files lib;
+
+    # old name and contract
     import-recursively =
-      {
-        base,
-        exclude ? null, # no file to exclude
-        extension ? ".nix", # the file extension
-        extra ? [ ], # extra imports to include outside of this directory.
-        transform ? (value: value), # transforms a file using this function
+      args@{
+        extension ? null,
+        extensions ? null,
+        ...
       }:
+      if extension != null || extensions != null then
+        find-files args
+      else
+        find-files (
+          args
+          // {
+            extension = null;
+            extensions = [ ".nix" ];
+          }
+        );
 
-      assert builtins.isPath base;
+    replace-words = import ./replace-words;
 
-      assert exclude == null || builtins.isPath exclude;
+    # old name and contract (switched argument order)
+    replaceAttrs = string: set: replace-words set string;
+  };
 
-      assert builtins.isString extension;
+  perSystem = { pkgs, lib, ... }: {
+    checks.find-files = import ./find-files/tests.nix {
+      inherit pkgs;
+      inherit lib;
+    };
 
-      assert builtins.isList extra;
-
-      let
-        files = lib.fileset.toList base;
-        isNotExclude = file: file != exclude;
-        hasExtension = file: lib.hasSuffix extension file;
-        filterFn = file: (isNotExclude file) && (hasExtension file);
-        result = builtins.filter filterFn files;
-      in
-      builtins.map transform (result ++ extra);
-
-    replaceAttrs =
-      string: set:
-      builtins.foldl' (acc: key: builtins.replaceStrings [ "${key}" ] [ set.${key} ] acc) string (
-        builtins.attrNames set
-      );
+    checks.replace-words = import ./replace-words/tests.nix {
+      inherit pkgs;
+      inherit lib;
+    };
   };
 }
