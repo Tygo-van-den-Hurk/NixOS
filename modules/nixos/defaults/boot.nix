@@ -1,8 +1,7 @@
 {
   config,
-  lib,
-  META,
   pkgs,
+  lib,
   ...
 }:
 with lib;
@@ -11,6 +10,7 @@ let
   module = "defaults";
   submodule = "boot";
   cfg = config.${namespace}.${module}.${submodule};
+  stylix = config.home-manager.users."tygo".lib.stylix or { };
 in
 {
   options.${namespace}.${module}.${submodule} = with types; {
@@ -30,9 +30,7 @@ in
       efiSupport = mkDefault true;
       memtest86.enable = mkDefault true;
       devices = [ "nodev" ];
-      backgroundColor = "#${
-        config.home-manager.users.${META.user.username}.stylix.base16Scheme.base01 or "000000"
-      }";
+      backgroundColor = "#${stylix.colors.base01 or "000000"}";
 
       # TODO: make this theme instead a part of the styling module depending on stylix.
       theme = mkDefault (
@@ -40,25 +38,25 @@ in
         stdenv.mkDerivation rec {
           name = "elegant-grub2-themes";
 
-          image = config.home-manager.users.${META.user.username}.stylix.image or null;
-          polarity = config.home-manager.users.${META.user.username}.stylix.polarity or "dark";
+          image = config.home-manager.users."tygo".stylix.image or null;
+          polarity = config.home-manager.users."tygo".stylix.polarity or "dark";
 
-          base00 = config.home-manager.users.${META.user.username}.lib.stylix.colors.base00 or "FF0000";
-          base01 = config.home-manager.users.${META.user.username}.lib.stylix.colors.base01 or "242424";
-          base02 = config.home-manager.users.${META.user.username}.lib.stylix.colors.base02 or "FF0000";
-          base03 = config.home-manager.users.${META.user.username}.lib.stylix.colors.base03 or "FF0000";
-          base04 = config.home-manager.users.${META.user.username}.lib.stylix.colors.base04 or "FF0000";
-          base05 = config.home-manager.users.${META.user.username}.lib.stylix.colors.base05 or "efefef";
-          base06 = config.home-manager.users.${META.user.username}.lib.stylix.colors.base06 or "FF0000";
-          base07 = config.home-manager.users.${META.user.username}.lib.stylix.colors.base07 or "FF0000";
-          base08 = config.home-manager.users.${META.user.username}.lib.stylix.colors.base08 or "FF0000";
-          base09 = config.home-manager.users.${META.user.username}.lib.stylix.colors.base09 or "FF0000";
-          base0A = config.home-manager.users.${META.user.username}.lib.stylix.colors.base0A or "FF0000";
-          base0B = config.home-manager.users.${META.user.username}.lib.stylix.colors.base0B or "FF0000";
-          base0C = config.home-manager.users.${META.user.username}.lib.stylix.colors.base0C or "FF0000";
-          base0D = config.home-manager.users.${META.user.username}.lib.stylix.colors.base0D or "ffffff";
-          base0E = config.home-manager.users.${META.user.username}.lib.stylix.colors.base0E or "FF0000";
-          base0F = config.home-manager.users.${META.user.username}.lib.stylix.colors.base0F or "FF0000";
+          base00 = stylix.colors.base00 or "FF0000";
+          base01 = stylix.colors.base01 or "242424";
+          base02 = stylix.colors.base02 or "FF0000";
+          base03 = stylix.colors.base03 or "FF0000";
+          base04 = stylix.colors.base04 or "FF0000";
+          base05 = stylix.colors.base05 or "efefef";
+          base06 = stylix.colors.base06 or "FF0000";
+          base07 = stylix.colors.base07 or "FF0000";
+          base08 = stylix.colors.base08 or "FF0000";
+          base09 = stylix.colors.base09 or "FF0000";
+          base0A = stylix.colors.base0A or "FF0000";
+          base0B = stylix.colors.base0B or "FF0000";
+          base0C = stylix.colors.base0C or "FF0000";
+          base0D = stylix.colors.base0D or "ffffff";
+          base0E = stylix.colors.base0E or "FF0000";
+          base0F = stylix.colors.base0F or "FF0000";
 
           screen = "1080p";
 

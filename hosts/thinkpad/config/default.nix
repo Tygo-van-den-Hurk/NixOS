@@ -7,7 +7,7 @@ with lib;
 {
   imports = with inputs; [
     nixos-hardware.nixosModules.lenovo-thinkpad-p1-gen3
-    ./hardware-configuration.nix
+    ./hardware.nix
   ];
 
   self.defaults.enable = true;

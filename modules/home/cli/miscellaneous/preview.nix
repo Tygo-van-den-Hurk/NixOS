@@ -1,7 +1,7 @@
 {
   inputs,
   config,
-  META,
+  pkgs,
   lib,
   ...
 }:
@@ -23,6 +23,6 @@ in
   };
 
   config.home = mkIf cfg.enable {
-    packages = [ inputs.self.packages.${META.system}.${program} ];
+    packages = [ inputs.self.packages.${pkgs.stdenv.system}.${program} ];
   };
 }

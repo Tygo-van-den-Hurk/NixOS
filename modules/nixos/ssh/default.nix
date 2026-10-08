@@ -11,7 +11,6 @@ in
   flake.nixosModules.${module} =
     {
       config,
-      META,
       lib,
       ...
     }:
@@ -31,12 +30,19 @@ in
       config.services.openssh = mkIf cfg.enable {
         enable = mkDefault true;
         openFirewall = mkDefault false; # Tailscale goes past the firewall anyways.
+
         settings = {
           PermitRootLogin = mkDefault "no";
           PasswordAuthentication = mkDefault false;
           StrictModes = mkDefault true;
+          AllowGroups = [ "wheel" ];
           UsePAM = mkDefault true;
-          AllowUsers = [ META.user.username ];
+        };
+
+        authorizedKeysFiles = find-files {
+          base = ./.;
+          extension = ".pub";
+          transform = builtins.toString;
         };
       };
 
@@ -51,16 +57,6 @@ in
         enable = mkDefault true;
         openFirewall = mkDefault true;
         port = mkDefault 2222;
-      };
-
-      config.users.users = mkIf cfg.enable {
-        ${META.user.username} = {
-          openssh.authorizedKeys.keys = find-files {
-            base = ./.;
-            extension = ".pub";
-            transform = builtins.readFile;
-          };
-        };
       };
     };
 }

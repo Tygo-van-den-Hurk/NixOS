@@ -1,18 +1,15 @@
-{ inputs, ... }:
+let
+  get-sub-directories = import ./get-sub-directories.nix;
+in
+{
+  inputs,
+  ...
+}:
 let
   inherit (inputs.nixpkgs) lib;
   inherit (inputs) self;
 
-  # Read the current directory.
   curDir = ./.;
-  inherit (builtins) readDir;
-  files = readDir curDir;
-
-  # Filter this directories contents on directories
-  inherit (builtins) filter;
-  isDirectory = file: files.${file} == "directory";
-  inherit (builtins) attrNames;
-  directories = filter isDirectory (attrNames files);
 
   # Reads `info.nix`, `configuration.nix`, and `hardware-configuration.nix` from
   # that directory and creates a NixOS system and flake check from that.
@@ -22,33 +19,41 @@ let
       META = import "${curDir}/${directory}/meta.nix";
       CONFIG_PATH = curDir + "/${directory}";
 
+      inherit (META) hostName;
+      inherit (META) system;
+
       modules = [
-        (CONFIG_PATH + "/configuration.nix")
+        { networking.hostName = lib.mkDefault hostName; }
+        (CONFIG_PATH + "/config")
         self.nixosModules.all
+        ./users.nix
       ];
 
       specialArgs = {
+        inherit system;
         inherit CONFIG_PATH;
         inherit inputs;
         inherit META;
       };
 
       nixosSystem = lib.nixosSystem {
-        inherit (META) system;
+        inherit system;
         inherit specialArgs;
         inherit modules;
       };
     in
     {
-      flake.nixosConfigurations.${META.hostName} = nixosSystem;
-      flake.checks.${META.system}.${META.hostName} = nixosSystem.config.system.build.toplevel;
-      self.ci.configurations.nixos.".auto--nixos--${META.hostName}.nix" = {
-        hostname = META.hostName;
-        inherit (META) system;
+      flake.nixosConfigurations.${hostName} = nixosSystem;
+      flake.checks.${system}.${hostName} = nixosSystem.config.system.build.toplevel;
+      self.ci.configurations.nixos.".auto--nixos--${hostName}.nix" = {
+        hostname = hostName;
+        inherit system;
       };
     };
+
+  hosts = get-sub-directories curDir;
 in
 {
   # Import the just created systems and flake checks.
-  imports = map mkSystem directories;
+  imports = map mkSystem hosts;
 }

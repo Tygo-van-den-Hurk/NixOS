@@ -1,8 +1,7 @@
 {
+  config,
   pkgs,
   lib,
-  config,
-  META,
   ...
 }:
 with lib;
@@ -25,7 +24,7 @@ in
   config.home = mkIf cfg.enable {
     packages = with pkgs; [
       (
-        if hasSuffix "linux" META.system then whatsie else whatsapp-for-mac # might have moved?
+        if pkgs.stdenv.isLinux then whatsie else whatsapp-for-mac # might have moved?
       )
     ];
   };

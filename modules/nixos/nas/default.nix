@@ -7,7 +7,6 @@ in
   flake.nixosModules.${module} =
     {
       config,
-      META,
       lib,
       ...
     }:
@@ -25,7 +24,7 @@ in
 
         users = mkOption {
           description = "The users who will have access to the NAS.";
-          default = [ META.user.username ];
+          default = config.users.groups.wheel.members;
           type = listOf str;
         };
       };

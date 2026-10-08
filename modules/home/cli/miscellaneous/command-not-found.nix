@@ -1,7 +1,7 @@
 {
   inputs,
-  META,
   config,
+  pkgs,
   lib,
   ...
 }:
@@ -37,6 +37,12 @@ in
 
   config.programs.nix-index = mkIf cfg.enable {
     enable = mkDefault true;
-    package = mkForce inputs.nix-index-database.packages.${META.system}.nix-index-with-small-db;
+    package =
+      let
+        inherit (pkgs.stdenv) system;
+        inherit (inputs.nix-index-database) packages;
+        inherit (packages.${system}) nix-index-with-small-db;
+      in
+      mkForce nix-index-with-small-db;
   };
 }

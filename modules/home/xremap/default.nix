@@ -7,7 +7,7 @@ in
     {
       inputs,
       config,
-      META,
+      pkgs,
       lib,
       ...
     }:
@@ -30,7 +30,7 @@ in
 
       config.services.${module} = mkIf cfg.enable {
         enable = mkDefault true;
-        package = inputs.nixpkgs.legacyPackages.${META.system}.xremap;
+        package = mkDefault pkgs.xremap;
         yamlConfig = builtins.readFile ./config.yaml;
       };
     };

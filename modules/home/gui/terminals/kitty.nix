@@ -1,8 +1,7 @@
 {
+  config,
   pkgs,
   lib,
-  config,
-  META,
   ...
 }:
 with lib;
@@ -39,15 +38,11 @@ in
       mode = mkDefault "no-rc";
     };
 
-    keybindings =
-      if (hasSuffix "linux" META.system) then
-        {
-          "ctrl+c" = mkDefault "copy_or_interrupt";
-          "super+c" = mkDefault "signal_child SIGINT";
-          "ctrl+v" = mkDefault "paste_from_clipboard";
-        }
-      else
-        { };
+    keybindings = mkIf (!pkgs.stdenv.isDarwin) {
+      "ctrl+c" = mkDefault "copy_or_interrupt";
+      "super+c" = mkDefault "signal_child SIGINT";
+      "ctrl+v" = mkDefault "paste_from_clipboard";
+    };
 
     settings = {
 

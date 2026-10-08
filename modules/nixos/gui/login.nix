@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  META,
   lib,
   ...
 }:
@@ -11,6 +10,8 @@ let
   module = "gui";
   program = "sddm";
   cfg = config.${namespace}.${module}.${program};
+
+  user = config.home-manager.users."tygo" or { };
 
   theme = with pkgs; rec {
     name = "personalized-sddm-theme";
@@ -23,26 +24,26 @@ let
 
       inherit (config.networking) hostName;
 
-      inherit (config.home-manager.users.${META.user.username}.stylix) image;
+      inherit (user.stylix) image;
 
-      fontName = config.home-manager.users.${META.user.username}.stylix.fonts.sansSerif.name;
+      fontName = user.stylix.fonts.sansSerif.name or "";
 
-      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base00;
-      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base01;
-      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base02;
-      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base03;
-      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base04;
-      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base05;
-      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base06;
-      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base07;
-      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base08;
-      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base09;
-      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base0A;
-      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base0B;
-      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base0C;
-      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base0D;
-      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base0E;
-      inherit (config.home-manager.users.${META.user.username}.lib.stylix.colors) base0F;
+      inherit (user.lib.stylix.colors) base00;
+      inherit (user.lib.stylix.colors) base01;
+      inherit (user.lib.stylix.colors) base02;
+      inherit (user.lib.stylix.colors) base03;
+      inherit (user.lib.stylix.colors) base04;
+      inherit (user.lib.stylix.colors) base05;
+      inherit (user.lib.stylix.colors) base06;
+      inherit (user.lib.stylix.colors) base07;
+      inherit (user.lib.stylix.colors) base08;
+      inherit (user.lib.stylix.colors) base09;
+      inherit (user.lib.stylix.colors) base0A;
+      inherit (user.lib.stylix.colors) base0B;
+      inherit (user.lib.stylix.colors) base0C;
+      inherit (user.lib.stylix.colors) base0D;
+      inherit (user.lib.stylix.colors) base0E;
+      inherit (user.lib.stylix.colors) base0F;
 
       conf = ''
         [General]

@@ -6,7 +6,6 @@ in
   flake.nixosModules.${module} =
     {
       config,
-      META,
       lib,
       ...
     }:
@@ -27,6 +26,12 @@ in
           default = true;
           type = bool;
         };
+
+        users = mkOption {
+          description = "The users that are allowed to use docker.";
+          default = config.users.groups.wheel.members;
+          type = listOf str;
+        };
       };
 
       config.virtualisation.docker = mkIf cfg.enable {
@@ -36,7 +41,7 @@ in
       };
 
       config.users.groups.docker = mkIf cfg.enable {
-        members = [ META.user.username ];
+        members = cfg.users;
       };
     };
 }
