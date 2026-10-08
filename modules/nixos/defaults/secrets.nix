@@ -21,28 +21,72 @@ in
     };
   };
 
-  config = mkIf cfg.enable {
-    environment.systemPackages = [ pkgs.sops ];
+  imports = with inputs; [
+    sops-nix.nixosModules.sops
+    "${tygo-van-den-hurk-secrets}"
+  ];
 
-    sops = {
-      defaultSopsFile = mkDefault "${inputs.tygo-van-den-hurk-secret}/secrets.yaml";
-      defaultSopsFormat = mkDefault "yaml";
-    };
-
-    sops.secrets."hosts/${config.networking.hostName}/password" = {
-      owner = config.users.users.nobody.name;
-      inherit (config.users.users.nobody) group;
-      neededForUsers = true;
-    };
-
-    sops.secrets."nas/credentials" = {
-      owner = config.users.users.nobody.name;
-      inherit (config.users.users.nobody) group;
-    };
+  config.environment = mkIf cfg.enable {
+    systemPackages = [ pkgs.sops ];
   };
 
-  imports = [
-    inputs.sops-nix.nixosModules.sops
-    "${inputs.tygo-van-den-hurk-secrets}"
-  ];
+  config.sops.secrets =
+    assert config.sops.defaultSopsFormat == "yaml";
+    let
+      inherit (config.networking) hostName;
+      secretsFile =
+        pkgs.runCommand "yaml-to.json"
+          {
+            nativeBuildInputs = with pkgs; [ yj ];
+            src = config.sops.defaultSopsFile;
+          }
+          /* Shell */ ''
+            cat "$src" | yj > "$out"
+          '';
+
+      inherit (builtins) readFile;
+      secretsRead = readFile secretsFile;
+
+      inherit (builtins) fromJSON;
+      secretsRaw = fromJSON secretsRead;
+      hostSecrets = secretsRaw.hosts.${hostName} or { };
+      userSecrets = hostSecrets.users or { };
+    in
+    mkIf cfg.enable (
+
+      # The passwords for each user
+      (pipe userSecrets [
+        (filterAttrs (_: value: value ? password))
+        (mapAttrs' (
+          user: _: {
+            name = "hosts/${hostName}/users/${user}/password";
+            value = {
+              owner = config.users.users.nobody.name;
+              inherit (config.users.users.nobody) group;
+              neededForUsers = true;
+            };
+          }
+        ))
+      ])
+
+      # The other secrets
+      // {
+        "hosts/${hostName}/password" = mkIf (hostSecrets ? password) {
+          owner = config.users.users.nobody.name;
+          inherit (config.users.users.nobody) group;
+          neededForUsers = true;
+        };
+
+        "password" = mkIf (secretsRaw ? password) {
+          owner = config.users.users.nobody.name;
+          inherit (config.users.users.nobody) group;
+          neededForUsers = true;
+        };
+
+        "nas/credentials" = {
+          owner = config.users.users.nobody.name;
+          inherit (config.users.users.nobody) group;
+        };
+      }
+    );
 }
