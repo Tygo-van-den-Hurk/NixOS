@@ -49,9 +49,11 @@ in
         email = mkDefault "91738110+Tygo-van-den-Hurk@users.noreply.github.com";
       };
 
-      aliases = {
+      alias = {
         "logs" = mkDefault "log --decorate=short --pretty=reference --graph";
         "s" = mkDefault "status";
+        "r" = mkDefault "reset";
+        "a" = mkDefault "add";
         "b" = mkDefault "branch";
         "c" = mkDefault "commit";
         "l" = mkDefault "log";
