@@ -20,9 +20,17 @@ in
       default = config.${namespace}.${type}.${category}.enable;
       type = bool;
     };
+
+    package = mkOption {
+      description = "What package to use for 'preview'.";
+      default = inputs.self.packages.${pkgs.stdenv.system}.${program};
+      type = package;
+    };
   };
 
   config.home = mkIf cfg.enable {
-    packages = [ inputs.self.packages.${pkgs.stdenv.system}.${program} ];
+    packages = [ cfg.package ];
+    shellAliases."prev" = getExe cfg.package;
+    shellAliases."p" =  getExe cfg.package;
   };
 }
