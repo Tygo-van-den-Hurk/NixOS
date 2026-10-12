@@ -37,7 +37,7 @@ in
         ];
       };
 
-      config = mkIf (!cfg.enable) {
+      config = mkIf (!cfg.enable && !cfg.stylix.enable) {
         stylix.enable = mkForce false;
         stylix.base16Scheme = { };
       };
