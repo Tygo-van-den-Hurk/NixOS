@@ -26,6 +26,8 @@
 modmap:
   - name: Global 
     remap:
+      #| Convenient for when using VIM.
+      CapsLock: Esc
       #| WIN_ALT gets assigned MAC_CMD  (WIN_CTRL) --> ( Primary goes to right most key )
       ALT_L: 
         skip_key_event: true
