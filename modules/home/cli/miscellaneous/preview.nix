@@ -30,7 +30,9 @@ in
 
   config.home = mkIf cfg.enable {
     packages = [ cfg.package ];
-    shellAliases."prev" = getExe cfg.package;
-    shellAliases."p" =  getExe cfg.package;
+    shellAliases = rec {
+      prev = getExe cfg.package;
+      p = prev;
+    };
   };
 }
