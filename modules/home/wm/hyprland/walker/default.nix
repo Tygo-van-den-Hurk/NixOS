@@ -27,13 +27,11 @@ in
     };
   };
 
-  config.assertions = [
-    {
-      assertion = cfg.enable -> (config.stylix.enable or false);
-      message =
-        "When you enable the '${namespace}.${type}.${program}.enable' option, "
-        + "then you must enable stylix for its 16 bit scheme.";
-    }
+  config.warnings = mkIf (cfg.enable && !(config.stylix.enable or false)) [
+    (
+      "When you enable the '${namespace}.${type}.${program}.enable' option, "
+      + "you should also enable Stylix for its 16-bit scheme."
+    )
   ];
 
   config.services.elephant = {
@@ -45,11 +43,7 @@ in
     enableElephantIntegration = mkDefault true;
     systemd.enable = mkDefault true;
     inherit (cfg) package;
-
-    settings = {
-    };
-
-    theme = {
+    theme = mkIf (config ? stylix) {
       name = "stylix";
       style =
         with (config.lib.stylix.colors.withHashtag or (throw "Stylix woopsy!"));

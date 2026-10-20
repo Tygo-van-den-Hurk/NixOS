@@ -57,7 +57,8 @@ in
               branches = [ "main" ];
               paths = [
                 "hosts/${value.hostname}/**"
-                "modules/**"
+                "modules/nixos/**"
+                "modules/home/**"
                 "lib/**"
                 "flake.*"
               ];

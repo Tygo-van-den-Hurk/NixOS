@@ -30,6 +30,7 @@ in
     gimp = FileEditor;
     libreoffice = FileEditor;
     DesktopEditors = FileEditor;
+    NeoVim = FileEditor;
 
     # 3) Browsers
     Browser.workspace = "Browser";

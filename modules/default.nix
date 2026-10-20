@@ -1,8 +1,7 @@
-{ ... }:
-
 {
   imports = [
     ./home
     ./nixos
+    ./neovim
   ];
 }

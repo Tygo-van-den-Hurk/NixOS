@@ -21,20 +21,25 @@ in
       type = bool;
     };
 
+    package = mkOption {
+      description = "The wrapper to execute instead.";
+      default = pkgs.micro-full;
+      type = package;
+    };
+
     mkDefault = mkOption {
       description = "Whether to make ${program} the default program to open its file type.";
-      default = cfg.enable;
+      default = false;
       type = bool;
     };
   };
 
   config.programs.${program} = mkIf cfg.enable {
     enable = mkDefault true;
-    package = pkgs.micro-full;
-    settings = mkDefault { };
+    inherit (cfg) package;
   };
 
   config.home.sessionVariables = mkIf cfg.mkDefault {
-    EDITOR = mkDefault (getExe pkgs.${program});
+    EDITOR = mkDefault (getExe cfg.package);
   };
 }

@@ -24,6 +24,7 @@ in
   config.programs.${program}.profiles.${profile} = mkIf cfg.enable {
     enableExtensionUpdateCheck = mkDefault false;
     extensions = with pkgs.nix-vscode-extensions.vscode-marketplace; [
+      thenuprojectcontributors.vscode-nushell-lang
       streetsidesoftware.code-spell-checker-dutch
       streetsidesoftware.code-spell-checker
       catppuccin.catppuccin-vsc-icons

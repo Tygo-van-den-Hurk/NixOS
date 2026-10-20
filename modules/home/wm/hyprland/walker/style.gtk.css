@@ -19,7 +19,7 @@
 .search-container {
     background: var(--base01);
     border-radius: 2px;
-    border-color: none;
+    border: none;
     padding: 4px 12px;
 }
 
@@ -27,7 +27,7 @@
     background: transparent;
     color: var(--base05);
     border-radius: 2px;
-    border-color: none;
+    border: none;
     box-shadow: none;
     caret-color: var(--base05);
 }

@@ -14,6 +14,7 @@ in
   imports = [
     inputs.github-actions-nix.flakeModules.default
     ./home-manager.nix
+    ./neovim.nix
     ./nixos.nix
   ];
 

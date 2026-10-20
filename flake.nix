@@ -107,6 +107,13 @@
 
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Miscellaneous ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
+  # Build your own nvim distribution.
+  inputs.nvf = {
+    url = "github:NotAShelf/nvf";
+    inputs.nixpkgs.follows = "nixpkgs";
+    inputs.flake-compat.follows = "flake-compat";
+  };
+
   # NixOS profiles to optimize settings for different hardware.
   inputs.nixos-hardware = {
     url = "github:NixOS/nixos-hardware/master";
