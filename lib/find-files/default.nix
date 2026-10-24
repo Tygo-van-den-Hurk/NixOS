@@ -11,6 +11,7 @@ in
   extensions ? null,
   extra ? [ ], # extra imports to include outside of this directory.
   transform ? (value: value), # transforms a file using this function
+  filter ? (_: true),
 }:
 
 # Files that should always be included in the result.
@@ -57,4 +58,10 @@ let
   has_right_extension = builtins.filter has_file_extension non_excluded_files;
 in
 
-builtins.map transform (has_right_extension ++ extra)
+assert builtins.isFunction filter;
+
+let
+  filtered = builtins.filter filter has_right_extension;
+in
+
+builtins.map transform (filtered ++ extra)

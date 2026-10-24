@@ -113,6 +113,20 @@ let
         base = ./data;
       };
     };
+
+    "find files but filter out some" = {
+      
+      expected = sort [ 
+        (./data + "/file-1.alpha")
+        (./data + "/dir/file-3.alpha")
+      ];
+
+      expr = find-files {
+        filter = file: !lib.hasInfix "file-2" (toString file);
+        extension = "alpha";
+        base = ./data;
+      };
+    };
   };
 
   failures = lib.runTests (
