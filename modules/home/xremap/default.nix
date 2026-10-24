@@ -31,6 +31,7 @@ in
         exclude = ./default.nix;
         extension = ".nix";
         extra = with inputs; [
+          { services.${module}.enable = mkOptionDefault false; }
           xremap.homeManagerModules.default
         ];
       };
