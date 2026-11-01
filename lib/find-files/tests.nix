@@ -115,8 +115,8 @@ let
     };
 
     "find files but filter out some" = {
-      
-      expected = sort [ 
+
+      expected = sort [
         (./data + "/file-1.alpha")
         (./data + "/dir/file-3.alpha")
       ];

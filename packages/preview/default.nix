@@ -44,7 +44,7 @@ in
         nativeBuildInputs = [ installShellFiles ];
         inherit (self'.packages."${name}/script") meta;
 
-        installPhase = ''
+        installPhase = /* Shell */ ''
           runHook preInstall
 
           installShellCompletion \
