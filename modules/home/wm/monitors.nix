@@ -100,9 +100,9 @@ in
 
               scale = mkOption {
                 description = "The scale of the display in the system.";
-                example = 2;
+                example = 1.25;
+                type = number;
                 default = 1;
-                type = int;
               };
             };
           }

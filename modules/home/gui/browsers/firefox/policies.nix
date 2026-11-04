@@ -44,5 +44,17 @@ in
     DontCheckDefaultBrowser = true;
     HardwareAcceleration = true;
     OfferToSaveLogins = false;
+
+    # Removing state
+    SanitizeOnShutdown = {
+      Cookies = true;
+      Sessions = true;
+      Locked = true;
+      Cache = false;
+      Exceptions = [
+        "http://chatgpt.com/"
+        "https://chatgpt.com/"
+      ];
+    };
   };
 }

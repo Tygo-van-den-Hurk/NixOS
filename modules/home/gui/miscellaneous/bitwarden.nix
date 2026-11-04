@@ -57,6 +57,10 @@ in
     };
   };
 
+  config.self.unfree.packageAllowList = mkIf cfg.enable [
+    "bitwarden-password-manager"
+  ];
+
   config.xdg.autostart = mkIf cfg.autostart.enable {
     entries = singleton (
       pkgs.makeDesktopItem cfg.autostart.config

@@ -2,46 +2,27 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 {
+  modulesPath,
   config,
   lib,
-  modulesPath,
   ...
 }:
-
+with lib;
 {
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
+  imports = singleton (modulesPath + "/installer/scan/not-detected.nix");
 
   boot.initrd.availableKernelModules = [
     "xhci_pci"
+    "thunderbolt"
     "nvme"
     "usb_storage"
     "sd_mod"
-    "rtsx_pci_sdmmc"
   ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/fc2f9ded-cace-48fc-bae7-0e53ab71c5ba";
-    fsType = "ext4";
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/9921-7ED1";
-    fsType = "vfat";
-    options = [
-      "fmask=0077"
-      "dmask=0077"
-    ];
-  };
-
-  swapDevices = [
-    { device = "/dev/disk/by-uuid/f87de2d1-a9fc-40b3-8e29-0a37adca1045"; }
-  ];
-
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.intel.npu.enable = true;
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

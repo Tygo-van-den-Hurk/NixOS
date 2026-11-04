@@ -50,6 +50,7 @@ in
       confirm_os_window_close = mkDefault "0";
       copy_on_select = mkDefault "no";
       enable_audio_bell = mkDefault "yes";
+      remember_window_size = mkDefault "no";
 
       # looks
       padding_width = mkDefault "0";

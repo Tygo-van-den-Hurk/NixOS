@@ -8,8 +8,8 @@ with lib;
 let
   namespace = "self";
   module = "gui";
-  program = "sddm";
-  cfg = config.${namespace}.${module}.${program};
+  submodule = "login";
+  cfg = config.${namespace}.${module}.${submodule};
 
   user = config.home-manager.users."tygo" or { };
 
@@ -294,7 +294,7 @@ let
   };
 in
 {
-  options.${namespace}.${module}.${program} = with types; {
+  options.${namespace}.${module}.${submodule} = with types; {
     enable = mkOption {
       description = "Whether to this module.";
       default = config.${namespace}.${module}.enable;
@@ -302,34 +302,38 @@ in
     };
 
     theme.name = mkOption {
-      description = "The ${program}s' theme package' name.";
+      description = "The ${submodule}s' theme package' name.";
       default = theme.name;
       type = str;
     };
 
     theme.package = mkOption {
-      description = "The ${program}s' theme package.";
-      type = package;
+      description = "The ${submodule}s' theme package.";
       default = theme.package;
+      type = package;
+    };
+
+    scale = mkOption {
+      description = "The scale of the greeter.";
+      type = number;
+      default = 1;
     };
   };
 
-  config = mkIf cfg.enable {
-    environment.systemPackages = [
+  config.environment = mkIf cfg.enable {
+    etc.${cfg.theme.name}.source = cfg.theme.package;
+    systemPackages = [ cfg.theme.package ];
+  };
+
+  config.services.displayManager.sddm = mkIf cfg.enable {
+    enable = mkDefault true;
+    enableHidpi = mkDefault true;
+    autoNumlock = mkDefault true;
+    theme = mkDefault cfg.theme.name;
+    wayland.enable = mkDefault true;
+    settings.General.GreeterEnvironment = "QT_SCALE_FACTOR=${toString cfg.scale},QT_SCREEN_SCALE_FACTORS=${toString cfg.scale}";
+    extraPackages = [
       cfg.theme.package
     ];
-
-    environment.etc.${cfg.theme.name}.source = cfg.theme.package;
-
-    services.displayManager.sddm = {
-      enable = mkDefault true;
-      autoNumlock = mkDefault true;
-      theme = mkDefault cfg.theme.name;
-      wayland.enable = mkDefault true;
-      extraPackages = [
-        cfg.theme.package
-      ];
-    };
   };
-
 }

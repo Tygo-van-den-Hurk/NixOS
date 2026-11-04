@@ -18,5 +18,6 @@ in
     "sidebar.verticalTabs" = true;
     "sidebar.new-sidebar.has-used" = true;
     "sidebar.verticalTabs.dragToPinPromo.dismissed" = true;
+    "browser.tabs.unloadOnLowMemory" = false;
   };
 }
