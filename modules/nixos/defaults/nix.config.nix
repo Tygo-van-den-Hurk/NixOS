@@ -16,7 +16,6 @@ in
     enable = mkOption {
       description = "Whether to fill in a bunch of defaults regarding nix and nixpkgs.";
       default = config.${namespace}.${module}.enable;
-      readOnly = true;
       type = bool;
     };
   };

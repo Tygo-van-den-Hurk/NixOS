@@ -15,7 +15,6 @@ in
     enable = mkOption {
       description = "Whether to use the default locale I use.";
       default = config.${namespace}.${module}.enable;
-      readOnly = true;
       type = bool;
     };
   };
