@@ -34,6 +34,14 @@ in
         members = cfg.users;
       };
 
+      config.assertions = singleton {
+        assertion = cfg.enable -> config.${namespace}.secrets.enable or false;
+        message = ''
+          When you enable the nas Module, you must load and enable the
+          secrets module.
+        '';
+      };
+
       config.fileSystems =
         let
           mkMount = shareName: {
@@ -43,7 +51,7 @@ in
             fsType = mkDefault "cifs";
             neededForBoot = mkDefault false;
             options = [
-              "credentials=${config.sops.secrets."nas/credentials".path}"
+              "credentials=${config.${namespace}.secrets.nas.credentials or null}"
               "x-systemd.idle-timeout=60"
               "x-systemd.device-timeout=5s"
               "x-systemd.mount-timeout=5s"

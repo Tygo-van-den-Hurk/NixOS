@@ -16,6 +16,7 @@ with lib;
   self.gaming.enable = true;
   self.nas.enable = true;
   self.qmk.enable = true;
+  self.secrets.enable = true;
   self.ssh.enable = true;
   self.gui.enable = true;
 

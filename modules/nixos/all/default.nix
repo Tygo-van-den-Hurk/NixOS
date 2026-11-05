@@ -32,6 +32,7 @@ in
         impermanence.enable = mkDefault true;
         nas.enable = mkDefault true;
         qmk.enable = mkDefault true;
+        secrets.enable = mkDefault true;
         ssh.enable = mkDefault true;
       };
 
@@ -44,6 +45,7 @@ in
         impermanence
         nas
         qmk
+        secrets
         ssh
       ];
     };

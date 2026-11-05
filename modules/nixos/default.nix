@@ -11,6 +11,7 @@
     ./impermanence
     ./nas
     ./qmk
+    ./secrets
     ./ssh
   ];
 }

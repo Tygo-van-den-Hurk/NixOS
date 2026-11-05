@@ -23,7 +23,6 @@ in
 
   imports = with inputs; [
     sops-nix.nixosModules.sops
-    "${tygo-van-den-hurk-secrets}"
   ];
 
   config.environment = mkIf cfg.enable {
